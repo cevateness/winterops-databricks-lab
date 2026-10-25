@@ -1,0 +1,12 @@
+{
+  "source_file": "snowplow-2026-01-12_2026-01-18.csv",
+  "bronze_rows": 110337,
+  "silver_rows": 110337,
+  "header_rows": 26,
+  "valid_rows": 110311,
+  "other_invalid_rows": 0,
+  "distinct_truck_ids": 251,
+  "plow_active_observations": 79471,
+  "spreader_active_observations": 68870,
+  "provenance": "User-shared aggregate SQL outputs; not live API verification"
+}

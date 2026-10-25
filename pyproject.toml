@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "winterops-decision-intelligence"
+version = "0.1.0"
+description = "Reproducible Databricks learning lab for municipal winter-operations analytics"
+readme = "README.md"
+requires-python = ">=3.10"
+keywords = ["data-engineering", "databricks", "delta-lake", "winter-operations"]
+dependencies = []
+
+[tool.setuptools.packages.find]
+where = ["src"]

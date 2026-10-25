@@ -1,0 +1,48 @@
+# Python tooling
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+build/
+dist/
+*.egg-info/
+.ipynb_checkpoints/
+
+# Credentials, local configuration, token stores
+.env
+.env.*
+!.env.example
+.databrickscfg
+*.token
+*.pem
+*.p12
+*.key
+.databricks/
+.bundle/
+
+# Real-world operational raw data and local reports; publish only vetted aggregates
+/data/raw/
+/data/imported/
+/data/downloads/
+/data/private/
+/reports/local_*/
+/reports/private/
+*.csv
+!data/synthetic/snowplow_demo_synthetic.csv
+!docs/DATA_SOURCE_REGISTER.csv
+*.parquet
+*.delta
+*.db
+*.duckdb
+
+# Archives and installations
+*.zip
+*.tar.gz
+*.exe
+*.msi
+*.log
+**/.DS_Store
+Thumbs.db
