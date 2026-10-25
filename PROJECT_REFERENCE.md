@@ -3,7 +3,7 @@
 **Working name:** WinterOps  
 **Subtitle:** Weather-Driven Municipal Operations Intelligence  
 **Project type:** Independent Databricks learning laboratory with optional future commercialization  
-**Status:** Phase 1 real-source Bronze and one-week Silver implemented in user workspace (user-verified), canonical GitHub repository connected  
+**Status:** Bronze/one-week Silver user-verified; canonical GitHub connected; scoped Silver/Gold view code tested offline, awaiting Databricks acceptance
 **Reference date:** 2026-10-16; updated 2026-10-25
 
 ## 1. Purpose
@@ -65,7 +65,7 @@ Public datasets / approved downloaded files
           ↓
 Bronze Delta tables — raw, timestamped, traceable input
           ↓
-Silver Delta tables — typed, deduplicated, validated and joined data
+Silver Delta tables — typed, quality-classified observations with repeats preserved
           ↓
 Gold Delta tables — event / area / time aggregates, model-ready features
           ├── SQL analytics + spatial coverage dashboard
@@ -130,4 +130,6 @@ This Project is a **reference workspace** for occasional visits, not a scheduled
 
 **GitHub update (2026-10-25):** The canonical public repository is [cevateness/winterops-databricks-lab](https://github.com/cevateness/winterops-databricks-lab). Local Git is connected with `main` tracking `origin/main`. Offline checks pass locally; GitHub Actions provides separate remote CI evidence. This publication does not establish Codex Cloud configuration or Databricks API access.
 
-**Next action:** Configure Codex Cloud for offline testing/PRs when requested, test Databricks CLI workspace access as an independent optional step, and prepare clean/quarantine Silver consumer views followed by modest, observation-count-only hourly Gold analytics. No forecasting or optimization should be rushed. See `docs/STATUS_HANDOFF.md` and `docs/DECISIONS.md` for details.
+**Local development update (2026-10-25):** Cloud environment publication is user-reported, but extension selection remains unresolved. The user chose local development for now. Exact-version Silver consumer views, source-local/naive hourly observation counts, offline tests and a profile/host-gated CLI probe are prepared in code. Databricks execution is blocked pending CLI availability, workspace target, reviewed file hash/evidence and user approval; no live objects were created.
+
+**Next action:** Review the analytics PR and CI, then independently validate Databricks CLI access. After workspace/hash review and approval, apply the prepared views and verify reconciliation plus rerun invariants. No forecasting or optimization should be rushed. See `docs/ANALYTICS_SLICE.md`, `docs/STATUS_HANDOFF.md` and `docs/DECISIONS.md` for details.

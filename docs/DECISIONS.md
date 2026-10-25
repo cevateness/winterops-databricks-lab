@@ -14,3 +14,12 @@ GitHub is canonical source once published; Codex Cloud generates/test code throu
 
 ## ADR-005 — Publishability and licensing (2026-10-23)
 Publish project **code, synthetic fixture, documentation, and aggregate QA evidence**, not raw telemetry or sensitive information. City of Windsor attribution required for source-derived results. Public visibility is not the same as granting code reuse; an explicit code license remains an owner decision. Commercial use of Databricks Free Edition is out of scope.
+
+## ADR-006 — Local development while Cloud selection is deferred (2026-10-25)
+The user reports publishing a Cloud environment but cannot select it in the extension. Continue the repository task locally on a feature branch with offline CI and a review PR. Preserve the Cloud environment and its draft; do not make Cloud setup a prerequisite for code development.
+
+## ADR-007 — Exact-version, observation-only consumer views (2026-10-25)
+Prepare three views: `VALID` Silver, quarantine Silver and source-local/naive hourly Gold observations. Require a reviewed file SHA-256, full source identity, a window of at most seven naive days and explicit expected aggregate evidence. Validate schema, counts and payload multiplicities before DDL; retain all Bronze/Silver rows and repeated payloads. Use one shared Python SQL plan, offline synthetic tests and a dry-run notebook. View data remains dynamic and multi-view publication is not transactional; rerun QA when source tables change. Databricks integration is blocked until actual target/auth/resource approval, never inferred from offline tests.
+
+## ADR-008 — Minimal read-only CLI acceptance gate (2026-10-25)
+Use the official standalone CLI through a dependency-free Python checker, with a PowerShell wrapper. Require a named local profile and matching expected HTTPS workspace host. Capture CLI output, report sanitized statuses, bound timeouts and keep the Jobs metadata probe optional. No SDK, bundle, job submission or schedule is added. Authentication and any later workspace writes remain separate explicit actions.
