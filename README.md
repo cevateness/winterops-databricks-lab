@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/cevateness/winterops-databricks-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/cevateness/winterops-databricks-lab/actions/workflows/ci.yml)
 
-**Status (2026-10-25):** Databricks Free Edition learning MVP. **One real Windsor historical week** has been processed through Bronze and quality-classified Silver in the user's workspace, as confirmed by SQL summaries shared in the project conversation. The original Windsor CSV is **not included** in this public repository. The canonical public repository is [cevateness/winterops-databricks-lab](https://github.com/cevateness/winterops-databricks-lab), with local `main` tracking `origin/main`. A Codex Cloud environment has **not yet been configured or verified**.
+**Status (2026-10-25):** Databricks Free Edition learning MVP. **One real Windsor historical week** has been processed through Bronze and quality-classified Silver in the user's workspace, as confirmed by SQL summaries shared in the project conversation. The original Windsor CSV is **not included** in this public repository. The canonical public repository is [cevateness/winterops-databricks-lab](https://github.com/cevateness/winterops-databricks-lab). Code for exact-version Silver consumer views and hourly observation counts is prepared and tested offline, **not executed in Databricks**. The user reports publishing a Cloud environment; extension selection remains unresolved, and development is proceeding locally.
 
 **Primary objective:** Learn reproducible data engineering, lakehouse architecture, PySpark/SQL, data quality, MLOps, and eventually decision analytics. **Secondary:** Public technical portfolio. **Longer term:** Explore commercial winter-service decision intelligence only if actual evidence warrants it; this version is non-commercial.
 
@@ -16,7 +16,8 @@ Original City of Windsor weekly CSV in the user's Databricks Unity Catalog Volum
    -> 05_silver_real_windsor.py: typed fields, quality_status, issue codes,
       repeated-payload warnings; one row per Bronze observation
    -> workspace.default.winterops_silver_windsor_week_sample (Delta)
-   -> proposed: validated + quarantine Silver views -> bounded hourly Gold analytics
+   -> 06_silver_consumers_hourly.py (prepared; not run in Databricks):
+      exact-version VALID + quarantine views -> source-local/naive hourly observation counts
 ```
 
 Synthetic learning exercises (not the real pipeline) live in notebooks 01 and 02. Notebook 03 is a **read-only profiler**. No weather integration, routing, SLA measurement, or optimization has been implemented.
@@ -45,10 +46,14 @@ Synthetic learning exercises (not the real pipeline) live in notebooks 01 and 02
 - `docs/CODEX_CLOUD_TASK.md` — ready-to-paste Codex Cloud task.
 - `docs/WINDOWS_SETUP.md` — fixes for missing `winget`, CLI authentication checks, Windows setup.
 - `docs/GITHUB_CODEX_WORKFLOW.md` — public GitHub and Codex Cloud connection workflow.
+- `docs/ANALYTICS_SLICE.md` — source/version contract, view definitions and integration acceptance gate.
 - `scripts/install_databricks_cli.ps1` — optional portable official CLI installer, no WinGet/Admin required.
 - `scripts/test_databricks_connection.ps1` — read-only connectivity and permissions diagnostics.
 - `scripts/publish_to_github.ps1` — first push into a **user-created empty** public GitHub repository.
 - `src/winterops/quality.py` and `scripts/validate_quality_snapshot.py` — dependency-free validation of aggregate QA evidence.
+- `src/winterops/analytics.py` and packaged `src/winterops/sql/` — shared bounded SQL plan and offline reference counts.
+- `scripts/render_analytics_sql.py` — offline renderer requiring a reviewed file SHA-256 and expected summary.
+- `scripts/check_databricks.py` — named-profile/host-gated read-only CLI probe with sanitized output.
 - `data/fixtures/windsor_week_2026_01_12_18_summary.json` — **aggregate results only**, no source telemetry.
 - `.github/workflows/ci.yml` — offline tests on public GitHub, no Databricks secrets.
 - `notebooks/01..05` and `sql/` — existing learning work, preserved.
@@ -66,7 +71,7 @@ python -m pip install -e .
 python -m unittest discover -s tests -v
 ```
 
-Codex Cloud setup remains a separate step; see `docs/GITHUB_CODEX_WORKFLOW.md` and `docs/CODEX_CLOUD_TASK.md`. For optional Databricks CLI access, use `docs/WINDOWS_SETUP.md` and validate workspace APIs before adding deployment automation.
+The task in `docs/CODEX_CLOUD_TASK.md` can be implemented locally; Cloud selection is deferred. For optional Databricks CLI access, use `docs/WINDOWS_SETUP.md`. A live workspace target, reviewed source hash and user approval are required before applying the new views; see `docs/ANALYTICS_SLICE.md`.
 
 ## Run offline checks
 
@@ -79,6 +84,8 @@ python scripts/validate_quality_snapshot.py data/fixtures/windsor_week_2026_01_1
 ```
 
 The aggregate fixture verifies **reported** invariants; it does not query Databricks or replace integration tests.
+
+The expanded suite has 46 tests: offline contracts, synthetic reference counts, SQLite-adapted SQL logic and mocked CLI checks. SQLite tests adapt SQL dialect details; they do **not** verify Databricks SQL parsing, NTZ runtime behavior or Unity Catalog access. Notebook 06 prints SQL by default and does not execute Spark queries until explicitly applied.
 
 ## Data handling, attribution and source claims
 

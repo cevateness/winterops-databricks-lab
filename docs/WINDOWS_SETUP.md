@@ -37,10 +37,22 @@ Copy your **workspace URL** from the browser (the exact workspace host, not the 
 ```powershell
 $hostUrl = 'https://YOUR-REAL-WORKSPACE-HOST'
 databricks auth login --host $hostUrl --profile winterops
-.\scripts\test_databricks_connection.ps1 -Profile winterops
+.\scripts\test_databricks_connection.ps1 -Profile winterops -WorkspaceHost $hostUrl
 ```
 
-If login doesn't open a browser, follow the CLI's instructions; do not paste session cookies, tokens or access codes into this chat or a GitHub issue. Verify read-only workspace identity first. `jobs list` is an optional access probe; `403` may mean a permissions/Free Edition limitation, not failed installation.
+If login doesn't open a browser, follow the CLI's instructions; do not paste session cookies, tokens or access codes into this chat or a GitHub issue. The connection checker does not log in or change authentication settings. It first inventories profile metadata using `auth profiles --skip-validate --output json`, rejects a missing/mismatched profile host, then performs `current-user me` and `workspace list /Workspace` with the named profile. CLI output is captured; only sanitized PASS/BLOCKED statuses are printed. Each command has a 30-second default timeout (maximum 60 seconds). Ambient Databricks credential/host variables are excluded so the named local profile determines authentication.
+
+The equivalent portable check is:
+
+```powershell
+python scripts/check_databricks.py --profile winterops --workspace-host $hostUrl
+# Optional Jobs API metadata probe; it does not start compute or submit a run.
+python scripts/check_databricks.py --profile winterops --workspace-host $hostUrl --include-jobs
+```
+
+The checker exits `0` only when the requested checks pass and `2` for BLOCKED. `403` may mean missing endpoint permissions or a Free Edition limitation. Use a current standalone CLI; older/deprecated versions may not support these flags. Never use `auth token`, `auth env`, or `auth describe --sensitive` in shared logs. The original `-Login` wrapper switch is removed: authentication is a separate explicit CLI step.
+
+For bounded analytics SQL rendering, notebook application and the integration acceptance checklist, see [ANALYTICS_SLICE.md](ANALYTICS_SLICE.md). No actual workspace probe or Spark execution was performed during this local implementation; the CLI is absent from the current PATH and no workspace target was supplied.
 
 ## 4. Troubleshooting matrix
 

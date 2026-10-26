@@ -43,6 +43,8 @@ Check the [Actions page](https://github.com/cevateness/winterops-databricks-lab/
 
 ## Codex Cloud connection
 
+As of 2026-10-25, the user reports a published WinterOps environment but its selection from the extension remains unresolved. **Local development is the chosen path for now.** Cloud selection is not a prerequisite for tests, feature branches, or review PRs. Use the same repository task locally; see `ANALYTICS_SLICE.md` for the implemented analytics slice. Do not change or republish the user's Cloud environment as part of this work.
+
 1. Open ChatGPT/Codex on web or desktop; start a new coding task and select **Work in → Cloud → Create environment**.
 2. Connect GitHub if prompted and choose the **new** public WinterOps repository. Access to a GitHub repository in ChatGPT and permissions for Codex Cloud may require separate authorization or repository selection.
 3. Let the environment inspect/install dependencies. Typical setup: `python -m pip install -e .`; then `python -m unittest discover -s tests -v`. No live Databricks credentials are needed for the first task.
@@ -60,7 +62,7 @@ Official guidance: https://learn.chatgpt.com/docs/cloud and https://learn.chatgp
 
 ## Databricks automation (later, not a prerequisite)
 
-- Authenticate locally using `databricks auth login --host <real-workspace-url> --profile winterops` with browser login, then use `scripts/test_databricks_connection.ps1` for read-only verification.
+- Authenticate locally using `databricks auth login --host <real-workspace-url> --profile winterops` with browser login, then use `scripts/test_databricks_connection.ps1 -Profile winterops -WorkspaceHost <real-workspace-url>` for read-only verification.
 - **Do not upload** `.databrickscfg` or credentials to GitHub/Codex. Browser-based OAuth profiles on your Windows computer are **not** transferred into Codex Cloud.
 - Do not set GitHub Actions jobs that mutate Databricks unless credentials, policy and target workspace have been explicitly reviewed. Free Edition has different limitations from a paid production workspace.
 - Local scripts/CLI are fallback for Databricks execution if Codex Cloud cannot securely reach/authenticate the workspace. Code development, reviews and CI can continue cloud-only.

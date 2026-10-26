@@ -9,6 +9,18 @@ This file resolves **stale status text** in earlier lesson ZIPs. It records know
 3. Real Windsor CSV, read-only profiling: `notebooks/03_profile_real_csv.py`.
 4. Real Windsor weekly CSV → distinct real Bronze table, one row **per parsed source observation** and file-version scope: `notebooks/04_bronze_real_ingestion.py`.
 5. One-week real Bronze → quality-classified Silver table: `notebooks/05_silver_real_windsor.py` and `sql/real_silver_checks.sql`.
+6. Exact-version Silver clean/quarantine consumer views and source-local/naive hourly Gold observations: `src/winterops/analytics.py`, packaged SQL templates and `notebooks/06_silver_consumers_hourly.py`. **Prepared and tested offline only; no Databricks execution.**
+
+## Local analytics implementation (2026-10-25)
+
+- The user deferred Cloud selection and requested local implementation of `docs/CODEX_CLOUD_TASK.md`. A published Cloud environment is user-reported; extension visibility remains unresolved and is not a prerequisite for development.
+- New SQL selects dataset, filename, Volume path and a required file SHA-256. That SHA-256 is not in the reported aggregate fixture and must be supplied from reviewed workspace evidence.
+- Preflight validates schema, bounded naive dates, expected aggregate counts and per-payload Bronze/Silver multiplicities before view DDL. Existing notebooks 01–05 and original SQL are unchanged.
+- Intended new objects: `workspace.default.winterops_silver_windsor_valid`, `workspace.default.winterops_silver_windsor_quarantine`, and `workspace.default.winterops_gold_windsor_hourly_observations`. All are views; none has been created in the workspace by this work.
+- Local Python 3.14.4 verification: **46 tests passed**, including SQLite-adapted SQL reconciliation and mocked CLI tests. Syntax, aggregate validation, SQL rendering, PowerShell parsing and isolated wheel SQL-resource checks passed. These are offline checks, not Spark execution.
+- The read-only CLI checker requires a named profile and matching workspace host, suppresses CLI output and bounds command timeouts. Authentication is a separate explicit step.
+- Databricks integration: **BLOCKED / not run**. The CLI is absent from the current PATH, no actual workspace target was supplied, and no remote execution was approved. No tables, views, jobs or schedules were affected.
+- See `docs/ANALYTICS_SLICE.md` for runtime/grant/concurrency caveats and acceptance steps. CI for this branch must be assessed from its actual GitHub Actions result.
 
 ## Databricks evidence shared by the user
 
@@ -31,14 +43,14 @@ Source: `snowplow-2026-01-12_2026-01-18.csv`. The user reports executing the not
 
 The unusual easternmost longitude, repeated-payload patterns, event timezone, and business status semantics remain **open questions**. No complete Databricks logs or live API access have been provided to independently inspect these results.
 
-## What remains unimplemented
+## What remains unimplemented or unverified in the workspace
 
-- Clean validated Silver and quarantine **consumer views** (suggested, not yet created).
+- Apply and verify the prepared clean/quarantine Silver **consumer views** after target/hash review and approval.
 - Automated QA execution and machine-readable evidence from actual Databricks jobs.
-- Gold tables for hourly counts and zone distributions.
+- Apply and verify the prepared hourly observation-count Gold view. Zone distributions remain unimplemented.
 - Real weather alignment, forecast-vs-actual provenance, geofencing and map matching.
 - Prediction, model evaluation, optimization, or simulation.
-- Codex Cloud environment or proven Databricks CLI/API access. The canonical GitHub repository and local Git connection are now established; see publication evidence below.
+- Proven Databricks CLI/API access. Cloud extension selection is deferred; the canonical GitHub repository and local Git connection are established.
 
 ## GitHub publication (2026-10-25)
 
@@ -53,9 +65,11 @@ The unusual easternmost longitude, repeated-payload patterns, event timezone, an
 
 As of 2026-10-23, user requests a **public canonical GitHub repo**, **Codex Cloud development**, and **programmatic Databricks execution** where feasible. Manual exercises are no longer required for each iteration. Keep the learning objective through design and validation review, not notebook copy-paste.
 
+On 2026-10-25, the user chose **local Codex development for now** while Cloud environment selection remains unresolved. Continue feature-branch/PR development locally; preserve the published Cloud environment and its draft.
+
 ## Next high-value milestone
 
-- Verify the first offline CI run, then configure Codex Cloud separately when requested (does **not** require Databricks access).
-- Implement clean/quarantine views and tests without rewriting known Bronze/Silver tables.
-- Implement an explicitly **observation-count-based** hourly Gold summary, not inferred plowing time or road coverage.
-- Probe CLI/API access in the user's Free Edition workspace as a separate, permission-aware acceptance gate. Remote jobs only after connectivity and explicit target checks.
+- Review and merge the local analytics PR after its offline CI passes.
+- Install/authenticate the standalone CLI locally when authorized, then probe the explicit Free Edition workspace using the named-profile/host check.
+- Review the actual file SHA-256 and matching aggregate evidence. After workspace approval, run the prepared preflight/view/postflight workflow twice and inspect reconciliation.
+- Keep runtime integration marked BLOCKED until it is executed; no forecasting, service-coverage claims or scheduled jobs are part of this milestone.

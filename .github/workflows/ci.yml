@@ -26,3 +26,9 @@ jobs:
         run: python -m compileall -q src scripts notebooks
       - name: Aggregate fixture validation
         run: python scripts/validate_quality_snapshot.py data/fixtures/windsor_week_2026_01_12_18_summary.json
+      - name: Offline SQL rendering (placeholder hash; never executed)
+        run: >-
+          python scripts/render_analytics_sql.py
+          --source-file-sha256 0000000000000000000000000000000000000000000000000000000000000000
+          --expected-summary data/fixtures/windsor_week_2026_01_12_18_summary.json
+          > /tmp/winterops-analytics-plan.sql
