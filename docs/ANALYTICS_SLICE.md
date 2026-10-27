@@ -1,8 +1,8 @@
 # Exact-version Silver consumers and hourly observations
 
-Prepared locally on 2026-10-25. **Not executed in Databricks.** Lessons 1–5 and their source-table semantics are preserved. This slice adds SQL definitions and a small Python runner; no workspace objects exist merely because this code is committed.
+Prepared locally on 2026-10-25. **Lesson 6 candidate validation and view publication have not executed in Databricks.** Lessons 1–5 and their source-table semantics are preserved. This slice adds SQL definitions and a small Python runner; no workspace objects exist merely because this code is committed.
 
-Reviewed on 2026-10-28: the existing 46 tests passed before changes; the expanded suite passes 57 tests. Lesson 6 now has a read-only validation mode. Live CLI/authentication and Spark validation remain blocked; see `STATUS_HANDOFF.md` for the installation/profile audit.
+Reviewed on 2026-10-28: the existing 46 tests passed before changes; the expanded suite passes 57 tests. Authenticated warehouse listing and bounded source-audit SQL now pass. The exact source version, required Silver schema and aggregate evidence are verified; see [SOURCE_VERSION_EVIDENCE.md](SOURCE_VERSION_EVIDENCE.md). Lesson 6's read-only candidate validation remains unexecuted at the user's separate compute-approval gate.
 
 ```mermaid
 flowchart LR
@@ -25,7 +25,7 @@ flowchart LR
 
 The initial notebook targets `[2026-01-12 00:00:00, 2026-01-19 00:00:00)` in the **unverified source timezone**. It never labels that window UTC. The portable configuration permits a different explicitly approved window of at most seven days, with corresponding source metadata and expected evidence.
 
-The original file SHA-256 is **unknown in the public handoff**. Supply it from a reviewed Bronze version inventory; do not use a record/payload hash or invent a file hash. The aggregate fixture identifies a filename and reported counts, not a cryptographically bound file version. Confirm that those reported counts belong to the selected hash before applying.
+The source-audit inventory matched file SHA-256 **`f5d7633c910e1ad6be23b4111445bf0bc14fe2071c6ea0f0d4cd456295ea9e94`** in Bronze and Silver, with the exact dataset, filename and Volume path. The current 8,671,212-byte Volume CSV was independently checksummed in the warehouse and matched that hash; only hash/size were returned. The reported fixture counts were independently reconciled to this version through SQL. Keep the fixture's original provenance; use the separate live evidence record for this verification and recheck the source before validation/publication.
 
 Preflight checks require:
 
@@ -92,7 +92,7 @@ Views read the current source tables. They are not immutable Delta snapshots. If
 
 ## Local evidence and remaining integration work
 
-The offline suite covers synthetic repeated observations, half-open windows, timezone rejection, unknown classifications, schema policy, source/hash filtering, parameter injection, deterministic definitions, dry-run safety, preflight-before-DDL ordering and sanitized mocked CLI failures. SQLite-adapted SQL tests exercise reconciliation and view queries, including equal-total/different-payload failures and reruns. Additional tests validate candidate queries with no consumer views, preserve deliberately unrelated existing views, reject a wrong source version, and exercise notebook mode dispatch with fake widgets/Spark. They replace dialect-specific syntax and do not validate Databricks SQL or NTZ runtime semantics. Databricks assertions remain **BLOCKED / not run** until a real workspace target and approval are available.
+The offline suite covers synthetic repeated observations, half-open windows, timezone rejection, unknown classifications, schema policy, source/hash filtering, parameter injection, deterministic definitions, dry-run safety, preflight-before-DDL ordering and sanitized mocked CLI failures. SQLite-adapted SQL tests exercise reconciliation and view queries, including equal-total/different-payload failures and reruns. Additional tests validate candidate queries with no consumer views, preserve deliberately unrelated existing views, reject a wrong source version, and exercise notebook mode dispatch with fake widgets/Spark. These tests do not validate Databricks runtime semantics. The live source audit separately verified schema types, source/version counts, the naive window and payload multiplicities; it did not execute the shared Lesson 6 assertions or candidate Gold query. Those remain **NOT RUN**, pending separate bounded-compute approval.
 
 No raw telemetry, real truck trajectories, tokens or workspace URLs belong in this public repo. Code licensing remains an owner decision; publication alone grants no code reuse license. The reported Windsor source attribution remains: “Contains information licensed under the Open Government Licence – The Corporation of the City of Windsor.” Source terms: https://opendata.citywindsor.ca/Documents/OpenDataTermsofUse.pdf. Redistribution/commercial rights beyond reviewed source terms have not been established here.
 
@@ -105,4 +105,4 @@ No raw telemetry, real truck trajectories, tokens or workspace URLs belong in th
 - [CLI authentication](https://docs.databricks.com/aws/en/dev-tools/cli/reference/auth-commands), [workspace commands](https://docs.databricks.com/aws/en/dev-tools/cli/reference/workspace-commands), and [Jobs commands](https://docs.databricks.com/aws/en/dev-tools/cli/reference/jobs-commands): use current standalone CLI and named local profiles, not the deprecated pip `databricks-cli` package. Workspace API availability still requires a real smoke test. SDKs can use unified-auth profiles, but this slice adds no SDK dependency.
 - [Free Edition limits](https://docs.databricks.com/aws/en/getting-started/free-edition-limitations): noncommercial use, serverless-only compute, restricted outbound networking, fair-use quotas, one 2X-Small SQL warehouse, and at most five concurrent job tasks. Account-level APIs are unavailable. None of these facts proves this user's workspace APIs are reachable.
 
-No bundle, job submission or schedule is added. A read-only connection check is the deployment acceptance gate; SQL rendering stays local until explicitly approved.
+This analytics slice adds no bundle, job submission or schedule. Connectivity and the separately authorized source audit now pass; the prepared Lesson 6 SQL remains local until its validation scope is explicitly approved.

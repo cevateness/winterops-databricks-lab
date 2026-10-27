@@ -5,8 +5,9 @@ This file resolves **stale status text** in earlier lesson ZIPs. It records know
 ## Current verified state (2026-10-28)
 
 - **Databricks CLI v1.22.1 is installed and the named `winterops` profile is configured. Live read-only connectivity: PASS.** The sanitized checker verified the profile/host match, `current-user me`, and `workspace list /Workspace` after the workspace origin was corrected. Credentials, identity details, workspace listings and private URLs were suppressed.
-- These metadata requests did not submit SQL, start compute, inspect table contents, create/replace objects or run jobs. **Lesson 6 Spark/schema/source/candidate validation remains BLOCKED / not run**, pending the reviewed exact file SHA-256, matching aggregate evidence and approved bounded compute scope.
-- The offline suite has 57 passing tests. Next small milestone: validate the exact-version Lesson 6 candidate consumers read-only. View publication requires separate approval.
+- Follow-up source audit: warehouse listing and bounded Statement Execution API calls succeeded on the existing serverless 2X-Small warehouse. Source hash `f5d7633c910e1ad6be23b4111445bf0bc14fe2071c6ea0f0d4cd456295ea9e94`, dataset/filename/path, Bronze/Silver counts, all established one-week activity aggregates, required schema types and payload multiplicities matched. The current 8,671,212-byte Volume CSV was independently checksummed and matched that hash; only hash/size were returned. See [SOURCE_VERSION_EVIDENCE.md](SOURCE_VERSION_EVIDENCE.md) for scope, exact results and limitations.
+- **Lesson 6 candidate validation remains PREPARED / NOT RUN**, pending separate approval of its bounded compute scope. The shared read-only SQL is rendered locally for the verified hash. No source objects, views, jobs or schedules were created or changed; the source audit used existing warehouse compute.
+- The offline suite has 57 passing tests. Next small milestone: approve the recorded read-only Lesson 6 scope and execute its schema recheck plus three shared validation statements. View publication requires separate approval.
 
 ## Initial integration-readiness audit (2026-10-28)
 
@@ -96,7 +97,7 @@ On 2026-10-25, the user chose **local Codex development for now** while Cloud en
 ## Next high-value milestone
 
 - The original analytics PR #1 is merged. Review the new read-only validation change and its actual CI result.
-- The standalone CLI, named profile and read-only workspace API checks are verified; resume from the source-hash/evidence and bounded-compute gate.
-- Review the actual file SHA-256 and matching aggregate evidence. Within the approved read-only scope, run Lesson 6 in `mode=validate` before requesting any view writes.
+- The standalone CLI, named profile, warehouse listing and bounded source-audit SQL are verified; resume from the separate Lesson 6 compute-approval gate.
+- The source-file version and matching aggregate evidence are now verified through bounded read-only SQL. Review the recorded evidence and separately approve the Lesson 6 compute scope before candidate validation.
 - After separate approval for view creation/replacement, run `mode=apply` twice and inspect reconciliation and rerun invariants.
-- Keep runtime integration marked BLOCKED until it is executed; no forecasting, service-coverage claims or scheduled jobs are part of this milestone.
+- Keep Lesson 6 candidate validation marked NOT RUN until it actually executes; no forecasting, service-coverage claims or scheduled jobs are part of this milestone.
