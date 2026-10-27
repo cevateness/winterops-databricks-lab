@@ -13,6 +13,14 @@ This file resolves **stale status text** in earlier lesson ZIPs. It records know
 - **Databricks connection: BLOCKED / not attempted.** No CLI, configured profile or explicit workspace target is available. **Spark/schema/source/candidate validation: BLOCKED / not run.** The actual file hash and runtime access still need review. View application has not been approved; no Databricks objects, jobs, source data or Cloud setup were changed.
 - Next gate: install the official standalone CLI and authenticate the named `winterops` profile locally, verify the explicit workspace host with the sanitized checker, obtain/review the file SHA-256 and matching evidence, then execute `mode=validate` within the approved read-only compute scope. View creation/replacement remains a separate approval.
 
+## CLI setup follow-up (2026-10-28)
+
+- The user reported `running scripts is disabled`; the effective local policy was verified as `Restricted`, with managed scopes unset. The reviewed installer also had `ZoneId=3`, requiring removal of its Internet-download mark before `RemoteSigned` would allow the unsigned file.
+- Only `scripts/install_databricks_cli.ps1` was unblocked. It ran in a child PowerShell process with `RemoteSigned`, downloaded the official Windows amd64 release, verified SHA-256 against release metadata, and installed **Databricks CLI v1.22.1** in the documented user-local directory. Both installer and direct executable version checks passed. The user PATH includes the installation directory; existing terminals may require a local PATH refresh.
+- Parent policy remains `Restricted`; no persistent execution-policy setting changed. Downloads now use `-UseBasicParsing`, installer cleanup validates the resolved temporary target, and setup instructions stop after installation/login failures.
+- Verification after the setup fix: **57 offline tests passed**, PowerShell parser checks passed, and an installer rerun detected the existing CLI and exited successfully without downloading again. Local-only profile inventory could not complete (exit 1); the default profile file is still absent. No workspace authentication or API check was attempted.
+- This supersedes the initial audit's missing-CLI blocker. **Authentication, workspace connectivity and Spark integration remain BLOCKED / not run** pending an actual workspace host and local named-profile login. The user's `https://YOUR-WORKSPACE-HOST` value was a placeholder. No credentials, private workspace URLs, source data or Databricks objects were exposed or changed.
+
 ## What is implemented (source code exists)
 
 1. Synthetic CSV → Bronze Delta: `notebooks/01_bronze_ingestion.py`; special demonstration groups identical rows with `occurrence_count` (13 source observations / 12 unique JSON rows).
@@ -81,7 +89,7 @@ On 2026-10-25, the user chose **local Codex development for now** while Cloud en
 ## Next high-value milestone
 
 - The original analytics PR #1 is merged. Review the new read-only validation change and its actual CI result.
-- Install/authenticate the standalone CLI locally, then probe the explicit Free Edition workspace using the named-profile/host check.
+- The standalone CLI is installed; authenticate the named `winterops` profile, then probe the explicit Free Edition workspace using the sanitized named-profile/host check.
 - Review the actual file SHA-256 and matching aggregate evidence. Within the approved read-only scope, run Lesson 6 in `mode=validate` before requesting any view writes.
 - After separate approval for view creation/replacement, run `mode=apply` twice and inspect reconciliation and rerun invariants.
 - Keep runtime integration marked BLOCKED until it is executed; no forecasting, service-coverage claims or scheduled jobs are part of this milestone.
