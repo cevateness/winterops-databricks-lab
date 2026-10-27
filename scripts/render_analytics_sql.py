@@ -23,6 +23,8 @@ def main():
     parser.add_argument("--end-unzoned", default="2026-01-19")
     parser.add_argument("--catalog", default="workspace")
     parser.add_argument("--schema", default="default")
+    parser.add_argument("--validation-only", action="store_true",
+                        help="Render source/consumer validation SELECTs only; omit all view DDL")
     args = parser.parse_args()
     try:
         expected = QualitySnapshot.from_mapping(json.loads(args.expected_summary.read_text(encoding="utf-8")))
@@ -33,7 +35,7 @@ def main():
     except (ValueError, TypeError, KeyError, OSError) as error:
         parser.error(str(error))
     print("-- OFFLINE PLAN ONLY. Review SQL and obtain workspace approval before executing.")
-    print(plan.render(), end="")
+    print(plan.render(read_only=args.validation_only), end="")
 
 
 if __name__ == "__main__":

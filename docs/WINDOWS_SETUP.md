@@ -1,5 +1,11 @@
 # Windows PowerShell setup without WinGet
 
+## Verified local state (2026-10-28)
+
+The audit found no `databricks` command on PATH, no CLI in the documented `%LOCALAPPDATA%\WinterOps\bin` location or checked WinGet/Scoop/Chocolatey/project-venv paths, no default `.databrickscfg`, and no `DATABRICKS_*` environment variables. Therefore installation version and authenticated workspace/API access could not be verified. No installer, login, workspace query or remote mutation was run. A browser sign-in is separate from CLI configuration.
+
+Use the installation and login steps below to establish the named profile when ready. Keep the actual host/profile configuration local; the repository records sanitized verification results only.
+
 ## 1. Diagnose the actual problem
 
 `winget : The term 'winget' is not recognized` means Windows cannot resolve Windows Package Manager. It is not a Databricks CLI authentication or execution failure.
@@ -52,7 +58,7 @@ python scripts/check_databricks.py --profile winterops --workspace-host $hostUrl
 
 The checker exits `0` only when the requested checks pass and `2` for BLOCKED. `403` may mean missing endpoint permissions or a Free Edition limitation. Use a current standalone CLI; older/deprecated versions may not support these flags. Never use `auth token`, `auth env`, or `auth describe --sensitive` in shared logs. The original `-Login` wrapper switch is removed: authentication is a separate explicit CLI step.
 
-For bounded analytics SQL rendering, notebook application and the integration acceptance checklist, see [ANALYTICS_SLICE.md](ANALYTICS_SLICE.md). No actual workspace probe or Spark execution was performed during this local implementation; the CLI is absent from the current PATH and no workspace target was supplied.
+For bounded analytics SQL rendering and the integration checklist, see [ANALYTICS_SLICE.md](ANALYTICS_SLICE.md). After connection verification and file-hash review, use Lesson 6 `mode=validate` to run read-only source and candidate-consumer checks. `mode=apply` requires separate approval for view writes. No workspace probe or Spark execution was performed in the 2026-10-28 audit.
 
 ## 4. Troubleshooting matrix
 

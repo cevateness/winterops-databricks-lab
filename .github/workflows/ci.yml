@@ -32,3 +32,10 @@ jobs:
           --source-file-sha256 0000000000000000000000000000000000000000000000000000000000000000
           --expected-summary data/fixtures/windsor_week_2026_01_12_18_summary.json
           > /tmp/winterops-analytics-plan.sql
+      - name: Read-only validation rendering (placeholder hash; never executed)
+        run: >-
+          python scripts/render_analytics_sql.py
+          --source-file-sha256 0000000000000000000000000000000000000000000000000000000000000000
+          --expected-summary data/fixtures/windsor_week_2026_01_12_18_summary.json
+          --validation-only
+          > /tmp/winterops-analytics-validation.sql

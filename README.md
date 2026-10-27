@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/cevateness/winterops-databricks-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/cevateness/winterops-databricks-lab/actions/workflows/ci.yml)
 
-**Status (2026-10-25):** Databricks Free Edition learning MVP. **One real Windsor historical week** has been processed through Bronze and quality-classified Silver in the user's workspace, as confirmed by SQL summaries shared in the project conversation. The original Windsor CSV is **not included** in this public repository. The canonical public repository is [cevateness/winterops-databricks-lab](https://github.com/cevateness/winterops-databricks-lab). Code for exact-version Silver consumer views and hourly observation counts is prepared and tested offline, **not executed in Databricks**. The user reports publishing a Cloud environment; extension selection remains unresolved, and development is proceeding locally.
+**Status (2026-10-28):** Databricks Free Edition learning MVP. **One real Windsor historical week** has been processed through Bronze and quality-classified Silver in the user's workspace, as confirmed by SQL summaries shared in the project conversation. The original Windsor CSV is **not included** in this public repository. The canonical public repository is [cevateness/winterops-databricks-lab](https://github.com/cevateness/winterops-databricks-lab). Exact-version Silver/Gold view code and a read-only candidate-validation mode are prepared and tested offline, **not executed in Databricks**. Local CLI/auth configuration is not yet present; development is proceeding locally.
 
 **Primary objective:** Learn reproducible data engineering, lakehouse architecture, PySpark/SQL, data quality, MLOps, and eventually decision analytics. **Secondary:** Public technical portfolio. **Longer term:** Explore commercial winter-service decision intelligence only if actual evidence warrants it; this version is non-commercial.
 
@@ -52,7 +52,7 @@ Synthetic learning exercises (not the real pipeline) live in notebooks 01 and 02
 - `scripts/publish_to_github.ps1` — first push into a **user-created empty** public GitHub repository.
 - `src/winterops/quality.py` and `scripts/validate_quality_snapshot.py` — dependency-free validation of aggregate QA evidence.
 - `src/winterops/analytics.py` and packaged `src/winterops/sql/` — shared bounded SQL plan and offline reference counts.
-- `scripts/render_analytics_sql.py` — offline renderer requiring a reviewed file SHA-256 and expected summary.
+- `scripts/render_analytics_sql.py` — offline renderer requiring a reviewed file SHA-256 and expected summary; `--validation-only` emits queries without view DDL.
 - `scripts/check_databricks.py` — named-profile/host-gated read-only CLI probe with sanitized output.
 - `data/fixtures/windsor_week_2026_01_12_18_summary.json` — **aggregate results only**, no source telemetry.
 - `.github/workflows/ci.yml` — offline tests on public GitHub, no Databricks secrets.
@@ -85,7 +85,7 @@ python scripts/validate_quality_snapshot.py data/fixtures/windsor_week_2026_01_1
 
 The aggregate fixture verifies **reported** invariants; it does not query Databricks or replace integration tests.
 
-The expanded suite has 46 tests: offline contracts, synthetic reference counts, SQLite-adapted SQL logic and mocked CLI checks. SQLite tests adapt SQL dialect details; they do **not** verify Databricks SQL parsing, NTZ runtime behavior or Unity Catalog access. Notebook 06 prints SQL by default and does not execute Spark queries until explicitly applied.
+The expanded suite has 57 tests: offline contracts, synthetic reference counts, SQLite-adapted SQL logic, mocked CLI checks and notebook mode dispatch. SQLite tests adapt SQL dialect details; they do **not** verify Databricks SQL parsing, NTZ runtime behavior or Unity Catalog access. Notebook 06 defaults to `mode=render` (no Spark queries). `mode=validate` runs read-only source/candidate checks; `mode=apply` explicitly creates/replaces views and requires separate approval.
 
 ## Data handling, attribution and source claims
 

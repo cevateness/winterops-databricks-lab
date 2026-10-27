@@ -4,7 +4,7 @@
 **Subtitle:** Weather-Driven Municipal Operations Intelligence  
 **Project type:** Independent Databricks learning laboratory with optional future commercialization  
 **Status:** Bronze/one-week Silver user-verified; canonical GitHub connected; scoped Silver/Gold view code tested offline, awaiting Databricks acceptance
-**Reference date:** 2026-10-16; updated 2026-10-25
+**Reference date:** 2026-10-16; updated 2026-10-28
 
 ## 1. Purpose
 
@@ -132,4 +132,6 @@ This Project is a **reference workspace** for occasional visits, not a scheduled
 
 **Local development update (2026-10-25):** Cloud environment publication is user-reported, but extension selection remains unresolved. The user chose local development for now. Exact-version Silver consumer views, source-local/naive hourly observation counts, offline tests and a profile/host-gated CLI probe are prepared in code. Databricks execution is blocked pending CLI availability, workspace target, reviewed file hash/evidence and user approval; no live objects were created.
 
-**Next action:** Review the analytics PR and CI, then independently validate Databricks CLI access. After workspace/hash review and approval, apply the prepared views and verify reconciliation plus rerun invariants. No forecasting or optimization should be rushed. See `docs/ANALYTICS_SLICE.md`, `docs/STATUS_HANDOFF.md` and `docs/DECISIONS.md` for details.
+**Integration-readiness update (2026-10-28):** The original analytics PR #1 is verified merged. All 46 baseline tests passed; 57 tests now pass with a new read-only Lesson 6 validation mode. No local CLI/profile configuration was found in the checked locations, so no Databricks connection or Spark validation was attempted. The new mode evaluates exact-version candidate consumers and hourly counts without creating views. Bronze/Silver implementations and source data remain unchanged.
+
+**Next action:** Review the read-only validation change and CI, establish the named local CLI profile, and verify the explicit workspace. After source-hash/evidence review, execute `mode=validate` within the approved read-only compute scope. Any `mode=apply` execution requires separate approval. No forecasting or optimization should be rushed. See `docs/ANALYTICS_SLICE.md` and `docs/STATUS_HANDOFF.md` for details.
