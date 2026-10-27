@@ -51,7 +51,8 @@ Copy your **workspace URL** from the browser (the exact workspace host, not the 
 
 ```powershell
 $databricksExe = "$env:LOCALAPPDATA\WinterOps\bin\databricks.exe"
-$hostUrl = Read-Host 'Paste your actual Databricks workspace URL'
+$workspaceUrl = [uri](Read-Host 'Paste your actual Databricks workspace URL')
+$hostUrl = $workspaceUrl.GetLeftPart([System.UriPartial]::Authority)
 & $databricksExe auth login --host $hostUrl --profile winterops
 if ($LASTEXITCODE -ne 0) { throw 'Login failed; stop before the connectivity check.' }
 # Refresh PATH for the Python checker in this terminal.
@@ -59,7 +60,7 @@ $env:Path = "$env:LOCALAPPDATA\WinterOps\bin;$env:Path"
 python scripts/check_databricks.py --profile winterops --workspace-host $hostUrl
 ```
 
-Enter the actual workspace host when prompted; `https://YOUR-WORKSPACE-HOST` is a placeholder and cannot authenticate. The Python checker avoids the PowerShell script-policy restriction. If you prefer the wrapper, review and unblock that specific script, then run `powershell.exe -NoProfile -ExecutionPolicy RemoteSigned -File .\scripts\test_databricks_connection.ps1 -Profile winterops -WorkspaceHost $hostUrl`.
+Enter the actual workspace URL when prompted; `https://YOUR-WORKSPACE-HOST` is a placeholder and cannot authenticate. The command keeps only the scheme and authority, removing a notebook/editor path, query and fragment before login. If a previously saved profile includes a page path, repeat login using this corrected host; the checker intentionally rejects it rather than contacting an unintended endpoint. The Python checker avoids the PowerShell script-policy restriction. If you prefer the wrapper, review and unblock that specific script, then run `powershell.exe -NoProfile -ExecutionPolicy RemoteSigned -File .\scripts\test_databricks_connection.ps1 -Profile winterops -WorkspaceHost $hostUrl`.
 
 If login doesn't open a browser, follow the CLI's instructions; do not paste session cookies, tokens or access codes into this chat or a GitHub issue. The connection checker does not log in or change authentication settings. It first inventories profile metadata using `auth profiles --skip-validate --output json`, rejects a missing/mismatched profile host, then performs `current-user me` and `workspace list /Workspace` with the named profile. CLI output is captured; only sanitized PASS/BLOCKED statuses are printed. Each command has a 30-second default timeout (maximum 60 seconds). Ambient Databricks credential/host variables are excluded so the named local profile determines authentication.
 
