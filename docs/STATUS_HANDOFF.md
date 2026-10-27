@@ -2,7 +2,13 @@
 
 This file resolves **stale status text** in earlier lesson ZIPs. It records known evidence; the user can resume after long pauses without replaying every lesson.
 
-## Integration-readiness audit (2026-10-28)
+## Current verified state (2026-10-28)
+
+- **Databricks CLI v1.22.1 is installed and the named `winterops` profile is configured. Live read-only connectivity: PASS.** The sanitized checker verified the profile/host match, `current-user me`, and `workspace list /Workspace` after the workspace origin was corrected. Credentials, identity details, workspace listings and private URLs were suppressed.
+- These metadata requests did not submit SQL, start compute, inspect table contents, create/replace objects or run jobs. **Lesson 6 Spark/schema/source/candidate validation remains BLOCKED / not run**, pending the reviewed exact file SHA-256, matching aggregate evidence and approved bounded compute scope.
+- The offline suite has 57 passing tests. Next small milestone: validate the exact-version Lesson 6 candidate consumers read-only. View publication requires separate approval.
+
+## Initial integration-readiness audit (2026-10-28)
 
 - Initial working tree: clean at `584b2f6` on the previous analytics feature branch. GitHub PR #1 was verified merged; refreshed `origin/main` is merge commit `9c92008`. Changes for this audit use `feat/lesson6-readonly-validation`, based on that merged main.
 - All **46 existing offline tests passed**, with no failures or errors. The expanded suite now passes **57 tests**, including read-only candidate SQL and notebook mode dispatch. Aggregate fixture validation, Python syntax checks and the built-wheel smoke test passed; the wheel includes the read-only API and all six SQL templates. These are offline results, not Databricks runtime evidence.
@@ -19,8 +25,8 @@ This file resolves **stale status text** in earlier lesson ZIPs. It records know
 - Only `scripts/install_databricks_cli.ps1` was unblocked. It ran in a child PowerShell process with `RemoteSigned`, downloaded the official Windows amd64 release, verified SHA-256 against release metadata, and installed **Databricks CLI v1.22.1** in the documented user-local directory. Both installer and direct executable version checks passed. The user PATH includes the installation directory; existing terminals may require a local PATH refresh.
 - Parent policy remains `Restricted`; no persistent execution-policy setting changed. Downloads now use `-UseBasicParsing`, installer cleanup validates the resolved temporary target, and setup instructions stop after installation/login failures.
 - Verification after the setup fix: **57 offline tests passed**, PowerShell parser checks passed, and an installer rerun detected the existing CLI and exited successfully without downloading again. Local-only profile inventory could not complete (exit 1); the default profile file is still absent. No workspace authentication or API check was attempted.
-- This supersedes the initial audit's missing-CLI blocker. **Authentication, workspace connectivity and Spark integration remain BLOCKED / not run** pending an actual workspace host and local named-profile login. The user's `https://YOUR-WORKSPACE-HOST` value was a placeholder. No credentials, private workspace URLs, source data or Databricks objects were exposed or changed.
-- Subsequent login follow-up: the local profile file and named `winterops` profile now exist. A sanitized inspection found a page path in its saved host. The existing host guard rejected it before profile inventory or remote API calls; connectivity remains unverified. The Windows setup example now strips paths, queries and fragments before login. Repeat authentication with the corrected workspace origin, then rerun the read-only probe. No private URL or credential values were printed.
+- Installation resolved the initial missing-CLI blocker; authentication and connectivity were initially pending. The user's `https://YOUR-WORKSPACE-HOST` value was a placeholder. No credentials, private workspace URLs, source data or Databricks objects were exposed or changed.
+- During login follow-up, a saved profile first included a page path, which the host guard rejected before remote API calls. The Windows setup example now strips paths, queries and fragments before login. After the user repeated authentication with the corrected origin, all three read-only checks passed as recorded above. No private URL or credential values were printed.
 
 ## What is implemented (source code exists)
 
@@ -90,7 +96,7 @@ On 2026-10-25, the user chose **local Codex development for now** while Cloud en
 ## Next high-value milestone
 
 - The original analytics PR #1 is merged. Review the new read-only validation change and its actual CI result.
-- The standalone CLI is installed; authenticate the named `winterops` profile, then probe the explicit Free Edition workspace using the sanitized named-profile/host check.
+- The standalone CLI, named profile and read-only workspace API checks are verified; resume from the source-hash/evidence and bounded-compute gate.
 - Review the actual file SHA-256 and matching aggregate evidence. Within the approved read-only scope, run Lesson 6 in `mode=validate` before requesting any view writes.
 - After separate approval for view creation/replacement, run `mode=apply` twice and inspect reconciliation and rerun invariants.
 - Keep runtime integration marked BLOCKED until it is executed; no forecasting, service-coverage claims or scheduled jobs are part of this milestone.

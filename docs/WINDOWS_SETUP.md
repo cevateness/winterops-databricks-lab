@@ -4,9 +4,9 @@
 
 The initial audit found no CLI, default `.databrickscfg` or `DATABRICKS_*` environment variables. A subsequent user installation attempt was blocked by the effective `Restricted` execution policy. The installer also carried an Internet-download mark (`ZoneId=3`).
 
-Follow-up: after reviewing and unblocking only the installer, it ran successfully in a child process with `RemoteSigned`. The official Windows amd64 release passed its SHA-256 check and **Databricks CLI v1.22.1** was installed under `%LOCALAPPDATA%\WinterOps\bin`; direct version verification passed. The parent policy remains `Restricted`; no current-user or machine policy was changed. Authentication and workspace access are still pending; no login, workspace query or remote mutation was run. A browser sign-in is separate from CLI configuration.
+Follow-up: after reviewing and unblocking only the installer, it ran successfully in a child process with `RemoteSigned`. The official Windows amd64 release passed its SHA-256 check and **Databricks CLI v1.22.1** was installed under `%LOCALAPPDATA%\WinterOps\bin`; direct version verification passed. The parent policy remains `Restricted`; no current-user or machine policy was changed.
 
-Use the login steps below to establish the named profile when ready. Keep the actual host/profile configuration local; the repository records sanitized verification results only.
+After the user authenticated with the corrected workspace origin, the named `winterops` profile passed all read-only smoke checks: profile/host match, `current-user me`, and `workspace list /Workspace`. No SQL, Spark queries, compute-start requests or remote mutations were performed. This establishes workspace API access, not table/schema validation. Keep the actual host/profile configuration local; the repository records sanitized results only. The steps below document the setup for future use.
 
 ## 1. Diagnose the actual problem
 
@@ -74,7 +74,7 @@ python scripts/check_databricks.py --profile winterops --workspace-host $hostUrl
 
 The checker exits `0` only when the requested checks pass and `2` for BLOCKED. `403` may mean missing endpoint permissions or a Free Edition limitation. Use a current standalone CLI; older/deprecated versions may not support these flags. Never use `auth token`, `auth env`, or `auth describe --sensitive` in shared logs. The original `-Login` wrapper switch is removed: authentication is a separate explicit CLI step.
 
-For bounded analytics SQL rendering and the integration checklist, see [ANALYTICS_SLICE.md](ANALYTICS_SLICE.md). After connection verification and file-hash review, use Lesson 6 `mode=validate` to run read-only source and candidate-consumer checks. `mode=apply` requires separate approval for view writes. No workspace probe or Spark execution was performed in the 2026-10-28 audit.
+For bounded analytics SQL rendering and the integration checklist, see [ANALYTICS_SLICE.md](ANALYTICS_SLICE.md). After file-hash/evidence review and bounded-compute approval, use Lesson 6 `mode=validate` to run read-only source and candidate-consumer checks. `mode=apply` requires separate approval for view writes. Workspace API connectivity passed in the 2026-10-28 follow-up; Spark execution remains unverified.
 
 ## 4. Troubleshooting matrix
 
