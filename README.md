@@ -6,7 +6,7 @@
 
 **Lesson 7:** PUBLISHED_VERIFIED_STABLE: 79 source-local/naive hourly buckets, 110,311 observations, 79,471 plow-active and 68,870 spreader-active observations. Per-hour distinct truck identifiers range from 1 to 20. See [publication evidence](docs/LESSON_7_PUBLICATION.md) and [all safe hourly counts](docs/LESSON_7_GOLD_RESULTS.json). These are observation counts, not working time or coverage.
 
-**Gold analytics expansion:** Daily activity, hourly/daily equipment composition and aggregate fleet-reporting diagnostics are implemented with synthetic reconciliation tests. New query execution in Databricks is **NOT RUN**, pending separate bounded read-only approval. See [metric definitions, query examples, four-chart dashboard and architecture review](docs/GOLD_ANALYTICS_PRODUCTS.md).
+**Gold analytics expansion:** Daily activity, hourly/daily equipment composition and aggregate fleet-reporting diagnostics passed native Databricks validation on 2026-10-29: both guards and all eight products succeeded unchanged. See [actual metrics, compatibility and timings](docs/GOLD_ANALYTICS_NATIVE_VALIDATION.md), [sanitized aggregate evidence](docs/GOLD_ANALYTICS_NATIVE_RESULTS.json), and [metric definitions, queries, four-chart dashboard and architecture review](docs/GOLD_ANALYTICS_PRODUCTS.md). No Databricks objects were changed.
 
 **Primary objective:** Learn reproducible data engineering, lakehouse architecture, PySpark/SQL, data quality, MLOps, and eventually decision analytics. **Secondary:** Public technical portfolio. **Longer term:** Explore commercial winter-service decision intelligence only if actual evidence warrants it; this version is non-commercial.
 

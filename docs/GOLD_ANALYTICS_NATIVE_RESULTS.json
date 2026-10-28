@@ -1,0 +1,1661 @@
+{
+  "validation_date": "2026-10-29",
+  "execution_baseline_commit": "402c820199d89a7125179449b1c3461c98924822",
+  "status": "PASS",
+  "provenance": "Actual bounded Statement Execution API run; all eight queries from merged PR #4 executed unchanged once",
+  "same_approved_workspace": true,
+  "same_approved_warehouse": true,
+  "published_view_identity_match": true,
+  "warehouse_initial_state": "STOPPED",
+  "source_scope": {
+    "source_file_sha256": "f5d7633c910e1ad6be23b4111445bf0bc14fe2071c6ea0f0d4cd456295ea9e94",
+    "source_file_name": "snowplow-2026-01-12_2026-01-18.csv",
+    "source_file_path": "/Volumes/workspace/default/winterops_raw/snowplow-2026-01-12_2026-01-18.csv",
+    "source_dataset": "windsor_snowplow_activity"
+  },
+  "start_unzoned": "2026-01-12 00:00:00",
+  "end_unzoned_exclusive": "2026-01-19 00:00:00",
+  "window_semantics": "source-local/naive; source timezone unverified",
+  "settings": {
+    "long_gap_seconds": 1800,
+    "dense_hour_observations": 1000
+  },
+  "bounds": {
+    "wait_timeout": "30s",
+    "on_wait_timeout": "CANCEL",
+    "client_deadline_seconds": 45,
+    "row_limit": 200,
+    "byte_limit": 65536
+  },
+  "sql_statement_count": 11,
+  "automatic_retries": 0,
+  "cancellations": 0,
+  "runtime_errors": [],
+  "ddl_executed": false,
+  "objects_modified": [],
+  "notebook_executed": false,
+  "schema_contracts": "PASS; 18 valid-Silver and 9 hourly-Gold metadata columns; all required types matched",
+  "schemas": {
+    "winterops_silver_windsor_valid": {
+      "source_dataset": "string",
+      "source_file_name": "string",
+      "source_file_path": "string",
+      "source_file_sha256": "string",
+      "record_sha256": "string",
+      "ingested_at_utc": "timestamp",
+      "truck_id": "string",
+      "event_time_unzoned": "timestamp_ntz",
+      "latitude": "double",
+      "longitude": "double",
+      "plow_active": "boolean",
+      "spreader_active": "boolean",
+      "engine_active": "boolean",
+      "payload_occurrences": "bigint",
+      "has_repeated_payload": "boolean",
+      "is_repeated_header": "boolean",
+      "quality_status": "string",
+      "quality_issues": "string"
+    },
+    "winterops_gold_windsor_hourly_observations": {
+      "source_dataset": "string",
+      "source_file_name": "string",
+      "source_file_sha256": "string",
+      "source_local_naive_hour": "timestamp_ntz",
+      "observation_count": "bigint",
+      "plow_active_observation_count": "bigint",
+      "spreader_active_observation_count": "bigint",
+      "distinct_truck_count": "bigint",
+      "repeated_payload_observation_count": "bigint"
+    }
+  },
+  "native_clock_probe": {
+    "timestamp_type": "timestamp_ntz",
+    "decimal_type": "decimal(8,6)",
+    "consecutive_pairs": 2,
+    "zero_pairs": 1,
+    "positive_gap_microseconds": 500001,
+    "leap_day_midnight_and_tie_ordering": "PASS"
+  },
+  "reconciliation": "PASS",
+  "statement_statuses": [
+    {
+      "label": "schema-and-native-clock-probe",
+      "state": "SUCCEEDED",
+      "query_sha256": "932a1f6177d7dc866b9f838814795741dd563cc1b21f35ac9236032c63b8e7ce",
+      "elapsed_seconds": 9.742,
+      "http_status": 200,
+      "row_count": 27,
+      "result_truncated": false,
+      "columns": [
+        {
+          "name": "table_name",
+          "type_name": "STRING",
+          "type_text": "STRING"
+        },
+        {
+          "name": "column_name",
+          "type_name": "STRING",
+          "type_text": "STRING"
+        },
+        {
+          "name": "data_type",
+          "type_name": "STRING",
+          "type_text": "STRING"
+        },
+        {
+          "name": "probe_ntz_type",
+          "type_name": "STRING",
+          "type_text": "STRING"
+        },
+        {
+          "name": "probe_decimal_type",
+          "type_name": "STRING",
+          "type_text": "STRING"
+        },
+        {
+          "name": "probe_gap_count",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "probe_zero_pairs",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "probe_positive_gap_microseconds",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        }
+      ],
+      "validation": "PASS"
+    },
+    {
+      "label": "source-hourly-guard",
+      "state": "SUCCEEDED",
+      "query_sha256": "8d0ce89739a5d3a64b82994610d92670b4ef1590d4825a0aa317924b7136c5f8",
+      "elapsed_seconds": 9.354,
+      "http_status": 200,
+      "row_count": 1,
+      "result_truncated": false,
+      "columns": [
+        {
+          "name": "source_version_check",
+          "type_name": "NULL",
+          "type_text": "VOID"
+        },
+        {
+          "name": "gold_hourly_check",
+          "type_name": "NULL",
+          "type_text": "VOID"
+        }
+      ],
+      "assertions": {
+        "source_version_check": "PASS",
+        "gold_hourly_check": "PASS"
+      },
+      "validation": "PASS"
+    },
+    {
+      "label": "product-reconciliation-guard",
+      "state": "SUCCEEDED",
+      "query_sha256": "2ae16c018f00b71aa9dcfa05846112f3947bc5452059968f738e67580c141f28",
+      "elapsed_seconds": 4.877,
+      "http_status": 200,
+      "row_count": 1,
+      "result_truncated": false,
+      "columns": [
+        {
+          "name": "activity_composition_check",
+          "type_name": "NULL",
+          "type_text": "VOID"
+        },
+        {
+          "name": "fleet_check",
+          "type_name": "NULL",
+          "type_text": "VOID"
+        }
+      ],
+      "assertions": {
+        "activity_composition_check": "PASS",
+        "fleet_check": "PASS"
+      },
+      "validation": "PASS"
+    },
+    {
+      "label": "daily_activity",
+      "state": "SUCCEEDED",
+      "query_sha256": "512a7ca4133a9b1da6541e524042e2ad62cce2c685431c41f7245d57a309a22a",
+      "elapsed_seconds": 2.032,
+      "http_status": 200,
+      "row_count": 7,
+      "result_truncated": false,
+      "columns": [
+        {
+          "name": "source_local_naive_day",
+          "type_name": "DATE",
+          "type_text": "DATE"
+        },
+        {
+          "name": "observation_count",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "plow_active_observations",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "spreader_active_observations",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "hours_containing_telemetry",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "maximum_hourly_distinct_truck_identifiers",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        }
+      ],
+      "validation": "PASS"
+    },
+    {
+      "label": "equipment_hourly",
+      "state": "SUCCEEDED",
+      "query_sha256": "2245c08d4319a6cc7c0c60869be07aa9e787fd47e66e77500ef1eb22521634c9",
+      "elapsed_seconds": 1.876,
+      "http_status": 200,
+      "row_count": 79,
+      "result_truncated": false,
+      "columns": [
+        {
+          "name": "source_local_naive_hour",
+          "type_name": "TIMESTAMP_NTZ",
+          "type_text": "TIMESTAMP_NTZ"
+        },
+        {
+          "name": "observation_count",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "plow_only_observations",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "spreader_only_observations",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "both_active_observations",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "neither_active_observations",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "engine_off_observations",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "engine_off_with_equipment_flag_observations",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        }
+      ],
+      "validation": "PASS"
+    },
+    {
+      "label": "equipment_daily",
+      "state": "SUCCEEDED",
+      "query_sha256": "f43f8c58969b2a8246f3e527baeec4f8e64d2b23d6561e9b337a8eda13bbb3c2",
+      "elapsed_seconds": 1.696,
+      "http_status": 200,
+      "row_count": 7,
+      "result_truncated": false,
+      "columns": [
+        {
+          "name": "source_local_naive_day",
+          "type_name": "DATE",
+          "type_text": "DATE"
+        },
+        {
+          "name": "observation_count",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "plow_only_observations",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "spreader_only_observations",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "both_active_observations",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "neither_active_observations",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "engine_off_observations",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "engine_off_with_equipment_flag_observations",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        }
+      ],
+      "validation": "PASS"
+    },
+    {
+      "label": "fleet_overview",
+      "state": "SUCCEEDED",
+      "query_sha256": "35aa7af3395b225d1015e50c5d0fc6af113e67cad30af14f85506a90b36bb96a",
+      "elapsed_seconds": 3.28,
+      "http_status": 200,
+      "row_count": 1,
+      "result_truncated": false,
+      "columns": [
+        {
+          "name": "observed_identifier_count",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "observation_count",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "observed_identifier_day_pairs",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "minimum_observations_per_identifier",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "maximum_observations_per_identifier",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "mean_observations_per_identifier",
+          "type_name": "DOUBLE",
+          "type_text": "DOUBLE"
+        },
+        {
+          "name": "singleton_identifier_count",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "constant_timestamp_identifier_count",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "same_timestamp_conflict_identifier_count",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "conflicting_identifier_timestamp_groups",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "identifiers_with_long_gaps",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "consecutive_timestamp_pairs",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "zero_gap_pairs",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "long_gap_pairs",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "minimum_positive_source_clock_gap_seconds",
+          "type_name": "DECIMAL",
+          "type_text": "DECIMAL(30,9)"
+        },
+        {
+          "name": "maximum_source_clock_gap_seconds",
+          "type_name": "DECIMAL",
+          "type_text": "DECIMAL(30,9)"
+        },
+        {
+          "name": "dense_reporting_identifier_count",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "dense_identifier_hour_count",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "peak_identifier_hour_observation_count",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "repeated_payload_group_count",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "repeated_payload_observations",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "excess_payload_observations",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "payload_identity_conflict_groups",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "whitespace_identifier_observations",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        }
+      ],
+      "validation": "PASS"
+    },
+    {
+      "label": "fleet_daily_participation",
+      "state": "SUCCEEDED",
+      "query_sha256": "775b9c292a2c5a85d0d2f32e24595e071fdc39b79795b4dce148c308a0f2f006",
+      "elapsed_seconds": 1.698,
+      "http_status": 200,
+      "row_count": 7,
+      "result_truncated": false,
+      "columns": [
+        {
+          "name": "source_local_naive_day",
+          "type_name": "DATE",
+          "type_text": "DATE"
+        },
+        {
+          "name": "observed_identifier_count",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "observation_count",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "hours_containing_telemetry",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        }
+      ],
+      "validation": "PASS"
+    },
+    {
+      "label": "fleet_observation_frequency",
+      "state": "SUCCEEDED",
+      "query_sha256": "39f9c7239a59b86c528d05a1e8e4322ecc9bb31667f1df8012cc762938e6815c",
+      "elapsed_seconds": 1.816,
+      "http_status": 200,
+      "row_count": 4,
+      "result_truncated": false,
+      "columns": [
+        {
+          "name": "frequency_band",
+          "type_name": "STRING",
+          "type_text": "STRING"
+        },
+        {
+          "name": "identifier_count",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "observation_count",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        }
+      ],
+      "validation": "PASS"
+    },
+    {
+      "label": "fleet_gap_distribution",
+      "state": "SUCCEEDED",
+      "query_sha256": "30b269b7e63cf652909ad024226a2f11afd48e28309f0a96cc4cdea877619c48",
+      "elapsed_seconds": 1.92,
+      "http_status": 200,
+      "row_count": 3,
+      "result_truncated": false,
+      "columns": [
+        {
+          "name": "gap_band",
+          "type_name": "STRING",
+          "type_text": "STRING"
+        },
+        {
+          "name": "consecutive_timestamp_pairs",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "identifiers_in_band",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "minimum_source_clock_gap_seconds",
+          "type_name": "DECIMAL",
+          "type_text": "DECIMAL(30,9)"
+        },
+        {
+          "name": "maximum_source_clock_gap_seconds",
+          "type_name": "DECIMAL",
+          "type_text": "DECIMAL(30,9)"
+        }
+      ],
+      "validation": "PASS"
+    },
+    {
+      "label": "fleet_reporting_days",
+      "state": "SUCCEEDED",
+      "query_sha256": "5ce4aa47464c07c7344735f5bb682a537eaf50c2308e2b04f87ba106a477f408",
+      "elapsed_seconds": 1.772,
+      "http_status": 200,
+      "row_count": 2,
+      "result_truncated": false,
+      "columns": [
+        {
+          "name": "days_with_observations",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "identifier_count",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        },
+        {
+          "name": "observation_count",
+          "type_name": "LONG",
+          "type_text": "BIGINT"
+        }
+      ],
+      "validation": "PASS"
+    }
+  ],
+  "total_client_statement_elapsed_seconds": 40.063,
+  "equipment_totals": {
+    "observation_count": 110311,
+    "plow_only_observations": 41441,
+    "spreader_only_observations": 30840,
+    "both_active_observations": 38030,
+    "neither_active_observations": 0,
+    "engine_off_observations": 0,
+    "engine_off_with_equipment_flag_observations": 0
+  },
+  "products": {
+    "daily_activity": [
+      {
+        "source_local_naive_day": "2026-01-12",
+        "observation_count": 1,
+        "plow_active_observations": 1,
+        "spreader_active_observations": 0,
+        "hours_containing_telemetry": 1,
+        "maximum_hourly_distinct_truck_identifiers": 1
+      },
+      {
+        "source_local_naive_day": "2026-01-13",
+        "observation_count": 142,
+        "plow_active_observations": 140,
+        "spreader_active_observations": 2,
+        "hours_containing_telemetry": 4,
+        "maximum_hourly_distinct_truck_identifiers": 1
+      },
+      {
+        "source_local_naive_day": "2026-01-14",
+        "observation_count": 31222,
+        "plow_active_observations": 24750,
+        "spreader_active_observations": 18323,
+        "hours_containing_telemetry": 14,
+        "maximum_hourly_distinct_truck_identifiers": 18
+      },
+      {
+        "source_local_naive_day": "2026-01-15",
+        "observation_count": 52115,
+        "plow_active_observations": 38246,
+        "spreader_active_observations": 33017,
+        "hours_containing_telemetry": 24,
+        "maximum_hourly_distinct_truck_identifiers": 17
+      },
+      {
+        "source_local_naive_day": "2026-01-16",
+        "observation_count": 16209,
+        "plow_active_observations": 11037,
+        "spreader_active_observations": 9734,
+        "hours_containing_telemetry": 21,
+        "maximum_hourly_distinct_truck_identifiers": 20
+      },
+      {
+        "source_local_naive_day": "2026-01-17",
+        "observation_count": 10476,
+        "plow_active_observations": 5151,
+        "spreader_active_observations": 7794,
+        "hours_containing_telemetry": 11,
+        "maximum_hourly_distinct_truck_identifiers": 18
+      },
+      {
+        "source_local_naive_day": "2026-01-18",
+        "observation_count": 146,
+        "plow_active_observations": 146,
+        "spreader_active_observations": 0,
+        "hours_containing_telemetry": 4,
+        "maximum_hourly_distinct_truck_identifiers": 4
+      }
+    ],
+    "equipment_hourly": [
+      {
+        "source_local_naive_hour": "2026-01-12 09:00:00",
+        "observation_count": 1,
+        "plow_only_observations": 1,
+        "spreader_only_observations": 0,
+        "both_active_observations": 0,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-13 07:00:00",
+        "observation_count": 43,
+        "plow_only_observations": 43,
+        "spreader_only_observations": 0,
+        "both_active_observations": 0,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-13 08:00:00",
+        "observation_count": 32,
+        "plow_only_observations": 32,
+        "spreader_only_observations": 0,
+        "both_active_observations": 0,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-13 11:00:00",
+        "observation_count": 49,
+        "plow_only_observations": 49,
+        "spreader_only_observations": 0,
+        "both_active_observations": 0,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-13 13:00:00",
+        "observation_count": 18,
+        "plow_only_observations": 16,
+        "spreader_only_observations": 2,
+        "both_active_observations": 0,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-14 08:00:00",
+        "observation_count": 163,
+        "plow_only_observations": 163,
+        "spreader_only_observations": 0,
+        "both_active_observations": 0,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-14 09:00:00",
+        "observation_count": 272,
+        "plow_only_observations": 272,
+        "spreader_only_observations": 0,
+        "both_active_observations": 0,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-14 10:00:00",
+        "observation_count": 221,
+        "plow_only_observations": 221,
+        "spreader_only_observations": 0,
+        "both_active_observations": 0,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-14 13:00:00",
+        "observation_count": 338,
+        "plow_only_observations": 206,
+        "spreader_only_observations": 132,
+        "both_active_observations": 0,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-14 14:00:00",
+        "observation_count": 2015,
+        "plow_only_observations": 550,
+        "spreader_only_observations": 878,
+        "both_active_observations": 587,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-14 15:00:00",
+        "observation_count": 3752,
+        "plow_only_observations": 1434,
+        "spreader_only_observations": 1036,
+        "both_active_observations": 1282,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-14 16:00:00",
+        "observation_count": 1487,
+        "plow_only_observations": 717,
+        "spreader_only_observations": 309,
+        "both_active_observations": 461,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-14 17:00:00",
+        "observation_count": 3552,
+        "plow_only_observations": 954,
+        "spreader_only_observations": 1452,
+        "both_active_observations": 1146,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-14 18:00:00",
+        "observation_count": 4047,
+        "plow_only_observations": 1446,
+        "spreader_only_observations": 804,
+        "both_active_observations": 1797,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-14 19:00:00",
+        "observation_count": 3128,
+        "plow_only_observations": 1407,
+        "spreader_only_observations": 163,
+        "both_active_observations": 1558,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-14 20:00:00",
+        "observation_count": 1230,
+        "plow_only_observations": 680,
+        "spreader_only_observations": 43,
+        "both_active_observations": 507,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-14 21:00:00",
+        "observation_count": 3819,
+        "plow_only_observations": 1817,
+        "spreader_only_observations": 607,
+        "both_active_observations": 1395,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-14 22:00:00",
+        "observation_count": 3923,
+        "plow_only_observations": 1523,
+        "spreader_only_observations": 702,
+        "both_active_observations": 1698,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-14 23:00:00",
+        "observation_count": 3275,
+        "plow_only_observations": 1509,
+        "spreader_only_observations": 346,
+        "both_active_observations": 1420,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-15 00:00:00",
+        "observation_count": 1342,
+        "plow_only_observations": 714,
+        "spreader_only_observations": 66,
+        "both_active_observations": 562,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-15 01:00:00",
+        "observation_count": 3176,
+        "plow_only_observations": 1300,
+        "spreader_only_observations": 589,
+        "both_active_observations": 1287,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-15 02:00:00",
+        "observation_count": 2282,
+        "plow_only_observations": 995,
+        "spreader_only_observations": 538,
+        "both_active_observations": 749,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-15 03:00:00",
+        "observation_count": 3162,
+        "plow_only_observations": 1310,
+        "spreader_only_observations": 474,
+        "both_active_observations": 1378,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-15 04:00:00",
+        "observation_count": 1539,
+        "plow_only_observations": 696,
+        "spreader_only_observations": 73,
+        "both_active_observations": 770,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-15 05:00:00",
+        "observation_count": 3540,
+        "plow_only_observations": 1185,
+        "spreader_only_observations": 879,
+        "both_active_observations": 1476,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-15 06:00:00",
+        "observation_count": 3599,
+        "plow_only_observations": 1094,
+        "spreader_only_observations": 804,
+        "both_active_observations": 1701,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-15 07:00:00",
+        "observation_count": 2883,
+        "plow_only_observations": 1039,
+        "spreader_only_observations": 680,
+        "both_active_observations": 1164,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-15 08:00:00",
+        "observation_count": 1046,
+        "plow_only_observations": 636,
+        "spreader_only_observations": 31,
+        "both_active_observations": 379,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-15 09:00:00",
+        "observation_count": 3843,
+        "plow_only_observations": 1355,
+        "spreader_only_observations": 808,
+        "both_active_observations": 1680,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-15 10:00:00",
+        "observation_count": 4285,
+        "plow_only_observations": 1619,
+        "spreader_only_observations": 925,
+        "both_active_observations": 1741,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-15 11:00:00",
+        "observation_count": 2112,
+        "plow_only_observations": 600,
+        "spreader_only_observations": 525,
+        "both_active_observations": 987,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-15 12:00:00",
+        "observation_count": 749,
+        "plow_only_observations": 449,
+        "spreader_only_observations": 0,
+        "both_active_observations": 300,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-15 13:00:00",
+        "observation_count": 1877,
+        "plow_only_observations": 708,
+        "spreader_only_observations": 627,
+        "both_active_observations": 542,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-15 14:00:00",
+        "observation_count": 1559,
+        "plow_only_observations": 515,
+        "spreader_only_observations": 459,
+        "both_active_observations": 585,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-15 15:00:00",
+        "observation_count": 3222,
+        "plow_only_observations": 1406,
+        "spreader_only_observations": 813,
+        "both_active_observations": 1003,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-15 16:00:00",
+        "observation_count": 895,
+        "plow_only_observations": 669,
+        "spreader_only_observations": 67,
+        "both_active_observations": 159,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-15 17:00:00",
+        "observation_count": 2850,
+        "plow_only_observations": 923,
+        "spreader_only_observations": 1266,
+        "both_active_observations": 661,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-15 18:00:00",
+        "observation_count": 2614,
+        "plow_only_observations": 576,
+        "spreader_only_observations": 1348,
+        "both_active_observations": 690,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-15 19:00:00",
+        "observation_count": 1905,
+        "plow_only_observations": 441,
+        "spreader_only_observations": 773,
+        "both_active_observations": 691,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-15 20:00:00",
+        "observation_count": 340,
+        "plow_only_observations": 231,
+        "spreader_only_observations": 98,
+        "both_active_observations": 11,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-15 21:00:00",
+        "observation_count": 1709,
+        "plow_only_observations": 328,
+        "spreader_only_observations": 1027,
+        "both_active_observations": 354,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-15 22:00:00",
+        "observation_count": 1215,
+        "plow_only_observations": 187,
+        "spreader_only_observations": 786,
+        "both_active_observations": 242,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-15 23:00:00",
+        "observation_count": 371,
+        "plow_only_observations": 122,
+        "spreader_only_observations": 213,
+        "both_active_observations": 36,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-16 00:00:00",
+        "observation_count": 109,
+        "plow_only_observations": 109,
+        "spreader_only_observations": 0,
+        "both_active_observations": 0,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-16 01:00:00",
+        "observation_count": 218,
+        "plow_only_observations": 218,
+        "spreader_only_observations": 0,
+        "both_active_observations": 0,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-16 02:00:00",
+        "observation_count": 32,
+        "plow_only_observations": 32,
+        "spreader_only_observations": 0,
+        "both_active_observations": 0,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-16 03:00:00",
+        "observation_count": 226,
+        "plow_only_observations": 226,
+        "spreader_only_observations": 0,
+        "both_active_observations": 0,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-16 04:00:00",
+        "observation_count": 216,
+        "plow_only_observations": 216,
+        "spreader_only_observations": 0,
+        "both_active_observations": 0,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-16 05:00:00",
+        "observation_count": 29,
+        "plow_only_observations": 29,
+        "spreader_only_observations": 0,
+        "both_active_observations": 0,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-16 06:00:00",
+        "observation_count": 4,
+        "plow_only_observations": 4,
+        "spreader_only_observations": 0,
+        "both_active_observations": 0,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-16 07:00:00",
+        "observation_count": 83,
+        "plow_only_observations": 83,
+        "spreader_only_observations": 0,
+        "both_active_observations": 0,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-16 08:00:00",
+        "observation_count": 149,
+        "plow_only_observations": 149,
+        "spreader_only_observations": 0,
+        "both_active_observations": 0,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-16 09:00:00",
+        "observation_count": 116,
+        "plow_only_observations": 116,
+        "spreader_only_observations": 0,
+        "both_active_observations": 0,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-16 10:00:00",
+        "observation_count": 244,
+        "plow_only_observations": 244,
+        "spreader_only_observations": 0,
+        "both_active_observations": 0,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-16 11:00:00",
+        "observation_count": 105,
+        "plow_only_observations": 105,
+        "spreader_only_observations": 0,
+        "both_active_observations": 0,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-16 12:00:00",
+        "observation_count": 164,
+        "plow_only_observations": 164,
+        "spreader_only_observations": 0,
+        "both_active_observations": 0,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-16 13:00:00",
+        "observation_count": 29,
+        "plow_only_observations": 29,
+        "spreader_only_observations": 0,
+        "both_active_observations": 0,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-16 14:00:00",
+        "observation_count": 59,
+        "plow_only_observations": 59,
+        "spreader_only_observations": 0,
+        "both_active_observations": 0,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-16 15:00:00",
+        "observation_count": 1417,
+        "plow_only_observations": 853,
+        "spreader_only_observations": 333,
+        "both_active_observations": 231,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-16 16:00:00",
+        "observation_count": 4333,
+        "plow_only_observations": 1321,
+        "spreader_only_observations": 1446,
+        "both_active_observations": 1566,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-16 17:00:00",
+        "observation_count": 3143,
+        "plow_only_observations": 1080,
+        "spreader_only_observations": 976,
+        "both_active_observations": 1087,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-16 18:00:00",
+        "observation_count": 3366,
+        "plow_only_observations": 1012,
+        "spreader_only_observations": 1240,
+        "both_active_observations": 1114,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-16 19:00:00",
+        "observation_count": 2086,
+        "plow_only_observations": 410,
+        "spreader_only_observations": 1128,
+        "both_active_observations": 548,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-16 20:00:00",
+        "observation_count": 81,
+        "plow_only_observations": 16,
+        "spreader_only_observations": 49,
+        "both_active_observations": 16,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-17 07:00:00",
+        "observation_count": 1,
+        "plow_only_observations": 1,
+        "spreader_only_observations": 0,
+        "both_active_observations": 0,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-17 08:00:00",
+        "observation_count": 13,
+        "plow_only_observations": 13,
+        "spreader_only_observations": 0,
+        "both_active_observations": 0,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-17 09:00:00",
+        "observation_count": 46,
+        "plow_only_observations": 46,
+        "spreader_only_observations": 0,
+        "both_active_observations": 0,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-17 10:00:00",
+        "observation_count": 1439,
+        "plow_only_observations": 537,
+        "spreader_only_observations": 522,
+        "both_active_observations": 380,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-17 11:00:00",
+        "observation_count": 3780,
+        "plow_only_observations": 868,
+        "spreader_only_observations": 1808,
+        "both_active_observations": 1104,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-17 12:00:00",
+        "observation_count": 2430,
+        "plow_only_observations": 741,
+        "spreader_only_observations": 1150,
+        "both_active_observations": 539,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-17 13:00:00",
+        "observation_count": 1693,
+        "plow_only_observations": 196,
+        "spreader_only_observations": 1231,
+        "both_active_observations": 266,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-17 14:00:00",
+        "observation_count": 663,
+        "plow_only_observations": 99,
+        "spreader_only_observations": 450,
+        "both_active_observations": 114,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-17 15:00:00",
+        "observation_count": 263,
+        "plow_only_observations": 33,
+        "spreader_only_observations": 164,
+        "both_active_observations": 66,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-17 17:00:00",
+        "observation_count": 70,
+        "plow_only_observations": 70,
+        "spreader_only_observations": 0,
+        "both_active_observations": 0,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-17 18:00:00",
+        "observation_count": 78,
+        "plow_only_observations": 78,
+        "spreader_only_observations": 0,
+        "both_active_observations": 0,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-18 11:00:00",
+        "observation_count": 1,
+        "plow_only_observations": 1,
+        "spreader_only_observations": 0,
+        "both_active_observations": 0,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-18 12:00:00",
+        "observation_count": 42,
+        "plow_only_observations": 42,
+        "spreader_only_observations": 0,
+        "both_active_observations": 0,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-18 13:00:00",
+        "observation_count": 6,
+        "plow_only_observations": 6,
+        "spreader_only_observations": 0,
+        "both_active_observations": 0,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_hour": "2026-01-18 23:00:00",
+        "observation_count": 97,
+        "plow_only_observations": 97,
+        "spreader_only_observations": 0,
+        "both_active_observations": 0,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      }
+    ],
+    "equipment_daily": [
+      {
+        "source_local_naive_day": "2026-01-12",
+        "observation_count": 1,
+        "plow_only_observations": 1,
+        "spreader_only_observations": 0,
+        "both_active_observations": 0,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_day": "2026-01-13",
+        "observation_count": 142,
+        "plow_only_observations": 140,
+        "spreader_only_observations": 2,
+        "both_active_observations": 0,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_day": "2026-01-14",
+        "observation_count": 31222,
+        "plow_only_observations": 12899,
+        "spreader_only_observations": 6472,
+        "both_active_observations": 11851,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_day": "2026-01-15",
+        "observation_count": 52115,
+        "plow_only_observations": 19098,
+        "spreader_only_observations": 13869,
+        "both_active_observations": 19148,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_day": "2026-01-16",
+        "observation_count": 16209,
+        "plow_only_observations": 6475,
+        "spreader_only_observations": 5172,
+        "both_active_observations": 4562,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_day": "2026-01-17",
+        "observation_count": 10476,
+        "plow_only_observations": 2682,
+        "spreader_only_observations": 5325,
+        "both_active_observations": 2469,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      },
+      {
+        "source_local_naive_day": "2026-01-18",
+        "observation_count": 146,
+        "plow_only_observations": 146,
+        "spreader_only_observations": 0,
+        "both_active_observations": 0,
+        "neither_active_observations": 0,
+        "engine_off_observations": 0,
+        "engine_off_with_equipment_flag_observations": 0
+      }
+    ],
+    "fleet_overview": [
+      {
+        "observed_identifier_count": 251,
+        "observation_count": 110311,
+        "observed_identifier_day_pairs": 263,
+        "minimum_observations_per_identifier": 1,
+        "maximum_observations_per_identifier": 977,
+        "mean_observations_per_identifier": 439.48605577689244,
+        "singleton_identifier_count": 4,
+        "constant_timestamp_identifier_count": 0,
+        "same_timestamp_conflict_identifier_count": 165,
+        "conflicting_identifier_timestamp_groups": 2661,
+        "identifiers_with_long_gaps": 82,
+        "consecutive_timestamp_pairs": 110060,
+        "zero_gap_pairs": 3793,
+        "long_gap_pairs": 95,
+        "minimum_positive_source_clock_gap_seconds": 1.0,
+        "maximum_source_clock_gap_seconds": 23467.0,
+        "dense_reporting_identifier_count": 0,
+        "dense_identifier_hour_count": 0,
+        "peak_identifier_hour_observation_count": 515,
+        "repeated_payload_group_count": 1097,
+        "repeated_payload_observations": 2210,
+        "excess_payload_observations": 1113,
+        "payload_identity_conflict_groups": 0,
+        "whitespace_identifier_observations": 0
+      }
+    ],
+    "fleet_daily_participation": [
+      {
+        "source_local_naive_day": "2026-01-12",
+        "observed_identifier_count": 1,
+        "observation_count": 1,
+        "hours_containing_telemetry": 1
+      },
+      {
+        "source_local_naive_day": "2026-01-13",
+        "observed_identifier_count": 3,
+        "observation_count": 142,
+        "hours_containing_telemetry": 4
+      },
+      {
+        "source_local_naive_day": "2026-01-14",
+        "observed_identifier_count": 58,
+        "observation_count": 31222,
+        "hours_containing_telemetry": 14
+      },
+      {
+        "source_local_naive_day": "2026-01-15",
+        "observed_identifier_count": 104,
+        "observation_count": 52115,
+        "hours_containing_telemetry": 24
+      },
+      {
+        "source_local_naive_day": "2026-01-16",
+        "observed_identifier_count": 50,
+        "observation_count": 16209,
+        "hours_containing_telemetry": 21
+      },
+      {
+        "source_local_naive_day": "2026-01-17",
+        "observed_identifier_count": 38,
+        "observation_count": 10476,
+        "hours_containing_telemetry": 11
+      },
+      {
+        "source_local_naive_day": "2026-01-18",
+        "observed_identifier_count": 9,
+        "observation_count": 146,
+        "hours_containing_telemetry": 4
+      }
+    ],
+    "fleet_observation_frequency": [
+      {
+        "frequency_band": "01_single",
+        "identifier_count": 4,
+        "observation_count": 4
+      },
+      {
+        "frequency_band": "02_2_to_10",
+        "identifier_count": 7,
+        "observation_count": 43
+      },
+      {
+        "frequency_band": "03_11_to_100",
+        "identifier_count": 36,
+        "observation_count": 1754
+      },
+      {
+        "frequency_band": "04_101_to_1000",
+        "identifier_count": 204,
+        "observation_count": 108510
+      }
+    ],
+    "fleet_gap_distribution": [
+      {
+        "gap_band": "01_zero",
+        "consecutive_timestamp_pairs": 3793,
+        "identifiers_in_band": 172,
+        "minimum_source_clock_gap_seconds": 0.0,
+        "maximum_source_clock_gap_seconds": 0.0
+      },
+      {
+        "gap_band": "02_positive_within_review_threshold",
+        "consecutive_timestamp_pairs": 106172,
+        "identifiers_in_band": 247,
+        "minimum_source_clock_gap_seconds": 1.0,
+        "maximum_source_clock_gap_seconds": 1778.0
+      },
+      {
+        "gap_band": "03_above_review_threshold",
+        "consecutive_timestamp_pairs": 95,
+        "identifiers_in_band": 82,
+        "minimum_source_clock_gap_seconds": 1831.0,
+        "maximum_source_clock_gap_seconds": 23467.0
+      }
+    ],
+    "fleet_reporting_days": [
+      {
+        "days_with_observations": 1,
+        "identifier_count": 239,
+        "observation_count": 103717
+      },
+      {
+        "days_with_observations": 2,
+        "identifier_count": 12,
+        "observation_count": 6594
+      }
+    ]
+  },
+  "interpretation": [
+    "Observation counts, telemetry-containing hours and source-clock gaps are not working time, downtime, coverage, workforce or productivity.",
+    "251 raw observed identifiers are not actual fleet size or availability; hourly distinct counts and overlapping gap-band identifiers must not be summed.",
+    "Engine/equipment flags and timestamp/payload conflicts are reporting diagnostics, not established mechanical or operational facts."
+  ],
+  "limitations": [
+    "Point-in-time view reads, not pinned Delta snapshots or an atomic multi-query snapshot; no stability rerun was included.",
+    "Guards verified published valid Silver and hourly Gold source metadata/path/hash and per-hour/aggregate reconciliation; raw CSV bytes and Bronze were not re-audited in this run.",
+    "Durations are single-run client request times including transport, queueing, compilation and possible resume effects; no query profile, scan bytes or separate execution-only timings were collected.",
+    "Only SQL API execution was validated. Notebook/Spark entrypoint, DDL, new dashboards/jobs and fleet/field semantics remain outside this scope."
+  ]
+}
