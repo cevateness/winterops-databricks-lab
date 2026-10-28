@@ -1,8 +1,8 @@
 # Lesson 7 — Controlled Silver/Gold publication
 
-**Phase A: BLOCKED pending creation-privilege verification and separate publication approval. Phase B: NOT RUN.**
+**Phase A: READY_TO_APPLY, pending separate explicit publication approval. Phase B: NOT RUN.**
 
-Read-only preflight performed on 2026-10-28. This is a verification gap, not an observed DDL permission denial: no DDL was submitted to test permissions.
+Read-only preflight performed on 2026-10-28. The initial principal-attribution gap was resolved by the user's Catalog Explorer confirmation, corroborated by current API metadata and SCIM memberships. No DDL was submitted to test permissions or publish objects.
 
 ## Repository and validated implementation
 
@@ -21,7 +21,7 @@ Read-only preflight performed on 2026-10-28. This is a verification gap, not an 
 | Existing payload preflight | SUCCEEDED; payload assertion PASS |
 | Exact current Volume CSV | PASS; 8,671,212 bytes; byte hash matches selected version |
 | Catalog/schema metadata and direct/effective grants | Readable, HTTP 200 |
-| Effective schema creation privilege for current identity | UNRESOLVED; see below |
+| Schema creation privilege | CONFIRMED by user in Catalog Explorer and corroborated by current workspace-users grant/SCIM metadata |
 | Target metadata lookups | Each returned HTTP 404 / `TABLE_DOES_NOT_EXIST`; full namespace visibility is unconfirmed |
 
 Selected source-file SHA-256: `f5d7633c910e1ad6be23b4111445bf0bc14fe2071c6ea0f0d4cd456295ea9e94`.
@@ -34,9 +34,11 @@ SQL requests used a 30-second wait with `on_wait_timeout=CANCEL`, 25-row/65,536-
 
 ## Ownership, grants and conflict assessment
 
-Readable catalog grants include `USE_CATALOG`; schema grants include `USE_SCHEMA` and `CREATE_TABLE`, which is the schema privilege required by CREATE VIEW. Their grantee and owner principals could not be matched to the current SQL/SCIM identity, its aliases, or its SCIM groups/identifiers. Literal membership probes for those principals returned false. SCIM confirms membership in the workspace `users` and `admins` groups, but that alone was not used to assert ownership of these Unity Catalog containers.
+Readable catalog grants include `USE_CATALOG`; schema grants include `USE_SCHEMA` and `CREATE_TABLE`, which is the schema privilege required by CREATE VIEW. The user confirmed the CREATE TABLE assignment on `workspace.default` in Catalog Explorer through its workspace-users system principal. The full principal identifier remains private.
 
-Working source SELECTs demonstrate effective catalog/schema usage and source read access. They do **not** prove CREATE VIEW authority. No permission denial was observed; creation privilege attribution remains unverified. Catalog Explorer or another authoritative read-only privilege inspection must resolve this before `READY_TO_APPLY`.
+Follow-up API metadata recognized `_workspace_users_workspace_<workspace-id>` as the catalog/schema grantee and the corresponding workspace-admins system principal as their owner. All share the same workspace namespace. SCIM confirms that the current identity belongs to workspace `users` and `admins`. These checks corroborate the user's confirmation and resolve the earlier mismatch against literal SQL/group-name probes; no permission or ownership change was needed.
+
+Working source SELECTs establish effective usage/read access. Creation readiness additionally relies on the explicitly confirmed schema grant and corroborating metadata; actual DDL remains untested until approved. This permission confirmation is **not** publication approval.
 
 | Exact target | Accessible metadata | Current publication verification |
 |---|---|---|
@@ -57,7 +59,7 @@ Prepared ignored artifacts:
 - `.venv/winterops-lesson7-published-summary.sql`: proposed safe aggregate query, not runtime-tested yet.
 - `.venv/winterops-lesson7-publication-plan.json`: limits, exact targets and current blockers.
 
-After privilege verification and explicit approval of the three exact targets:
+After separate explicit approval of the three exact targets:
 
 1. Reconfirm workspace/warehouse, schema, source preflight, payload preflight and exact CSV hash. Reinspect target metadata and source stability. Stop on any mismatch or conflict.
 2. Execute create-only definitions sequentially: valid Silver, quarantine Silver, then hourly Gold. Stop on the first error, cancellation or unexpected result. Inspect each created object's identity, owner and definition before proceeding; do not change grants.
@@ -81,6 +83,6 @@ The three DDL statements are not one transaction. Create-only execution is inten
 
 ## Approval boundary
 
-No DDL is currently approved. Resolve the creation-privilege verification gap, then explicitly approve create-only publication of the three exact targets above against the existing `winterops` workspace/warehouse and verified hash. Approval cannot silently extend to replacements, grant/owner changes, rollback DDL or notebook execution.
+No DDL is currently approved. Creation-privilege verification is complete and the plan is READY_TO_APPLY after separate explicit approval of the three exact targets above against the existing `winterops` workspace/warehouse and verified hash. The user's answer about an existing grant does not authorize publication. Approval cannot silently extend to replacements, grant/owner changes, rollback DDL or notebook execution. Fresh Phase B rechecks and the fail-if-exists guard still apply; the readiness assessment is point-in-time.
 
 References reviewed: [CREATE VIEW privileges and replacement behavior](https://docs.databricks.com/aws/en/sql/language-manual/sql-ref-syntax-ddl-create-view), [effective grants](https://docs.databricks.com/api/uc-grants/v1/get-effective-permissions), [table metadata visibility](https://docs.databricks.com/api/uc-tables/v1/get-table), [workspace/account group membership](https://docs.databricks.com/aws/en/sql/language-manual/functions/is_member).

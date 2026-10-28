@@ -4,7 +4,7 @@ Prepared locally on 2026-10-25. **Shared Lesson 6 candidate SQL passed read-only
 
 Reviewed on 2026-10-28: the existing 46 tests passed before changes; the expanded suite passes 57 tests. The exact source version, required Silver schema and aggregate evidence are verified. After explicit approval, the schema recheck, both unchanged preflight statements and candidate Silver/Gold CTE statement succeeded sequentially with the bounded no-retry SQL API transport. All nine assertion outputs passed; see [SOURCE_VERSION_EVIDENCE.md](SOURCE_VERSION_EVIDENCE.md). Publication remains a separate approval.
 
-Lesson 7 publication preflight reconfirmed the source and prepared a create-only proposal using the same SELECT bodies. Creation-privilege attribution remains unresolved, so publication is BLOCKED and no DDL has run. Target 404 responses are not treated as complete namespace visibility. See [LESSON_7_PUBLICATION.md](LESSON_7_PUBLICATION.md) before requesting any publication approval or considering replacement.
+Lesson 7 publication preflight reconfirmed the source and prepared a create-only proposal using the same SELECT bodies. The user confirmed the existing schema creation grant, corroborated by system-principal API metadata and SCIM membership. Phase A is READY_TO_APPLY pending separate publication approval; no DDL has run. Target 404 responses are not treated as complete namespace visibility, so create-only conflict protection remains mandatory. See [LESSON_7_PUBLICATION.md](LESSON_7_PUBLICATION.md).
 
 ```mermaid
 flowchart LR
