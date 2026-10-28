@@ -39,3 +39,9 @@ jobs:
           --expected-summary data/fixtures/windsor_week_2026_01_12_18_summary.json
           --validation-only
           > /tmp/winterops-analytics-validation.sql
+      - name: Analytical product rendering (placeholder hash; never executed)
+        run: >-
+          python scripts/render_gold_products.py
+          --source-file-sha256 0000000000000000000000000000000000000000000000000000000000000000
+          --expected-summary data/fixtures/windsor_week_2026_01_12_18_summary.json
+          --output /tmp/winterops-gold-products.sql

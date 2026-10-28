@@ -6,6 +6,8 @@
 
 **Lesson 7:** PUBLISHED_VERIFIED_STABLE: 79 source-local/naive hourly buckets, 110,311 observations, 79,471 plow-active and 68,870 spreader-active observations. Per-hour distinct truck identifiers range from 1 to 20. See [publication evidence](docs/LESSON_7_PUBLICATION.md) and [all safe hourly counts](docs/LESSON_7_GOLD_RESULTS.json). These are observation counts, not working time or coverage.
 
+**Gold analytics expansion:** Daily activity, hourly/daily equipment composition and aggregate fleet-reporting diagnostics are implemented with synthetic reconciliation tests. New query execution in Databricks is **NOT RUN**, pending separate bounded read-only approval. See [metric definitions, query examples, four-chart dashboard and architecture review](docs/GOLD_ANALYTICS_PRODUCTS.md).
+
 **Primary objective:** Learn reproducible data engineering, lakehouse architecture, PySpark/SQL, data quality, MLOps, and eventually decision analytics. **Secondary:** Public technical portfolio. **Longer term:** Explore commercial winter-service decision intelligence only if actual evidence warrants it; this version is non-commercial.
 
 ## Architecture today
@@ -55,6 +57,7 @@ Synthetic learning exercises (not the real pipeline) live in notebooks 01 and 02
 - `src/winterops/quality.py` and `scripts/validate_quality_snapshot.py` — dependency-free validation of aggregate QA evidence.
 - `src/winterops/analytics.py` and packaged `src/winterops/sql/` — shared bounded SQL plan and offline reference counts.
 - `scripts/render_analytics_sql.py` — offline renderer requiring a reviewed file SHA-256 and expected summary; `--validation-only` emits queries without view DDL.
+- `src/winterops/gold_products.py` and `scripts/render_gold_products.py` — SELECT-only analytical products, independent Python reference calculations and offline dashboard SQL rendering.
 - `scripts/check_databricks.py` — named-profile/host-gated read-only CLI probe with sanitized output.
 - `data/fixtures/windsor_week_2026_01_12_18_summary.json` — **aggregate results only**, no source telemetry.
 - `.github/workflows/ci.yml` — offline tests on public GitHub, no Databricks secrets.
@@ -87,7 +90,7 @@ python scripts/validate_quality_snapshot.py data/fixtures/windsor_week_2026_01_1
 
 The aggregate fixture verifies **reported** invariants; it does not query Databricks or replace integration tests.
 
-The expanded suite has 57 tests: offline contracts, synthetic reference counts, SQLite-adapted SQL logic, mocked CLI checks and notebook mode dispatch. SQLite tests adapt SQL dialect details; they do **not** verify Databricks SQL parsing, NTZ runtime behavior or Unity Catalog access. Notebook 06 defaults to `mode=render` (no Spark queries). `mode=validate` runs read-only source/candidate checks; `mode=apply` explicitly creates/replaces views and requires separate approval.
+The expanded suite has 80 tests: offline contracts, synthetic reference metrics, SQLite-adapted SQL reconciliation, mocked CLI checks and notebook mode dispatch. SQLite tests adapt dialect/type details; they do **not** verify new Databricks SQL parsing, native NTZ/DECIMAL behavior or Unity Catalog access. Notebook 06 defaults to `mode=render`; its apply path requires explicit approval and must not be used to replace the existing published views by default. The new product renderer never executes SQL or creates objects.
 
 ## Data handling, attribution and source claims
 
