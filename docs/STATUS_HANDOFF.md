@@ -4,11 +4,12 @@ This file resolves **stale status text** in earlier lesson ZIPs. It records know
 
 ## Current verified state (2026-10-28)
 
+- **Lesson 7 Phase A: BLOCKED for publication pending creation-privilege attribution and separate exact-object approval.** PR #2 is merged at `2645dc9`; follow-up work is on `feat/lesson7-publication-preflight`. Source/schema/checksum and existing preflight checks still pass. All three target metadata lookups return 404, with full namespace visibility unconfirmed. Readable parent grants include CREATE_TABLE, but their principals could not be mapped to the current identity. No DDL has run. See [LESSON_7_PUBLICATION.md](LESSON_7_PUBLICATION.md) for evidence, the create-only proposal and non-atomic recovery plan.
 - **Databricks CLI v1.22.1 is installed and the named `winterops` profile is configured. Live read-only connectivity: PASS.** The sanitized checker verified the profile/host match, `current-user me`, and `workspace list /Workspace` after the workspace origin was corrected. Credentials, identity details, workspace listings and private URLs were suppressed.
 - Follow-up source audit: warehouse listing and bounded Statement Execution API calls succeeded on the existing serverless 2X-Small warehouse. Source hash `f5d7633c910e1ad6be23b4111445bf0bc14fe2071c6ea0f0d4cd456295ea9e94`, dataset/filename/path, Bronze/Silver counts, all established one-week activity aggregates, required schema types and payload multiplicities matched. The current 8,671,212-byte Volume CSV was independently checksummed and matched that hash; only hash/size were returned. See [SOURCE_VERSION_EVIDENCE.md](SOURCE_VERSION_EVIDENCE.md) for scope, exact results and limitations.
 - **Lesson 6 shared candidate SQL validation: PASS through the Statement Execution API.** After explicit user approval from `11dba68`, the required Silver types were rechecked and the unchanged two preflight statements plus candidate CTE reconciliation executed sequentially. All four statements were `SUCCEEDED`; all nine assertion outputs passed. Gold `consumer_check` and `hourly_check` passed, with no errors, cancellations, truncation or retries. Limits remained 30-second server wait / CANCEL, 25 rows, 65,536 bytes and a hard 45-second client deadline.
 - The notebook and Spark entrypoint were **not executed**. No source objects, views, jobs or schedules were created or changed; no warehouse configuration was changed. The existing warehouse served the approved SQL. Candidate SQL is ready for publication review; actual DDL privileges, grants/ownership effects, published-view reconciliation and rerun invariants remain unverified.
-- The offline suite has 57 passing tests. Next small milestone: review target-view conflicts and grants/ownership, then propose a separately approved publication scope. Publication remains unapproved.
+- The offline suite has 57 passing tests. Next small milestone: resolve the existing creation-grant attribution through authoritative read-only permission inspection, then obtain explicit approval for the exact create-only publication scope. Publication remains unapproved.
 
 ## Initial integration-readiness audit (2026-10-28)
 
@@ -99,6 +100,6 @@ On 2026-10-25, the user chose **local Codex development for now** while Cloud en
 
 - The original analytics PR #1 is merged. Review the new read-only validation change and its actual CI result.
 - The standalone CLI, named profile, source-file version/evidence and bounded Lesson 6 shared SQL validation are verified. The SQL candidate is ready for publication review on the tested warehouse.
-- Review existing target objects and grants/ownership before requesting publication approval. Direct notebook/Spark execution remains untested.
+- Lesson 7 source checks and publication/recovery preparation are complete; privilege attribution remains a verification blocker. Do not treat target 404 responses as full-visibility absence proof. Resolve that gap before publication approval; direct notebook/Spark execution remains untested.
 - After separate approval for view creation/replacement, run `mode=apply` twice and inspect reconciliation and rerun invariants.
 - Keep publication and notebook/Spark execution marked NOT RUN until actually executed; no forecasting, service-coverage claims or scheduled jobs are part of this milestone.

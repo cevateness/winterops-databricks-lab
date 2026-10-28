@@ -4,6 +4,8 @@
 
 **Status (2026-10-28):** Databricks Free Edition learning MVP. **One real Windsor historical week** has been processed through Bronze and quality-classified Silver in the user's workspace. Its exact source hash, required Silver schema and established aggregates reconcile through bounded read-only SQL. **Lesson 6's unchanged preflight and candidate Silver/Gold SQL passed approved Statement Execution API validation**; see [live evidence](docs/SOURCE_VERSION_EVIDENCE.md). The original Windsor CSV is **not included** in this public repository. The canonical public repository is [cevateness/winterops-databricks-lab](https://github.com/cevateness/winterops-databricks-lab). The CLI, named profile and relevant APIs are verified. Candidate SQL is ready for publication review; **view publication and notebook/Spark execution have not run**.
 
+**Lesson 7:** Read-only publication preflight is complete; publication is BLOCKED pending creation-privilege attribution and separate approval. The source still matches. See the [create-only publication and recovery plan](docs/LESSON_7_PUBLICATION.md).
+
 **Primary objective:** Learn reproducible data engineering, lakehouse architecture, PySpark/SQL, data quality, MLOps, and eventually decision analytics. **Secondary:** Public technical portfolio. **Longer term:** Explore commercial winter-service decision intelligence only if actual evidence warrants it; this version is non-commercial.
 
 ## Architecture today

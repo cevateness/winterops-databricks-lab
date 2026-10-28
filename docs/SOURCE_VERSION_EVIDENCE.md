@@ -82,3 +82,7 @@ python scripts/render_analytics_sql.py --source-file-sha256 f5d7633c910e1ad6be23
 This was Statement Execution API execution of the shared SQL, **not execution of the Databricks notebook or its Spark entrypoint**. It does not establish notebook import/path compatibility, actual CREATE/REPLACE VIEW privileges, existing-object conflicts, ownership/grant effects, published-view postflight or publication rerun invariants. Sources remain point-in-time and should be rechecked before publication.
 
 No DDL, `mode=apply`, table/view creation or replacement, data modification, job/schedule creation or warehouse configuration change was performed. Publication remains unapproved; review the three target names and existing grants/ownership before proposing that separate action.
+
+## Lesson 7 follow-up
+
+Read-only publication preflight reconfirmed the required schema, both existing source assertions and the current CSV byte hash/size. Query digests and publication SELECT bodies still match Lesson 6. Target metadata returned 404; parent ownership/grants were readable but could not be attributed to the current identity. Creation authority and full namespace visibility remain unverified. Publication is BLOCKED pending that verification and separate explicit approval; no published Gold aggregates have been queried. See [LESSON_7_PUBLICATION.md](LESSON_7_PUBLICATION.md) for actual Phase A outcomes and the fail-if-exists publication/recovery proposal.
