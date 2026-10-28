@@ -1,6 +1,34 @@
-# WinterOps — Status handoff (2026-10-25)
+# WinterOps — Status handoff (2026-10-28)
 
 This file resolves **stale status text** in earlier lesson ZIPs. It records known evidence; the user can resume after long pauses without replaying every lesson.
+
+## Current verified state (2026-10-28)
+
+- **Databricks CLI v1.22.1 is installed and the named `winterops` profile is configured. Live read-only connectivity: PASS.** The sanitized checker verified the profile/host match, `current-user me`, and `workspace list /Workspace` after the workspace origin was corrected. Credentials, identity details, workspace listings and private URLs were suppressed.
+- Follow-up source audit: warehouse listing and bounded Statement Execution API calls succeeded on the existing serverless 2X-Small warehouse. Source hash `f5d7633c910e1ad6be23b4111445bf0bc14fe2071c6ea0f0d4cd456295ea9e94`, dataset/filename/path, Bronze/Silver counts, all established one-week activity aggregates, required schema types and payload multiplicities matched. The current 8,671,212-byte Volume CSV was independently checksummed and matched that hash; only hash/size were returned. See [SOURCE_VERSION_EVIDENCE.md](SOURCE_VERSION_EVIDENCE.md) for scope, exact results and limitations.
+- **Lesson 6 shared candidate SQL validation: PASS through the Statement Execution API.** After explicit user approval from `11dba68`, the required Silver types were rechecked and the unchanged two preflight statements plus candidate CTE reconciliation executed sequentially. All four statements were `SUCCEEDED`; all nine assertion outputs passed. Gold `consumer_check` and `hourly_check` passed, with no errors, cancellations, truncation or retries. Limits remained 30-second server wait / CANCEL, 25 rows, 65,536 bytes and a hard 45-second client deadline.
+- The notebook and Spark entrypoint were **not executed**. No source objects, views, jobs or schedules were created or changed; no warehouse configuration was changed. The existing warehouse served the approved SQL. Candidate SQL is ready for publication review; actual DDL privileges, grants/ownership effects, published-view reconciliation and rerun invariants remain unverified.
+- The offline suite has 57 passing tests. Next small milestone: review target-view conflicts and grants/ownership, then propose a separately approved publication scope. Publication remains unapproved.
+
+## Initial integration-readiness audit (2026-10-28)
+
+- Initial working tree: clean at `584b2f6` on the previous analytics feature branch. GitHub PR #1 was verified merged; refreshed `origin/main` is merge commit `9c92008`. Changes for this audit use `feat/lesson6-readonly-validation`, based on that merged main.
+- All **46 existing offline tests passed**, with no failures or errors. The expanded suite now passes **57 tests**, including read-only candidate SQL and notebook mode dispatch. Aggregate fixture validation, Python syntax checks and the built-wheel smoke test passed; the wheel includes the read-only API and all six SQL templates. These are offline results, not Databricks runtime evidence.
+- CLI verification: `databricks` is absent from PATH and was not found in the documented portable installation or checked WinGet, Scoop, Chocolatey and project-venv locations. A CLI version could not be queried. No installer was run or authentication profile created.
+- Authentication configuration: the default Databricks profile file does not exist, no alternate config-file environment variable was set, and no `DATABRICKS_*` environment variables were present. No credential values or private workspace URLs were printed. This does not assess the user's browser sign-in.
+- Lesson 6 review identified a missing read-only runtime path. The notebook now offers `render` (default), `validate` (schema + source/candidate queries only) and `apply` (explicit view writes). A saved legacy `apply_views` value is ignored.
+- `validate_plan(...)` and renderer `--validation-only` derive candidate consumer CTEs from the existing SQL definitions. They require no published consumer objects and perform no DDL. Exact source/path/hash/window guards, observation multiplicities and source-local/naive semantics are preserved.
+- **Databricks connection: BLOCKED / not attempted.** No CLI, configured profile or explicit workspace target is available. **Spark/schema/source/candidate validation: BLOCKED / not run.** The actual file hash and runtime access still need review. View application has not been approved; no Databricks objects, jobs, source data or Cloud setup were changed.
+- Next gate: install the official standalone CLI and authenticate the named `winterops` profile locally, verify the explicit workspace host with the sanitized checker, obtain/review the file SHA-256 and matching evidence, then execute `mode=validate` within the approved read-only compute scope. View creation/replacement remains a separate approval.
+
+## CLI setup follow-up (2026-10-28)
+
+- The user reported `running scripts is disabled`; the effective local policy was verified as `Restricted`, with managed scopes unset. The reviewed installer also had `ZoneId=3`, requiring removal of its Internet-download mark before `RemoteSigned` would allow the unsigned file.
+- Only `scripts/install_databricks_cli.ps1` was unblocked. It ran in a child PowerShell process with `RemoteSigned`, downloaded the official Windows amd64 release, verified SHA-256 against release metadata, and installed **Databricks CLI v1.22.1** in the documented user-local directory. Both installer and direct executable version checks passed. The user PATH includes the installation directory; existing terminals may require a local PATH refresh.
+- Parent policy remains `Restricted`; no persistent execution-policy setting changed. Downloads now use `-UseBasicParsing`, installer cleanup validates the resolved temporary target, and setup instructions stop after installation/login failures.
+- Verification after the setup fix: **57 offline tests passed**, PowerShell parser checks passed, and an installer rerun detected the existing CLI and exited successfully without downloading again. Local-only profile inventory could not complete (exit 1); the default profile file is still absent. No workspace authentication or API check was attempted.
+- Installation resolved the initial missing-CLI blocker; authentication and connectivity were initially pending. The user's `https://YOUR-WORKSPACE-HOST` value was a placeholder. No credentials, private workspace URLs, source data or Databricks objects were exposed or changed.
+- During login follow-up, a saved profile first included a page path, which the host guard rejected before remote API calls. The Windows setup example now strips paths, queries and fragments before login. After the user repeated authentication with the corrected origin, all three read-only checks passed as recorded above. No private URL or credential values were printed.
 
 ## What is implemented (source code exists)
 
@@ -9,7 +37,7 @@ This file resolves **stale status text** in earlier lesson ZIPs. It records know
 3. Real Windsor CSV, read-only profiling: `notebooks/03_profile_real_csv.py`.
 4. Real Windsor weekly CSV → distinct real Bronze table, one row **per parsed source observation** and file-version scope: `notebooks/04_bronze_real_ingestion.py`.
 5. One-week real Bronze → quality-classified Silver table: `notebooks/05_silver_real_windsor.py` and `sql/real_silver_checks.sql`.
-6. Exact-version Silver clean/quarantine consumer views and source-local/naive hourly Gold observations: `src/winterops/analytics.py`, packaged SQL templates and `notebooks/06_silver_consumers_hourly.py`. **Prepared and tested offline only; no Databricks execution.**
+6. Exact-version Silver clean/quarantine consumer views and source-local/naive hourly Gold observations, including read-only candidate validation: `src/winterops/analytics.py`, packaged SQL templates and `notebooks/06_silver_consumers_hourly.py`. **Shared SQL passed read-only warehouse validation; publication and notebook/Spark execution have not run.**
 
 ## Local analytics implementation (2026-10-25)
 
@@ -69,7 +97,8 @@ On 2026-10-25, the user chose **local Codex development for now** while Cloud en
 
 ## Next high-value milestone
 
-- Review and merge the local analytics PR after its offline CI passes.
-- Install/authenticate the standalone CLI locally when authorized, then probe the explicit Free Edition workspace using the named-profile/host check.
-- Review the actual file SHA-256 and matching aggregate evidence. After workspace approval, run the prepared preflight/view/postflight workflow twice and inspect reconciliation.
-- Keep runtime integration marked BLOCKED until it is executed; no forecasting, service-coverage claims or scheduled jobs are part of this milestone.
+- The original analytics PR #1 is merged. Review the new read-only validation change and its actual CI result.
+- The standalone CLI, named profile, source-file version/evidence and bounded Lesson 6 shared SQL validation are verified. The SQL candidate is ready for publication review on the tested warehouse.
+- Review existing target objects and grants/ownership before requesting publication approval. Direct notebook/Spark execution remains untested.
+- After separate approval for view creation/replacement, run `mode=apply` twice and inspect reconciliation and rerun invariants.
+- Keep publication and notebook/Spark execution marked NOT RUN until actually executed; no forecasting, service-coverage claims or scheduled jobs are part of this milestone.

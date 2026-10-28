@@ -14,7 +14,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from winterops.analytics import (AnalyticsConfig, SILVER_TYPES, SourceScope, build_plan,
-                                 hourly_observations, run_plan, validate_silver_schema)
+                                 hourly_observations, run_plan, validate_plan, validate_silver_schema)
 from winterops.quality import QualitySnapshot
 
 
@@ -150,6 +150,38 @@ class AnalyticsTests(unittest.TestCase):
         self.assertEqual(run_plan(None, self.config), build_plan(self.config))
         with self.assertRaises(TypeError):
             run_plan(None, self.config, apply="false")
+
+    def test_read_only_validation_never_writes_views(self):
+        engine = FakeSpark()
+        plan = validate_plan(engine, self.config)
+        self.assertEqual(engine.statements, [*plan.preflight, *plan.validation])
+        self.assertEqual(engine.views, {})
+        for statement in engine.statements:
+            self.assertNotIn("CREATE OR REPLACE VIEW", statement)
+
+    def test_read_only_render_uses_candidates_not_published_consumers(self):
+        plan = build_plan(self.config)
+        rendered = plan.render(read_only=True)
+        self.assertNotIn("CREATE OR REPLACE VIEW", rendered)
+        self.assertIn("_winterops_preview_hourly AS", rendered)
+        for name in ("valid", "quarantine", "hourly"):
+            self.assertNotIn(self.config.table(name), rendered)
+        self.assertIn(self.config.table("silver"), rendered)
+        with self.assertRaises(TypeError):
+            plan.render(read_only="false")
+
+    def test_read_only_failure_stops_before_candidate_checks(self):
+        engine = FakeSpark(fail=True)
+        with self.assertRaises(RuntimeError):
+            validate_plan(engine, self.config)
+        self.assertEqual(engine.statements, [build_plan(self.config).preflight[0]])
+        self.assertEqual(engine.views, {})
+
+    def test_read_only_schema_failure_precedes_all_sql(self):
+        engine = FakeSpark(schema=dict(SILVER_TYPES, event_time_unzoned="timestamp"))
+        with self.assertRaises(ValueError):
+            validate_plan(engine, self.config)
+        self.assertEqual(engine.statements, [])
 
     def test_failure_stops_before_any_view_writes(self):
         engine = FakeSpark(fail=True)

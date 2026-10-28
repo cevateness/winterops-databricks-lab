@@ -106,13 +106,23 @@ class SqlPlan:
     preflight: tuple[str, ...]
     views: tuple[str, ...]
     postflight: tuple[str, ...]
+    validation: tuple[str, ...] = ()
 
-    def render(self) -> str:
+    def render(self, *, read_only: bool = False) -> str:
+        """Optionally render only source checks and query-scoped candidate consumers."""
+        if type(read_only) is not bool:
+            raise TypeError("read_only must be a Boolean")
+        if read_only:
+            groups = (("READ-ONLY: source preflight", self.preflight),
+                      ("READ-ONLY: candidate consumer/Gold reconciliation", self.validation))
+        else:
+            groups = (("PREFLIGHT: all must pass before DDL", self.preflight),
+                      ("EXPLICIT VIEW PUBLICATION", self.views),
+                      ("POSTFLIGHT: reconciliation", self.postflight))
         sections = []
-        for label, statements in (("PREFLIGHT: all must pass before DDL", self.preflight),
-                                  ("EXPLICIT VIEW PUBLICATION", self.views),
-                                  ("POSTFLIGHT: reconciliation", self.postflight)):
-            sections.append("-- " + label + "\n" + ";\n\n".join(statements) + ";")
+        for label, statements in groups:
+            if statements:
+                sections.append("-- " + label + "\n" + ";\n\n".join(statements) + ";")
         return "\n\n".join(sections) + "\n"
 
 
@@ -140,11 +150,50 @@ def build_plan(config: AnalyticsConfig) -> SqlPlan:
         template = files("winterops").joinpath("sql", filename).read_text(encoding="utf-8")
         return Template(template).substitute(substitutions).strip()
 
-    return SqlPlan(
-        preflight=(sql("analytics_preflight.sql"), sql("analytics_payload_checks.sql")),
-        views=tuple(sql(name) for name in ("silver_valid.sql", "silver_quarantine.sql", "gold_hourly.sql")),
-        postflight=(sql("analytics_postflight.sql"),),
-    )
+    preflight = (sql("analytics_preflight.sql"), sql("analytics_payload_checks.sql"))
+    views = tuple(sql(name) for name in ("silver_valid.sql", "silver_quarantine.sql", "gold_hourly.sql"))
+    postflight = (sql("analytics_postflight.sql"),)
+
+    # Use the exact publication queries, substituting statement-local CTE names
+    # for prospective views. Validation never needs existing consumer objects or DDL.
+    aliases = {config.table(name): f"_winterops_preview_{name}"
+               for name in ("valid", "quarantine", "hourly")}
+
+    def preview_names(query):
+        for qualified, alias in aliases.items():
+            query = query.replace(qualified, alias)
+        return query
+
+    candidates = []
+    for name, view in zip(("valid", "quarantine", "hourly"), views):
+        _, separator, query = view.partition("\nAS ")
+        if not separator or not query.startswith(("SELECT ", "WITH ")):
+            raise ValueError("Expected a query-backed consumer view template")
+        candidates.append(f"{aliases[config.table(name)]} AS (\n{preview_names(query)}\n)")
+    if not postflight[0].startswith("WITH "):
+        raise ValueError("Expected a reconciliation query with common table expressions")
+    validation = ("WITH " + ",\n".join(candidates) + ",\n"
+                  + preview_names(postflight[0].removeprefix("WITH ")),)
+    return SqlPlan(preflight, views, postflight, validation)
+
+
+def _validate_input_schema(spark, config: AnalyticsConfig) -> None:
+    actual = {field.name: field.dataType.simpleString()
+              for field in spark.table(config.table("silver")).schema.fields}
+    validate_silver_schema(actual)
+
+
+def validate_plan(spark, config: AnalyticsConfig) -> SqlPlan:
+    """Run read-only schema, source and candidate-consumer checks; never apply DDL.
+
+    These queries use workspace compute. Run only against the approved workspace
+    and reviewed file hash. All results are assertions, not detailed observations.
+    """
+    plan = build_plan(config)
+    _validate_input_schema(spark, config)
+    for statement in (*plan.preflight, *plan.validation):
+        spark.sql(statement).collect()
+    return plan
 
 
 def run_plan(spark, config: AnalyticsConfig, *, apply: bool = False) -> SqlPlan:
@@ -158,9 +207,7 @@ def run_plan(spark, config: AnalyticsConfig, *, apply: bool = False) -> SqlPlan:
     plan = build_plan(config)
     if not apply:
         return plan
-    actual = {field.name: field.dataType.simpleString()
-              for field in spark.table(config.table("silver")).schema.fields}
-    validate_silver_schema(actual)
+    _validate_input_schema(spark, config)
     for statement in plan.preflight:
         spark.sql(statement).collect()  # Force assertions before any view DDL.
     for statement in plan.views:

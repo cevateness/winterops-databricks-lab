@@ -108,6 +108,33 @@ class SqlLogicTests(unittest.TestCase):
             for table in ("winterops_bronze_windsor_activity", "winterops_silver_windsor_week_sample"):
                 self.assertEqual(self.db.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0], 5)
 
+    def test_read_only_validation_needs_no_views_and_changes_no_rows(self):
+        before = self.db.total_changes
+        for statement in (*self.plan.preflight, *self.plan.validation):
+            self.execute(statement)
+        self.assertEqual(self.db.total_changes, before)
+        self.assertEqual(self.db.execute("SELECT COUNT(*) FROM sqlite_master WHERE type='view'").fetchone()[0], 0)
+
+    def test_read_only_validation_ignores_and_preserves_existing_consumers(self):
+        names = ["winterops_silver_windsor_valid", "winterops_silver_windsor_quarantine",
+                 "winterops_gold_windsor_hourly_observations"]
+        for name in names:
+            self.db.execute(f"CREATE VIEW {name} AS SELECT -1 AS placeholder")
+        before = self.db.execute("SELECT name, sql FROM sqlite_master WHERE type='view' ORDER BY name").fetchall()
+        for _ in range(2):
+            for statement in (*self.plan.preflight, *self.plan.validation):
+                self.execute(statement)
+        after = self.db.execute("SELECT name, sql FROM sqlite_master WHERE type='view' ORDER BY name").fetchall()
+        self.assertEqual(after, before)
+
+    def test_read_only_validation_rejects_the_wrong_source_version(self):
+        self.db.execute("UPDATE winterops_silver_windsor_week_sample SET source_file_sha256=?",
+                        ("b" * 64,))
+        with self.assertRaises(sqlite3.OperationalError):
+            for statement in (*self.plan.preflight, *self.plan.validation):
+                self.execute(statement)
+        self.assertEqual(self.db.execute("SELECT COUNT(*) FROM sqlite_master WHERE type='view'").fetchone()[0], 0)
+
     def test_equal_totals_do_not_hide_changed_payload_multiplicities(self):
         self.db.execute("UPDATE winterops_silver_windsor_week_sample SET record_sha256 = ? WHERE rowid=3",
                         ("d" * 64,))
