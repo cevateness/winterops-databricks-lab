@@ -3,7 +3,7 @@
 **Working name:** WinterOps  
 **Subtitle:** Weather-Driven Municipal Operations Intelligence  
 **Project type:** Independent Databricks learning laboratory with optional future commercialization  
-**Status:** One-week Bronze/Silver source evidence SQL-verified; shared Silver/Gold candidate SQL passed read-only warehouse validation; publication and notebook/Spark execution pending
+**Status:** One-week source evidence and published Silver/Gold views SQL-verified; repeated published-view reads stable; notebook/Spark entrypoint remains untested
 **Reference date:** 2026-10-16; updated 2026-10-28
 
 ## 1. Purpose
@@ -140,6 +140,8 @@ This Project is a **reference workspace** for occasional visits, not a scheduled
 
 **Lesson 6 validation follow-up (2026-10-28):** The user approved one bounded SQL API run from `11dba68`. The schema recheck, both unchanged source preflight statements and the existing candidate Silver/Gold CTE statement all succeeded sequentially. All nine assertions passed, including Gold consumer/hourly reconciliation; there were no runtime errors, cancellations, truncation or retries. This validates shared SQL on the existing warehouse; the notebook/Spark entrypoint and publication were not executed. No Databricks objects, source data, jobs, schedules or warehouse configuration were changed.
 
-**Lesson 7 Phase A (2026-10-28):** PR #2 is merged. The source/schema/checksum and existing preflight statements pass; publication SQL matches the validated SELECT bodies. The user confirmed the schema CREATE TABLE grant through its workspace-users system principal, corroborated by API metadata and SCIM membership. Phase A is READY_TO_APPLY pending separate publication approval. Target metadata returns 404; a create-only conflict guard and non-atomic recovery procedure are prepared. No DDL or published-view verification has run. See `docs/LESSON_7_PUBLICATION.md`.
+**Lesson 7 Phase A (2026-10-28):** PR #2 was merged. Source/schema/checksum and existing preflight statements passed; publication SQL matched the validated SELECT bodies. The user confirmed the schema CREATE TABLE grant, corroborated by API metadata and SCIM membership. Phase A was marked READY_TO_APPLY; no DDL ran during that phase. A create-only conflict guard and non-atomic recovery procedure were prepared before the separate Phase B approval. See `docs/LESSON_7_PUBLICATION.md`.
 
-**Next action:** Request explicit approval for the three exact create-only target objects. Confirmation of existing permissions does not authorize DDL. Actual publication, postflight and stable read verification remain pending. No forecasting, optimization, jobs or multi-week ingestion are included.
+**Lesson 7 Phase B (2026-10-28):** After a separate explicit yes to the three-object bounded publication request, all three views were created with CREATE VIEW only. Fresh prechecks, creation metadata, published postflight and repeated aggregate reads passed within 11 SQL statements. Gold contains 79 source-local/naive hourly buckets, 110,311 observations, 79,471 plow-active, 68,870 spreader-active and 2,210 repeated-payload observations; hourly distinct truck identifiers range from 1 to 20. No runtime error, retry or rollback occurred. Bronze/Silver tables, source files, parent grants, jobs and warehouse configuration were unchanged. The notebook/Spark entrypoint was not executed. See `docs/LESSON_7_GOLD_RESULTS.json` for safe hourly aggregates.
+
+**Next action:** Review the publication evidence and follow-up PR, then select a small read-only analytics question over the published views. Recheck source/preflight before future use: stable repeated reads are not immutable snapshots or DDL rerun verification. No further publication, replacement, rollback, grant changes, forecasting, optimization, jobs or multi-week ingestion is implied.

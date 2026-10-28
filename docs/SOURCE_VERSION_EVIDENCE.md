@@ -1,6 +1,6 @@
 # Exact source-version evidence (2026-10-28)
 
-**Source audit: PASS. Lesson 6 candidate SQL validation: PASS through the Statement Execution API. Publication and notebook/Spark execution: NOT RUN.**
+**Source audit: PASS. Lesson 6 candidate SQL validation: PASS. Lesson 7 published-view verification: PUBLISHED_VERIFIED_STABLE. Notebook/Spark entrypoint: NOT RUN.**
 
 This is live aggregate evidence obtained through the authenticated local `winterops` profile and Statement Execution API. It supplements the original user-reported fixture; that fixture and Lessons 1–5 were not changed. No detailed vehicle records, identities, credentials or private workspace URLs are included.
 
@@ -77,12 +77,12 @@ python scripts/render_analytics_sql.py --source-file-sha256 f5d7633c910e1ad6be23
 
 ## Publication readiness and remaining limits
 
-**The candidate SQL is ready for a separately reviewed and approved publication step on this workspace/warehouse.** The run verified the existing nested candidate CTEs, native `TIMESTAMP_NTZ` window predicates, source-local/naive hour construction and assertion/reconciliation behavior. No SQL runtime incompatibility was observed in this scope.
+The Lesson 6 run verified nested candidate CTEs, native `TIMESTAMP_NTZ` predicates, source-local/naive hour construction and assertion/reconciliation behavior. No SQL runtime incompatibility was observed. The separately approved Lesson 7 publication and actual published-view verification subsequently passed, as recorded below.
 
-This was Statement Execution API execution of the shared SQL, **not execution of the Databricks notebook or its Spark entrypoint**. It does not establish notebook import/path compatibility, actual CREATE/REPLACE VIEW privileges, existing-object conflicts, ownership/grant effects, published-view postflight or publication rerun invariants. Sources remain point-in-time and should be rechecked before publication.
+Lesson 6 was shared SQL execution, **not execution of the Databricks notebook or its Spark entrypoint**. It did not itself verify DDL or published objects. Lesson 7 now separately verifies create-only privileges, created-view metadata, published postflight and stable repeated reads. Replacement, notebook import/path compatibility and repeated DDL remain untested. Sources remain point-in-time and should be rechecked before future use.
 
-No DDL, `mode=apply`, table/view creation or replacement, data modification, job/schedule creation or warehouse configuration change was performed. Publication remains unapproved; review the three target names and existing grants/ownership before proposing that separate action.
+No DDL, `mode=apply`, publication, source modification, job/schedule creation or warehouse configuration change was performed during Lesson 6 validation. The subsequent Lesson 7 run used separate explicit approval for the three create-only view operations; no replacement, source modification, grant/owner transfer, job/schedule or warehouse configuration change was performed.
 
 ## Lesson 7 follow-up
 
-Read-only publication preflight reconfirmed the required schema, both existing source assertions and the current CSV byte hash/size. Query digests and publication SELECT bodies still match Lesson 6. After an initial principal-attribution gap, the user confirmed CREATE TABLE through the workspace-users system principal; follow-up API metadata and SCIM membership corroborated the grant. Phase A is READY_TO_APPLY pending separate explicit publication approval. Target metadata returned 404, and create-only conflict protection remains mandatory. No DDL or published Gold aggregate query has run. See [LESSON_7_PUBLICATION.md](LESSON_7_PUBLICATION.md) for the evidence and recovery proposal.
+After fresh source/schema/privilege checks and separate explicit approval from `f240d60`, all three create-only view operations succeeded. Type, authenticated-creator ownership and definitions matched. All 11 bounded SQL statements passed without errors, cancellations, truncation, retries or rollback. Published postflight assertions and safe aggregate results matched across two read-only verification passes. Gold has 79 hourly buckets, 110,311 observations, 79,471 plow-active, 68,870 spreader-active and 2,210 repeated-payload observations. Hourly distinct truck identifiers range from 1 to 20. Parent grants and warehouse configuration were unchanged. See [publication evidence](LESSON_7_PUBLICATION.md) and [all safe hourly counts](LESSON_7_GOLD_RESULTS.json); no notebook/Spark entrypoint was run and no DDL rerun was attempted.

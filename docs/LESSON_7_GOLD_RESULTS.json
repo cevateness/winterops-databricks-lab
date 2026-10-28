@@ -1,0 +1,461 @@
+{
+  "verification_date": "2026-10-28",
+  "provenance": "Actual published Databricks views; Statement Execution API postflight and aggregate reads repeated twice after approved create-only publication",
+  "execution_baseline_commit": "f240d60d5ec80ce53de6087810b2ca9bdc6ab85a",
+  "source_file_sha256": "f5d7633c910e1ad6be23b4111445bf0bc14fe2071c6ea0f0d4cd456295ea9e94",
+  "source_file_name": "snowplow-2026-01-12_2026-01-18.csv",
+  "source_file_byte_count": 8671212,
+  "window_semantics": "source-local/naive; source timezone unverified",
+  "start_unzoned": "2026-01-12 00:00:00",
+  "end_unzoned_exclusive": "2026-01-19 00:00:00",
+  "publication_status": "PUBLISHED_VERIFIED_STABLE",
+  "objects": [
+    {
+      "name": "workspace.default.winterops_silver_windsor_valid",
+      "type": "VIEW",
+      "status": "CREATED_AND_METADATA_VERIFIED",
+      "owner_matches_authenticated_creator": true,
+      "definition_matches_approved_sql": true
+    },
+    {
+      "name": "workspace.default.winterops_silver_windsor_quarantine",
+      "type": "VIEW",
+      "status": "CREATED_AND_METADATA_VERIFIED",
+      "owner_matches_authenticated_creator": true,
+      "definition_matches_approved_sql": true
+    },
+    {
+      "name": "workspace.default.winterops_gold_windsor_hourly_observations",
+      "type": "VIEW",
+      "status": "CREATED_AND_METADATA_VERIFIED",
+      "owner_matches_authenticated_creator": true,
+      "definition_matches_approved_sql": true
+    }
+  ],
+  "sql_statement_count": 11,
+  "statement_statuses": [
+    {
+      "label": "silver-schema",
+      "kind": "READ_ONLY",
+      "state": "SUCCEEDED",
+      "row_count": 18,
+      "result_truncated": false
+    },
+    {
+      "label": "source-preflight",
+      "kind": "READ_ONLY",
+      "state": "SUCCEEDED",
+      "row_count": 1,
+      "result_truncated": false
+    },
+    {
+      "label": "payload-preflight",
+      "kind": "READ_ONLY",
+      "state": "SUCCEEDED",
+      "row_count": 1,
+      "result_truncated": false
+    },
+    {
+      "label": "source-file-checksum",
+      "kind": "READ_ONLY",
+      "state": "SUCCEEDED",
+      "row_count": 1,
+      "result_truncated": false
+    },
+    {
+      "label": "create-valid",
+      "kind": "CREATE_VIEW",
+      "state": "SUCCEEDED",
+      "row_count": 0,
+      "result_truncated": false
+    },
+    {
+      "label": "create-quarantine",
+      "kind": "CREATE_VIEW",
+      "state": "SUCCEEDED",
+      "row_count": 0,
+      "result_truncated": false
+    },
+    {
+      "label": "create-hourly",
+      "kind": "CREATE_VIEW",
+      "state": "SUCCEEDED",
+      "row_count": 0,
+      "result_truncated": false
+    },
+    {
+      "label": "published-postflight",
+      "kind": "READ_ONLY",
+      "state": "SUCCEEDED",
+      "row_count": 1,
+      "result_truncated": false
+    },
+    {
+      "label": "published-gold-summary",
+      "kind": "READ_ONLY",
+      "state": "SUCCEEDED",
+      "row_count": 1,
+      "result_truncated": false
+    },
+    {
+      "label": "repeat-published-postflight",
+      "kind": "READ_ONLY",
+      "state": "SUCCEEDED",
+      "row_count": 1,
+      "result_truncated": false
+    },
+    {
+      "label": "repeat-published-gold-summary",
+      "kind": "READ_ONLY",
+      "state": "SUCCEEDED",
+      "row_count": 1,
+      "result_truncated": false
+    }
+  ],
+  "source_preflight": "PASS",
+  "payload_preflight": "PASS",
+  "published_postflight": "PASS",
+  "repeated_read_verification": "PASS",
+  "parent_grants_unchanged": true,
+  "warehouse_configuration_unchanged": true,
+  "automatic_retries": 0,
+  "rollback_executed": false,
+  "notebook_executed": false,
+  "bounds": {
+    "wait_timeout": "30s",
+    "on_wait_timeout": "CANCEL",
+    "row_limit": 25,
+    "byte_limit": 65536,
+    "client_deadline_seconds": 45,
+    "max_sql_statements": 11
+  },
+  "gold_totals": {
+    "hourly_buckets": 79,
+    "total_observations": 110311,
+    "plow_active_observations": 79471,
+    "spreader_active_observations": 68870,
+    "repeated_payload_observations": 2210,
+    "minimum_hourly_distinct_trucks": 1,
+    "maximum_hourly_distinct_trucks": 20
+  },
+  "hourly_distinct_truck_counts": [
+    {
+      "source_local_naive_hour": "2026-01-12 09:00:00",
+      "distinct_truck_count": 1
+    },
+    {
+      "source_local_naive_hour": "2026-01-13 07:00:00",
+      "distinct_truck_count": 1
+    },
+    {
+      "source_local_naive_hour": "2026-01-13 08:00:00",
+      "distinct_truck_count": 1
+    },
+    {
+      "source_local_naive_hour": "2026-01-13 11:00:00",
+      "distinct_truck_count": 1
+    },
+    {
+      "source_local_naive_hour": "2026-01-13 13:00:00",
+      "distinct_truck_count": 1
+    },
+    {
+      "source_local_naive_hour": "2026-01-14 08:00:00",
+      "distinct_truck_count": 2
+    },
+    {
+      "source_local_naive_hour": "2026-01-14 09:00:00",
+      "distinct_truck_count": 2
+    },
+    {
+      "source_local_naive_hour": "2026-01-14 10:00:00",
+      "distinct_truck_count": 2
+    },
+    {
+      "source_local_naive_hour": "2026-01-14 13:00:00",
+      "distinct_truck_count": 6
+    },
+    {
+      "source_local_naive_hour": "2026-01-14 14:00:00",
+      "distinct_truck_count": 16
+    },
+    {
+      "source_local_naive_hour": "2026-01-14 15:00:00",
+      "distinct_truck_count": 18
+    },
+    {
+      "source_local_naive_hour": "2026-01-14 16:00:00",
+      "distinct_truck_count": 15
+    },
+    {
+      "source_local_naive_hour": "2026-01-14 17:00:00",
+      "distinct_truck_count": 16
+    },
+    {
+      "source_local_naive_hour": "2026-01-14 18:00:00",
+      "distinct_truck_count": 17
+    },
+    {
+      "source_local_naive_hour": "2026-01-14 19:00:00",
+      "distinct_truck_count": 16
+    },
+    {
+      "source_local_naive_hour": "2026-01-14 20:00:00",
+      "distinct_truck_count": 8
+    },
+    {
+      "source_local_naive_hour": "2026-01-14 21:00:00",
+      "distinct_truck_count": 18
+    },
+    {
+      "source_local_naive_hour": "2026-01-14 22:00:00",
+      "distinct_truck_count": 16
+    },
+    {
+      "source_local_naive_hour": "2026-01-14 23:00:00",
+      "distinct_truck_count": 17
+    },
+    {
+      "source_local_naive_hour": "2026-01-15 00:00:00",
+      "distinct_truck_count": 9
+    },
+    {
+      "source_local_naive_hour": "2026-01-15 01:00:00",
+      "distinct_truck_count": 17
+    },
+    {
+      "source_local_naive_hour": "2026-01-15 02:00:00",
+      "distinct_truck_count": 17
+    },
+    {
+      "source_local_naive_hour": "2026-01-15 03:00:00",
+      "distinct_truck_count": 16
+    },
+    {
+      "source_local_naive_hour": "2026-01-15 04:00:00",
+      "distinct_truck_count": 12
+    },
+    {
+      "source_local_naive_hour": "2026-01-15 05:00:00",
+      "distinct_truck_count": 16
+    },
+    {
+      "source_local_naive_hour": "2026-01-15 06:00:00",
+      "distinct_truck_count": 16
+    },
+    {
+      "source_local_naive_hour": "2026-01-15 07:00:00",
+      "distinct_truck_count": 17
+    },
+    {
+      "source_local_naive_hour": "2026-01-15 08:00:00",
+      "distinct_truck_count": 8
+    },
+    {
+      "source_local_naive_hour": "2026-01-15 09:00:00",
+      "distinct_truck_count": 16
+    },
+    {
+      "source_local_naive_hour": "2026-01-15 10:00:00",
+      "distinct_truck_count": 16
+    },
+    {
+      "source_local_naive_hour": "2026-01-15 11:00:00",
+      "distinct_truck_count": 15
+    },
+    {
+      "source_local_naive_hour": "2026-01-15 12:00:00",
+      "distinct_truck_count": 5
+    },
+    {
+      "source_local_naive_hour": "2026-01-15 13:00:00",
+      "distinct_truck_count": 16
+    },
+    {
+      "source_local_naive_hour": "2026-01-15 14:00:00",
+      "distinct_truck_count": 13
+    },
+    {
+      "source_local_naive_hour": "2026-01-15 15:00:00",
+      "distinct_truck_count": 16
+    },
+    {
+      "source_local_naive_hour": "2026-01-15 16:00:00",
+      "distinct_truck_count": 10
+    },
+    {
+      "source_local_naive_hour": "2026-01-15 17:00:00",
+      "distinct_truck_count": 16
+    },
+    {
+      "source_local_naive_hour": "2026-01-15 18:00:00",
+      "distinct_truck_count": 15
+    },
+    {
+      "source_local_naive_hour": "2026-01-15 19:00:00",
+      "distinct_truck_count": 14
+    },
+    {
+      "source_local_naive_hour": "2026-01-15 20:00:00",
+      "distinct_truck_count": 8
+    },
+    {
+      "source_local_naive_hour": "2026-01-15 21:00:00",
+      "distinct_truck_count": 10
+    },
+    {
+      "source_local_naive_hour": "2026-01-15 22:00:00",
+      "distinct_truck_count": 8
+    },
+    {
+      "source_local_naive_hour": "2026-01-15 23:00:00",
+      "distinct_truck_count": 6
+    },
+    {
+      "source_local_naive_hour": "2026-01-16 00:00:00",
+      "distinct_truck_count": 3
+    },
+    {
+      "source_local_naive_hour": "2026-01-16 01:00:00",
+      "distinct_truck_count": 3
+    },
+    {
+      "source_local_naive_hour": "2026-01-16 02:00:00",
+      "distinct_truck_count": 1
+    },
+    {
+      "source_local_naive_hour": "2026-01-16 03:00:00",
+      "distinct_truck_count": 3
+    },
+    {
+      "source_local_naive_hour": "2026-01-16 04:00:00",
+      "distinct_truck_count": 2
+    },
+    {
+      "source_local_naive_hour": "2026-01-16 05:00:00",
+      "distinct_truck_count": 2
+    },
+    {
+      "source_local_naive_hour": "2026-01-16 06:00:00",
+      "distinct_truck_count": 2
+    },
+    {
+      "source_local_naive_hour": "2026-01-16 07:00:00",
+      "distinct_truck_count": 3
+    },
+    {
+      "source_local_naive_hour": "2026-01-16 08:00:00",
+      "distinct_truck_count": 4
+    },
+    {
+      "source_local_naive_hour": "2026-01-16 09:00:00",
+      "distinct_truck_count": 3
+    },
+    {
+      "source_local_naive_hour": "2026-01-16 10:00:00",
+      "distinct_truck_count": 5
+    },
+    {
+      "source_local_naive_hour": "2026-01-16 11:00:00",
+      "distinct_truck_count": 3
+    },
+    {
+      "source_local_naive_hour": "2026-01-16 12:00:00",
+      "distinct_truck_count": 3
+    },
+    {
+      "source_local_naive_hour": "2026-01-16 13:00:00",
+      "distinct_truck_count": 4
+    },
+    {
+      "source_local_naive_hour": "2026-01-16 14:00:00",
+      "distinct_truck_count": 4
+    },
+    {
+      "source_local_naive_hour": "2026-01-16 15:00:00",
+      "distinct_truck_count": 16
+    },
+    {
+      "source_local_naive_hour": "2026-01-16 16:00:00",
+      "distinct_truck_count": 18
+    },
+    {
+      "source_local_naive_hour": "2026-01-16 17:00:00",
+      "distinct_truck_count": 20
+    },
+    {
+      "source_local_naive_hour": "2026-01-16 18:00:00",
+      "distinct_truck_count": 18
+    },
+    {
+      "source_local_naive_hour": "2026-01-16 19:00:00",
+      "distinct_truck_count": 15
+    },
+    {
+      "source_local_naive_hour": "2026-01-16 20:00:00",
+      "distinct_truck_count": 3
+    },
+    {
+      "source_local_naive_hour": "2026-01-17 07:00:00",
+      "distinct_truck_count": 1
+    },
+    {
+      "source_local_naive_hour": "2026-01-17 08:00:00",
+      "distinct_truck_count": 2
+    },
+    {
+      "source_local_naive_hour": "2026-01-17 09:00:00",
+      "distinct_truck_count": 3
+    },
+    {
+      "source_local_naive_hour": "2026-01-17 10:00:00",
+      "distinct_truck_count": 14
+    },
+    {
+      "source_local_naive_hour": "2026-01-17 11:00:00",
+      "distinct_truck_count": 18
+    },
+    {
+      "source_local_naive_hour": "2026-01-17 12:00:00",
+      "distinct_truck_count": 17
+    },
+    {
+      "source_local_naive_hour": "2026-01-17 13:00:00",
+      "distinct_truck_count": 12
+    },
+    {
+      "source_local_naive_hour": "2026-01-17 14:00:00",
+      "distinct_truck_count": 6
+    },
+    {
+      "source_local_naive_hour": "2026-01-17 15:00:00",
+      "distinct_truck_count": 8
+    },
+    {
+      "source_local_naive_hour": "2026-01-17 17:00:00",
+      "distinct_truck_count": 2
+    },
+    {
+      "source_local_naive_hour": "2026-01-17 18:00:00",
+      "distinct_truck_count": 2
+    },
+    {
+      "source_local_naive_hour": "2026-01-18 11:00:00",
+      "distinct_truck_count": 1
+    },
+    {
+      "source_local_naive_hour": "2026-01-18 12:00:00",
+      "distinct_truck_count": 4
+    },
+    {
+      "source_local_naive_hour": "2026-01-18 13:00:00",
+      "distinct_truck_count": 2
+    },
+    {
+      "source_local_naive_hour": "2026-01-18 23:00:00",
+      "distinct_truck_count": 3
+    }
+  ],
+  "interpretation": "Counts describe observations and per-hour distinct truck identifiers, not time worked, service coverage or productivity. Repeated-payload count includes every valid observation whose payload repeats. Missing hours are not proof of inactivity. Hourly distinct counts must not be summed into a weekly distinct count.",
+  "limitations": "Point-in-time source/view checks, not a multi-object transaction or immutable Delta snapshot. CREATE VIEW statements were not repeated; only read-only verification was repeated."
+}
