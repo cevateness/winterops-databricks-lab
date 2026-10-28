@@ -4,7 +4,7 @@
 **Subtitle:** Weather-Driven Municipal Operations Intelligence  
 **Project type:** Independent Databricks learning laboratory with optional future commercialization  
 **Status:** One-week source evidence and published Silver/Gold views SQL-verified; repeated published-view reads stable; notebook/Spark entrypoint remains untested
-**Reference date:** 2026-10-16; updated 2026-10-28
+**Reference date:** 2026-10-16; updated 2026-10-29
 
 ## 1. Purpose
 
@@ -146,4 +146,6 @@ This Project is a **reference workspace** for occasional visits, not a scheduled
 
 **Gold analytics expansion (2026-10-28):** Work from canonical main `685885c` adds daily activity, equipment-status composition and aggregate fleet-reporting products over the existing exact-version valid Silver/hourly Gold views. Source and per-hour guards plus product reconciliation accompany reusable SQL/Python and a four-chart dashboard specification. All 80 offline tests pass; packaging/syntax/rendering checks pass. No new query was executed in Databricks and no objects or source data were changed. See `docs/GOLD_ANALYTICS_PRODUCTS.md` for metric grains, interpretation limits and native acceptance scope.
 
-**Next action:** Review the analytical-products PR, then separately approve a bounded read-only native validation scope if desired. Existing Lesson 7 evidence does not certify these new queries. Source/timezone/identifier assumptions remain explicit; no weather/H3 ingestion, automated jobs, multi-week ingestion, forecasting, optimization or commercial infrastructure is included.
+**Native Gold validation (2026-10-29):** After PR #4 merged at `402c820` and a separate explicit bounded approval, one schema/clock-probe query, both guards and all eight unchanged products passed through the Statement Execution API. All 11 statements were complete/untruncated, without errors, cancellation or retries. Native NTZ, decimal seconds and ordered gaps passed; observation/status totals reconciled to the existing one-week evidence. The new results include 41,441 plow-only, 30,840 spreader-only and 38,030 both-active observations, 251 observed identifiers and 95 above-threshold gap pairs. These are flag/reporting observations, not workforce, availability, duration or productivity measures. No objects or source files changed. See `docs/GOLD_ANALYTICS_NATIVE_VALIDATION.md` and its sanitized JSON evidence.
+
+**Next action:** Review the native evidence and identifier/flag interpretation limits, then select whether to prepare the documented four-chart dashboard. The completed approval does not authorize reruns or dashboard/object publication. Source/timezone/identifier assumptions remain explicit; no weather/H3 ingestion, automated jobs, multi-week ingestion, forecasting, optimization or commercial infrastructure is included.
