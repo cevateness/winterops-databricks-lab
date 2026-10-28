@@ -1,0 +1,33 @@
+{
+  "provenance": "Entirely synthetic identifiers, times and status observations; not Windsor telemetry",
+  "source_dataset": "synthetic_gold_products",
+  "source_file_name": "synthetic_gold_products.csv",
+  "source_file_path": "/Volumes/synthetic/default/raw/synthetic_gold_products.csv",
+  "source_file_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "start_unzoned": "2026-01-12",
+  "end_unzoned": "2026-01-19",
+  "expected_summary": {
+    "source_file": "synthetic_gold_products.csv",
+    "bronze_rows": 15, "silver_rows": 15, "header_rows": 0,
+    "valid_rows": 15, "other_invalid_rows": 0,
+    "distinct_truck_ids": 6,
+    "plow_active_observations": 7, "spreader_active_observations": 5
+  },
+  "observations": [
+    {"truck_id": "SYN-A", "event_time_unzoned": "2026-01-12 08:00:00", "plow_active": true, "spreader_active": false, "engine_active": true, "payload": "repeat-A"},
+    {"truck_id": "SYN-A", "event_time_unzoned": "2026-01-12 08:00:00", "plow_active": true, "spreader_active": false, "engine_active": true, "payload": "repeat-A"},
+    {"truck_id": "SYN-A", "event_time_unzoned": "2026-01-12 08:00:00", "plow_active": false, "spreader_active": true, "engine_active": false, "payload": "A-conflict"},
+    {"truck_id": "SYN-A", "event_time_unzoned": "2026-01-12 08:00:00.500000", "plow_active": true, "spreader_active": true, "engine_active": false, "payload": "A-half-second"},
+    {"truck_id": "SYN-A", "event_time_unzoned": "2026-01-12 09:00:01", "plow_active": false, "spreader_active": false, "engine_active": false, "payload": "A-long-gap"},
+    {"truck_id": "SYN-A", "event_time_unzoned": "2026-01-13 00:00:01", "plow_active": true, "spreader_active": true, "engine_active": true, "payload": "A-next-day"},
+    {"truck_id": "SYN-B", "event_time_unzoned": "2026-01-12 08:15:00", "plow_active": false, "spreader_active": false, "engine_active": true, "payload": "repeat-B"},
+    {"truck_id": "SYN-B", "event_time_unzoned": "2026-01-12 08:15:00", "plow_active": false, "spreader_active": false, "engine_active": true, "payload": "repeat-B"},
+    {"truck_id": "SYN-B", "event_time_unzoned": "2026-01-12 08:20:00", "plow_active": true, "spreader_active": false, "engine_active": true, "payload": "B-later"},
+    {"truck_id": "SYN-C", "event_time_unzoned": "2026-01-13 23:59:59.999999", "plow_active": false, "spreader_active": true, "engine_active": true, "payload": "C-single"},
+    {"truck_id": "SYN-D", "event_time_unzoned": "2026-01-12 23:59:59.500000", "plow_active": true, "spreader_active": false, "engine_active": true, "payload": "D-before-midnight"},
+    {"truck_id": "SYN-D", "event_time_unzoned": "2026-01-13 00:00:00.000001", "plow_active": false, "spreader_active": false, "engine_active": true, "payload": "D-after-midnight"},
+    {"truck_id": "SYN-E", "event_time_unzoned": "2026-01-14 12:00:00", "plow_active": false, "spreader_active": false, "engine_active": false, "payload": "E-one"},
+    {"truck_id": "SYN-E", "event_time_unzoned": "2026-01-14 12:00:00", "plow_active": false, "spreader_active": false, "engine_active": true, "payload": "E-two"},
+    {"truck_id": " SYN-F ", "event_time_unzoned": "2026-01-14 12:00:00", "plow_active": true, "spreader_active": true, "engine_active": true, "payload": "F-single"}
+  ]
+}
