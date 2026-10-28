@@ -6,8 +6,9 @@ This file resolves **stale status text** in earlier lesson ZIPs. It records know
 
 - **Databricks CLI v1.22.1 is installed and the named `winterops` profile is configured. Live read-only connectivity: PASS.** The sanitized checker verified the profile/host match, `current-user me`, and `workspace list /Workspace` after the workspace origin was corrected. Credentials, identity details, workspace listings and private URLs were suppressed.
 - Follow-up source audit: warehouse listing and bounded Statement Execution API calls succeeded on the existing serverless 2X-Small warehouse. Source hash `f5d7633c910e1ad6be23b4111445bf0bc14fe2071c6ea0f0d4cd456295ea9e94`, dataset/filename/path, Bronze/Silver counts, all established one-week activity aggregates, required schema types and payload multiplicities matched. The current 8,671,212-byte Volume CSV was independently checksummed and matched that hash; only hash/size were returned. See [SOURCE_VERSION_EVIDENCE.md](SOURCE_VERSION_EVIDENCE.md) for scope, exact results and limitations.
-- **Lesson 6 candidate validation remains PREPARED / NOT RUN**, pending separate approval of its bounded compute scope. The shared read-only SQL is rendered locally for the verified hash. No source objects, views, jobs or schedules were created or changed; the source audit used existing warehouse compute.
-- The offline suite has 57 passing tests. Next small milestone: approve the recorded read-only Lesson 6 scope and execute its schema recheck plus three shared validation statements. View publication requires separate approval.
+- **Lesson 6 shared candidate SQL validation: PASS through the Statement Execution API.** After explicit user approval from `11dba68`, the required Silver types were rechecked and the unchanged two preflight statements plus candidate CTE reconciliation executed sequentially. All four statements were `SUCCEEDED`; all nine assertion outputs passed. Gold `consumer_check` and `hourly_check` passed, with no errors, cancellations, truncation or retries. Limits remained 30-second server wait / CANCEL, 25 rows, 65,536 bytes and a hard 45-second client deadline.
+- The notebook and Spark entrypoint were **not executed**. No source objects, views, jobs or schedules were created or changed; no warehouse configuration was changed. The existing warehouse served the approved SQL. Candidate SQL is ready for publication review; actual DDL privileges, grants/ownership effects, published-view reconciliation and rerun invariants remain unverified.
+- The offline suite has 57 passing tests. Next small milestone: review target-view conflicts and grants/ownership, then propose a separately approved publication scope. Publication remains unapproved.
 
 ## Initial integration-readiness audit (2026-10-28)
 
@@ -36,7 +37,7 @@ This file resolves **stale status text** in earlier lesson ZIPs. It records know
 3. Real Windsor CSV, read-only profiling: `notebooks/03_profile_real_csv.py`.
 4. Real Windsor weekly CSV → distinct real Bronze table, one row **per parsed source observation** and file-version scope: `notebooks/04_bronze_real_ingestion.py`.
 5. One-week real Bronze → quality-classified Silver table: `notebooks/05_silver_real_windsor.py` and `sql/real_silver_checks.sql`.
-6. Exact-version Silver clean/quarantine consumer views and source-local/naive hourly Gold observations, including read-only candidate validation: `src/winterops/analytics.py`, packaged SQL templates and `notebooks/06_silver_consumers_hourly.py`. **Prepared and tested offline only; no Databricks execution.**
+6. Exact-version Silver clean/quarantine consumer views and source-local/naive hourly Gold observations, including read-only candidate validation: `src/winterops/analytics.py`, packaged SQL templates and `notebooks/06_silver_consumers_hourly.py`. **Shared SQL passed read-only warehouse validation; publication and notebook/Spark execution have not run.**
 
 ## Local analytics implementation (2026-10-25)
 
@@ -97,7 +98,7 @@ On 2026-10-25, the user chose **local Codex development for now** while Cloud en
 ## Next high-value milestone
 
 - The original analytics PR #1 is merged. Review the new read-only validation change and its actual CI result.
-- The standalone CLI, named profile, warehouse listing and bounded source-audit SQL are verified; resume from the separate Lesson 6 compute-approval gate.
-- The source-file version and matching aggregate evidence are now verified through bounded read-only SQL. Review the recorded evidence and separately approve the Lesson 6 compute scope before candidate validation.
+- The standalone CLI, named profile, source-file version/evidence and bounded Lesson 6 shared SQL validation are verified. The SQL candidate is ready for publication review on the tested warehouse.
+- Review existing target objects and grants/ownership before requesting publication approval. Direct notebook/Spark execution remains untested.
 - After separate approval for view creation/replacement, run `mode=apply` twice and inspect reconciliation and rerun invariants.
-- Keep Lesson 6 candidate validation marked NOT RUN until it actually executes; no forecasting, service-coverage claims or scheduled jobs are part of this milestone.
+- Keep publication and notebook/Spark execution marked NOT RUN until actually executed; no forecasting, service-coverage claims or scheduled jobs are part of this milestone.

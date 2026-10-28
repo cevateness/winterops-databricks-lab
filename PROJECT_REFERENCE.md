@@ -3,7 +3,7 @@
 **Working name:** WinterOps  
 **Subtitle:** Weather-Driven Municipal Operations Intelligence  
 **Project type:** Independent Databricks learning laboratory with optional future commercialization  
-**Status:** Bronze/one-week Silver user-verified; canonical GitHub connected; scoped Silver/Gold view code tested offline, awaiting Databricks acceptance
+**Status:** One-week Bronze/Silver source evidence SQL-verified; shared Silver/Gold candidate SQL passed read-only warehouse validation; publication and notebook/Spark execution pending
 **Reference date:** 2026-10-16; updated 2026-10-28
 
 ## 1. Purpose
@@ -138,4 +138,6 @@ This Project is a **reference workspace** for occasional visits, not a scheduled
 
 **Source-evidence follow-up (2026-10-28):** The existing SQL warehouse and Statement Execution API are accessible. Bounded read-only queries matched the exact stored file SHA-256, canonical path/source metadata, required Silver types, all established one-week aggregates and Bronze/Silver payload multiplicities. No mismatch was found; source data and workspace objects were unchanged. Lesson 6 candidate SQL was prepared offline and stopped at the separate approval gate. See `docs/SOURCE_VERSION_EVIDENCE.md` for the hash, results and limitations.
 
-**Next action:** Review the recorded source evidence and prepared read-only plan, then approve a bounded Lesson 6 validation scope before execution. Any `mode=apply` execution requires separate approval. No forecasting or optimization should be rushed. See `docs/ANALYTICS_SLICE.md` and `docs/STATUS_HANDOFF.md` for details.
+**Lesson 6 validation follow-up (2026-10-28):** The user approved one bounded SQL API run from `11dba68`. The schema recheck, both unchanged source preflight statements and the existing candidate Silver/Gold CTE statement all succeeded sequentially. All nine assertions passed, including Gold consumer/hourly reconciliation; there were no runtime errors, cancellations, truncation or retries. This validates shared SQL on the existing warehouse; the notebook/Spark entrypoint and publication were not executed. No Databricks objects, source data, jobs, schedules or warehouse configuration were changed.
+
+**Next action:** Review target-view conflicts and grants/ownership, then propose a separately approved publication scope for the validated SQL candidate. Actual DDL privileges, published-view postflight and publication rerun invariants remain unverified. Any `mode=apply` execution requires separate approval. No forecasting or optimization should be rushed. See `docs/ANALYTICS_SLICE.md` and `docs/STATUS_HANDOFF.md` for details.
