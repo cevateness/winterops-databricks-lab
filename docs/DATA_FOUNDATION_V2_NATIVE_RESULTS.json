@@ -1,0 +1,224 @@
+{
+  "verification_date": "2026-10-29",
+  "baseline_commit": "fceb46abe59f35e6410e088ae9e13ccb5fe7a9df",
+  "status": "STOPPED_BEFORE_INTEGRATION_SQL",
+  "phase_a_status": "PASS",
+  "phase_a_statements": 7,
+  "phase_a_statement_statuses": [
+    {
+      "label": "protected-source-preflight",
+      "state": "SUCCEEDED",
+      "query_sha256": "98426e9be6d1f462ac87f81a038b2fe8d7cf700f377ce5040fc338e15a8ea5ff",
+      "elapsed_seconds": 15.362,
+      "http_status": 200,
+      "row_count": 1,
+      "result_truncated": false,
+      "validation": "PASS",
+      "assertions": {
+        "bronze_check": "PASS",
+        "preservation_check": "PASS",
+        "version_check": "PASS",
+        "quality_check": "PASS",
+        "domain_check": "PASS",
+        "evidence_check": "PASS"
+      }
+    },
+    {
+      "label": "protected-payload-preflight",
+      "state": "SUCCEEDED",
+      "query_sha256": "643214751ad8ed9462d828a9711df8ee975169cafd427126a2362f2f590bb2fa",
+      "elapsed_seconds": 2.534,
+      "http_status": 200,
+      "row_count": 1,
+      "result_truncated": false,
+      "validation": "PASS",
+      "assertions": {
+        "payload_check": "PASS"
+      }
+    },
+    {
+      "label": "protected-published-postflight",
+      "state": "SUCCEEDED",
+      "query_sha256": "bf3918fa7ecc6d2f959296b88bd77aed37e926d8deb098c189fd0b3f75266f00",
+      "elapsed_seconds": 2.773,
+      "http_status": 200,
+      "row_count": 1,
+      "result_truncated": false,
+      "validation": "PASS",
+      "assertions": {
+        "consumer_check": "PASS",
+        "hourly_check": "PASS"
+      }
+    },
+    {
+      "label": "protected-gold-summary",
+      "state": "SUCCEEDED",
+      "query_sha256": "f59a12ca67877f925197f78d5cef63cf156d230f0c0385b67935ec4398fa2fc9",
+      "elapsed_seconds": 2.254,
+      "http_status": 200,
+      "row_count": 1,
+      "result_truncated": false,
+      "validation": "PASS"
+    },
+    {
+      "label": "protected-delta-version-winterops_bronze_windsor_activity",
+      "state": "SUCCEEDED",
+      "query_sha256": "4b7bb201031738f329265e1dda019d357e1741dfe1df85bede138800da3fc4a4",
+      "elapsed_seconds": 3.45,
+      "http_status": 200,
+      "row_count": 1,
+      "result_truncated": false,
+      "validation": "PASS"
+    },
+    {
+      "label": "protected-delta-version-winterops_silver_windsor_week_sample",
+      "state": "SUCCEEDED",
+      "query_sha256": "f966001d73868479663febdfa8666a751a7cf15737bb426f75b1e7f8756df32d",
+      "elapsed_seconds": 2.181,
+      "http_status": 200,
+      "row_count": 1,
+      "result_truncated": false,
+      "validation": "PASS"
+    },
+    {
+      "label": "v2-readonly-synthetic-compatibility",
+      "state": "SUCCEEDED",
+      "query_sha256": "11d92599ef66eebcdb9391266d2a9a272d03a60859880fe17e790ce37c0ce4e1",
+      "elapsed_seconds": 2.388,
+      "http_status": 200,
+      "row_count": 1,
+      "result_truncated": false,
+      "validation": "PASS",
+      "assertions": {
+        "v2_candidate_check": "PASS",
+        "manifest_encoding_check": "PASS"
+      }
+    }
+  ],
+  "phase_a_sql_elapsed_seconds": 30.942,
+  "phase_a_protected_delta_versions": {
+    "workspace.default.winterops_bronze_windsor_activity": 2,
+    "workspace.default.winterops_silver_windsor_week_sample": 0
+  },
+  "phase_a_protected_gold_totals": {
+    "hourly_buckets": 79,
+    "total_observations": 110311,
+    "plow_active_observations": 79471,
+    "spreader_active_observations": 68870,
+    "repeated_payload_observations": 2210,
+    "minimum_hourly_distinct_trucks": 1,
+    "maximum_hourly_distinct_trucks": 20
+  },
+  "phase_b_explicit_approval_received": true,
+  "approved_plan_sha256": "97e2d7e443a60ab081e288f2d781df88a2d5c75e909d5af8d46dd6ef8ec9c0b0",
+  "phase_b_stop_reason": "upload_deadline_no_retry",
+  "phase_b_sql_statements": 0,
+  "ddl_statements": 0,
+  "dml_statements": 0,
+  "native_development_table_rows": null,
+  "native_silver_classification": null,
+  "native_manifest_state": "NOT_CREATED",
+  "native_controlled_recovery": "NOT_RUN",
+  "native_unchanged_reruns": "NOT_RUN",
+  "native_multiweek_coexistence": "NOT_RUN",
+  "uploads": [
+    {
+      "filename": "snowplow-2026-01-05_2026-01-11.csv",
+      "artifact_sha256": "375d6c5980ed66f61b2dcb0601f639f5e2a3a20ce546ac08d3e20fc60c17edd3",
+      "artifact_bytes": 3619379,
+      "upload_destination": "/Volumes/workspace/default/winterops_raw/foundation_v2_dev/8ccb2a2dd5ec057361cf6d7cc7193b5acbdd858b84102ba550a92febe9bb4ed1/375d6c5980ed66f61b2dcb0601f639f5e2a3a20ce546ac08d3e20fc60c17edd3/bronze.jsonl",
+      "overwrite": false,
+      "status": "UPLOADED_HTTP_204_METADATA_VISIBLE",
+      "elapsed_seconds": 9.551,
+      "http_status": 204
+    },
+    {
+      "filename": "snowplow-2026-01-19_2026-01-25.csv",
+      "artifact_sha256": "94b6464999a58757ea6977cdc3d8b6e402b19edac2b9843369e7c1a18738c172",
+      "artifact_bytes": 152492496,
+      "upload_destination": "/Volumes/workspace/default/winterops_raw/foundation_v2_dev/d2a89e9a8582aefdca97264a482d51a6116b827a71f0241a0e1f0149ed14f97a/94b6464999a58757ea6977cdc3d8b6e402b19edac2b9843369e7c1a18738c172/bronze.jsonl",
+      "overwrite": false,
+      "status": "CLIENT_TIMEOUT_OUTCOME_UNCERTAIN",
+      "elapsed_seconds": 180.01
+    }
+  ],
+  "post_stop_file_metadata": [
+    {
+      "filename": "snowplow-2026-01-05_2026-01-11.csv",
+      "expected_bytes": 3619379,
+      "http_status": 200,
+      "content_length": "3619379",
+      "last_modified": "Thu, 29 Oct 2026 10:11:54 GMT"
+    },
+    {
+      "filename": "snowplow-2026-01-19_2026-01-25.csv",
+      "expected_bytes": 152492496,
+      "http_status": 404,
+      "content_length": "0"
+    }
+  ],
+  "post_stop_development_target_metadata": {
+    "workspace.default.winterops_v2_dev_bronze": {
+      "http_status": 404,
+      "type": null,
+      "object_id_available": false
+    },
+    "workspace.default.winterops_v2_dev_silver": {
+      "http_status": 404,
+      "type": null,
+      "object_id_available": false
+    },
+    "workspace.default.winterops_v2_dev_manifest": {
+      "http_status": 404,
+      "type": null,
+      "object_id_available": false
+    }
+  },
+  "protected_metadata_unchanged_after_stop": true,
+  "parent_grants_unchanged_after_stop": true,
+  "warehouse_configuration_unchanged_after_stop": true,
+  "warehouse_initial_state": "STOPPED",
+  "warehouse_post_stop_state": "STOPPED",
+  "protected_data_sql_postflight": "NOT_RUN_AFTER_UPLOAD_STOP; no protected data-write request was issued",
+  "automatic_retries": 0,
+  "rollback_executed": false,
+  "cleanup_or_deletion_executed": false,
+  "notebook_executed": false,
+  "bounds": {
+    "sql_statements_total": 45,
+    "phase_a_sql_statements": 7,
+    "phase_b_sql_statements": 38,
+    "cumulative_active_sql_seconds": 600,
+    "phase_b_sql_wall_seconds": 564,
+    "wait_timeout": "30s",
+    "on_wait_timeout": "CANCEL",
+    "client_deadline_seconds": 45,
+    "row_limit": 200,
+    "byte_limit": 65536,
+    "upload_max_bytes": 268435456,
+    "upload_deadline_seconds": 180,
+    "upload_overwrite": false
+  },
+  "local_transport_correction": {
+    "source_version_id": "d2a89e9a8582aefdca97264a482d51a6116b827a71f0241a0e1f0149ed14f97a",
+    "artifact_sha256": "5516fe43d00a609c858f71323b7c4fa7c856ca7c3b8c69137e6e67ac5b99034c",
+    "row_count": 118159,
+    "compression": "gzip",
+    "uncompressed_sha256": "94b6464999a58757ea6977cdc3d8b6e402b19edac2b9843369e7c1a18738c172",
+    "artifact_bytes": 9920290,
+    "uncompressed_bytes": 152492496,
+    "source_file_sha256": "b78d0fb82c8e3c5204ee79eea7a03417cd54bc935ead9b04577a30dc908c7c49",
+    "source_file_name": "snowplow-2026-01-19_2026-01-25.csv",
+    "local_elapsed_seconds": 10.562
+  },
+  "replacement_uploaded": false,
+  "replacement_native_gzip_compatibility": "NOT_RUN",
+  "renewed_approval_required": true,
+  "limitations": [
+    "A file upload and metadata visibility are not Bronze/Silver publication or native workflow validation.",
+    "The large upload was killed at the hard client deadline; it had no success response. Its destination returned HTTP 404 at post-stop inspection. A future attempt must recheck presence, never overwrite or delete automatically.",
+    "Phase A validated existing protected data and a synthetic projection only. The real-file reader, development-table DDL/DML, interruption/recovery and no-write reruns remain unexecuted.",
+    "No protected table/view or source file was a write target. Their metadata, parent grants and warehouse configuration matched after the stop; final protected data SQL postflight was not reached.",
+    "Gzip changes transport encoding and fingerprint, not the original CSV version, decoded observations, policy or source-local/naive time semantics. Native gzip input must be checked before any DDL in a newly approved scope."
+  ]
+}

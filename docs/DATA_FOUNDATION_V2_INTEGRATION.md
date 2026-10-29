@@ -1,6 +1,6 @@
 # V2 — single bounded integration approval proposal
 
-**PREPARED, NOT APPROVED OR EXECUTED.** Local implementation/testing/source inspection are complete. No V2 remote writes or read queries were performed. This plan uses the existing authenticated `winterops` workspace, previously verified SQL warehouse and existing `workspace.default.winterops_raw` Volume. It requires no compute, Volume, job or schedule creation.
+**Original scope approved; first attempt STOPPED before SQL at the large-upload deadline.** Phase A's seven read-only checks passed. One artifact uploaded; the other timed out. No development tables were created and no Phase B SQL ran. See [actual evidence](DATA_FOUNDATION_V2_NATIVE.md). The original scope below is retained for audit; the compressed recovery proposal at the end requires renewed approval. No compute, Volume, job or schedule creation is included.
 
 ## Exact proposed write scope
 
@@ -42,3 +42,19 @@ Source revision and changed-policy behavior, malformed records and failure recov
 - No DROP, TRUNCATE, VACUUM, RESTORE, replacement of existing objects, source deletion, permission/owner change, warehouse setting change, job, schedule or Spark/notebook submission is included. Only native shared SQL/Delta behavior is exercised; the optional PySpark adapter itself remains unexecuted.
 
 Record statement hashes/statuses/timings, row/quality totals and whether reruns wrote nothing. Keep statement/object/warehouse IDs, local paths, credentials, raw identifiers, coordinates and record payloads private. Final evidence must separate this native dev-table result from the local SQLite/Python run and from the existing validated one-week Gold pipeline.
+
+## Revised upload recovery — NOT YET APPROVED
+
+Reuse the January 5–11 artifact at its original exact path after a fresh HEAD check and native fingerprint/input guards; do not upload it again. Upload **one** January 19–25 replacement, without overwrite, to:
+
+```text
+/Volumes/workspace/default/winterops_raw/foundation_v2_dev/d2a89e9a8582aefdca97264a482d51a6116b827a71f0241a0e1f0149ed14f97a/5516fe43d00a609c858f71323b7c4fa7c856ca7c3b8c69137e6e67ac5b99034c/bronze.jsonl.gz
+```
+
+Compressed size: **9,920,290 bytes**; SHA-256 `5516fe43d00a609c858f71323b7c4fa7c856ca7c3b8c69137e6e67ac5b99034c`. Decoded SHA-256 remains `94b6464999a58757ea6977cdc3d8b6e402b19edac2b9843369e7c1a18738c172` (152,492,496 bytes / 118,159 records). Source CSV SHA-256 remains `b78d0fb82c8e3c5204ee79eea7a03417cd54bc935ead9b04577a30dc908c7c49`. Only the new parent directories may be created; the old failed destination is not a cleanup/overwrite target.
+
+Keep the same three fail-if-exists table targets, source versions, quality policy and planned checkpoint/recovery/rerun matrix. Move **both artifact guards and both input guards before all DDL**, so gzip/real-file compatibility is checked before table creation. Re-review and pin this revised plan before execution.
+
+The revised integration contains 38 SQL statements; together with seven successful readiness statements and zero SQL from the stopped attempt, the combined count remains 45. Reserve 564 seconds for integration SQL within the cumulative 600-second active SQL budget. Preserve 30-second wait/CANCEL, hard 45-second requests, 200-row/65,536-byte results, 256 MiB/180-second uploads and no automatic retries. Approval wait is outside active execution time.
+
+This proposal is not continuation authorization. Recheck workspace, privileges, protected baselines and all destination/name conflicts. Stop again on any failure; no automatic cleanup, rollback, replacement or warehouse/grant/job change is included.

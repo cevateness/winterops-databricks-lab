@@ -88,7 +88,7 @@ def sql_version_plan(version, artifact_path, artifact_sha256, expected_rows, *,
     these DML statements are content-idempotent but still create Delta commits;
     a verified COMPLETE version should skip them. Never use COPY force reruns.
     """
-    if (not re.fullmatch(r'/Volumes/[a-z][a-z0-9_]*/[a-z][a-z0-9_]*/[a-z][a-z0-9_]*/[A-Za-z0-9_./-]+/bronze[.]jsonl',artifact_path)
+    if (not re.fullmatch(r'/Volumes/[a-z][a-z0-9_]*/[a-z][a-z0-9_]*/[a-z][a-z0-9_]*/[A-Za-z0-9_./-]+/bronze[.]jsonl([.]gz)?',artifact_path)
             or '..' in artifact_path.split('/') or not re.fullmatch('[0-9a-f]{64}',artifact_sha256)
             or type(expected_rows) is not int or not 1<=expected_rows<=500000):
         raise ValueError('Exact bounded immutable Volume artifact required')
@@ -169,7 +169,7 @@ def process_spark(spark, version, artifact_path, artifact_sha256, expected_rows,
     """
     if tuple(approved_targets)!=targets.names:
         raise PermissionError('Separate explicit approval of all exact development targets required')
-    if (not str(artifact_path).startswith('/Volumes/') or not str(artifact_path).endswith('/bronze.jsonl')
+    if (not str(artifact_path).startswith('/Volumes/') or not str(artifact_path).endswith(('/bronze.jsonl','/bronze.jsonl.gz'))
             or not re.fullmatch('[0-9a-f]{64}',artifact_sha256)
             or type(expected_rows) is not int or not 1<=expected_rows<=500000):
         raise ValueError('Bounded immutable Volume artifact required')

@@ -27,6 +27,7 @@ def main():
         if command=='process':
             child.add_argument('--repair',action='store_true')
             child.add_argument('--export-bronze',action='store_true')
+            child.add_argument('--artifact-compression',choices=('none','gzip'),default='none')
         else:
             child.add_argument('--artifact-volume-path')
             child.add_argument('--artifact-sha256')
@@ -70,7 +71,9 @@ def main():
                 print(silver_sql(targets,version,policy)+';')
             return
         result=process_local(manifest,version,policy,repair=args.repair)
-        if args.export_bronze: result['artifact']=export_bronze(manifest,version,args.root/'artifacts')
+        if args.export_bronze:
+            result['artifact']=export_bronze(manifest,version,args.root/'artifacts',
+                compression=None if args.artifact_compression=='none' else args.artifact_compression)
         print(json.dumps(result,indent=2))
     except Exception as error:
         # Do not echo exception text that might include source values or URLs.
