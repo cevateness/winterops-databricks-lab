@@ -1,0 +1,29 @@
+{
+  "selected": [
+    {
+      "source_file_name": "snowplow-2026-01-05_2026-01-11.csv",
+      "source_file_sha256": "271c9339a42043f441b6c17e82dd309609db4b20e9953b9f368a95ec472d763d",
+      "source_version_id": "8ccb2a2dd5ec057361cf6d7cc7193b5acbdd858b84102ba550a92febe9bb4ed1",
+      "processing_key": "f07ba6a0ad499a9baf53d2f7c46df09607523371428791593143a29b56f6b466",
+      "expected_rows": 2810,
+      "original_csv_volume_path": "/Volumes/workspace/default/winterops_raw/original_csv/snowplow-2026-01-05_2026-01-11.csv/271c9339a42043f441b6c17e82dd309609db4b20e9953b9f368a95ec472d763d/snowplow-2026-01-05_2026-01-11.csv"
+    },
+    {
+      "source_file_name": "snowplow-2026-01-12_2026-01-18.csv",
+      "source_file_sha256": "f5d7633c910e1ad6be23b4111445bf0bc14fe2071c6ea0f0d4cd456295ea9e94",
+      "source_version_id": "73e9338d8a7e78ba01827806b2172a715a50b90c819959ba1ade17632f2d4433",
+      "processing_key": "5e478fdced5a0ac67865413d68b9359a97fffd980a2a6dee976d6ab984c599be",
+      "expected_rows": 110337,
+      "original_csv_volume_path": "/Volumes/workspace/default/winterops_raw/snowplow-2026-01-12_2026-01-18.csv"
+    },
+    {
+      "source_file_name": "snowplow-2026-01-19_2026-01-25.csv",
+      "source_file_sha256": "b78d0fb82c8e3c5204ee79eea7a03417cd54bc935ead9b04577a30dc908c7c49",
+      "source_version_id": "d2a89e9a8582aefdca97264a482d51a6116b827a71f0241a0e1f0149ed14f97a",
+      "processing_key": "bb478f6992172da1298db36c3a5d92aa4c349769064ec66002f347a2458e415c",
+      "expected_rows": 118159,
+      "original_csv_volume_path": "/Volumes/workspace/default/winterops_raw/original_csv/snowplow-2026-01-19_2026-01-25.csv/b78d0fb82c8e3c5204ee79eea7a03417cd54bc935ead9b04577a30dc908c7c49/snowplow-2026-01-19_2026-01-25.csv"
+    }
+  ],
+  "allow_mixed_policies": false
+}

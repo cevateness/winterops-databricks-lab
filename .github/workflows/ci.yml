@@ -45,3 +45,14 @@ jobs:
           --source-file-sha256 0000000000000000000000000000000000000000000000000000000000000000
           --expected-summary data/fixtures/windsor_week_2026_01_12_18_summary.json
           --output /tmp/winterops-gold-products.sql
+      - name: Three-week candidate SQL rendering (never executed)
+        run: >-
+          python scripts/render_unified_gold.py
+          --selection docs/THREE_WEEK_SELECTION.json
+          --output /tmp/winterops-threeweek-candidate.sql
+      - name: Three-week publication SQL rendering (never executed)
+        run: >-
+          python scripts/render_unified_gold.py
+          --selection docs/THREE_WEEK_SELECTION.json
+          --publication
+          --output /tmp/winterops-threeweek-publication.sql

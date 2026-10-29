@@ -1,0 +1,57 @@
+{
+  "status": "PASS_METADATA_ONLY",
+  "requests": [
+    {
+      "object": "workspace.default.winterops_v2_dev_bronze",
+      "status": "MATCHES_PRIOR_IDENTITY_AND_SCHEMA"
+    },
+    {
+      "object": "workspace.default.winterops_v2_dev_silver",
+      "status": "MATCHES_PRIOR_IDENTITY_AND_SCHEMA"
+    },
+    {
+      "object": "workspace.default.winterops_v2_dev_manifest",
+      "status": "MATCHES_PRIOR_IDENTITY_AND_SCHEMA"
+    },
+    {
+      "object": "workspace.default.winterops_bronze_windsor_activity",
+      "status": "PROTECTED_METADATA_MATCH"
+    },
+    {
+      "object": "workspace.default.winterops_silver_windsor_week_sample",
+      "status": "PROTECTED_METADATA_MATCH"
+    },
+    {
+      "object": "workspace.default.winterops_silver_windsor_valid",
+      "status": "PROTECTED_METADATA_MATCH"
+    },
+    {
+      "object": "workspace.default.winterops_silver_windsor_quarantine",
+      "status": "PROTECTED_METADATA_MATCH"
+    },
+    {
+      "object": "workspace.default.winterops_gold_windsor_hourly_observations",
+      "status": "PROTECTED_METADATA_MATCH"
+    },
+    {
+      "object": "workspace.default.winterops_v2_gold_hourly_observations",
+      "status": "ABSENT_HTTP_404"
+    },
+    {
+      "object": "workspace.default.winterops_v2_gold_daily_activity",
+      "status": "ABSENT_HTTP_404"
+    },
+    {
+      "object": "workspace.default.winterops_v2_gold_weekly_quality",
+      "status": "ABSENT_HTTP_404"
+    }
+  ],
+  "sql_statements": 0,
+  "uploads": 0,
+  "remote_writes": 0,
+  "automatic_retries": 0,
+  "same_expected_workspace_and_warehouse": true,
+  "warehouse_configuration_matches_prior": true,
+  "recorded_at_utc": "2026-10-29T19:43:17.542254+00:00",
+  "limitations": "GET-only metadata and conflict checks, not native data-row counts, permissions revalidation, Gold runtime execution or publication. Recheck all required privileges and data baselines within the separately approved scope."
+}
