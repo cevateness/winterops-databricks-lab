@@ -1,0 +1,1021 @@
+{
+  "verification_date": "2026-10-29",
+  "status": "PASS_NATIVE_SQL_WAREHOUSE",
+  "implementation_main_commit": "fceb46abe59f35e6410e088ae9e13ccb5fe7a9df",
+  "execution_baseline_commit": "c1d8de3c3e8835694e64709742d213f34b0cd933",
+  "approved_plan_sha256": "97c0018f94f62555de1680eb243381db41d50e8118ba7bfbc4be249335d25879",
+  "renewed_gzip_scope_explicitly_approved": true,
+  "phase_a_status": "PASS",
+  "phase_a_statements": 7,
+  "phase_a_statement_statuses": [
+    {
+      "label": "protected-source-preflight",
+      "state": "SUCCEEDED",
+      "query_sha256": "98426e9be6d1f462ac87f81a038b2fe8d7cf700f377ce5040fc338e15a8ea5ff",
+      "elapsed_seconds": 15.362,
+      "http_status": 200,
+      "row_count": 1,
+      "result_truncated": false,
+      "validation": "PASS",
+      "assertions": {
+        "bronze_check": "PASS",
+        "preservation_check": "PASS",
+        "version_check": "PASS",
+        "quality_check": "PASS",
+        "domain_check": "PASS",
+        "evidence_check": "PASS"
+      }
+    },
+    {
+      "label": "protected-payload-preflight",
+      "state": "SUCCEEDED",
+      "query_sha256": "643214751ad8ed9462d828a9711df8ee975169cafd427126a2362f2f590bb2fa",
+      "elapsed_seconds": 2.534,
+      "http_status": 200,
+      "row_count": 1,
+      "result_truncated": false,
+      "validation": "PASS",
+      "assertions": {
+        "payload_check": "PASS"
+      }
+    },
+    {
+      "label": "protected-published-postflight",
+      "state": "SUCCEEDED",
+      "query_sha256": "bf3918fa7ecc6d2f959296b88bd77aed37e926d8deb098c189fd0b3f75266f00",
+      "elapsed_seconds": 2.773,
+      "http_status": 200,
+      "row_count": 1,
+      "result_truncated": false,
+      "validation": "PASS",
+      "assertions": {
+        "consumer_check": "PASS",
+        "hourly_check": "PASS"
+      }
+    },
+    {
+      "label": "protected-gold-summary",
+      "state": "SUCCEEDED",
+      "query_sha256": "f59a12ca67877f925197f78d5cef63cf156d230f0c0385b67935ec4398fa2fc9",
+      "elapsed_seconds": 2.254,
+      "http_status": 200,
+      "row_count": 1,
+      "result_truncated": false,
+      "validation": "PASS"
+    },
+    {
+      "label": "protected-delta-version-winterops_bronze_windsor_activity",
+      "state": "SUCCEEDED",
+      "query_sha256": "4b7bb201031738f329265e1dda019d357e1741dfe1df85bede138800da3fc4a4",
+      "elapsed_seconds": 3.45,
+      "http_status": 200,
+      "row_count": 1,
+      "result_truncated": false,
+      "validation": "PASS"
+    },
+    {
+      "label": "protected-delta-version-winterops_silver_windsor_week_sample",
+      "state": "SUCCEEDED",
+      "query_sha256": "f966001d73868479663febdfa8666a751a7cf15737bb426f75b1e7f8756df32d",
+      "elapsed_seconds": 2.181,
+      "http_status": 200,
+      "row_count": 1,
+      "result_truncated": false,
+      "validation": "PASS"
+    },
+    {
+      "label": "v2-readonly-synthetic-compatibility",
+      "state": "SUCCEEDED",
+      "query_sha256": "11d92599ef66eebcdb9391266d2a9a272d03a60859880fe17e790ce37c0ce4e1",
+      "elapsed_seconds": 2.388,
+      "http_status": 200,
+      "row_count": 1,
+      "result_truncated": false,
+      "validation": "PASS",
+      "assertions": {
+        "v2_candidate_check": "PASS",
+        "manifest_encoding_check": "PASS"
+      }
+    }
+  ],
+  "phase_a_sql_elapsed_seconds": 30.942,
+  "prior_stopped_attempt": {
+    "status": "STOPPED_BEFORE_INTEGRATION_SQL",
+    "approved_plan_sha256": "97e2d7e443a60ab081e288f2d781df88a2d5c75e909d5af8d46dd6ef8ec9c0b0",
+    "phase_b_stop_reason": "upload_deadline_no_retry",
+    "phase_b_sql_statements": 0,
+    "ddl_statements": 0,
+    "dml_statements": 0,
+    "uploads": [
+      {
+        "filename": "snowplow-2026-01-05_2026-01-11.csv",
+        "artifact_sha256": "375d6c5980ed66f61b2dcb0601f639f5e2a3a20ce546ac08d3e20fc60c17edd3",
+        "artifact_bytes": 3619379,
+        "upload_destination": "/Volumes/workspace/default/winterops_raw/foundation_v2_dev/8ccb2a2dd5ec057361cf6d7cc7193b5acbdd858b84102ba550a92febe9bb4ed1/375d6c5980ed66f61b2dcb0601f639f5e2a3a20ce546ac08d3e20fc60c17edd3/bronze.jsonl",
+        "overwrite": false,
+        "status": "UPLOADED_HTTP_204_METADATA_VISIBLE",
+        "elapsed_seconds": 9.551,
+        "http_status": 204
+      },
+      {
+        "filename": "snowplow-2026-01-19_2026-01-25.csv",
+        "artifact_sha256": "94b6464999a58757ea6977cdc3d8b6e402b19edac2b9843369e7c1a18738c172",
+        "artifact_bytes": 152492496,
+        "upload_destination": "/Volumes/workspace/default/winterops_raw/foundation_v2_dev/d2a89e9a8582aefdca97264a482d51a6116b827a71f0241a0e1f0149ed14f97a/94b6464999a58757ea6977cdc3d8b6e402b19edac2b9843369e7c1a18738c172/bronze.jsonl",
+        "overwrite": false,
+        "status": "CLIENT_TIMEOUT_OUTCOME_UNCERTAIN",
+        "elapsed_seconds": 180.01
+      }
+    ],
+    "post_stop_file_metadata": [
+      {
+        "filename": "snowplow-2026-01-05_2026-01-11.csv",
+        "expected_bytes": 3619379,
+        "http_status": 200,
+        "content_length": "3619379",
+        "last_modified": "Thu, 29 Oct 2026 10:11:54 GMT"
+      },
+      {
+        "filename": "snowplow-2026-01-19_2026-01-25.csv",
+        "expected_bytes": 152492496,
+        "http_status": 404,
+        "content_length": "0"
+      }
+    ],
+    "post_stop_development_target_metadata": {
+      "workspace.default.winterops_v2_dev_bronze": {
+        "http_status": 404,
+        "type": null,
+        "object_id_available": false
+      },
+      "workspace.default.winterops_v2_dev_silver": {
+        "http_status": 404,
+        "type": null,
+        "object_id_available": false
+      },
+      "workspace.default.winterops_v2_dev_manifest": {
+        "http_status": 404,
+        "type": null,
+        "object_id_available": false
+      }
+    },
+    "protected_metadata_unchanged_after_stop": true,
+    "parent_grants_unchanged_after_stop": true,
+    "warehouse_configuration_unchanged_after_stop": true,
+    "protected_data_sql_postflight": "NOT_RUN_AFTER_UPLOAD_STOP; no protected data-write request was issued",
+    "automatic_retries": 0,
+    "rollback_executed": false,
+    "cleanup_or_deletion_executed": false
+  },
+  "fresh_metadata_and_privilege_preflight": "PASS",
+  "fresh_local_source_and_artifact_checks": "PASS",
+  "same_approved_workspace": true,
+  "same_approved_warehouse": true,
+  "uploads": [
+    {
+      "filename": "snowplow-2026-01-19_2026-01-25.csv",
+      "artifact_sha256": "5516fe43d00a609c858f71323b7c4fa7c856ca7c3b8c69137e6e67ac5b99034c",
+      "artifact_bytes": 9920290,
+      "overwrite": false,
+      "status": "UPLOADED_HTTP_204_METADATA_VISIBLE",
+      "elapsed_seconds": 23.959,
+      "http_status": 204
+    }
+  ],
+  "artifacts": [
+    {
+      "filename": "snowplow-2026-01-05_2026-01-11.csv",
+      "source_file_sha256": "271c9339a42043f441b6c17e82dd309609db4b20e9953b9f368a95ec472d763d",
+      "artifact_sha256": "375d6c5980ed66f61b2dcb0601f639f5e2a3a20ce546ac08d3e20fc60c17edd3",
+      "artifact_bytes": 3619379,
+      "row_count": 2810,
+      "local_source_and_full_artifact_reconciliation": "PASS",
+      "reuse_existing": true
+    },
+    {
+      "filename": "snowplow-2026-01-19_2026-01-25.csv",
+      "source_file_sha256": "b78d0fb82c8e3c5204ee79eea7a03417cd54bc935ead9b04577a30dc908c7c49",
+      "artifact_sha256": "5516fe43d00a609c858f71323b7c4fa7c856ca7c3b8c69137e6e67ac5b99034c",
+      "artifact_bytes": 9920290,
+      "row_count": 118159,
+      "local_source_and_full_artifact_reconciliation": "PASS",
+      "compression": "gzip",
+      "uncompressed_sha256": "94b6464999a58757ea6977cdc3d8b6e402b19edac2b9843369e7c1a18738c172",
+      "uncompressed_bytes": 152492496,
+      "reuse_existing": false
+    }
+  ],
+  "first_artifact_reused": "PASS_HEAD_NATIVE_FINGERPRINT_AND_INPUT_GUARDS_NO_REUPLOAD",
+  "both_artifact_and_input_guards_before_ddl": "PASS",
+  "phase_b_sql_statements": 38,
+  "statement_kinds": {
+    "READ": 22,
+    "CREATE": 3,
+    "WRITE": 13
+  },
+  "combined_sql_statements": 45,
+  "statement_statuses": [
+    {
+      "label": "fresh-protected-source",
+      "kind": "READ",
+      "state": "SUCCEEDED",
+      "query_sha256": "98426e9be6d1f462ac87f81a038b2fe8d7cf700f377ce5040fc338e15a8ea5ff",
+      "elapsed_seconds": 9.444,
+      "http_status": 200,
+      "assertions": {
+        "bronze_check": "PASS",
+        "preservation_check": "PASS",
+        "version_check": "PASS",
+        "quality_check": "PASS",
+        "domain_check": "PASS",
+        "evidence_check": "PASS"
+      },
+      "result_truncated": false,
+      "validation": "PASS",
+      "output_row_count": 1
+    },
+    {
+      "label": "fresh-protected-payload",
+      "kind": "READ",
+      "state": "SUCCEEDED",
+      "query_sha256": "643214751ad8ed9462d828a9711df8ee975169cafd427126a2362f2f590bb2fa",
+      "elapsed_seconds": 2.117,
+      "http_status": 200,
+      "assertions": {
+        "payload_check": "PASS"
+      },
+      "result_truncated": false,
+      "validation": "PASS",
+      "output_row_count": 1
+    },
+    {
+      "label": "fresh-protected-published",
+      "kind": "READ",
+      "state": "SUCCEEDED",
+      "query_sha256": "bf3918fa7ecc6d2f959296b88bd77aed37e926d8deb098c189fd0b3f75266f00",
+      "elapsed_seconds": 1.977,
+      "http_status": 200,
+      "assertions": {
+        "consumer_check": "PASS",
+        "hourly_check": "PASS"
+      },
+      "result_truncated": false,
+      "validation": "PASS",
+      "output_row_count": 1
+    },
+    {
+      "label": "fresh-protected-gold",
+      "kind": "READ",
+      "state": "SUCCEEDED",
+      "query_sha256": "f59a12ca67877f925197f78d5cef63cf156d230f0c0385b67935ec4398fa2fc9",
+      "elapsed_seconds": 2.167,
+      "http_status": 200,
+      "result_truncated": false,
+      "validation": "PASS",
+      "protected_gold_baseline": "PASS",
+      "output_row_count": 1
+    },
+    {
+      "label": "fresh-protected-delta-winterops_bronze_windsor_activity",
+      "kind": "READ",
+      "state": "SUCCEEDED",
+      "query_sha256": "4b7bb201031738f329265e1dda019d357e1741dfe1df85bede138800da3fc4a4",
+      "elapsed_seconds": 8.772,
+      "http_status": 200,
+      "result_truncated": false,
+      "validation": "PASS",
+      "protected_delta_version": 2,
+      "output_row_count": 1
+    },
+    {
+      "label": "fresh-protected-delta-winterops_silver_windsor_week_sample",
+      "kind": "READ",
+      "state": "SUCCEEDED",
+      "query_sha256": "f966001d73868479663febdfa8666a751a7cf15737bb426f75b1e7f8756df32d",
+      "elapsed_seconds": 2.472,
+      "http_status": 200,
+      "result_truncated": false,
+      "validation": "PASS",
+      "protected_delta_version": 0,
+      "output_row_count": 1
+    },
+    {
+      "label": "first-artifact-guard",
+      "kind": "READ",
+      "state": "SUCCEEDED",
+      "query_sha256": "08ac684b5bac9da834ea47e44f840e485872b9028688d65cfb82e6678a658b75",
+      "elapsed_seconds": 5.107,
+      "http_status": 200,
+      "assertions": {
+        "artifact_check": "PASS"
+      },
+      "result_truncated": false,
+      "validation": "PASS",
+      "output_row_count": 1
+    },
+    {
+      "label": "first-input-guard",
+      "kind": "READ",
+      "state": "SUCCEEDED",
+      "query_sha256": "0ac5be1384ff57fc3490d96162611df8eaf9fd88a4eac11a369a05667883a6cc",
+      "elapsed_seconds": 2.38,
+      "http_status": 200,
+      "assertions": {
+        "input_check": "PASS"
+      },
+      "result_truncated": false,
+      "validation": "PASS",
+      "output_row_count": 1
+    },
+    {
+      "label": "second-artifact-guard",
+      "kind": "READ",
+      "state": "SUCCEEDED",
+      "query_sha256": "ab7dcea58d5cd122022df87238f88841a1c214d46ea1c559ac52175c39b2499a",
+      "elapsed_seconds": 2.413,
+      "http_status": 200,
+      "assertions": {
+        "artifact_check": "PASS"
+      },
+      "result_truncated": false,
+      "validation": "PASS",
+      "output_row_count": 1
+    },
+    {
+      "label": "second-input-guard",
+      "kind": "READ",
+      "state": "SUCCEEDED",
+      "query_sha256": "81e0c3761231b5f4ba6fc6e0b57dd66c308152119afc7c0d57bd6e791c0e72db",
+      "elapsed_seconds": 3.876,
+      "http_status": 200,
+      "assertions": {
+        "input_check": "PASS"
+      },
+      "result_truncated": false,
+      "validation": "PASS",
+      "output_row_count": 1
+    },
+    {
+      "label": "create-winterops_v2_dev_bronze",
+      "kind": "CREATE",
+      "state": "SUCCEEDED",
+      "query_sha256": "eb814484fb630ee4865b32f53c2a9132235d6b272c42f2029433c1b65bd00d05",
+      "elapsed_seconds": 3.315,
+      "http_status": 200,
+      "result_truncated": false,
+      "validation": "PASS",
+      "command_result": "EMPTY_SUCCESS",
+      "output_row_count": 0
+    },
+    {
+      "label": "create-winterops_v2_dev_silver",
+      "kind": "CREATE",
+      "state": "SUCCEEDED",
+      "query_sha256": "c58b73435e1bfc8f2eac31ed28cd22bde16ef05b4bba5448ac67a946020551a8",
+      "elapsed_seconds": 2.789,
+      "http_status": 200,
+      "result_truncated": false,
+      "validation": "PASS",
+      "command_result": "EMPTY_SUCCESS",
+      "output_row_count": 0
+    },
+    {
+      "label": "create-winterops_v2_dev_manifest",
+      "kind": "CREATE",
+      "state": "SUCCEEDED",
+      "query_sha256": "acda15c89a85823484c2fb8a99830b01cd7b096b880c6cdb0e50c24b6dbefcfc",
+      "elapsed_seconds": 2.58,
+      "http_status": 200,
+      "result_truncated": false,
+      "validation": "PASS",
+      "command_result": "EMPTY_SUCCESS",
+      "output_row_count": 0
+    },
+    {
+      "label": "first-attempt-start",
+      "kind": "WRITE",
+      "state": "SUCCEEDED",
+      "query_sha256": "3f4f5b9a05bbead7f3ff0a87c1cf3eba439626270f880dc8019a31082f5262bd",
+      "elapsed_seconds": 3.782,
+      "http_status": 200,
+      "result_truncated": false,
+      "validation": "PASS",
+      "command_metrics": {
+        "num_affected_rows": 1,
+        "num_inserted_rows": 1
+      },
+      "output_row_count": 1
+    },
+    {
+      "label": "first-bronze-write",
+      "kind": "WRITE",
+      "state": "SUCCEEDED",
+      "query_sha256": "e6146a4382f052e5a8e5e0ef68de8482e64f30be7644c7fcfac485ca8735be5e",
+      "elapsed_seconds": 3.353,
+      "http_status": 200,
+      "result_truncated": false,
+      "validation": "PASS",
+      "command_metrics": {
+        "num_affected_rows": 2810,
+        "num_inserted_rows": 2810
+      },
+      "output_row_count": 1
+    },
+    {
+      "label": "first-bronze-committed",
+      "kind": "WRITE",
+      "state": "SUCCEEDED",
+      "query_sha256": "990f01747a1f5efec1b38f60cc9a23315e240f65807114a8c31e54f627798431",
+      "elapsed_seconds": 2.981,
+      "http_status": 200,
+      "result_truncated": false,
+      "validation": "PASS",
+      "command_metrics": {
+        "num_affected_rows": 1,
+        "num_inserted_rows": 1
+      },
+      "output_row_count": 1
+    },
+    {
+      "label": "planned-interruption-checkpoint",
+      "kind": "READ",
+      "state": "SUCCEEDED",
+      "query_sha256": "9faeb4116b761fc279731a5e78b0bac1ff409bbe449f9334ea5672a02b592520",
+      "elapsed_seconds": 3.355,
+      "http_status": 200,
+      "assertions": {
+        "checkpoint_check": "PASS"
+      },
+      "result_truncated": false,
+      "validation": "PASS",
+      "output_row_count": 1
+    },
+    {
+      "label": "first-controlled-resume",
+      "kind": "WRITE",
+      "state": "SUCCEEDED",
+      "query_sha256": "75f0dd24fa701b9e7100c2e521000ef170bae5e302e5f8ff6a16f7e0092d210d",
+      "elapsed_seconds": 2.449,
+      "http_status": 200,
+      "result_truncated": false,
+      "validation": "PASS",
+      "command_metrics": {
+        "num_affected_rows": 1,
+        "num_inserted_rows": 1
+      },
+      "output_row_count": 1
+    },
+    {
+      "label": "first-silver-write",
+      "kind": "WRITE",
+      "state": "SUCCEEDED",
+      "query_sha256": "b9163339d31b3f057c5ded47b7964679ac4cf00de05c24614e88577bc3a0cb60",
+      "elapsed_seconds": 4.173,
+      "http_status": 200,
+      "result_truncated": false,
+      "validation": "PASS",
+      "command_metrics": {
+        "num_affected_rows": 2810,
+        "num_inserted_rows": 2810
+      },
+      "output_row_count": 1
+    },
+    {
+      "label": "first-silver-committed",
+      "kind": "WRITE",
+      "state": "SUCCEEDED",
+      "query_sha256": "3a5087100f5aab094a2ce7a57044105b5042b673b4ec161623197c0e4f53cdd7",
+      "elapsed_seconds": 2.473,
+      "http_status": 200,
+      "result_truncated": false,
+      "validation": "PASS",
+      "command_metrics": {
+        "num_affected_rows": 1,
+        "num_inserted_rows": 1
+      },
+      "output_row_count": 1
+    },
+    {
+      "label": "first-persisted-postflight",
+      "kind": "READ",
+      "state": "SUCCEEDED",
+      "query_sha256": "d2f5af7ac593c38436595ddc123a1f96ae45c0dd4564fa2d10a1d56bec0250b6",
+      "elapsed_seconds": 4.413,
+      "http_status": 200,
+      "assertions": {
+        "persisted_check": "PASS"
+      },
+      "result_truncated": false,
+      "validation": "PASS",
+      "aggregate_result": {
+        "silver_rows": 2810,
+        "header_rows": 19,
+        "valid_rows": 2791,
+        "invalid_rows": 0,
+        "observed_identifiers": 27,
+        "plow_active_observations": 2790,
+        "spreader_active_observations": 164,
+        "repeated_valid_payload_observations": 10,
+        "outside_review_envelope": 677,
+        "total_bronze_rows": 2810,
+        "total_silver_rows": 2810,
+        "total_manifest_rows": 1,
+        "selected_manifest_rows": 1,
+        "attempts": 2,
+        "manifest_bronze_rows": 2810,
+        "manifest_silver_rows": 2810,
+        "manifest_errors": 0,
+        "processing_status": "SILVER_WRITTEN",
+        "last_successful_stage": "SILVER_WRITTEN",
+        "manifest_updated_at": "2026-10-29 13:14:51.127482",
+        "metadata_json_sha256": "c2d08257c9d97b523832c5494b93ab59aa1ba3f263a02307d416b28a4df624d0",
+        "policy_json_sha256": "ecb195bd0381aa104a562a121f9e7e43b5f8f97d57e19ffb0698571636b323b5"
+      },
+      "output_row_count": 1
+    },
+    {
+      "label": "first-complete",
+      "kind": "WRITE",
+      "state": "SUCCEEDED",
+      "query_sha256": "c9810f4e8618713f7104b0688c10b0a6dc2b322b387c53e5c4fc045f2631a9d9",
+      "elapsed_seconds": 2.409,
+      "http_status": 200,
+      "result_truncated": false,
+      "validation": "PASS",
+      "command_metrics": {
+        "num_affected_rows": 1,
+        "num_inserted_rows": 1
+      },
+      "output_row_count": 1
+    },
+    {
+      "label": "first-unchanged-rerun",
+      "kind": "READ",
+      "state": "SUCCEEDED",
+      "query_sha256": "d2f5af7ac593c38436595ddc123a1f96ae45c0dd4564fa2d10a1d56bec0250b6",
+      "elapsed_seconds": 4.991,
+      "http_status": 200,
+      "assertions": {
+        "persisted_check": "PASS"
+      },
+      "result_truncated": false,
+      "validation": "PASS",
+      "aggregate_result": {
+        "silver_rows": 2810,
+        "header_rows": 19,
+        "valid_rows": 2791,
+        "invalid_rows": 0,
+        "observed_identifiers": 27,
+        "plow_active_observations": 2790,
+        "spreader_active_observations": 164,
+        "repeated_valid_payload_observations": 10,
+        "outside_review_envelope": 677,
+        "total_bronze_rows": 2810,
+        "total_silver_rows": 2810,
+        "total_manifest_rows": 1,
+        "selected_manifest_rows": 1,
+        "attempts": 2,
+        "manifest_bronze_rows": 2810,
+        "manifest_silver_rows": 2810,
+        "manifest_errors": 0,
+        "processing_status": "COMPLETE",
+        "last_successful_stage": "COMPLETE",
+        "manifest_updated_at": "2026-10-29 13:14:58.044428",
+        "metadata_json_sha256": "c2d08257c9d97b523832c5494b93ab59aa1ba3f263a02307d416b28a4df624d0",
+        "policy_json_sha256": "ecb195bd0381aa104a562a121f9e7e43b5f8f97d57e19ffb0698571636b323b5"
+      },
+      "rerun_behavior": "SKIP_VERIFIED_READ_ONLY_NO_DML",
+      "output_row_count": 1
+    },
+    {
+      "label": "second-attempt-start",
+      "kind": "WRITE",
+      "state": "SUCCEEDED",
+      "query_sha256": "eca0d358f38dbbfb352055e133723e074ac5f266433909a140ea23c4ee819d6a",
+      "elapsed_seconds": 3.74,
+      "http_status": 200,
+      "result_truncated": false,
+      "validation": "PASS",
+      "command_metrics": {
+        "num_affected_rows": 1,
+        "num_inserted_rows": 1
+      },
+      "output_row_count": 1
+    },
+    {
+      "label": "second-bronze-write",
+      "kind": "WRITE",
+      "state": "SUCCEEDED",
+      "query_sha256": "0132bd954117f699648e3ff8041e7d8fe60fa9cc25148989bf61b7bb209787ef",
+      "elapsed_seconds": 3.537,
+      "http_status": 200,
+      "result_truncated": false,
+      "validation": "PASS",
+      "command_metrics": {
+        "num_affected_rows": 118159,
+        "num_inserted_rows": 118159
+      },
+      "output_row_count": 1
+    },
+    {
+      "label": "second-bronze-committed",
+      "kind": "WRITE",
+      "state": "SUCCEEDED",
+      "query_sha256": "5bb41e1cca34c912aa5eb3fa88f9ca3fbe3aa67e04f7b8d715e38b9dce1766f7",
+      "elapsed_seconds": 2.222,
+      "http_status": 200,
+      "result_truncated": false,
+      "validation": "PASS",
+      "command_metrics": {
+        "num_affected_rows": 1,
+        "num_inserted_rows": 1
+      },
+      "output_row_count": 1
+    },
+    {
+      "label": "second-silver-write",
+      "kind": "WRITE",
+      "state": "SUCCEEDED",
+      "query_sha256": "d5047285af8002a16db435dd865e54df23e3f1f7fcb827d61510932f2e55ef07",
+      "elapsed_seconds": 3.321,
+      "http_status": 200,
+      "result_truncated": false,
+      "validation": "PASS",
+      "command_metrics": {
+        "num_affected_rows": 118159,
+        "num_inserted_rows": 118159
+      },
+      "output_row_count": 1
+    },
+    {
+      "label": "second-silver-committed",
+      "kind": "WRITE",
+      "state": "SUCCEEDED",
+      "query_sha256": "65335e52b92b5cfab82bf9d22bc9c339f4613a7b7cc26cb44658dc554980d890",
+      "elapsed_seconds": 2.338,
+      "http_status": 200,
+      "result_truncated": false,
+      "validation": "PASS",
+      "command_metrics": {
+        "num_affected_rows": 1,
+        "num_inserted_rows": 1
+      },
+      "output_row_count": 1
+    },
+    {
+      "label": "second-persisted-postflight",
+      "kind": "READ",
+      "state": "SUCCEEDED",
+      "query_sha256": "7fad9c5e392cfb803f73b5403813b56a4e275dd677d010c8f0273e80b5259724",
+      "elapsed_seconds": 5.46,
+      "http_status": 200,
+      "assertions": {
+        "persisted_check": "PASS"
+      },
+      "result_truncated": false,
+      "validation": "PASS",
+      "aggregate_result": {
+        "silver_rows": 118159,
+        "header_rows": 34,
+        "valid_rows": 118125,
+        "invalid_rows": 0,
+        "observed_identifiers": 316,
+        "plow_active_observations": 92747,
+        "spreader_active_observations": 50405,
+        "repeated_valid_payload_observations": 1527,
+        "outside_review_envelope": 0,
+        "total_bronze_rows": 120969,
+        "total_silver_rows": 120969,
+        "total_manifest_rows": 2,
+        "selected_manifest_rows": 1,
+        "attempts": 1,
+        "manifest_bronze_rows": 118159,
+        "manifest_silver_rows": 118159,
+        "manifest_errors": 0,
+        "processing_status": "SILVER_WRITTEN",
+        "last_successful_stage": "SILVER_WRITTEN",
+        "manifest_updated_at": "2026-10-29 13:15:18.290255",
+        "metadata_json_sha256": "778fc636de774318044e854cc1a1c89c0b033b0ec3a8b5722ebdab9f3c386186",
+        "policy_json_sha256": "ecb195bd0381aa104a562a121f9e7e43b5f8f97d57e19ffb0698571636b323b5"
+      },
+      "output_row_count": 1
+    },
+    {
+      "label": "second-complete",
+      "kind": "WRITE",
+      "state": "SUCCEEDED",
+      "query_sha256": "3c1c7ef3024dc3764e331c25b390727942de9cba56b7627d1fb5386808df3f3a",
+      "elapsed_seconds": 2.125,
+      "http_status": 200,
+      "result_truncated": false,
+      "validation": "PASS",
+      "command_metrics": {
+        "num_affected_rows": 1,
+        "num_inserted_rows": 1
+      },
+      "output_row_count": 1
+    },
+    {
+      "label": "second-unchanged-rerun",
+      "kind": "READ",
+      "state": "SUCCEEDED",
+      "query_sha256": "7fad9c5e392cfb803f73b5403813b56a4e275dd677d010c8f0273e80b5259724",
+      "elapsed_seconds": 4.639,
+      "http_status": 200,
+      "assertions": {
+        "persisted_check": "PASS"
+      },
+      "result_truncated": false,
+      "validation": "PASS",
+      "aggregate_result": {
+        "silver_rows": 118159,
+        "header_rows": 34,
+        "valid_rows": 118125,
+        "invalid_rows": 0,
+        "observed_identifiers": 316,
+        "plow_active_observations": 92747,
+        "spreader_active_observations": 50405,
+        "repeated_valid_payload_observations": 1527,
+        "outside_review_envelope": 0,
+        "total_bronze_rows": 120969,
+        "total_silver_rows": 120969,
+        "total_manifest_rows": 2,
+        "selected_manifest_rows": 1,
+        "attempts": 1,
+        "manifest_bronze_rows": 118159,
+        "manifest_silver_rows": 118159,
+        "manifest_errors": 0,
+        "processing_status": "COMPLETE",
+        "last_successful_stage": "COMPLETE",
+        "manifest_updated_at": "2026-10-29 13:15:25.925131",
+        "metadata_json_sha256": "778fc636de774318044e854cc1a1c89c0b033b0ec3a8b5722ebdab9f3c386186",
+        "policy_json_sha256": "ecb195bd0381aa104a562a121f9e7e43b5f8f97d57e19ffb0698571636b323b5"
+      },
+      "rerun_behavior": "SKIP_VERIFIED_READ_ONLY_NO_DML",
+      "output_row_count": 1
+    },
+    {
+      "label": "first-unchanged-after-second-append",
+      "kind": "READ",
+      "state": "SUCCEEDED",
+      "query_sha256": "d2f5af7ac593c38436595ddc123a1f96ae45c0dd4564fa2d10a1d56bec0250b6",
+      "elapsed_seconds": 3.88,
+      "http_status": 200,
+      "assertions": {
+        "persisted_check": "PASS"
+      },
+      "result_truncated": false,
+      "validation": "PASS",
+      "aggregate_result": {
+        "silver_rows": 2810,
+        "header_rows": 19,
+        "valid_rows": 2791,
+        "invalid_rows": 0,
+        "observed_identifiers": 27,
+        "plow_active_observations": 2790,
+        "spreader_active_observations": 164,
+        "repeated_valid_payload_observations": 10,
+        "outside_review_envelope": 677,
+        "total_bronze_rows": 120969,
+        "total_silver_rows": 120969,
+        "total_manifest_rows": 2,
+        "selected_manifest_rows": 1,
+        "attempts": 2,
+        "manifest_bronze_rows": 2810,
+        "manifest_silver_rows": 2810,
+        "manifest_errors": 0,
+        "processing_status": "COMPLETE",
+        "last_successful_stage": "COMPLETE",
+        "manifest_updated_at": "2026-10-29 13:14:58.044428",
+        "metadata_json_sha256": "c2d08257c9d97b523832c5494b93ab59aa1ba3f263a02307d416b28a4df624d0",
+        "policy_json_sha256": "ecb195bd0381aa104a562a121f9e7e43b5f8f97d57e19ffb0698571636b323b5"
+      },
+      "rerun_behavior": "SKIP_VERIFIED_READ_ONLY_NO_DML",
+      "output_row_count": 1
+    },
+    {
+      "label": "final-protected-source",
+      "kind": "READ",
+      "state": "SUCCEEDED",
+      "query_sha256": "98426e9be6d1f462ac87f81a038b2fe8d7cf700f377ce5040fc338e15a8ea5ff",
+      "elapsed_seconds": 1.304,
+      "http_status": 200,
+      "assertions": {
+        "bronze_check": "PASS",
+        "preservation_check": "PASS",
+        "version_check": "PASS",
+        "quality_check": "PASS",
+        "domain_check": "PASS",
+        "evidence_check": "PASS"
+      },
+      "result_truncated": false,
+      "validation": "PASS",
+      "output_row_count": 1
+    },
+    {
+      "label": "final-protected-payload",
+      "kind": "READ",
+      "state": "SUCCEEDED",
+      "query_sha256": "643214751ad8ed9462d828a9711df8ee975169cafd427126a2362f2f590bb2fa",
+      "elapsed_seconds": 1.293,
+      "http_status": 200,
+      "assertions": {
+        "payload_check": "PASS"
+      },
+      "result_truncated": false,
+      "validation": "PASS",
+      "output_row_count": 1
+    },
+    {
+      "label": "final-protected-published",
+      "kind": "READ",
+      "state": "SUCCEEDED",
+      "query_sha256": "bf3918fa7ecc6d2f959296b88bd77aed37e926d8deb098c189fd0b3f75266f00",
+      "elapsed_seconds": 1.56,
+      "http_status": 200,
+      "assertions": {
+        "consumer_check": "PASS",
+        "hourly_check": "PASS"
+      },
+      "result_truncated": false,
+      "validation": "PASS",
+      "output_row_count": 1
+    },
+    {
+      "label": "final-protected-gold",
+      "kind": "READ",
+      "state": "SUCCEEDED",
+      "query_sha256": "f59a12ca67877f925197f78d5cef63cf156d230f0c0385b67935ec4398fa2fc9",
+      "elapsed_seconds": 1.423,
+      "http_status": 200,
+      "result_truncated": false,
+      "validation": "PASS",
+      "protected_gold_baseline": "PASS",
+      "output_row_count": 1
+    },
+    {
+      "label": "final-protected-delta-winterops_bronze_windsor_activity",
+      "kind": "READ",
+      "state": "SUCCEEDED",
+      "query_sha256": "4b7bb201031738f329265e1dda019d357e1741dfe1df85bede138800da3fc4a4",
+      "elapsed_seconds": 2.254,
+      "http_status": 200,
+      "result_truncated": false,
+      "validation": "PASS",
+      "protected_delta_version": 2,
+      "output_row_count": 1
+    },
+    {
+      "label": "final-protected-delta-winterops_silver_windsor_week_sample",
+      "kind": "READ",
+      "state": "SUCCEEDED",
+      "query_sha256": "f966001d73868479663febdfa8666a751a7cf15737bb426f75b1e7f8756df32d",
+      "elapsed_seconds": 2.249,
+      "http_status": 200,
+      "result_truncated": false,
+      "validation": "PASS",
+      "protected_delta_version": 0,
+      "output_row_count": 1
+    }
+  ],
+  "output_row_count_provenance": "Verified response-envelope shape: each read and DML command returned one aggregate/command row; the three CREATE responses were empty successes.",
+  "phase_b_request_elapsed_seconds": 125.133,
+  "phase_b_sql_wall_elapsed_seconds": 130.391,
+  "combined_sql_request_elapsed_seconds": 156.075,
+  "combined_active_sql_elapsed_seconds": 161.333,
+  "slowest_statement": {
+    "label": "fresh-protected-source",
+    "elapsed_seconds": 9.444
+  },
+  "objects": {
+    "workspace.default.winterops_v2_dev_bronze": "CREATED_AND_METADATA_VERIFIED",
+    "workspace.default.winterops_v2_dev_silver": "CREATED_AND_METADATA_VERIFIED",
+    "workspace.default.winterops_v2_dev_manifest": "CREATED_AND_METADATA_VERIFIED"
+  },
+  "native_development_table_rows": {
+    "bronze": 120969,
+    "silver": 120969,
+    "manifest": 2
+  },
+  "native_source_summaries": [
+    {
+      "source_file_name": "snowplow-2026-01-05_2026-01-11.csv",
+      "silver_rows": 2810,
+      "header_rows": 19,
+      "valid_rows": 2791,
+      "invalid_rows": 0,
+      "observed_identifiers": 27,
+      "plow_active_observations": 2790,
+      "spreader_active_observations": 164,
+      "repeated_valid_payload_observations": 10,
+      "outside_review_envelope": 677,
+      "total_bronze_rows": 120969,
+      "total_silver_rows": 120969,
+      "total_manifest_rows": 2,
+      "selected_manifest_rows": 1,
+      "attempts": 2,
+      "manifest_bronze_rows": 2810,
+      "manifest_silver_rows": 2810,
+      "manifest_errors": 0,
+      "processing_status": "COMPLETE",
+      "last_successful_stage": "COMPLETE"
+    },
+    {
+      "source_file_name": "snowplow-2026-01-19_2026-01-25.csv",
+      "silver_rows": 118159,
+      "header_rows": 34,
+      "valid_rows": 118125,
+      "invalid_rows": 0,
+      "observed_identifiers": 316,
+      "plow_active_observations": 92747,
+      "spreader_active_observations": 50405,
+      "repeated_valid_payload_observations": 1527,
+      "outside_review_envelope": 0,
+      "total_bronze_rows": 120969,
+      "total_silver_rows": 120969,
+      "total_manifest_rows": 2,
+      "selected_manifest_rows": 1,
+      "attempts": 1,
+      "manifest_bronze_rows": 118159,
+      "manifest_silver_rows": 118159,
+      "manifest_errors": 0,
+      "processing_status": "COMPLETE",
+      "last_successful_stage": "COMPLETE"
+    }
+  ],
+  "native_controlled_recovery": "PASS_PLANNED_CHECKPOINT_ATTEMPT_2",
+  "planned_interruption": "BRONZE_WRITTEN_VERIFIED_SILVER_ABSENT",
+  "native_unchanged_reruns": "READ_ONLY_SKIP_NO_ADDITIONAL_DML",
+  "earlier_week_preservation": "PASS_FULL_MULTISET_AND_MANIFEST",
+  "runtime_compatibility": {
+    "read_files_json_plain": "PASS",
+    "read_files_json_gzip": "PASS",
+    "binary_file_encoded_fingerprints": "PASS",
+    "create_managed_delta": "PASS",
+    "insert_replace_where": "PASS",
+    "timestamp_ntz_and_explicit_json_schema": "PASS",
+    "except_all_record_multiplicity": "PASS",
+    "manifest_json_roundtrip_and_stage_transitions": "PASS"
+  },
+  "protected_delta_versions": {
+    "workspace.default.winterops_bronze_windsor_activity": 2,
+    "workspace.default.winterops_silver_windsor_week_sample": 0
+  },
+  "protected_gold_totals": {
+    "hourly_buckets": 79,
+    "total_observations": 110311,
+    "plow_active_observations": 79471,
+    "spreader_active_observations": 68870,
+    "repeated_payload_observations": 2210,
+    "minimum_hourly_distinct_trucks": 1,
+    "maximum_hourly_distinct_trucks": 20
+  },
+  "protected_data_sql_preflight_and_postflight": "PASS",
+  "protected_metadata_unchanged": true,
+  "parent_grants_unchanged": true,
+  "warehouse_configuration_unchanged": true,
+  "warehouse_initial_state": "STOPPED",
+  "warehouse_final_state": "RUNNING",
+  "automatic_retries": 0,
+  "rollback_executed": false,
+  "cleanup_or_deletion_executed": false,
+  "notebook_executed": false,
+  "pyspark_adapter_executed": false,
+  "bounds": {
+    "sql_statements_total": 45,
+    "phase_a_sql_statements": 7,
+    "phase_b_sql_statements": 38,
+    "cumulative_active_sql_seconds": 600,
+    "phase_b_sql_wall_seconds": 564,
+    "wait_timeout": "30s",
+    "on_wait_timeout": "CANCEL",
+    "client_deadline_seconds": 45,
+    "row_limit": 200,
+    "byte_limit": 65536,
+    "upload_max_bytes": 268435456,
+    "upload_deadline_seconds": 180,
+    "upload_overwrite": false
+  },
+  "limitations": [
+    "Shared SQL was executed through the Statement Execution API on the existing warehouse; no notebook or optional PySpark adapter was executed.",
+    "Recovery used the approved deliberate Bronze-only application checkpoint; no forced process crash or unexpected-failure fault injection occurred.",
+    "No-write reruns are verified read-only full-content/manifest decisions in this reviewed matrix; they do not establish automatic retries, concurrent exactly-once execution or scheduled ingestion.",
+    "Original CSV bytes were verified locally; native artifact guards verify their immutable serialized transport bytes and source scope, not an independently uploaded CSV.",
+    "Elapsed times include client/transport/startup overhead. Warehouse billing, CPU and execution-engine scan statistics were not measured.",
+    "The prior failed large destination was not retried, overwritten, deleted or adopted. Its recorded HTTP 404 was a point-in-time post-stop observation.",
+    "Native quality summaries cover the listed metrics; detailed identifier participation and gap distributions retain local-report provenance.",
+    "Three-table writes are not one atomic transaction. Unexpected partial failure requires read-only inspection and a separately approved recovery.",
+    "Source-local/naive time, coordinate semantics and identifier lifecycle remain unresolved; observation counts and gaps do not establish actual fleet availability, work duration, downtime, coverage or productivity."
+  ],
+  "offline_validation": {
+    "command": "python -m unittest discover -s tests -v",
+    "tests_run": 110,
+    "failures": 0,
+    "errors": 0,
+    "elapsed_seconds": 2.581,
+    "python_version": "3.14.4",
+    "syntax": "PASS",
+    "aggregate_fixture": "PASS",
+    "analytics_validation_and_product_rendering": "PASS"
+  }
+}

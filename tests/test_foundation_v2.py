@@ -2,6 +2,8 @@
 from dataclasses import replace
 from datetime import date, timedelta
 import csv
+import gzip
+import hashlib
 import io
 import json
 from pathlib import Path
@@ -254,6 +256,43 @@ class FoundationV2Tests(unittest.TestCase):
         self.assertEqual(a,b)
         self.assertEqual(fingerprint(Path(a['local_path'])),a['artifact_sha256'])
         self.assertEqual(len(Path(a['local_path']).read_text().splitlines()),11)
+
+    def test_gzip_export_preserves_exact_decoded_bytes_and_manifest(self):
+        v=self.stage();result=process_local(self.manifest,v)
+        key=result['report']['processing_key'];before=self.manifest.run(key)
+        raw=export_bronze(self.manifest,v,self.root/'exports')
+        zipped=export_bronze(self.manifest,v,self.root/'exports',compression='gzip')
+        decoded=gzip.decompress(Path(zipped['local_path']).read_bytes())
+        self.assertEqual(decoded,Path(raw['local_path']).read_bytes())
+        self.assertEqual(zipped['uncompressed_sha256'],raw['artifact_sha256'])
+        self.assertEqual(hashlib.sha256(decoded).hexdigest(),zipped['uncompressed_sha256'])
+        self.assertEqual(zipped['row_count'],11)
+        self.assertLess(zipped['artifact_bytes'],zipped['uncompressed_bytes'])
+        self.assertEqual(self.manifest.run(key),before)
+        v.verify()
+
+    def test_gzip_export_is_repeatable_and_does_not_replace_plain_export(self):
+        v=self.stage();process_local(self.manifest,v)
+        raw=export_bronze(self.manifest,v,self.root/'exports')
+        a=export_bronze(self.manifest,v,self.root/'exports',compression='gzip')
+        b=export_bronze(self.manifest,v,self.root/'exports',compression='gzip')
+        self.assertEqual(a,b)
+        self.assertNotEqual(a['local_path'],raw['local_path'])
+        self.assertEqual(fingerprint(Path(raw['local_path'])),raw['artifact_sha256'])
+        data=Path(a['local_path']).read_bytes()
+        self.assertEqual(data[4:8],b'\0\0\0\0')
+        with self.assertRaises(ValueError):export_bronze(self.manifest,v,self.root/'exports',compression='zip')
+
+    def test_gzip_native_plan_uses_new_exact_path_and_compressed_fingerprint(self):
+        v=self.stage();process_local(self.manifest,v)
+        artifact=export_bronze(self.manifest,v,self.root/'exports',compression='gzip')
+        path='/Volumes/workspace/default/winterops_raw/v2/'+artifact['artifact_sha256']+'/bronze.jsonl.gz'
+        plan=sql_version_plan(v,path,artifact['artifact_sha256'],artifact['row_count'])
+        self.assertIn(path,plan['input_guard'])
+        self.assertIn(artifact['artifact_sha256'],plan['artifact_guard'])
+        self.assertIn("format => 'json'",plan['bronze_write'])
+        self.assertNotIn("compression =>",plan['bronze_write'])
+        with self.assertRaises(ValueError):sql_version_plan(v,path+'.zip',artifact['artifact_sha256'],11)
 
     def test_no_databricks_write_can_run_without_exact_target_approval(self):
         class NoCompute:

@@ -7,7 +7,9 @@ than pretending to be one Bronze/Silver/manifest transaction.
 from __future__ import annotations
 
 from contextlib import contextmanager
+import gzip
 import hashlib
+import io
 import json
 from pathlib import Path
 import sqlite3
@@ -198,8 +200,14 @@ def process_local(manifest: LocalManifest, version: SourceVersion, policy=Qualit
             raise
 
 
-def export_bronze(manifest, version, output_root: Path):
-    """Immutable NDJSON bridge to Spark; detailed artifact stays outside Git."""
+def export_bronze(manifest, version, output_root: Path, *, compression=None):
+    """Immutable NDJSON bridge; optional gzip changes transport bytes only.
+
+    Fingerprints distinguish the original CSV, decoded NDJSON and upload bytes.
+    Gzip headers omit filename/time; no observation or manifest state is changed.
+    """
+    if compression not in (None,'gzip'):
+        raise ValueError('Unsupported artifact compression')
     root=outside_git(output_root)
     rows=manifest.rows('bronze',version.version_id)
     version.verify()
@@ -209,11 +217,22 @@ def export_bronze(manifest, version, output_root: Path):
     data=''.join(canonical(row)+'\n' for row in rows).encode('utf-8')
     if len(data)>256*1024*1024:
         raise ValueError('EXPORT_ARTIFACT_BOUND_EXCEEDED')
+    decoded_digest=hashlib.sha256(data).hexdigest()
+    decoded_bytes=len(data)
+    if compression=='gzip':
+        buffer=io.BytesIO()
+        with gzip.GzipFile(filename='',mode='wb',fileobj=buffer,mtime=0,compresslevel=6) as encoded:
+            encoded.write(data)
+        data=buffer.getvalue()
+    if len(data)>256*1024*1024:
+        raise ValueError('EXPORT_ARTIFACT_BOUND_EXCEEDED')
     digest=hashlib.sha256(data).hexdigest()
-    target=root/version.version_id/digest/'bronze.jsonl'
+    target=root/version.version_id/digest/('bronze.jsonl.gz' if compression=='gzip' else 'bronze.jsonl')
     target.parent.mkdir(parents=True,exist_ok=True)
     if target.exists():
         if target.read_bytes()!=data: raise ValueError('IMMUTABLE_EXPORT_CONFLICT')
     else:
         with target.open('xb') as output: output.write(data)
-    return dict(source_version_id=version.version_id, artifact_sha256=digest, row_count=len(rows), local_path=str(target))
+    return dict(source_version_id=version.version_id,artifact_sha256=digest,row_count=len(rows),local_path=str(target),
+                compression=compression or 'none',uncompressed_sha256=decoded_digest,
+                artifact_bytes=len(data),uncompressed_bytes=decoded_bytes)
