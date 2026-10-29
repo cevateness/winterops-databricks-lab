@@ -1,0 +1,387 @@
+{
+  "status": "PREPARED_NOT_APPROVED_NOT_EXECUTED",
+  "plan_sha256": "3111d0694d346ba7ccef4d542f5866d3b1b9b763e69f44a007976e48a7432bf8",
+  "digest_contract": "SHA-256 of the exact UTF-8 LF private plan bytes",
+  "sql_statements": 45,
+  "bounds": {
+    "sql_phase_seconds": 600,
+    "wait_timeout": "30s",
+    "on_wait_timeout": "CANCEL",
+    "client_deadline_seconds": 45,
+    "row_limit": 200,
+    "byte_limit": 65536,
+    "upload_deadline_seconds": 180,
+    "upload_max_bytes": 16777216,
+    "total_upload_max_bytes": 33554432,
+    "metadata_deadline_seconds": 15,
+    "file_verification_get_deadline_seconds": 45,
+    "automatic_retries": 0
+  },
+  "new_gold_views": [
+    "workspace.default.winterops_v2_gold_hourly_observations",
+    "workspace.default.winterops_v2_gold_daily_activity",
+    "workspace.default.winterops_v2_gold_weekly_quality"
+  ],
+  "original_csvs": [
+    {
+      "kind": "original_csv",
+      "source_file_name": "snowplow-2026-01-05_2026-01-11.csv",
+      "source_url": "https://opendata.citywindsor.ca/Uploads/snowplow-2026-01-05_2026-01-11.csv",
+      "source_file_sha256": "271c9339a42043f441b6c17e82dd309609db4b20e9953b9f368a95ec472d763d",
+      "bytes": 221818,
+      "volume_path": "/Volumes/workspace/default/winterops_raw/original_csv/snowplow-2026-01-05_2026-01-11.csv/271c9339a42043f441b6c17e82dd309609db4b20e9953b9f368a95ec472d763d/snowplow-2026-01-05_2026-01-11.csv",
+      "action": "UPLOAD_IF_ABSENT_ELSE_VERIFY_IDENTICAL",
+      "overwrite": false,
+      "source_week_start": "2026-01-05",
+      "source_week_end_exclusive": "2026-01-12"
+    },
+    {
+      "kind": "original_csv",
+      "source_file_name": "snowplow-2026-01-12_2026-01-18.csv",
+      "source_url": "https://opendata.citywindsor.ca/Uploads/snowplow-2026-01-12_2026-01-18.csv",
+      "source_file_sha256": "f5d7633c910e1ad6be23b4111445bf0bc14fe2071c6ea0f0d4cd456295ea9e94",
+      "bytes": 8671212,
+      "volume_path": "/Volumes/workspace/default/winterops_raw/snowplow-2026-01-12_2026-01-18.csv",
+      "action": "VERIFY_AND_REUSE",
+      "overwrite": false,
+      "source_week_start": "2026-01-12",
+      "source_week_end_exclusive": "2026-01-19"
+    },
+    {
+      "kind": "original_csv",
+      "source_file_name": "snowplow-2026-01-19_2026-01-25.csv",
+      "source_url": "https://opendata.citywindsor.ca/Uploads/snowplow-2026-01-19_2026-01-25.csv",
+      "source_file_sha256": "b78d0fb82c8e3c5204ee79eea7a03417cd54bc935ead9b04577a30dc908c7c49",
+      "bytes": 9302196,
+      "volume_path": "/Volumes/workspace/default/winterops_raw/original_csv/snowplow-2026-01-19_2026-01-25.csv/b78d0fb82c8e3c5204ee79eea7a03417cd54bc935ead9b04577a30dc908c7c49/snowplow-2026-01-19_2026-01-25.csv",
+      "action": "UPLOAD_IF_ABSENT_ELSE_VERIFY_IDENTICAL",
+      "overwrite": false,
+      "source_week_start": "2026-01-19",
+      "source_week_end_exclusive": "2026-01-26"
+    }
+  ],
+  "uploads": [
+    {
+      "kind": "original_csv",
+      "volume_path": "/Volumes/workspace/default/winterops_raw/original_csv/snowplow-2026-01-05_2026-01-11.csv/271c9339a42043f441b6c17e82dd309609db4b20e9953b9f368a95ec472d763d/snowplow-2026-01-05_2026-01-11.csv",
+      "sha256": "271c9339a42043f441b6c17e82dd309609db4b20e9953b9f368a95ec472d763d",
+      "bytes": 221818,
+      "overwrite": false
+    },
+    {
+      "kind": "middle_jsonl_gzip",
+      "volume_path": "/Volumes/workspace/default/winterops_raw/foundation_v2_dev/73e9338d8a7e78ba01827806b2172a715a50b90c819959ba1ade17632f2d4433/2e67e1457d5a581804e66a33d8b1ddac4c21914dd0aaeef3653cb8b886f34d39/bronze.jsonl.gz",
+      "sha256": "2e67e1457d5a581804e66a33d8b1ddac4c21914dd0aaeef3653cb8b886f34d39",
+      "bytes": 9227828,
+      "overwrite": false
+    },
+    {
+      "kind": "original_csv",
+      "volume_path": "/Volumes/workspace/default/winterops_raw/original_csv/snowplow-2026-01-19_2026-01-25.csv/b78d0fb82c8e3c5204ee79eea7a03417cd54bc935ead9b04577a30dc908c7c49/snowplow-2026-01-19_2026-01-25.csv",
+      "sha256": "b78d0fb82c8e3c5204ee79eea7a03417cd54bc935ead9b04577a30dc908c7c49",
+      "bytes": 9302196,
+      "overwrite": false
+    }
+  ],
+  "expected": {
+    "bronze_rows": 231306,
+    "silver_rows": 231306,
+    "header_rows": 79,
+    "valid_rows": 231227,
+    "invalid_rows": 0,
+    "complete_manifests": 3,
+    "hourly_buckets": 236,
+    "plow_observations": 175008,
+    "spreader_observations": 119439,
+    "review_envelope_warnings": 863
+  },
+  "statements": [
+    {
+      "label": "before-legacy-source",
+      "kind": "READ",
+      "query_sha256": "98426e9be6d1f462ac87f81a038b2fe8d7cf700f377ce5040fc338e15a8ea5ff",
+      "expected": null
+    },
+    {
+      "label": "before-legacy-payload",
+      "kind": "READ",
+      "query_sha256": "643214751ad8ed9462d828a9711df8ee975169cafd427126a2362f2f590bb2fa",
+      "expected": null
+    },
+    {
+      "label": "before-legacy-published",
+      "kind": "READ",
+      "query_sha256": "bf3918fa7ecc6d2f959296b88bd77aed37e926d8deb098c189fd0b3f75266f00",
+      "expected": null
+    },
+    {
+      "label": "before-legacy-gold",
+      "kind": "READ",
+      "query_sha256": "85eb38a66034eeaf1cdb3d9c908324d69e37aec75c61d53e46ca7078b63bb4e4",
+      "expected": null
+    },
+    {
+      "label": "before-legacy-bronze-history",
+      "kind": "READ",
+      "query_sha256": "4b7bb201031738f329265e1dda019d357e1741dfe1df85bede138800da3fc4a4",
+      "expected": null
+    },
+    {
+      "label": "before-legacy-silver-history",
+      "kind": "READ",
+      "query_sha256": "f966001d73868479663febdfa8666a751a7cf15737bb426f75b1e7f8756df32d",
+      "expected": null
+    },
+    {
+      "label": "before-outer-manifest-snapshot",
+      "kind": "READ",
+      "query_sha256": "ea13fddc2172976ddb455ec34842c164b39c200dc5bea5566c63a0bf40508f57",
+      "expected": {
+        "rows": 2,
+        "compare_exactly_with_after": true
+      }
+    },
+    {
+      "label": "before-original-2026-01-05",
+      "kind": "READ",
+      "query_sha256": "19ece066426e4764122389324e714775a7a0d81c939ec2232a47a6dba133a204",
+      "expected": null
+    },
+    {
+      "label": "before-original-2026-01-12",
+      "kind": "READ",
+      "query_sha256": "67b8fdf03203edcbbef26bb94389a7b589ae35b22e763607aab99f0abe26b944",
+      "expected": null
+    },
+    {
+      "label": "before-original-2026-01-19",
+      "kind": "READ",
+      "query_sha256": "db14ed6dc36a9e14a73c595a676c07892c01eb9e7f08d13c5810a53e2f976740",
+      "expected": null
+    },
+    {
+      "label": "before-existing-2026-01-05",
+      "kind": "READ",
+      "query_sha256": "c0a7d71bfb82dd3a4bd10db8da9442ec6cd6d3c0533ab208384b5b918b64f9e3",
+      "expected": null
+    },
+    {
+      "label": "before-existing-2026-01-19",
+      "kind": "READ",
+      "query_sha256": "2550f5eb7436109251e48a8a43d5ae7e11c4ac47931bed43f3f567c948c9f9de",
+      "expected": null
+    },
+    {
+      "label": "middle-artifact",
+      "kind": "READ",
+      "query_sha256": "940ac858d71abf109994bcb12ff2009744f9b4bbff50692f3f03a307c0f09b66",
+      "expected": null
+    },
+    {
+      "label": "middle-input",
+      "kind": "READ",
+      "query_sha256": "e0a1ae7349c1f90a60bb2b2db3fbc6748d830fbd7fc7543a1e4ecf5969de4fcc",
+      "expected": null
+    },
+    {
+      "label": "middle-new-scope",
+      "kind": "READ",
+      "query_sha256": "78abf8934c151af5588612616d099b6bde194aab8abc37a61d984bdeb7a34824",
+      "expected": null
+    },
+    {
+      "label": "middle-manifest-PROCESSING",
+      "kind": "WRITE",
+      "query_sha256": "bc09116b4dc00aa075c05d4549a809a63c5acd1e893c308909595ec81d396f13",
+      "expected": null
+    },
+    {
+      "label": "middle-bronze-append",
+      "kind": "WRITE",
+      "query_sha256": "9a0a9bc8cf9e279e303ec4f67799ee1ae91307f4dd3329cec510d06e877790c5",
+      "expected": {
+        "inserted_rows": 110337
+      }
+    },
+    {
+      "label": "middle-manifest-BRONZE_WRITTEN",
+      "kind": "WRITE",
+      "query_sha256": "5a95417d5cbd7cdef491b81973b894d26b5f2051a1a578000f768c69a2aba7ac",
+      "expected": null
+    },
+    {
+      "label": "middle-silver-append",
+      "kind": "WRITE",
+      "query_sha256": "3288f3a7e2c809ef7b3f32ef74811cddb0ae4f60bc72a8747a6a901036eb5c73",
+      "expected": {
+        "inserted_rows": 110337
+      }
+    },
+    {
+      "label": "middle-manifest-SILVER_WRITTEN",
+      "kind": "WRITE",
+      "query_sha256": "2af24a53fd985bc6ad8ced9e4e3aa0e22c204a7bd51bda9950f29bf00048160b",
+      "expected": null
+    },
+    {
+      "label": "middle-full-content-postflight",
+      "kind": "READ",
+      "query_sha256": "19a9e471e9a59fb3beb2be2e9cd431538ff8fcb26b00539a55979bb0468f92a0",
+      "expected": null
+    },
+    {
+      "label": "middle-manifest-COMPLETE",
+      "kind": "WRITE",
+      "query_sha256": "130cf3f24d9ae155bd882259e5354b4643719a206c3d2797b9384be69344375f",
+      "expected": null
+    },
+    {
+      "label": "threeweek-complete-selection",
+      "kind": "READ",
+      "query_sha256": "b366db3cf1f27fd26f2acc18c9d6ea5d22b8e2ae828fea3758ff94a46eeb7d92",
+      "expected": null
+    },
+    {
+      "label": "candidate-gold-reconciliation",
+      "kind": "READ",
+      "query_sha256": "384534b17b1b1eb93325730abae07db695f8c027847a556e0bd7bf28f086bfed",
+      "expected": null
+    },
+    {
+      "label": "candidate-weekly-aggregates",
+      "kind": "READ",
+      "query_sha256": "6156a8983784c525e795eb4e03d046de3be88e87b20124ad59c42b60fae0b70d",
+      "expected": null
+    },
+    {
+      "label": "create-gold-hourly",
+      "kind": "CREATE_VIEW",
+      "query_sha256": "f2e6c43b4af78948ad0f292adfcb5f9f3b39fb3aa644c9dfc8cad1867310201a",
+      "expected": {
+        "target": "workspace.default.winterops_v2_gold_hourly_observations"
+      }
+    },
+    {
+      "label": "create-gold-daily",
+      "kind": "CREATE_VIEW",
+      "query_sha256": "ab8c6df33f34a126be7ceecb609ab81c120d7eb232ba029b0c20af3b6254f43f",
+      "expected": {
+        "target": "workspace.default.winterops_v2_gold_daily_activity"
+      }
+    },
+    {
+      "label": "create-gold-weekly",
+      "kind": "CREATE_VIEW",
+      "query_sha256": "6db0fe9d35ba9c7fd4ca638d17b81e212a26bf5317bd8c7243b4cda98a5203da",
+      "expected": {
+        "target": "workspace.default.winterops_v2_gold_weekly_quality"
+      }
+    },
+    {
+      "label": "published-gold-reconciliation",
+      "kind": "READ",
+      "query_sha256": "aed514fae8b40680311ed36aa6c6e10b0c759829cc0365238661db29eaae8488",
+      "expected": null
+    },
+    {
+      "label": "published-hourly-summary",
+      "kind": "READ",
+      "query_sha256": "e7ae5c530034f9e75bcd6b3bcc8ee2aec70b97c2430eb29416c9ab196c6ba39e",
+      "expected": null
+    },
+    {
+      "label": "published-daily",
+      "kind": "READ",
+      "query_sha256": "26c66c067abf79068c5e9ba56319577aa5135c6d3beb2617b8ca0c09e770578e",
+      "expected": null
+    },
+    {
+      "label": "published-weekly",
+      "kind": "READ",
+      "query_sha256": "1b3f1b98a0cb58ecb7459f54d89c64b311c1642ced03586b0e2fe8335b4f8125",
+      "expected": null
+    },
+    {
+      "label": "middle-unchanged-rerun-content-decision",
+      "kind": "READ",
+      "query_sha256": "19a9e471e9a59fb3beb2be2e9cd431538ff8fcb26b00539a55979bb0468f92a0",
+      "expected": null
+    },
+    {
+      "label": "after-outer-manifest-snapshot",
+      "kind": "READ",
+      "query_sha256": "ea13fddc2172976ddb455ec34842c164b39c200dc5bea5566c63a0bf40508f57",
+      "expected": {
+        "rows": 2,
+        "must_equal_before_snapshot": true
+      }
+    },
+    {
+      "label": "after-existing-2026-01-05",
+      "kind": "READ",
+      "query_sha256": "c0a7d71bfb82dd3a4bd10db8da9442ec6cd6d3c0533ab208384b5b918b64f9e3",
+      "expected": null
+    },
+    {
+      "label": "after-existing-2026-01-19",
+      "kind": "READ",
+      "query_sha256": "2550f5eb7436109251e48a8a43d5ae7e11c4ac47931bed43f3f567c948c9f9de",
+      "expected": null
+    },
+    {
+      "label": "after-legacy-source",
+      "kind": "READ",
+      "query_sha256": "98426e9be6d1f462ac87f81a038b2fe8d7cf700f377ce5040fc338e15a8ea5ff",
+      "expected": null
+    },
+    {
+      "label": "after-legacy-payload",
+      "kind": "READ",
+      "query_sha256": "643214751ad8ed9462d828a9711df8ee975169cafd427126a2362f2f590bb2fa",
+      "expected": null
+    },
+    {
+      "label": "after-legacy-published",
+      "kind": "READ",
+      "query_sha256": "bf3918fa7ecc6d2f959296b88bd77aed37e926d8deb098c189fd0b3f75266f00",
+      "expected": null
+    },
+    {
+      "label": "after-legacy-gold",
+      "kind": "READ",
+      "query_sha256": "85eb38a66034eeaf1cdb3d9c908324d69e37aec75c61d53e46ca7078b63bb4e4",
+      "expected": null
+    },
+    {
+      "label": "after-legacy-bronze-history",
+      "kind": "READ",
+      "query_sha256": "4b7bb201031738f329265e1dda019d357e1741dfe1df85bede138800da3fc4a4",
+      "expected": null
+    },
+    {
+      "label": "after-legacy-silver-history",
+      "kind": "READ",
+      "query_sha256": "f966001d73868479663febdfa8666a751a7cf15737bb426f75b1e7f8756df32d",
+      "expected": null
+    },
+    {
+      "label": "after-original-2026-01-05",
+      "kind": "READ",
+      "query_sha256": "19ece066426e4764122389324e714775a7a0d81c939ec2232a47a6dba133a204",
+      "expected": null
+    },
+    {
+      "label": "after-original-2026-01-12",
+      "kind": "READ",
+      "query_sha256": "67b8fdf03203edcbbef26bb94389a7b589ae35b22e763607aab99f0abe26b944",
+      "expected": null
+    },
+    {
+      "label": "after-original-2026-01-19",
+      "kind": "READ",
+      "query_sha256": "db14ed6dc36a9e14a73c595a676c07892c01eb9e7f08d13c5810a53e2f976740",
+      "expected": null
+    }
+  ],
+  "stop_and_recovery": "Stop on first failure, mismatch, timeout, cancellation or truncation. No automatic retry, cleanup, compensation, replacement or rollback. Preserve immutable uploads and committed stages; inspect full contents/status before proposing a separately approved scoped resume. Never replay append after a partial write or recreate an existing view."
+}

@@ -2,6 +2,8 @@
 
 **The approved revised SQL-warehouse integration passed.** Both immutable source versions coexist in three isolated development tables; recovery, read-only rerun decisions, full-record reconciliation and preservation of the published one-week pipeline passed. This verifies shared SQL through the Statement Execution API, not the optional PySpark adapter or a notebook. See [per-statement sanitized evidence](DATA_FOUNDATION_V2_NATIVE_RESULTS.json) and [executed scope](DATA_FOUNDATION_V2_INTEGRATION.md).
 
+**Later three-week work:** PR #7 is merged. The middle-week V2 backfill and new multi-week Gold are now implemented/tested locally, with a separate bounded native scope awaiting approval. This report remains the actual earlier two-week native evidence. See [three-week status](THREE_WEEK_GOLD.md).
+
 ## Revision, approval and readiness
 
 Work began from merged PR #6 / main `fceb46a` on `feat/v2-native-integration`. The executed gzip plan was pinned at `c1d8de3c3e8835694e64709742d213f34b0cd933` in PR #7, with SHA-256 `97c0018f94f62555de1680eb243381db41d50e8118ba7bfbc4be249335d25879`. The user separately approved that exact revised scope after the initial upload stop. Original uncommitted `.gitignore`, `.vscode/settings.json` and `databricks.yml` bytes were preserved.

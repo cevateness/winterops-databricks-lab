@@ -4,6 +4,8 @@
 
 **Native follow-up:** After the initial large-upload deadline stop and separate explicit approval of gzip transport, the real artifacts, three development tables, scoped writes, two COMPLETE manifests, planned recovery and no-write reruns passed all 38 integration statements. The original one-week pipeline remains unchanged. See [actual evidence, timings and limitations](DATA_FOUNDATION_V2_NATIVE.md).
 
+**Three-week follow-up:** The middle week has now been staged and processed locally with the same contracts, and new version-aware Gold SQL is tested offline. Its native append/publication remains pending; the original native evidence below is unchanged. See [three-week contracts and results](THREE_WEEK_GOLD.md).
+
 ## Official source contract
 
 The [City of Windsor activity catalogue](https://opendata.citywindsor.ca/details/224), reviewed 2026-10-29, describes a feed triggered when plow/wing or spreader activity is detected, with a nominal **15-second recording interval**. It describes weekly publication on Mondays during the winter collection season. This is a selected activity feed, not continuous all-vehicle telemetry or a fleet roster. True/false equipment flags describe the device's reported operating state at an observation. The legacy page now warns that it is no longer updated and links to a new portal's Snow Plow Routes layer; that route geometry must not silently replace these historical activity CSVs.
