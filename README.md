@@ -8,6 +8,8 @@
 
 **Gold analytics expansion:** Daily activity, hourly/daily equipment composition and aggregate fleet-reporting diagnostics passed native Databricks validation on 2026-10-29: both guards and all eight products succeeded unchanged. See [actual metrics, compatibility and timings](docs/GOLD_ANALYTICS_NATIVE_VALIDATION.md), [sanitized aggregate evidence](docs/GOLD_ANALYTICS_NATIVE_RESULTS.json), and [metric definitions, queries, four-chart dashboard and architecture review](docs/GOLD_ANALYTICS_PRODUCTS.md). No Databricks objects were changed.
 
+**Data Foundation V2:** Reusable multi-week local staging, immutable source versions, a recoverable manifest, observation-preserving Bronze/Silver and configurable quality diagnostics are implemented. January 5–11 and January 19–25 were processed privately outside Git; the original workspace pipeline is unchanged. See [source contract, implementation and trade-offs](docs/DATA_FOUNDATION_V2.md), [aggregate source evidence](docs/DATA_FOUNDATION_V2_SOURCE_REPORT.json) and [one proposed bounded integration scope](docs/DATA_FOUNDATION_V2_INTEGRATION.md). Native V2 writes are **NOT RUN** pending explicit approval.
+
 **Primary objective:** Learn reproducible data engineering, lakehouse architecture, PySpark/SQL, data quality, MLOps, and eventually decision analytics. **Secondary:** Public technical portfolio. **Longer term:** Explore commercial winter-service decision intelligence only if actual evidence warrants it; this version is non-commercial.
 
 ## Architecture today
@@ -58,6 +60,7 @@ Synthetic learning exercises (not the real pipeline) live in notebooks 01 and 02
 - `src/winterops/analytics.py` and packaged `src/winterops/sql/` — shared bounded SQL plan and offline reference counts.
 - `scripts/render_analytics_sql.py` — offline renderer requiring a reviewed file SHA-256 and expected summary; `--validation-only` emits queries without view DDL.
 - `src/winterops/gold_products.py` and `scripts/render_gold_products.py` — SELECT-only analytical products, independent Python reference calculations and offline dashboard SQL rendering.
+- `sources.py`, `foundation.py`, `ingestion.py`, `spark_ingestion.py` and `scripts/windsor_history.py` — V2 discovery/staging, version/policy manifest, local incremental processing, aggregate diagnostics and isolated native plans. Record-bearing files are rejected under Git roots.
 - `scripts/check_databricks.py` — named-profile/host-gated read-only CLI probe with sanitized output.
 - `data/fixtures/windsor_week_2026_01_12_18_summary.json` — **aggregate results only**, no source telemetry.
 - `.github/workflows/ci.yml` — offline tests on public GitHub, no Databricks secrets.
@@ -90,7 +93,7 @@ python scripts/validate_quality_snapshot.py data/fixtures/windsor_week_2026_01_1
 
 The aggregate fixture verifies **reported** invariants; it does not query Databricks or replace integration tests.
 
-The expanded suite has 80 tests: offline contracts, synthetic reference metrics, SQLite-adapted SQL reconciliation, mocked CLI checks and notebook mode dispatch. SQLite tests adapt dialect/type details; they do **not** verify new Databricks SQL parsing, native NTZ/DECIMAL behavior or Unity Catalog access. Notebook 06 defaults to `mode=render`; its apply path requires explicit approval and must not be used to replace the existing published views by default. The new product renderer never executes SQL or creates objects.
+The expanded suite has 107 tests: existing analytics/contracts plus synthetic V2 revisions, policy changes, reruns, multiple weeks, interruptions, corruption/repair, source-quality edge cases and SQL/Python reconciliation. SQLite tests adapt dialect/type details; they do **not** verify native V2 Spark/Delta writes or privileges. Notebook 06 defaults to `mode=render`; its apply path requires explicit approval and must not be used to replace the existing published views by default. The product and V2 plan renderers never execute SQL or create objects.
 
 ## Data handling, attribution and source claims
 

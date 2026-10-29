@@ -1,0 +1,336 @@
+{
+  "verification_date": "2026-10-29",
+  "baseline_commit": "929ffd669631c94277f2ccd11209fc7a86a55f4e",
+  "status": "PASS_LOCAL_ONLY",
+  "provenance": "Actual local public-file staging, portable Python transformations and private SQLite persistence; not Databricks execution",
+  "catalogue_url": "https://opendata.citywindsor.ca/details/224",
+  "licence_url": "https://opendata.citywindsor.ca/Documents/OpenDataTermsofUse.pdf",
+  "attribution": "Contains information licensed under the Open Government Licence ? The Corporation of the City of Windsor.",
+  "source_contract_reviewed": "Activity-triggered plow/wing/spreader telemetry; nominal 15-second recording while activity is detected; timezone and identifier lifecycle remain unverified",
+  "source_format": {
+    "format": "CSV",
+    "encoding": "UTF-8 (BOM accepted)",
+    "delimiter": ",",
+    "outer_header": true,
+    "quote_character": "\"",
+    "actual_columns_both_files": [
+      "Latitude",
+      "Longitude",
+      "Date time",
+      "Plow status",
+      "Spreader status",
+      "Engine status",
+      "Truck"
+    ],
+    "observed_timestamp_text_format": "yyyy-MM-dd HH:mm:ss",
+    "observed_status_spellings": [
+      "True",
+      "False"
+    ],
+    "transport_content_types": [
+      "application/octet-stream"
+    ]
+  },
+  "local_retrieval_semantics": "Approved public files were downloaded to private local storage, then imported into immutable staging; per-version retrieved_at_utc records that LOCAL_IMPORT, not an exact HTTP request time",
+  "reports": [
+    {
+      "source_file_name": "snowplow-2026-01-05_2026-01-11.csv",
+      "source_url": "https://opendata.citywindsor.ca/Uploads/snowplow-2026-01-05_2026-01-11.csv",
+      "source_file_sha256": "271c9339a42043f441b6c17e82dd309609db4b20e9953b9f368a95ec472d763d",
+      "source_version_id": "8ccb2a2dd5ec057361cf6d7cc7193b5acbdd858b84102ba550a92febe9bb4ed1",
+      "covered_start": "2026-01-05",
+      "covered_end_exclusive": "2026-01-12",
+      "retrieved_at_utc": "2026-10-28T22:17:14.454697+00:00",
+      "source_bytes": 221818,
+      "processing_key": "f07ba6a0ad499a9baf53d2f7c46df09607523371428791593143a29b56f6b466",
+      "pipeline_version": "windsor-foundation-v2.1",
+      "quality_policy": {
+        "review_lat_min": 42.1,
+        "review_lat_max": 42.5,
+        "review_lon_min": -83.3,
+        "review_lon_max": -82.6,
+        "nominal_interval_seconds": 15,
+        "long_gap_seconds": 1800,
+        "dense_hour_observations": 1000
+      },
+      "quality_policy_sha256": "03829a2ce3b308a45e0205ca12a5288e5cb08b97189cf20b69c0e37d4c546e08",
+      "bronze_rows": 2810,
+      "silver_rows": 2810,
+      "header_rows": 19,
+      "valid_rows": 2791,
+      "invalid_rows": 0,
+      "csv_width_mismatch_rows": 0,
+      "required_source_columns": [
+        "Latitude",
+        "Longitude",
+        "Date time",
+        "Plow status",
+        "Spreader status",
+        "Engine status",
+        "Truck"
+      ],
+      "missing_values_excluding_headers": {},
+      "invalid_issue_counts": {},
+      "warning_counts": {
+        "OUTSIDE_REVIEW_ENVELOPE": 677
+      },
+      "status_counts_excluding_headers": {
+        "plow_active": {
+          "true": 2790,
+          "false": 1,
+          "unknown": 0
+        },
+        "spreader_active": {
+          "true": 164,
+          "false": 2627,
+          "unknown": 0
+        },
+        "engine_active": {
+          "true": 2791,
+          "false": 0,
+          "unknown": 0
+        }
+      },
+      "distinct_valid_identifiers": 27,
+      "hourly_buckets": 42,
+      "minimum_hourly_identifiers": 1,
+      "maximum_hourly_identifiers": 2,
+      "daily_identifier_counts": [
+        {
+          "source_local_naive_day": "2026-01-05",
+          "observed_identifier_count": 4
+        },
+        {
+          "source_local_naive_day": "2026-01-06",
+          "observed_identifier_count": 4
+        },
+        {
+          "source_local_naive_day": "2026-01-07",
+          "observed_identifier_count": 7
+        },
+        {
+          "source_local_naive_day": "2026-01-08",
+          "observed_identifier_count": 5
+        },
+        {
+          "source_local_naive_day": "2026-01-09",
+          "observed_identifier_count": 3
+        },
+        {
+          "source_local_naive_day": "2026-01-10",
+          "observed_identifier_count": 3
+        },
+        {
+          "source_local_naive_day": "2026-01-11",
+          "observed_identifier_count": 3
+        }
+      ],
+      "identifier_reporting_days": [
+        {
+          "days_with_observations": 1,
+          "identifier_count": 25
+        },
+        {
+          "days_with_observations": 2,
+          "identifier_count": 2
+        }
+      ],
+      "valid_identifier_format_counts": {
+        "digits_only": 27,
+        "other": 0
+      },
+      "first_valid_source_time": "2026-01-05 07:26:01",
+      "last_valid_source_time": "2026-01-11 23:33:45",
+      "repeated_valid_payload_groups": 5,
+      "repeated_valid_payload_observations": 10,
+      "excess_valid_payload_observations": 5,
+      "conflicting_identifier_timestamp_groups": 18,
+      "consecutive_valid_timestamp_pairs": 2764,
+      "zero_gap_pairs": 23,
+      "positive_below_nominal_pairs": 228,
+      "nominal_interval_pairs": 2385,
+      "above_nominal_within_threshold_pairs": 112,
+      "long_gap_pairs": 16,
+      "minimum_positive_source_clock_gap_seconds": 1.0,
+      "maximum_source_clock_gap_seconds": 7765.0,
+      "dense_identifier_hours": 0,
+      "reconciliation": "PASS",
+      "timestamp_semantics": "source-local/naive; timezone unverified"
+    },
+    {
+      "source_file_name": "snowplow-2026-01-19_2026-01-25.csv",
+      "source_url": "https://opendata.citywindsor.ca/Uploads/snowplow-2026-01-19_2026-01-25.csv",
+      "source_file_sha256": "b78d0fb82c8e3c5204ee79eea7a03417cd54bc935ead9b04577a30dc908c7c49",
+      "source_version_id": "d2a89e9a8582aefdca97264a482d51a6116b827a71f0241a0e1f0149ed14f97a",
+      "covered_start": "2026-01-19",
+      "covered_end_exclusive": "2026-01-26",
+      "retrieved_at_utc": "2026-10-28T22:17:15.762288+00:00",
+      "source_bytes": 9302196,
+      "processing_key": "bb478f6992172da1298db36c3a5d92aa4c349769064ec66002f347a2458e415c",
+      "pipeline_version": "windsor-foundation-v2.1",
+      "quality_policy": {
+        "review_lat_min": 42.1,
+        "review_lat_max": 42.5,
+        "review_lon_min": -83.3,
+        "review_lon_max": -82.6,
+        "nominal_interval_seconds": 15,
+        "long_gap_seconds": 1800,
+        "dense_hour_observations": 1000
+      },
+      "quality_policy_sha256": "03829a2ce3b308a45e0205ca12a5288e5cb08b97189cf20b69c0e37d4c546e08",
+      "bronze_rows": 118159,
+      "silver_rows": 118159,
+      "header_rows": 34,
+      "valid_rows": 118125,
+      "invalid_rows": 0,
+      "csv_width_mismatch_rows": 0,
+      "required_source_columns": [
+        "Latitude",
+        "Longitude",
+        "Date time",
+        "Plow status",
+        "Spreader status",
+        "Engine status",
+        "Truck"
+      ],
+      "missing_values_excluding_headers": {},
+      "invalid_issue_counts": {},
+      "warning_counts": {},
+      "status_counts_excluding_headers": {
+        "plow_active": {
+          "true": 92747,
+          "false": 25378,
+          "unknown": 0
+        },
+        "spreader_active": {
+          "true": 50405,
+          "false": 67720,
+          "unknown": 0
+        },
+        "engine_active": {
+          "true": 118125,
+          "false": 0,
+          "unknown": 0
+        }
+      },
+      "distinct_valid_identifiers": 316,
+      "hourly_buckets": 115,
+      "minimum_hourly_identifiers": 1,
+      "maximum_hourly_identifiers": 18,
+      "daily_identifier_counts": [
+        {
+          "source_local_naive_day": "2026-01-19",
+          "observed_identifier_count": 94
+        },
+        {
+          "source_local_naive_day": "2026-01-20",
+          "observed_identifier_count": 18
+        },
+        {
+          "source_local_naive_day": "2026-01-21",
+          "observed_identifier_count": 80
+        },
+        {
+          "source_local_naive_day": "2026-01-22",
+          "observed_identifier_count": 26
+        },
+        {
+          "source_local_naive_day": "2026-01-23",
+          "observed_identifier_count": 15
+        },
+        {
+          "source_local_naive_day": "2026-01-25",
+          "observed_identifier_count": 97
+        }
+      ],
+      "identifier_reporting_days": [
+        {
+          "days_with_observations": 1,
+          "identifier_count": 302
+        },
+        {
+          "days_with_observations": 2,
+          "identifier_count": 14
+        }
+      ],
+      "valid_identifier_format_counts": {
+        "digits_only": 316,
+        "other": 0
+      },
+      "first_valid_source_time": "2026-01-19 00:00:09",
+      "last_valid_source_time": "2026-01-25 23:59:00",
+      "repeated_valid_payload_groups": 757,
+      "repeated_valid_payload_observations": 1527,
+      "excess_valid_payload_observations": 770,
+      "conflicting_identifier_timestamp_groups": 1795,
+      "consecutive_valid_timestamp_pairs": 117809,
+      "zero_gap_pairs": 2569,
+      "positive_below_nominal_pairs": 26541,
+      "nominal_interval_pairs": 75693,
+      "above_nominal_within_threshold_pairs": 12872,
+      "long_gap_pairs": 134,
+      "minimum_positive_source_clock_gap_seconds": 1.0,
+      "maximum_source_clock_gap_seconds": 333241.0,
+      "dense_identifier_hours": 0,
+      "reconciliation": "PASS",
+      "timestamp_semantics": "source-local/naive; timezone unverified"
+    }
+  ],
+  "actions": [
+    {
+      "filename": "snowplow-2026-01-05_2026-01-11.csv",
+      "action": "PROCESSED",
+      "discovery": "NEW_SOURCE",
+      "elapsed_seconds": 0.612,
+      "artifact_sha256": "375d6c5980ed66f61b2dcb0601f639f5e2a3a20ce546ac08d3e20fc60c17edd3",
+      "artifact_bytes": 3619379
+    },
+    {
+      "filename": "snowplow-2026-01-05_2026-01-11.csv",
+      "action": "SKIP_VERIFIED"
+    },
+    {
+      "filename": "snowplow-2026-01-19_2026-01-25.csv",
+      "action": "PROCESSED",
+      "discovery": "NEW_SOURCE",
+      "elapsed_seconds": 47.65,
+      "artifact_sha256": "94b6464999a58757ea6977cdc3d8b6e402b19edac2b9843369e7c1a18738c172",
+      "artifact_bytes": 152492496
+    }
+  ],
+  "earlier_week_unchanged": true,
+  "unchanged_rerun": "SKIP_VERIFIED",
+  "distinct_identifiers_shared_between_two_additional_weeks": 1,
+  "databricks_executed": false,
+  "remote_objects_modified": [],
+  "interpretation": [
+    "Counts measure reporting observations, not workforce, work duration, coverage, productivity or fleet availability.",
+    "The configurable geographic review envelope is not an authoritative Windsor boundary; geographically suspicious rows remain VALID when explicit field checks pass.",
+    "No telemetry for a day/hour does not establish inactivity; gap bands retain repeated observations and are source-local/naive clock differences.",
+    "Only one raw identifier string is shared by these two files; identifier lifecycle/anonymization cannot be inferred without provider confirmation."
+  ],
+  "limitations": [
+    "Only the two explicitly requested additional weeks were downloaded and locally processed; the original January 12?18 source and published Databricks objects were preserved.",
+    "SQLite/portable SQL adaptation tests do not verify native Spark/Delta writes or runtime compatibility. Integration remains pending separate approval.",
+    "Record-bearing artifacts and SQLite databases remain outside Git; all public results are aggregate-only."
+  ],
+  "final_verified_reruns": [
+    {
+      "filename": "snowplow-2026-01-05_2026-01-11.csv",
+      "action": "SKIP_VERIFIED",
+      "elapsed_seconds": 0.372
+    },
+    {
+      "filename": "snowplow-2026-01-19_2026-01-25.csv",
+      "action": "SKIP_VERIFIED",
+      "elapsed_seconds": 28.078
+    }
+  ],
+  "offline_validation": {
+    "tests_passed": 107,
+    "aggregate_fixture": "PASS",
+    "syntax": "PASS",
+    "wheel_api_and_sql_resources": "PASS; 11 SQL resources",
+    "native_v2_runtime": "NOT_RUN"
+  }
+}
