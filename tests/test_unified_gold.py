@@ -250,6 +250,36 @@ class UnifiedGoldTests(unittest.TestCase):
             self.assertNotIn('winterops_gold_windsor_hourly_observations',sql)
         for sql in self.plan.dashboard().values():self.assertTrue(sql.startswith('SELECT '))
 
+    def test_separate_published_comparisons_match_all_products(self):
+        self.publish()
+        for product,n in (('hourly',12),('daily',6),('weekly',3)):
+            self.assertEqual(self.execute(self.plan.published_comparison(product)),
+                             [{'published_'+product+'_check':None,'aggregate_rows':n}])
+
+    def test_each_published_comparison_detects_same_rowcount_metric_corruption(self):
+        self.publish()
+        for product in ('hourly','daily','weekly'):
+            self.db.execute('SAVEPOINT before_corruption')
+            self.db.execute('UPDATE '+self.plan.view_name(product).split('.')[-1]+' SET observation_count=observation_count+1 WHERE rowid=1')
+            with self.assertRaises(sqlite3.OperationalError):self.execute(self.plan.published_comparison(product))
+            self.db.execute('ROLLBACK TO before_corruption');self.db.execute('RELEASE before_corruption')
+
+    def test_combined_read_results_retain_both_guards(self):
+        from winterops.threeweek_plan import combine_read_results
+        sql=combine_read_results((('a',"SELECT assert_true(1=1,'a') AS check_a",('check_a',)),
+                                 ('b',"SELECT assert_true(1=1,'b') AS check_b",('check_b',))))
+        self.assertEqual(self.execute(sql),[{'a_check_a':None,'b_check_b':None}])
+        with self.assertRaises(sqlite3.OperationalError):self.execute(sql.replace("assert_true(1=1,'b')","assert_true(1=0,'b')"))
+
+    def test_manifest_snapshot_string_preserves_microseconds(self):
+        from winterops.threeweek_plan import manifest_snapshot_sql
+        from winterops.spark_ingestion import DevelopmentTargets
+        self.db.create_function('sha2',2,lambda value,bits:__import__('hashlib').sha256(value.encode()).hexdigest())
+        stamp='2026-10-29 13:14:58.044428'
+        self.db.execute('UPDATE winterops_v2_dev_manifest SET updated_at_utc=?',(stamp,))
+        sql=manifest_snapshot_sql(DevelopmentTargets(),[self.selections[0].processing_key]).replace(' AS STRING)',' AS TEXT)')
+        self.assertEqual(self.execute(sql)[0]['updated_at_utc'],stamp)
+
     def test_native_preparer_refuses_unreviewed_source_identity_before_local_writes(self):
         from winterops.threeweek_plan import prepare
         selection=self.root/'selection.json'

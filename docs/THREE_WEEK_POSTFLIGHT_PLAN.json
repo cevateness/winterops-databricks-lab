@@ -1,0 +1,223 @@
+{
+  "status": "APPROVED_EXECUTED_PASS",
+  "execution_date_local": "2026-10-30",
+  "baseline_commit": "2a3b75a665d7b0f01366755996a79d25f7d8685b",
+  "prior_approved_plan_sha256": "146088dfb1a50e2d05f0b9d901b9ced2fdc42fc1279d6086d75b4fd53639aef3",
+  "historical_sql_submissions": 29,
+  "pending_sql_statements": 16,
+  "cumulative_sql_cap": 45,
+  "consumed_active_seconds": 230.921,
+  "remaining_active_seconds": 369.079,
+  "bounds": {
+    "sql_phase_seconds": 600,
+    "wait_timeout": "30s",
+    "on_wait_timeout": "CANCEL",
+    "client_deadline_seconds": 45,
+    "row_limit": 200,
+    "byte_limit": 65536,
+    "upload_deadline_seconds": 180,
+    "upload_max_bytes": 16777216,
+    "total_upload_max_bytes": 33554432,
+    "metadata_deadline_seconds": 15,
+    "file_verification_get_deadline_seconds": 45,
+    "automatic_retries": 0,
+    "continuation_wall_seconds": 369.079,
+    "approval_wait_excluded": true
+  },
+  "uploads": [],
+  "writes": [],
+  "ddl": [],
+  "approved_existing_views": [
+    "workspace.default.winterops_v2_gold_hourly_observations",
+    "workspace.default.winterops_v2_gold_daily_activity",
+    "workspace.default.winterops_v2_gold_weekly_quality"
+  ],
+  "table_scope": [
+    "workspace.default.winterops_v2_dev_bronze",
+    "workspace.default.winterops_v2_dev_silver",
+    "workspace.default.winterops_v2_dev_manifest"
+  ],
+  "changes": [
+    "Replace the canceled all-products comparison with three independent per-product full multiset comparisons.",
+    "Combine middle rerun/first-week preservation reads; retain both full-content assertions and all counts.",
+    "Combine three final original-CSV fingerprints in one read; retain each original assertion.",
+    "All other remaining reads unchanged. No additional writes, uploads, DDL or scope expansion."
+  ],
+  "metadata_requirements": "Fresh expected workspace/warehouse, selected table and created-view identity/schema/definition checks; after SQL compare protected metadata, grants and warehouse configuration to the saved pre-execution snapshots.",
+  "stop_rule": "Stop at first error/cancellation/timeout/unexpected/truncated result or insufficient remaining time. No automatic retry, polling, chunk retrieval, mutation, replacement, cleanup or recovery.",
+  "plan_sha256": "9f5896dc8e963a3aa3c6a04adf4873b36315bac051d5128eb192046fd1d31888",
+  "statements": [
+    {
+      "label": "published-hourly-multiset",
+      "kind": "READ",
+      "query_sha256": "98a18539bccfd01e3c58b2ccdb6db19c807b1bca795c26913f1ef616aa27ba53",
+      "prior_continuation_positions": [
+        22
+      ],
+      "expected": {
+        "aggregate_rows": 236
+      },
+      "position": 1
+    },
+    {
+      "label": "published-daily-multiset",
+      "kind": "READ",
+      "query_sha256": "044974035c988a11e3cd4a18ddae987d76cc7b7b95363fa6ff7087f2013634ca",
+      "prior_continuation_positions": [
+        22
+      ],
+      "expected": {
+        "aggregate_rows": 20
+      },
+      "position": 2
+    },
+    {
+      "label": "published-weekly-multiset",
+      "kind": "READ",
+      "query_sha256": "dbe62fe81f40fd478f6d24d673600fca9c6c27c2389606aad33a1bd48bfe0cc8",
+      "prior_continuation_positions": [
+        22
+      ],
+      "expected": {
+        "aggregate_rows": 3
+      },
+      "position": 3
+    },
+    {
+      "label": "published-hourly-summary",
+      "kind": "READ",
+      "query_sha256": "e7ae5c530034f9e75bcd6b3bcc8ee2aec70b97c2430eb29416c9ab196c6ba39e",
+      "prior_continuation_positions": [
+        23
+      ],
+      "expected": null,
+      "position": 4
+    },
+    {
+      "label": "published-daily",
+      "kind": "READ",
+      "query_sha256": "26c66c067abf79068c5e9ba56319577aa5135c6d3beb2617b8ca0c09e770578e",
+      "prior_continuation_positions": [
+        24
+      ],
+      "expected": null,
+      "position": 5
+    },
+    {
+      "label": "published-weekly",
+      "kind": "READ",
+      "query_sha256": "1b3f1b98a0cb58ecb7459f54d89c64b311c1642ced03586b0e2fe8335b4f8125",
+      "prior_continuation_positions": [
+        25
+      ],
+      "expected": null,
+      "position": 6
+    },
+    {
+      "label": "middle-rerun-and-first-week-preservation",
+      "kind": "READ",
+      "query_sha256": "de6c0f0f14245983cff7b892098c460994b5b13c95b162355367c3833a2eef93",
+      "prior_continuation_positions": [
+        26,
+        28
+      ],
+      "expected": null,
+      "position": 7
+    },
+    {
+      "label": "corrected-after-outer-manifest-snapshot",
+      "kind": "READ",
+      "query_sha256": "fbe6b65a44712538c726d5f2080a2c2eb542fd653933a04f6893f64926ddad72",
+      "prior_continuation_positions": [
+        27
+      ],
+      "expected": null,
+      "position": 8
+    },
+    {
+      "label": "after-existing-2026-01-19",
+      "kind": "READ",
+      "query_sha256": "2550f5eb7436109251e48a8a43d5ae7e11c4ac47931bed43f3f567c948c9f9de",
+      "prior_continuation_positions": [
+        29
+      ],
+      "expected": null,
+      "position": 9
+    },
+    {
+      "label": "after-legacy-source",
+      "kind": "READ",
+      "query_sha256": "98426e9be6d1f462ac87f81a038b2fe8d7cf700f377ce5040fc338e15a8ea5ff",
+      "prior_continuation_positions": [
+        30
+      ],
+      "expected": null,
+      "position": 10
+    },
+    {
+      "label": "after-legacy-payload",
+      "kind": "READ",
+      "query_sha256": "643214751ad8ed9462d828a9711df8ee975169cafd427126a2362f2f590bb2fa",
+      "prior_continuation_positions": [
+        31
+      ],
+      "expected": null,
+      "position": 11
+    },
+    {
+      "label": "after-legacy-published",
+      "kind": "READ",
+      "query_sha256": "bf3918fa7ecc6d2f959296b88bd77aed37e926d8deb098c189fd0b3f75266f00",
+      "prior_continuation_positions": [
+        32
+      ],
+      "expected": null,
+      "position": 12
+    },
+    {
+      "label": "after-legacy-gold",
+      "kind": "READ",
+      "query_sha256": "85eb38a66034eeaf1cdb3d9c908324d69e37aec75c61d53e46ca7078b63bb4e4",
+      "prior_continuation_positions": [
+        33
+      ],
+      "expected": null,
+      "position": 13
+    },
+    {
+      "label": "after-legacy-bronze-history",
+      "kind": "READ",
+      "query_sha256": "4b7bb201031738f329265e1dda019d357e1741dfe1df85bede138800da3fc4a4",
+      "prior_continuation_positions": [
+        34
+      ],
+      "expected": null,
+      "position": 14
+    },
+    {
+      "label": "after-legacy-silver-history",
+      "kind": "READ",
+      "query_sha256": "f966001d73868479663febdfa8666a751a7cf15737bb426f75b1e7f8756df32d",
+      "prior_continuation_positions": [
+        35
+      ],
+      "expected": null,
+      "position": 15
+    },
+    {
+      "label": "all-original-csv-fingerprints",
+      "kind": "READ",
+      "query_sha256": "102e8d0bf4051de257dcb7a98787169eeca37e31129f5edc77689b26b776ee43",
+      "prior_continuation_positions": [
+        36,
+        37,
+        38
+      ],
+      "expected": null,
+      "position": 16
+    }
+  ],
+  "actual_statements": 16,
+  "actual_postflight_wall_seconds": 134.53,
+  "actual_total_active_seconds": 365.451
+}
