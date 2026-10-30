@@ -46,7 +46,7 @@ class BatchSql:
  assert_true(:execution_mode='verify' OR '{r.write_policy}'='append_missing' OR ({self.complete}),
  'This request only permits an existing COMPLETE version') AS write_policy_check"""
 
-    def schema_guard(self):
+    def _schema_metadata_ctes(self, include_full_type=False, case_insensitive_lookup=False):
         targets = self.r.targets
         expected = []
         for layer, types in (('bronze', BRONZE_TYPES), ('silver', SILVER_TYPES), ('manifest', MANIFEST_TYPES)):
@@ -54,13 +54,55 @@ class BatchSql:
             for position, (column, kind) in enumerate(types.items()):
                 expected.append(f"SELECT '{targets.table(layer).split('.')[-1]}' AS table_name, '{column}' AS column_name, '{kind}' AS data_type, {position} AS ordinal_position")
         names = ','.join("'" + name.split('.')[-1] + "'" for name in targets.names)
-        return f"""WITH expected AS ({' UNION ALL '.join(expected)}), actual AS (
- SELECT table_name,column_name,data_type,ordinal_position FROM {targets.catalog}.information_schema.columns
- WHERE table_schema='{targets.schema}' AND table_name IN ({names}))
-SELECT assert_true((SELECT COUNT(*) FROM actual)={len(expected)} AND COUNT(*)={len(expected)}
- AND COUNT(CASE WHEN a.data_type=e.data_type AND a.ordinal_position=e.ordinal_position THEN 1 END)={len(expected)},
+        columns = 'table_name,column_name,data_type,ordinal_position'
+        if include_full_type:
+            columns += ',full_data_type,table_schema'
+        schema_field = 'lower(table_schema)' if case_insensitive_lookup else 'table_schema'
+        name_field = 'lower(table_name)' if case_insensitive_lookup else 'table_name'
+        return f"""expected AS ({' UNION ALL '.join(expected)}), actual AS (
+ SELECT {columns} FROM {targets.catalog}.information_schema.columns
+ WHERE {schema_field}='{targets.schema}' AND {name_field} IN ({names}))""", len(expected)
+
+    def schema_guard(self):
+        metadata, count = self._schema_metadata_ctes()
+        return f"""WITH {metadata}
+SELECT assert_true((SELECT COUNT(*) FROM actual)={count} AND COUNT(*)={count}
+ AND COUNT(CASE WHEN a.data_type=e.data_type AND a.ordinal_position=e.ordinal_position THEN 1 END)={count},
  'V2 target schema contract mismatch') AS schema_check
 FROM expected e LEFT JOIN actual a ON a.table_name=e.table_name AND a.column_name=e.column_name"""
+
+    def schema_diagnostic(self):
+        """Observe metadata without assertions, source records or data writes.
+
+        Keep DATA_TYPE and FULL_DATA_TYPE unnormalized so a native mismatch can
+        be investigated before changing the strict guard's comparison rules.
+        """
+        metadata, _ = self._schema_metadata_ctes(include_full_type=True, case_insensitive_lookup=True)
+        names = ','.join("'" + name.split('.')[-1] + "'" for name in self.r.targets.names)
+        return f"""WITH {metadata}, strict_actual AS (
+ SELECT * FROM actual WHERE table_schema='{self.r.targets.schema}' AND table_name IN ({names})), summary AS (
+ SELECT (SELECT COUNT(*) FROM expected) AS expected_column_count,
+ (SELECT COUNT(*) FROM actual) AS actual_column_count,
+ (SELECT COUNT(*) FROM strict_actual) AS guard_actual_column_count,
+ COUNT(*) AS guard_joined_rows,
+ COUNT(CASE WHEN a.data_type=e.data_type AND a.ordinal_position=e.ordinal_position THEN 1 END) AS guard_matching_rows
+ FROM expected e LEFT JOIN strict_actual a ON a.table_name=e.table_name AND a.column_name=e.column_name)
+SELECT COALESCE(e.table_name,a.table_name) AS table_name,
+ COALESCE(e.column_name,a.column_name) AS column_name,
+ e.data_type AS expected_type, e.ordinal_position AS expected_ordinal_position,
+ a.table_schema AS actual_table_schema, a.data_type AS actual_type, a.full_data_type AS actual_full_type,
+ a.ordinal_position AS actual_ordinal_position,
+ CASE WHEN e.column_name IS NULL THEN 'UNEXPECTED_COLUMN'
+ WHEN a.column_name IS NULL THEN 'MISSING_COLUMN'
+ WHEN NOT (a.data_type <=> e.data_type) AND NOT (a.ordinal_position <=> e.ordinal_position) THEN 'TYPE_AND_POSITION'
+ WHEN NOT (a.data_type <=> e.data_type) THEN 'TYPE'
+ WHEN NOT (a.ordinal_position <=> e.ordinal_position) THEN 'POSITION'
+ ELSE 'MATCH' END AS match_status,
+ summary.expected_column_count, summary.actual_column_count, summary.guard_actual_column_count,
+ summary.guard_joined_rows, summary.guard_matching_rows
+FROM expected e FULL OUTER JOIN actual a ON a.table_name=e.table_name AND a.column_name=e.column_name
+CROSS JOIN summary
+ORDER BY table_name,COALESCE(e.ordinal_position,a.ordinal_position),column_name"""
 
     def lineage_guard(self):
         v = self.r.version

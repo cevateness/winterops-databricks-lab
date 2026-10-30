@@ -2,6 +2,14 @@
 
 This file resolves **stale status text** in earlier lesson ZIPs. It records known evidence; the user can resume after long pauses without replaying every lesson.
 
+## Corrected Job continuation — schema assertion still unresolved (2026-10-30)
+
+- The user separately approved the exact continuation from PR #11 / commit `85f8024`. All 28 fresh metadata/file checks passed, with zero active runs. Its first corrected SQL request failed the same schema assertion in 21.216 client seconds; execution stopped after 50.561 active seconds. No files/directories, Job, runs, data/manifest writes, DDL, retries or cleanup occurred.
+- Cumulative approved execution: **3 Statement API requests (1 success / 2 failures), 56 metadata GETs, 49.375 SQL client seconds and 107.906 active seconds**. The probe was reused, not repeated. Neither failed guard returned live schema/reconciliation results. Gold/history/postflight checks and Jobs execution remain unperformed in this trial. Actual native metadata differences are unknown; the documented zero-based correction was not sufficient.
+- A SELECT-only `BatchSql.schema_diagnostic()` and [generated SQL](../sql/batch_schema_metadata_diagnostic.sql) expose raw schema/type/ordinal metadata plus the exact guard counts. Case-insensitive discovery preserves raw names; strict counters retain the guard's original filters. All six candidate Job SQL files remain byte-identical to the last approved package; the guard was not relaxed or reexecuted.
+- **161 offline tests passed**, zero failures/errors, 8.157 seconds, including diagnostic matching/missing/extra/type/position/casing cases and zero-write checks. These cases are synthetic and do not establish the native mismatch. The existing PR carries this outcome and instrumentation; no new documentation-only PR is opened. Unrelated local files remain unchanged.
+- Next approval is deliberately limited to [one metadata-only SQL diagnostic](ON_DEMAND_BATCH_SCHEMA_DIAGNOSTIC_APPROVAL.json): 30-second wait/CANCEL, 45-second SQL client deadline, 200 rows/65,536 bytes, no source records, uploads, Jobs or writes, and stop after recording the result. It would be SQL request 4 of the cumulative 16 ceiling. Do not resume either stopped matrix or guess another schema correction before observing actual metadata. New-source processing remains unverified.
+
 ## Native Jobs trial — stopped before deployment (2026-10-30)
 
 - PR #10 is merged at `eaf17ffa1872dac06de1c54f06af89d5fd09195a`. Work uses `feat/native-job-trial`; unrelated `.gitignore`, `.vscode/settings.json` and `databricks.yml` remain unchanged and excluded.
