@@ -1,0 +1,197 @@
+{
+  "name": "WinterOps on-demand V1",
+  "max_concurrent_runs": 1,
+  "queue": {
+    "enabled": false
+  },
+  "timeout_seconds": 600,
+  "parameters": [
+    {
+      "name": "source_version_id",
+      "default": "69c80ddcee5c18ee914edda2e95104e9bf916e5f104aa5502fafcba6db6c8980"
+    },
+    {
+      "name": "processing_key",
+      "default": "1252b8dd61ffd20b98312d2237625592a1c7330f7fbcc50b66dbea7f344562fe"
+    },
+    {
+      "name": "request_sha256",
+      "default": "7f986a9c574b45a4d01cfd9c71f11756fc326302d2cb8d3b53583bf9937a4294"
+    },
+    {
+      "name": "execution_mode",
+      "default": "verify"
+    },
+    {
+      "name": "recovery",
+      "default": "deny"
+    }
+  ],
+  "tasks": [
+    {
+      "task_key": "preflight",
+      "depends_on": [],
+      "run_if": "ALL_SUCCESS",
+      "timeout_seconds": 90,
+      "max_retries": 0,
+      "retry_on_timeout": false,
+      "sql_task": {
+        "warehouse_id": "0000000000000000",
+        "file": {
+          "source": "WORKSPACE",
+          "path": "/Workspace/Shared/winterops_batch_EXAMPLE/7f986a9c574b45a4d01cfd9c71f11756fc326302d2cb8d3b53583bf9937a4294/preflight.sql"
+        },
+        "parameters": {
+          "source_version_id": "{{job.parameters.source_version_id}}",
+          "processing_key": "{{job.parameters.processing_key}}",
+          "request_sha256": "{{job.parameters.request_sha256}}",
+          "execution_mode": "{{job.parameters.execution_mode}}",
+          "recovery": "{{job.parameters.recovery}}"
+        }
+      }
+    },
+    {
+      "task_key": "bronze",
+      "depends_on": [
+        {
+          "task_key": "preflight"
+        }
+      ],
+      "run_if": "ALL_SUCCESS",
+      "timeout_seconds": 90,
+      "max_retries": 0,
+      "retry_on_timeout": false,
+      "sql_task": {
+        "warehouse_id": "0000000000000000",
+        "file": {
+          "source": "WORKSPACE",
+          "path": "/Workspace/Shared/winterops_batch_EXAMPLE/7f986a9c574b45a4d01cfd9c71f11756fc326302d2cb8d3b53583bf9937a4294/bronze.sql"
+        },
+        "parameters": {
+          "source_version_id": "{{job.parameters.source_version_id}}",
+          "processing_key": "{{job.parameters.processing_key}}",
+          "request_sha256": "{{job.parameters.request_sha256}}",
+          "execution_mode": "{{job.parameters.execution_mode}}",
+          "recovery": "{{job.parameters.recovery}}"
+        }
+      }
+    },
+    {
+      "task_key": "silver",
+      "depends_on": [
+        {
+          "task_key": "bronze"
+        }
+      ],
+      "run_if": "ALL_SUCCESS",
+      "timeout_seconds": 90,
+      "max_retries": 0,
+      "retry_on_timeout": false,
+      "sql_task": {
+        "warehouse_id": "0000000000000000",
+        "file": {
+          "source": "WORKSPACE",
+          "path": "/Workspace/Shared/winterops_batch_EXAMPLE/7f986a9c574b45a4d01cfd9c71f11756fc326302d2cb8d3b53583bf9937a4294/silver.sql"
+        },
+        "parameters": {
+          "source_version_id": "{{job.parameters.source_version_id}}",
+          "processing_key": "{{job.parameters.processing_key}}",
+          "request_sha256": "{{job.parameters.request_sha256}}",
+          "execution_mode": "{{job.parameters.execution_mode}}",
+          "recovery": "{{job.parameters.recovery}}"
+        }
+      }
+    },
+    {
+      "task_key": "quality",
+      "depends_on": [
+        {
+          "task_key": "silver"
+        }
+      ],
+      "run_if": "ALL_SUCCESS",
+      "timeout_seconds": 90,
+      "max_retries": 0,
+      "retry_on_timeout": false,
+      "sql_task": {
+        "warehouse_id": "0000000000000000",
+        "file": {
+          "source": "WORKSPACE",
+          "path": "/Workspace/Shared/winterops_batch_EXAMPLE/7f986a9c574b45a4d01cfd9c71f11756fc326302d2cb8d3b53583bf9937a4294/quality.sql"
+        },
+        "parameters": {
+          "source_version_id": "{{job.parameters.source_version_id}}",
+          "processing_key": "{{job.parameters.processing_key}}",
+          "request_sha256": "{{job.parameters.request_sha256}}",
+          "execution_mode": "{{job.parameters.execution_mode}}",
+          "recovery": "{{job.parameters.recovery}}"
+        }
+      }
+    },
+    {
+      "task_key": "complete",
+      "depends_on": [
+        {
+          "task_key": "quality"
+        }
+      ],
+      "run_if": "ALL_SUCCESS",
+      "timeout_seconds": 90,
+      "max_retries": 0,
+      "retry_on_timeout": false,
+      "sql_task": {
+        "warehouse_id": "0000000000000000",
+        "file": {
+          "source": "WORKSPACE",
+          "path": "/Workspace/Shared/winterops_batch_EXAMPLE/7f986a9c574b45a4d01cfd9c71f11756fc326302d2cb8d3b53583bf9937a4294/complete.sql"
+        },
+        "parameters": {
+          "source_version_id": "{{job.parameters.source_version_id}}",
+          "processing_key": "{{job.parameters.processing_key}}",
+          "request_sha256": "{{job.parameters.request_sha256}}",
+          "execution_mode": "{{job.parameters.execution_mode}}",
+          "recovery": "{{job.parameters.recovery}}"
+        }
+      }
+    },
+    {
+      "task_key": "failure_audit",
+      "depends_on": [
+        {
+          "task_key": "preflight"
+        },
+        {
+          "task_key": "bronze"
+        },
+        {
+          "task_key": "silver"
+        },
+        {
+          "task_key": "quality"
+        },
+        {
+          "task_key": "complete"
+        }
+      ],
+      "run_if": "AT_LEAST_ONE_FAILED",
+      "timeout_seconds": 90,
+      "max_retries": 0,
+      "retry_on_timeout": false,
+      "sql_task": {
+        "warehouse_id": "0000000000000000",
+        "file": {
+          "source": "WORKSPACE",
+          "path": "/Workspace/Shared/winterops_batch_EXAMPLE/7f986a9c574b45a4d01cfd9c71f11756fc326302d2cb8d3b53583bf9937a4294/failure_audit.sql"
+        },
+        "parameters": {
+          "source_version_id": "{{job.parameters.source_version_id}}",
+          "processing_key": "{{job.parameters.processing_key}}",
+          "request_sha256": "{{job.parameters.request_sha256}}",
+          "execution_mode": "{{job.parameters.execution_mode}}",
+          "recovery": "{{job.parameters.recovery}}",
+          "batch_preflight_state": "{{tasks.preflight.result_state}}"
+        }
+      }
+    }
+  ]
+}

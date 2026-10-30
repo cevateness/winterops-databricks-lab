@@ -56,3 +56,10 @@ jobs:
           --selection docs/THREE_WEEK_SELECTION.json
           --publication
           --output /tmp/winterops-threeweek-publication.sql
+      - name: On-demand Jobs and SQL rendering (synthetic only; never deployed)
+        run: >-
+          python scripts/prepare_batch_job.py
+          --synthetic-example
+          --output-root /tmp/winterops-batch-example
+          --warehouse-id 0000000000000000
+          --workspace-root /Workspace/Shared/winterops_batch_EXAMPLE
