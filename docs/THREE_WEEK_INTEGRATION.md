@@ -1,6 +1,8 @@
-# One bounded three-week native integration plan — NOT APPROVED / NOT EXECUTED
+# Original three-week integration plan — retained for audit
 
-The implementation and aggregate evidence are local. This document requests no implicit execution. A subsequent explicit approval must bind the reviewed revision and the exact private plan digest in [THREE_WEEK_NATIVE_PLAN.json](THREE_WEEK_NATIVE_PLAN.json). The plan preparer only renders local SQL and verifies local staged bytes; it never connects to Databricks.
+**Do not replay this original plan.** Integration completed through explicitly approved corrected and read-only continuations. The middle scope is COMPLETE, all three new views exist, and per-product published equality plus all final preservation checks passed. See [actual evidence](THREE_WEEK_NATIVE_INTEGRATION.md). The original preparation below is retained for audit, not authorization for another run.
+
+The implementation and aggregate evidence were local when this plan was prepared. This document requests no implicit execution. A subsequent explicit approval must bind the reviewed revision and the exact private plan digest in [THREE_WEEK_NATIVE_PLAN.json](THREE_WEEK_NATIVE_PLAN.json). The plan preparer only renders local SQL and verifies local staged bytes; it never connects to Databricks.
 
 ## Exact files and objects
 

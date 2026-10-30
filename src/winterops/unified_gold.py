@@ -238,6 +238,10 @@ _weekly AS (SELECT {', '.join('w.'+d for d in DIMENSIONS)}, w.expected_rows AS b
         return f'WITH {self.source_ctes()} SELECT assert_true(ok=1, \'Selected scope failed\') AS selection_check FROM _selection_gate'
 
     def reconcile(self, published=False):
+        """Candidate hierarchy checks; published=True retains the legacy query.
+
+        Use published_comparison(product) for bounded native postflight requests.
+        """
         daily_bad = ' OR '.join(f'COALESCE(h.{m},0)<>d.{m}' for m in ADDITIVE)
         weekly_bad = ' OR '.join(f'COALESCE(h.{m},0)<>w.{m} OR COALESCE(d.{m},0)<>w.{m}' for m in ADDITIVE)
         sums = ', '.join(f'SUM({m}) AS {m}' for m in ADDITIVE)
@@ -273,6 +277,24 @@ SELECT assert_true((SELECT ok FROM _selection_gate)=1 AND (SELECT COUNT(*) FROM 
     def publication(self):
         # Three non-atomic fail-if-exists operations; no replacement or legacy redirection.
         return tuple(f'CREATE VIEW {self.view_name(p)} AS\n{self.query(p,ordered=False)}' for p in ('hourly','daily','weekly'))
+
+    def published_comparison(self, product):
+        """One product per bounded request; full multiplicities and every column.
+
+        The combined three-product verification exceeded the native 30-second
+        wait. Rendering these SELECTs does not authorize a retry or execution.
+        """
+        if product not in ('hourly','daily','weekly'):
+            raise ValueError('Unknown unified product')
+        return f"""WITH {self.source_ctes()}, {self.product_ctes()},
+_published AS (SELECT * FROM {self.view_name(product)}),
+_missing AS (SELECT * FROM _{product} EXCEPT ALL SELECT * FROM _published),
+_extra AS (SELECT * FROM _published EXCEPT ALL SELECT * FROM _{product})
+SELECT assert_true((SELECT ok FROM _selection_gate)=1
+ AND (SELECT COUNT(*) FROM _missing)=0 AND (SELECT COUNT(*) FROM _extra)=0
+ AND (SELECT COUNT(*) FROM _published)=(SELECT COUNT(*) FROM _{product}),
+ 'Published {product} multiset differs from candidate') AS published_{product}_check,
+ (SELECT COUNT(*) FROM _published) AS aggregate_rows"""
 
     def dashboard(self):
         weekly, daily, hourly = (self.view_name(p) for p in ('weekly','daily','hourly'))

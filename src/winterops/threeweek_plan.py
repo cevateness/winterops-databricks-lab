@@ -1,5 +1,5 @@
 """Prepare one local, fingerprinted native plan. No remote execution is provided."""
-import hashlib,json
+import hashlib,json,re
 from pathlib import Path
 
 from winterops.analytics import AnalyticsConfig,SourceScope,build_plan
@@ -10,6 +10,31 @@ from winterops.quality import QualitySnapshot
 from winterops.sources import outside_git
 from winterops.spark_ingestion import BRONZE_TYPES,SILVER_TYPES,sql_version_plan,manifest_status_sql
 from winterops.unified_gold import load_selection
+
+
+def manifest_snapshot_sql(targets, keys):
+    if not keys or any(not re.fullmatch('[0-9a-f]{64}',k) for k in keys):
+        raise ValueError('Exact processing keys required')
+    selected=','.join("'"+k+"'" for k in keys)
+    # Raw TIMESTAMP API values lose microseconds; STRING preserves native digits.
+    return f"""SELECT processing_key,source_version_id,source_file_sha256,status,last_successful_stage,attempts,
+ bronze_rows,silver_rows,error_code,CAST(updated_at_utc AS STRING) AS updated_at_utc,
+ sha2(metadata_json,256) AS metadata_sha256,sha2(policy_json,256) AS policy_json_sha256
+FROM {targets.table('manifest')} WHERE processing_key IN ({selected}) ORDER BY processing_key"""
+
+
+def combine_read_results(parts):
+    """Combine trusted generated single-row SELECTs, retaining every result field."""
+    if not parts or len({p[0] for p in parts})!=len(parts):
+        raise ValueError('Unique named read results required')
+    for name,sql,columns in parts:
+        if (not re.fullmatch('[a-z][a-z0-9_]*',name) or not columns
+                or any(not re.fullmatch('[a-z][a-z0-9_]*',c) for c in columns)
+                or not sql.lstrip().startswith(('SELECT ','WITH '))):
+            raise ValueError('Generated single-row read queries required')
+    ctes=',\n'.join(name+' AS ('+sql+')' for name,sql,_ in parts)
+    fields=', '.join(name+'.'+c+' AS '+name+'_'+c for name,_,cols in parts for c in cols)
+    return 'WITH '+ctes+'\nSELECT '+fields+' FROM '+' CROSS JOIN '.join(name for name,_,_ in parts)
 
 
 def prepare(root,selection_path,prior_native_path,legacy_summary_path):
@@ -59,13 +84,10 @@ FROM workspace.default.winterops_gold_windsor_hourly_observations"""
     steps=[]
     def add(label,sql,kind='READ',expected=None):
         steps.append(dict(label=label,kind=kind,sql=sql,query_sha256=hashlib.sha256(sql.encode()).hexdigest(),expected=expected))
-    outer_keys=','.join("'"+s.processing_key+"'" for s in (gold.selected[0],gold.selected[2]))
-    manifest_snapshot=f"""SELECT processing_key,source_version_id,source_file_sha256,status,last_successful_stage,attempts,
- bronze_rows,silver_rows,error_code,updated_at_utc,sha2(metadata_json,256) AS metadata_sha256,sha2(policy_json,256) AS policy_json_sha256
-FROM {gold.targets.table('manifest')} WHERE processing_key IN ({outer_keys}) ORDER BY processing_key"""
+    manifest_snapshot=manifest_snapshot_sql(gold.targets,[s.processing_key for s in (gold.selected[0],gold.selected[2])])
     for label,sql in protected:add('before-'+label,sql)
     add('before-outer-manifest-snapshot',manifest_snapshot,expected={'rows':2,'compare_exactly_with_after':True})
-    for landing in landings:add('before-original-'+landing.source.covered_start,landing.fingerprint_sql())
+    for landing in (landings[0],landings[2]):add('before-original-'+landing.source.covered_start,landing.fingerprint_sql())
     for date in ('2026-01-05','2026-01-19'):add('before-existing-'+date,source_plans[date]['postflight'])
     add('middle-artifact',vplan['artifact_guard']);add('middle-input',vplan['input_guard'])
     targets=gold.targets
@@ -73,7 +95,9 @@ FROM {gold.targets.table('manifest')} WHERE processing_key IN ({outer_keys}) ORD
  AND (SELECT COUNT(*) FROM {targets.table('silver')} WHERE source_version_id='{version.version_id}' OR processing_key='{middle.processing_key}')=0
  AND (SELECT COUNT(*) FROM {targets.table('manifest')} WHERE source_version_id='{version.version_id}' OR processing_key='{middle.processing_key}')=0,
  'Middle-week scope already exists; reconcile before a separately approved resume') AS new_scope_check"""
-    add('middle-new-scope',new_scope)
+    add('middle-original-and-new-scope',combine_read_results((
+        ('original',landings[1].fingerprint_sql(),('original_csv_check',)),
+        ('scope',new_scope,('new_scope_check',)))))
     def mark(status,bronze=None,silver=None):
         add('middle-manifest-'+status,manifest_status_sql(version,status,1,policy=middle.policy,bronze_rows=bronze,silver_rows=silver,last_successful_stage=None if status=='PROCESSING' else status),'WRITE')
     mark('PROCESSING')
@@ -88,14 +112,18 @@ FROM {gold.targets.table('manifest')} WHERE processing_key IN ({outer_keys}) ORD
     add('candidate-gold-reconciliation',gold.reconcile())
     add('candidate-weekly-aggregates',gold.query('weekly'))
     for product,sql in zip(('hourly','daily','weekly'),gold.publication()):add('create-gold-'+product,sql,'CREATE_VIEW',{'target':gold.view_name(product)})
-    add('published-gold-reconciliation',gold.reconcile(published=True))
+    for product in ('hourly','daily','weekly'):
+        add('published-'+product+'-comparison',gold.published_comparison(product))
     add('published-hourly-summary',f"SELECT source_week_start,source_version_id,processing_key,quality_policy_sha256,COUNT(*) AS hourly_buckets,SUM(observation_count) AS observations FROM {gold.view_name('hourly')} GROUP BY source_week_start,source_version_id,processing_key,quality_policy_sha256 ORDER BY source_week_start")
     add('published-daily',gold.dashboard()['daily_equipment']);add('published-weekly',gold.dashboard()['three_week_comparison'])
-    add('middle-unchanged-rerun-content-decision',vplan['postflight'])
+    fields=('persisted_check','silver_rows','header_rows','valid_rows','invalid_rows')
+    add('middle-rerun-and-first-week-preservation',combine_read_results((
+        ('middle',vplan['postflight'],fields),('first',source_plans['2026-01-05']['postflight'],fields))))
     add('after-outer-manifest-snapshot',manifest_snapshot,expected={'rows':2,'must_equal_before_snapshot':True})
-    for date in ('2026-01-05','2026-01-19'):add('after-existing-'+date,source_plans[date]['postflight'])
+    add('after-existing-2026-01-19',source_plans['2026-01-19']['postflight'])
     for label,sql in protected:add('after-'+label,sql)
-    for landing in landings:add('after-original-'+landing.source.covered_start,landing.fingerprint_sql())
+    add('after-original-csv-fingerprints',combine_read_results(tuple(
+        ('csv_'+str(i),landing.fingerprint_sql(),('original_csv_check',)) for i,landing in enumerate(landings))))
     if len(steps)>45 or sum(u['bytes'] for u in uploads)>32*1024*1024 or any(u['bytes']>16*1024*1024 for u in uploads):
         raise ValueError('Prepared native scope exceeds bounds')
     return dict(status='PREPARED_NOT_APPROVED_NOT_EXECUTED',sql_statements=len(steps),sql_maximum=45,
