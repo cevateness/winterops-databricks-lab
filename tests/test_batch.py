@@ -294,7 +294,7 @@ class BatchWorkflowTests(unittest.TestCase):
         before = self.db.total_changes
         self.assertIsNotNone(self.job.run()[2])
         self.assertEqual(self.db.total_changes, before)
-        self.db.execute("UPDATE information_schema.columns SET data_type='TIMESTAMP' WHERE column_name='event_time_unzoned'")
+        self.db.execute("UPDATE information_schema.columns SET data_type='TIMESTAMP',full_data_type='timestamp' WHERE column_name='event_time_unzoned'")
         before = self.db.total_changes
         self.assertIsNotNone(self.job.run()[2])
         self.assertEqual(self.db.total_changes, before)
@@ -332,6 +332,83 @@ class BatchWorkflowTests(unittest.TestCase):
         self.assertIsNotNone(error)
         self.assertEqual(states['preflight'], 'failed')
         self.assertEqual(self.db.total_changes, before)
+
+    def observed_schema(self):
+        # Reuse the exact sanitized native observation; no network or telemetry.
+        path = Path(__file__).resolve().parents[1] / 'docs/ON_DEMAND_BATCH_SCHEMA_DIAGNOSTIC_RESULTS.json'
+        evidence = json.loads(path.read_text(encoding='utf-8'))
+        self.assertEqual(evidence['statement_sha256'],
+                         'a4648e831a1d3360cdc117e372ed52758f048874ad8df066e7296a780d13ed7c')
+        rows = evidence['metadata_rows']
+        self.assertEqual(len(rows), 59)
+        self.db.execute('DELETE FROM information_schema.columns')
+        self.db.executemany('INSERT INTO information_schema.columns VALUES (?,?,?,?,?,?)',
+                           [(r['actual_table_schema'], r['table_name'], r['column_name'], r['actual_type'],
+                             r['actual_ordinal_position'], r['actual_full_type']) for r in rows])
+        self.assertEqual(self.job.execute(BatchSql(self.r).schema_guard(), {}), [{'schema_check': None}])
+        return rows
+
+    def reject_schema_mutation(self, sql, params=()):
+        self.db.execute('SAVEPOINT schema_mutation')
+        try:
+            self.db.execute(sql, params)
+            before = self.db.total_changes
+            with self.assertRaises(sqlite3.OperationalError):
+                self.job.execute(BatchSql(self.r).schema_guard(), {})
+            self.assertEqual(self.db.total_changes, before)
+        finally:
+            self.db.execute('ROLLBACK TO schema_mutation')
+            self.db.execute('RELEASE schema_mutation')
+
+    def test_native_long_bigint_metadata_passes_full_workflow_without_writes(self):
+        rows = self.observed_schema()
+        aliases = [r for r in rows if r['actual_type'] == 'LONG']
+        self.assertEqual(len(aliases), 8)
+        self.assertEqual({(r['expected_type'], r['actual_full_type']) for r in aliases}, {('BIGINT', 'bigint')})
+        before = self.db.total_changes
+        self.assert_ok(self.job.run())
+        self.assertEqual(self.db.total_changes, before)
+
+    def test_native_guard_rejects_narrower_integer_declarations_even_with_long_label(self):
+        rows = self.observed_schema()
+        for row in (r for r in rows if r['actual_type'] == 'LONG'):
+            for wrong in ('int', 'smallint', 'tinyint'):
+                with self.subTest(table=row['table_name'], column=row['column_name'], wrong=wrong):
+                    self.reject_schema_mutation('UPDATE information_schema.columns SET full_data_type=? '
+                                                'WHERE table_name=? AND column_name=?',
+                                                (wrong, row['table_name'], row['column_name']))
+
+    def test_native_guard_rejects_missing_extra_and_duplicate_columns(self):
+        self.observed_schema()
+        for mutation in (
+            "DELETE FROM information_schema.columns WHERE table_name='winterops_v2_dev_manifest' AND column_name='attempts'",
+            "INSERT INTO information_schema.columns VALUES ('default','winterops_v2_dev_bronze','unexpected','STRING',16,'string')",
+            "INSERT INTO information_schema.columns SELECT * FROM information_schema.columns WHERE table_name='winterops_v2_dev_manifest' AND column_name='attempts'",
+        ):
+            with self.subTest(mutation=mutation):
+                self.reject_schema_mutation(mutation)
+
+    def test_native_guard_rejects_changed_names_schema_table_and_positions(self):
+        self.observed_schema()
+        for assignment in ("column_name='ATTEMPTS'", "column_name='unexpected'", "table_schema='DEFAULT'",
+                           "table_schema='other'", "table_name='WINTEROPS_V2_DEV_MANIFEST'",
+                           "table_name='other'", 'ordinal_position=9', 'ordinal_position=NULL'):
+            with self.subTest(assignment=assignment):
+                self.reject_schema_mutation('UPDATE information_schema.columns SET ' + assignment +
+                                            " WHERE table_name='winterops_v2_dev_manifest' AND column_name='attempts'")
+        self.reject_schema_mutation('UPDATE information_schema.columns SET ordinal_position=ordinal_position+1')
+        self.reject_schema_mutation("UPDATE information_schema.columns SET ordinal_position=CASE "
+                                    "WHEN column_name='source_record_number' THEN 11 ELSE 10 END "
+                                    "WHERE table_name='winterops_v2_dev_bronze' AND column_name IN ('source_record_number','source_line_end')")
+
+    def test_native_guard_keeps_timestamp_and_timestamp_ntz_distinct(self):
+        self.observed_schema()
+        for column, wrong in (('event_time_unzoned', 'timestamp'), ('ingested_at_utc', 'timestamp_ntz'),
+                              ('event_time_unzoned', 'timestamp_ltz'), ('updated_at_utc', 'timestamp_ntz')):
+            with self.subTest(column=column, wrong=wrong):
+                self.reject_schema_mutation('UPDATE information_schema.columns SET full_data_type=? WHERE column_name=?',
+                                            (wrong, column))
+        self.reject_schema_mutation("UPDATE information_schema.columns SET full_data_type=NULL WHERE column_name='event_time_unzoned'")
 
     def test_schema_diagnostic_reports_every_expected_column_without_writes(self):
         before = self.db.total_changes

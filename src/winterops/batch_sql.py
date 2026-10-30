@@ -64,18 +64,20 @@ class BatchSql:
  WHERE {schema_field}='{targets.schema}' AND {name_field} IN ({names}))""", len(expected)
 
     def schema_guard(self):
-        metadata, count = self._schema_metadata_ctes()
+        # Native DATA_TYPE uses aliases (LONG); FULL_DATA_TYPE retains the SQL
+        # declaration (bigint). Normalize case only, never type width or zoning.
+        metadata, count = self._schema_metadata_ctes(include_full_type=True)
         return f"""WITH {metadata}
 SELECT assert_true((SELECT COUNT(*) FROM actual)={count} AND COUNT(*)={count}
- AND COUNT(CASE WHEN a.data_type=e.data_type AND a.ordinal_position=e.ordinal_position THEN 1 END)={count},
+ AND COUNT(CASE WHEN UPPER(a.full_data_type)=e.data_type AND a.ordinal_position=e.ordinal_position THEN 1 END)={count},
  'V2 target schema contract mismatch') AS schema_check
 FROM expected e LEFT JOIN actual a ON a.table_name=e.table_name AND a.column_name=e.column_name"""
 
     def schema_diagnostic(self):
         """Observe metadata without assertions, source records or data writes.
 
-        Keep DATA_TYPE and FULL_DATA_TYPE unnormalized so a native mismatch can
-        be investigated before changing the strict guard's comparison rules.
+        Retain the original DATA_TYPE comparison and counters for the approved
+        diagnostic's historical evidence; this is not the corrected guard.
         """
         metadata, _ = self._schema_metadata_ctes(include_full_type=True, case_insensitive_lookup=True)
         names = ','.join("'" + name.split('.')[-1] + "'" for name in self.r.targets.names)
