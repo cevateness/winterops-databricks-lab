@@ -1,5 +1,7 @@
 # On-demand V1 — native deployment review plan
 
+**Later execution:** The user approved the exact gated trial from merged PR #10 / main `eaf17ff`. Statement 1 passed, then statement 2 failed the schema guard; no deployment occurred. Corrected zero-based ordinal expectations are verified offline. This original proposal/package is retained for audit; use only the separately reviewed [corrected continuation](ON_DEMAND_BATCH_TRIAL_CONTINUATION.json) after new approval. See [actual outcomes](ON_DEMAND_BATCH_NATIVE_TRIAL.md).
+
 **PREPARED LOCALLY; NO APPROVAL, DEPLOYMENT OR EXECUTION YET.** This is a proposed future scope, not modification authority. [Machine-readable limits and exact file hashes](ON_DEMAND_BATCH_NATIVE_PLAN.json) pin request `4222da72f52c8699baf731fe01fbad7fbd8391615c1ae0f46b896380d38f966d`. Review the final code commit as well as that package; a change to either requires a new review. Real Jobs settings/request/SQL are private under the local WinterOps `batch_v1/review_20261030_final` directory. Public evidence omits the warehouse ID, local provenance paths, identity and private workspace URL.
 
 ## Selected source and expected results

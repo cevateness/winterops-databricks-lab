@@ -2,6 +2,14 @@
 
 This file resolves **stale status text** in earlier lesson ZIPs. It records known evidence; the user can resume after long pauses without replaying every lesson.
 
+## Native Jobs trial — stopped before deployment (2026-10-30)
+
+- PR #10 is merged at `eaf17ffa1872dac06de1c54f06af89d5fd09195a`. Work uses `feat/native-job-trial`; unrelated `.gitignore`, `.vscode/settings.json` and `databricks.yml` remain unchanged and excluded.
+- After the user approved the exact trial, all 28 fresh metadata/file GET checks passed, including the corrected `limit=20` active-run request with no active runs. Code/package/source fingerprints, identity/admin/warehouse access, 11 object metadata contracts and absent Job/file destinations matched. The first compound/named-marker Statement API probe passed in 8.203 seconds. The second combined guard failed in 19.956 seconds: `V2 target schema contract mismatch`, SQLSTATE P0001. Execution stopped immediately with no automatic retry.
+- **No uploads, directories, Job, runs, table/manifest DML, table/view DDL, grants/settings changes or cleanup occurred.** Two of 16 SQL requests were submitted (one succeeded, one failed), taking 57.345 active seconds overall / 28.159 SQL client seconds. Live successful source reconciliation/manifest snapshot, history/Gold baselines and final preservation checks were not reached. No Jobs SQL-file execution or new-source processing success is claimed. See [actual outcomes](ON_DEMAND_BATCH_NATIVE_TRIAL.md) and [sanitized results](ON_DEMAND_BATCH_NATIVE_RESULTS.json).
+- Local review found a definite schema-contract error: expected ordinal positions started at one, while Databricks documents zero-based positions. The guard and SQLite fixture are corrected; fixed anchors and a one-based rejection test were added. **157 offline tests passed**, zero failures/errors, 7.540 seconds. V2 transformations, source/policy identities, record multiplicities and published Gold definitions are unchanged; the corrected guard has not been rerun natively.
+- A [corrected continuation](ON_DEMAND_BATCH_TRIAL_CONTINUATION.json) is prepared locally and **not approved/executed**. It reuses the successful probe and combines the corrected source guard with the exact manifest snapshot, retaining every assertion within **14 new / 16 cumulative SQL requests**, and 842.655 remaining active seconds of 900. Fresh metadata allowance is explicit: 50 new / 78 cumulative GET/HEADs. The unused six-code-file/one-Job/two-run scope remains `complete_only` with zero table writes. Review/merge the one fix/evidence PR and its exact-commit CI, then obtain separate approval; do not replay the old package, automatically retry or broaden to a new source.
+
 ## Current orchestration implementation (2026-10-30)
 
 - PR #9 is merged at canonical main `7a3b8e6`. New work uses `feat/on-demand-batch-v1`; uncommitted `.gitignore`, `.vscode/settings.json` and `databricks.yml` are preserved and excluded.

@@ -48,7 +48,8 @@ class OfflineJob:
         db.execute('CREATE TABLE information_schema.columns (table_schema,table_name,column_name,data_type,ordinal_position)')
         for layer, types in (('bronze', BRONZE_TYPES), ('silver', SILVER_TYPES), ('manifest', MANIFEST_TYPES)):
             db.executemany('INSERT INTO information_schema.columns VALUES (?,?,?,?,?)',
-                           [('default', 'winterops_v2_dev_' + layer, k, v, i) for i, (k, v) in enumerate(types.items(), 1)])
+                           # Model the documented zero-based Databricks contract.
+                           [('default', 'winterops_v2_dev_' + layer, k, v, i) for i, (k, v) in enumerate(types.items())])
 
     def dialect(self, sql):
         sql = sql.replace(self.p.incoming, 'SELECT * FROM artifact')
@@ -309,6 +310,27 @@ class BatchWorkflowTests(unittest.TestCase):
         self.db.execute("UPDATE information_schema.columns SET ordinal_position=999 WHERE column_name='source_file_name'")
         before = self.db.total_changes
         self.assertIsNotNone(self.job.run()[2])
+        self.assertEqual(self.db.total_changes, before)
+
+    def test_documented_zero_based_schema_positions_pass(self):
+        # Independent fixed anchors from the real V2 schema/API contract.
+        anchors = [('bronze', 'source_version_id', 0), ('bronze', 'record_sha256', 15),
+                   ('silver', 'event_time_unzoned', 18), ('silver', 'quality_warnings', 29),
+                   ('manifest', 'processing_key', 0), ('manifest', 'updated_at_utc', 12)]
+        for layer, column, expected in anchors:
+            row = self.db.execute('SELECT ordinal_position FROM information_schema.columns '
+                                  'WHERE table_name=? AND column_name=?',
+                                  ('winterops_v2_dev_' + layer, column)).fetchone()
+            self.assertEqual(row[0], expected)
+        self.assertEqual(self.job.execute(BatchSql(self.r).schema_guard(), {}), [{'schema_check': None}])
+
+    def test_one_based_positions_are_rejected_without_writes(self):
+        self.empty_selected()
+        self.db.execute('UPDATE information_schema.columns SET ordinal_position=ordinal_position+1')
+        before = self.db.total_changes
+        states, _, error = self.job.run()
+        self.assertIsNotNone(error)
+        self.assertEqual(states['preflight'], 'failed')
         self.assertEqual(self.db.total_changes, before)
 
     def test_new_explicit_policy_reuses_bronze_and_preserves_existing_processing(self):

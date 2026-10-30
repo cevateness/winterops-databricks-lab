@@ -1,0 +1,285 @@
+{
+  "status": "PREPARED_LOCAL_NOT_APPROVED_NOT_EXECUTED",
+  "baseline_main": "eaf17ffa1872dac06de1c54f06af89d5fd09195a",
+  "request_sha256": "4222da72f52c8699baf731fe01fbad7fbd8391615c1ae0f46b896380d38f966d",
+  "corrected_code_sha256_lf_normalized": {
+    "src/winterops/batch.py": "8afdfddb4467c1320c5a7548811e5a5403b8996802846b37e9a9e846d1c2505a",
+    "src/winterops/batch_sql.py": "1e2909b7ff6a1250046f9a1b4e9e1559e3d2be2d2b62600182b0ae32d0a6be76",
+    "src/winterops/spark_ingestion.py": "fd4b3a8c1f7d51859f38d6450d8a1d02abff618ce407a33f50bcc2236d031d6b",
+    "src/winterops/unified_gold.py": "b81aefd6ac975efb10db83493decedeab51fb5d38855631cc4c00fc8e045cfbf",
+    "src/winterops/sql/v2_silver.sql": "f37625c269c7c64b05bd2531deeeb846823e808561e697abacfda668cf4ccef4",
+    "src/winterops/foundation.py": "6875c7d840a9a4102b8511da3f2ced73da8dd0f668586ef5b62860b8bbc40f5a",
+    "src/winterops/sources.py": "195843094002c59195ea7d306d941cac30d612a804a9eb7a890ca708c235bf19"
+  },
+  "package_files_sha256": {
+    "preflight.sql": "5bc7ffe0212220f904535a5cde8f2f543e88b01d58b2bfcd001877f21e8fbfbd",
+    "bronze.sql": "ba2e836d861c12bbdfbcfc92bb3578d50ca12f3a18f71272f3c5a42189761a1f",
+    "silver.sql": "5f146fb88a721222d08fa04a3a119acfc83301e7bb8c2c49fa74f67d69c6a3a0",
+    "quality.sql": "538aacc0ec2351cc2d771cf916818bd37ffb4d59b1b02a0a71158e1b59cfe31d",
+    "complete.sql": "72994df4fb3b69a5762368ecfeae5a7aa5b4ea60f179d4af442031519a297e6d",
+    "failure_audit.sql": "42cfe7eb2992e7c9ee45132e9b47153707faf7895ea861ce0a5994ebe286470f",
+    "job.json": "991c9e2679dd0fd614e0fee440f36003b03ac60a6c1b21438e6415e5a28ae032",
+    "request.json": "01e7b848d7fde5410fad008a5c9f2732e5b91bd0cac1069beeb636ed77cbd1e6"
+  },
+  "private_matrix_sha256": "47a904d89e63c5b0fe9ecf613ed73d52c90072acb701c59b85745bee1693c3a1",
+  "sql_file_bytes": {
+    "preflight.sql": 42843,
+    "bronze.sql": 29171,
+    "silver.sql": 39380,
+    "quality.sql": 30182,
+    "complete.sql": 42498,
+    "failure_audit.sql": 5470
+  },
+  "sql_upload_total_bytes": 189544,
+  "statement_matrix": [
+    {
+      "position": 1,
+      "phase": "before",
+      "label": "corrected-source-schema-quality-and-manifest-guard",
+      "sql_sha256": "7f0b7d91268aa9c0a9d03a61f6a1a6104786fde6c069970678595c2593f0cc32",
+      "expectation": "ALL_ASSERTIONS_NULL_SKIP_VERIFIED_AND_EXACT_PRIOR_MANIFEST",
+      "replaces_original_positions": [
+        2,
+        3
+      ]
+    },
+    {
+      "position": 2,
+      "phase": "before",
+      "label": "published-gold-baselines",
+      "sql_sha256": "ef0513f0228f45f36089b2994bd83d48c126b264c0b3531902bef2151d17ff09",
+      "expectation": "THREE_WEEK_ROWS_MATCH_2810_110337_118159_AND_LEGACY_BASELINE",
+      "original_position": 4
+    },
+    {
+      "position": 3,
+      "phase": "before",
+      "label": "before-history-bronze",
+      "sql_sha256": "2ee2ab735ede78283bb585333346d618d93d35afd0e0043be76d06d40ab392a9",
+      "expectation": "ONE_LATEST_VERSION_ROW_SAVE_PRIVATELY",
+      "original_position": 5
+    },
+    {
+      "position": 4,
+      "phase": "before",
+      "label": "before-history-silver",
+      "sql_sha256": "4618c85a19573c24271ab529fdf9a85237a733dae13edfdfa29508c33297495d",
+      "expectation": "ONE_LATEST_VERSION_ROW_SAVE_PRIVATELY",
+      "original_position": 6
+    },
+    {
+      "position": 5,
+      "phase": "before",
+      "label": "before-history-manifest",
+      "sql_sha256": "5801549ab947fe28093d6a96ef6e8a593a759caefc594f44624732c81d1d8d16",
+      "expectation": "ONE_LATEST_VERSION_ROW_SAVE_PRIVATELY",
+      "original_position": 7
+    },
+    {
+      "position": 6,
+      "phase": "after_run_1",
+      "label": "after_run_1-history-bronze",
+      "sql_sha256": "2ee2ab735ede78283bb585333346d618d93d35afd0e0043be76d06d40ab392a9",
+      "expectation": "LATEST_VERSION_EXACTLY_EQUALS_BEFORE",
+      "original_position": 8
+    },
+    {
+      "position": 7,
+      "phase": "after_run_1",
+      "label": "after_run_1-history-silver",
+      "sql_sha256": "4618c85a19573c24271ab529fdf9a85237a733dae13edfdfa29508c33297495d",
+      "expectation": "LATEST_VERSION_EXACTLY_EQUALS_BEFORE",
+      "original_position": 9
+    },
+    {
+      "position": 8,
+      "phase": "after_run_1",
+      "label": "after_run_1-history-manifest",
+      "sql_sha256": "5801549ab947fe28093d6a96ef6e8a593a759caefc594f44624732c81d1d8d16",
+      "expectation": "LATEST_VERSION_EXACTLY_EQUALS_BEFORE",
+      "original_position": 10
+    },
+    {
+      "position": 9,
+      "phase": "after_run_1",
+      "label": "after_run_1-manifest-snapshot",
+      "sql_sha256": "bb43ab6b6672a6fbf83f6525b271cc95405213dae77484fe840d230b6d90ee03",
+      "expectation": "FULL_RETURNED_ROW_EXACTLY_EQUALS_BEFORE",
+      "original_position": 11
+    },
+    {
+      "position": 10,
+      "phase": "after_run_2",
+      "label": "after_run_2-history-bronze",
+      "sql_sha256": "2ee2ab735ede78283bb585333346d618d93d35afd0e0043be76d06d40ab392a9",
+      "expectation": "LATEST_VERSION_EXACTLY_EQUALS_BEFORE",
+      "original_position": 12
+    },
+    {
+      "position": 11,
+      "phase": "after_run_2",
+      "label": "after_run_2-history-silver",
+      "sql_sha256": "4618c85a19573c24271ab529fdf9a85237a733dae13edfdfa29508c33297495d",
+      "expectation": "LATEST_VERSION_EXACTLY_EQUALS_BEFORE",
+      "original_position": 13
+    },
+    {
+      "position": 12,
+      "phase": "after_run_2",
+      "label": "after_run_2-history-manifest",
+      "sql_sha256": "5801549ab947fe28093d6a96ef6e8a593a759caefc594f44624732c81d1d8d16",
+      "expectation": "LATEST_VERSION_EXACTLY_EQUALS_BEFORE",
+      "original_position": 14
+    },
+    {
+      "position": 13,
+      "phase": "after_run_2",
+      "label": "after_run_2-manifest-snapshot",
+      "sql_sha256": "bb43ab6b6672a6fbf83f6525b271cc95405213dae77484fe840d230b6d90ee03",
+      "expectation": "FULL_RETURNED_ROW_EXACTLY_EQUALS_BEFORE",
+      "original_position": 15
+    },
+    {
+      "position": 14,
+      "phase": "after_run_2",
+      "label": "after-published-gold-baselines",
+      "sql_sha256": "ef0513f0228f45f36089b2994bd83d48c126b264c0b3531902bef2151d17ff09",
+      "expectation": "ALL_RETURNED_AGGREGATES_EXACTLY_EQUAL_BEFORE",
+      "original_position": 16
+    }
+  ],
+  "previous_execution_result": "STOPPED_BEFORE_DEPLOYMENT_SCHEMA_GUARD_FAILED",
+  "previous_sql_submissions": 2,
+  "new_sql_requests_maximum": 14,
+  "cumulative_sql_maximum": 16,
+  "previous_active_seconds": 57.345,
+  "continuation_active_deadline_seconds": 842.655,
+  "cumulative_active_deadline_seconds": 900,
+  "reuse_completed_probe": true,
+  "compound_probe_reexecution": false,
+  "metadata_get_head_maximum": 50,
+  "prior_metadata_gets": 28,
+  "cumulative_metadata_get_head_maximum": 78,
+  "corrected_active_runs_limit": 20,
+  "stop_on_pagination_or_active_runs": true,
+  "job_name": "WinterOps on-demand V1",
+  "workspace_file_root": "/Workspace/Shared/winterops_on_demand_v1/4222da72f52c8699baf731fe01fbad7fbd8391615c1ae0f46b896380d38f966d",
+  "workspace_sql_files": [
+    "preflight.sql",
+    "bronze.sql",
+    "silver.sql",
+    "quality.sql",
+    "complete.sql",
+    "failure_audit.sql"
+  ],
+  "sql_code_uploads_maximum": 6,
+  "job_creations_maximum": 1,
+  "runs_maximum": 2,
+  "proposed_runs": [
+    {
+      "execution_mode": "verify",
+      "recovery": "deny"
+    },
+    {
+      "execution_mode": "process",
+      "recovery": "deny"
+    }
+  ],
+  "task_output_gets_maximum": 10,
+  "job_status_gets_maximum": 90,
+  "status_poll_interval_seconds": 5,
+  "statement_wait_timeout": "30s",
+  "on_wait_timeout": "CANCEL",
+  "statement_client_deadline_seconds": 45,
+  "statement_row_limit": 200,
+  "statement_byte_limit": 65536,
+  "sql_file_byte_limit": 262144,
+  "total_sql_upload_byte_limit": 1048576,
+  "job_timeout_seconds": 600,
+  "task_timeout_seconds": 90,
+  "max_concurrent_runs": 1,
+  "queue_enabled": false,
+  "retries": 0,
+  "schedule": null,
+  "record_bearing_uploads": 0,
+  "table_or_manifest_dml": 0,
+  "table_or_view_ddl": 0,
+  "expected_manifest": {
+    "status": "COMPLETE",
+    "bronze_rows": 2810,
+    "silver_rows": 2810,
+    "header_rows": 19,
+    "valid_rows": 2791,
+    "invalid_rows": 0,
+    "prior_native_row": {
+      "processing_key": "f07ba6a0ad499a9baf53d2f7c46df09607523371428791593143a29b56f6b466",
+      "source_version_id": "8ccb2a2dd5ec057361cf6d7cc7193b5acbdd858b84102ba550a92febe9bb4ed1",
+      "source_file_sha256": "271c9339a42043f441b6c17e82dd309609db4b20e9953b9f368a95ec472d763d",
+      "status": "COMPLETE",
+      "last_successful_stage": "COMPLETE",
+      "attempts": 2,
+      "bronze_rows": 2810,
+      "silver_rows": 2810,
+      "error_code": null,
+      "updated_at_utc": "2026-10-29 13:14:58.044428",
+      "metadata_sha256": "c2d08257c9d97b523832c5494b93ab59aa1ba3f263a02307d416b28a4df624d0",
+      "policy_json_sha256": "ecb195bd0381aa104a562a121f9e7e43b5f8f97d57e19ffb0698571636b323b5"
+    },
+    "prior_native_evidence": "docs/THREE_WEEK_NATIVE_RESULTS.json"
+  },
+  "expected_task_outputs": {
+    "preflight": {
+      "columns": [
+        "state_check",
+        "decision",
+        "bronze_n",
+        "silver_n"
+      ],
+      "rows": 1,
+      "decision": "SKIP_VERIFIED",
+      "bronze_n": 2810,
+      "silver_n": 2810
+    },
+    "bronze": {
+      "columns": [
+        "schema_check"
+      ],
+      "rows": 1
+    },
+    "silver": {
+      "columns": [
+        "schema_check"
+      ],
+      "rows": 1
+    },
+    "quality": {
+      "columns": [
+        "schema_check"
+      ],
+      "rows": 1
+    },
+    "complete": {
+      "columns": [
+        "batch_outcome"
+      ],
+      "rows": 1,
+      "batch_outcome": "COMPLETE_ELIGIBLE"
+    },
+    "failure_audit": {
+      "result_state": "EXCLUDED"
+    }
+  },
+  "stop_rule": "FIRST_FAILURE_TIMEOUT_CANCELLATION_UNEXPECTED_RESPONSE_TRUNCATION_OR_MISMATCH_NO_AUTOMATIC_RETRY",
+  "excluded": [
+    "NEW_SOURCE_WRITES",
+    "APPEND_MISSING_POLICY",
+    "NATIVE_FAILURE_INJECTION_OR_RECOVERY",
+    "TASK_REPAIR",
+    "SCHEDULES",
+    "NEW_COMPUTE",
+    "GOLD_CHANGES",
+    "GRANT_OR_WAREHOUSE_CHANGES",
+    "AUTOMATIC_CLEANUP"
+  ],
+  "explanation": "Correct zero-based ordinal expectations; merge source guards and exact manifest snapshot into one one-row SELECT, preserving every assertion and the cumulative SQL cap. Fresh metadata allowance is explicit; no automatic retry is authorized."
+}

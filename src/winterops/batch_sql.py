@@ -50,7 +50,8 @@ class BatchSql:
         targets = self.r.targets
         expected = []
         for layer, types in (('bronze', BRONZE_TYPES), ('silver', SILVER_TYPES), ('manifest', MANIFEST_TYPES)):
-            for position, (column, kind) in enumerate(types.items(), 1):
+            # Databricks INFORMATION_SCHEMA.COLUMNS positions start at zero.
+            for position, (column, kind) in enumerate(types.items()):
                 expected.append(f"SELECT '{targets.table(layer).split('.')[-1]}' AS table_name, '{column}' AS column_name, '{kind}' AS data_type, {position} AS ordinal_position")
         names = ','.join("'" + name.split('.')[-1] + "'" for name in targets.names)
         return f"""WITH expected AS ({' UNION ALL '.join(expected)}), actual AS (
