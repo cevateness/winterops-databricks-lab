@@ -1,0 +1,83 @@
+{
+  "status": "PREPARED_LOCAL_NOT_APPROVED_NOT_DEPLOYED_NOT_RUN",
+  "baseline_main": "7a3b8e6ba7cd529d90c3d9e0a5f6f4ba9878d1ef",
+  "request_sha256": "4222da72f52c8699baf731fe01fbad7fbd8391615c1ae0f46b896380d38f966d",
+  "source_file_name": "snowplow-2026-01-05_2026-01-11.csv",
+  "source_file_sha256": "271c9339a42043f441b6c17e82dd309609db4b20e9953b9f368a95ec472d763d",
+  "source_version_id": "8ccb2a2dd5ec057361cf6d7cc7193b5acbdd858b84102ba550a92febe9bb4ed1",
+  "processing_key": "f07ba6a0ad499a9baf53d2f7c46df09607523371428791593143a29b56f6b466",
+  "quality_policy_sha256": "03829a2ce3b308a45e0205ca12a5288e5cb08b97189cf20b69c0e37d4c546e08",
+  "source_csv_bytes": 221818,
+  "artifact_sha256": "375d6c5980ed66f61b2dcb0601f639f5e2a3a20ce546ac08d3e20fc60c17edd3",
+  "artifact_bytes": 3619379,
+  "expected_bronze_rows": 2810,
+  "expected_silver_rows": 2810,
+  "expected_header_rows": 19,
+  "expected_valid_rows": 2791,
+  "expected_invalid_rows": 0,
+  "local_bytes_verification": "SOURCE_CSV_AND_STAGED_ARTIFACT_HASH_AND_SIZE_MATCH",
+  "current_native_auth_and_objects": "NOT_RECHECKED_IN_THIS_TASK",
+  "write_policy": "complete_only",
+  "job_name": "WinterOps on-demand V1",
+  "job_creations_maximum": 1,
+  "sql_file_uploads_maximum": 6,
+  "sql_upload_bytes": {
+    "preflight.sql": 42846,
+    "bronze.sql": 29174,
+    "silver.sql": 39383,
+    "quality.sql": 30185,
+    "complete.sql": 42501,
+    "failure_audit.sql": 5470
+  },
+  "sql_upload_total_bytes": 189559,
+  "sql_upload_file_bound": 262144,
+  "sql_upload_total_bound": 1048576,
+  "record_bearing_uploads": 0,
+  "proposed_table_dml_maximum": 0,
+  "proposed_table_or_view_ddl_maximum": 0,
+  "schedule": null,
+  "retries": 0,
+  "queue_enabled": false,
+  "maximum_concurrent_job_runs": 1,
+  "maximum_active_job_tasks": 1,
+  "job_timeout_seconds": 600,
+  "task_timeout_seconds": 90,
+  "proposed_runs": [
+    {
+      "execution_mode": "verify",
+      "recovery": "deny"
+    },
+    {
+      "execution_mode": "process",
+      "recovery": "deny"
+    }
+  ],
+  "proposed_runs_maximum": 2,
+  "job_sql_file_executions_maximum": 11,
+  "read_only_statement_api_requests_maximum": 16,
+  "statement_api_wait_timeout": "30s",
+  "statement_api_on_wait_timeout": "CANCEL",
+  "statement_api_client_deadline_seconds": 45,
+  "statement_api_row_limit": 200,
+  "statement_api_byte_limit": 65536,
+  "whole_trial_client_deadline_seconds": 900,
+  "job_status_get_maximum": 90,
+  "job_status_poll_interval_seconds": 5,
+  "files_sha256": {
+    "preflight.sql": "b51550ff3895a1b3a9499dda6b343c8532c692b267ba41fc68c4e25ae686b29b",
+    "bronze.sql": "7fcedde017ceac7d9b68cc061a4200754f4ba9768c860e97ab0ba696ea9a8500",
+    "silver.sql": "fdaccbc703f896659eb43456cd76c2dabaec980a8a5d9be772447652e567ea34",
+    "quality.sql": "05ecaefc8afe79e0581900acdb005c777f2ea8a5e33d75e76898e54bda953bfa",
+    "complete.sql": "708ef7360c12cf450c5f73d8b80efb405533a0919fa109b1fc14ffa7c27c9876",
+    "failure_audit.sql": "42cfe7eb2992e7c9ee45132e9b47153707faf7895ea861ce0a5994ebe286470f",
+    "job.json": "991c9e2679dd0fd614e0fee440f36003b03ac60a6c1b21438e6415e5a28ae032",
+    "request.json": "01e7b848d7fde5410fad008a5c9f2732e5b91bd0cac1069beeb636ed77cbd1e6"
+  },
+  "source_objects": [
+    "workspace.default.winterops_v2_dev_bronze",
+    "workspace.default.winterops_v2_dev_silver",
+    "workspace.default.winterops_v2_dev_manifest"
+  ],
+  "published_gold_changes": "NONE_ELIGIBILITY_ONLY",
+  "stop_rule": "FIRST_FAILURE_TIMEOUT_CANCELLATION_OR_UNEXPECTED_RESULT_NO_AUTOMATIC_RETRY"
+}
