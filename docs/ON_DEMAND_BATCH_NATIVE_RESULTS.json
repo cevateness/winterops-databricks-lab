@@ -1,0 +1,553 @@
+{
+  "status": "STOPPED_SCHEMA_ASSERTION_UNRESOLVED_AFTER_CORRECTED_CONTINUATION",
+  "request_sha256": "4222da72f52c8699baf731fe01fbad7fbd8391615c1ae0f46b896380d38f966d",
+  "attempts": [
+    {
+      "status": "STOPPED_BEFORE_DEPLOYMENT_SCHEMA_GUARD_FAILED",
+      "approved_baseline": "eaf17ffa1872dac06de1c54f06af89d5fd09195a",
+      "approved_proposal_sha256": "1b8e8e4ef87852409b3ac345dc48ad791e1713be0a7cd5ed8509e9606e1f9cff",
+      "approval_received": "yes",
+      "request_sha256": "4222da72f52c8699baf731fe01fbad7fbd8391615c1ae0f46b896380d38f966d",
+      "matrix_sha256": "8cb3a1d324ef932c6c977574bcfa7840d783ad681585ede358fbbc37a3a43c4c",
+      "recorded_at_utc": "2026-10-30T16:37:14.539409+00:00",
+      "metadata_operations": [
+        {
+          "label": "identity",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 0.85
+        },
+        {
+          "label": "before-warehouse",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 0.763
+        },
+        {
+          "label": "corrected-active-runs",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 0.776
+        },
+        {
+          "label": "before-object-workspace.default.winterops_bronze_windsor_activity",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 1.118
+        },
+        {
+          "label": "before-object-workspace.default.winterops_silver_windsor_week_sample",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 1.109
+        },
+        {
+          "label": "before-object-workspace.default.winterops_silver_windsor_valid",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 0.939
+        },
+        {
+          "label": "before-object-workspace.default.winterops_silver_windsor_quarantine",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 0.956
+        },
+        {
+          "label": "before-object-workspace.default.winterops_gold_windsor_hourly_observations",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 0.909
+        },
+        {
+          "label": "before-object-workspace.default.winterops_v2_dev_bronze",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 1.105
+        },
+        {
+          "label": "before-object-workspace.default.winterops_v2_dev_silver",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 1.16
+        },
+        {
+          "label": "before-object-workspace.default.winterops_v2_dev_manifest",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 0.907
+        },
+        {
+          "label": "before-object-workspace.default.winterops_v2_gold_hourly_observations",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 1.05
+        },
+        {
+          "label": "before-object-workspace.default.winterops_v2_gold_daily_activity",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 1.039
+        },
+        {
+          "label": "before-object-workspace.default.winterops_v2_gold_weekly_quality",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 1.053
+        },
+        {
+          "label": "before-job-name",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 0.784
+        },
+        {
+          "label": "before-file-destination-0",
+          "method": "GET",
+          "http_status": 404,
+          "elapsed_seconds": 1.406
+        },
+        {
+          "label": "before-file-destination-1",
+          "method": "GET",
+          "http_status": 404,
+          "elapsed_seconds": 0.915
+        },
+        {
+          "label": "before-file-destination-2",
+          "method": "GET",
+          "http_status": 404,
+          "elapsed_seconds": 0.913
+        },
+        {
+          "label": "before-file-destination-3",
+          "method": "GET",
+          "http_status": 404,
+          "elapsed_seconds": 1.04
+        },
+        {
+          "label": "before-file-destination-4",
+          "method": "GET",
+          "http_status": 404,
+          "elapsed_seconds": 0.761
+        },
+        {
+          "label": "before-file-destination-5",
+          "method": "GET",
+          "http_status": 404,
+          "elapsed_seconds": 0.9
+        },
+        {
+          "label": "before-file-destination-6",
+          "method": "GET",
+          "http_status": 404,
+          "elapsed_seconds": 0.853
+        },
+        {
+          "label": "before-file-destination-7",
+          "method": "GET",
+          "http_status": 404,
+          "elapsed_seconds": 0.915
+        },
+        {
+          "label": "before-original",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 1.816
+        },
+        {
+          "label": "before-artifact",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 2.311
+        },
+        {
+          "label": "before-volume-owner",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 0.788
+        },
+        {
+          "label": "before-warehouse-acl",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 0.861
+        },
+        {
+          "label": "before-parent-acl",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 0.89
+        }
+      ],
+      "metadata_gets": 28,
+      "active_runs_check": "PASS_ZERO_ACTIVE",
+      "source_hashes": [
+        {
+          "label": "before-original",
+          "bytes": 221818,
+          "sha256": "271c9339a42043f441b6c17e82dd309609db4b20e9953b9f368a95ec472d763d",
+          "result": "PASS"
+        },
+        {
+          "label": "before-artifact",
+          "bytes": 3619379,
+          "sha256": "375d6c5980ed66f61b2dcb0601f639f5e2a3a20ce546ac08d3e20fc60c17edd3",
+          "result": "PASS"
+        }
+      ],
+      "statements": [
+        {
+          "position": 1,
+          "label": "compound-named-marker-probe",
+          "sql_sha256": "81b94f024bc3bcdea4fa1928256846fe0daa852693d0cc7872d17449d4bb70cd",
+          "phase": "before",
+          "elapsed_seconds": 8.203,
+          "state": "SUCCEEDED",
+          "row_count": 1,
+          "columns": [
+            "compound_parameter_check"
+          ],
+          "truncated": false,
+          "verification": "PASS"
+        },
+        {
+          "position": 2,
+          "label": "source-schema-content-quality-complete-guards",
+          "sql_sha256": "aed9a8caabecd63a88f345fe5a24b16ac326cf244e86a1d1c667e4ae78b036eb",
+          "phase": "before",
+          "elapsed_seconds": 19.956,
+          "state": "FAILED",
+          "error_code": "BAD_REQUEST",
+          "runtime_error": "[USER_RAISED_EXCEPTION] V2 target schema contract mismatch SQLSTATE: P0001"
+        }
+      ],
+      "sql_submissions": 2,
+      "sql_client_seconds": 28.159,
+      "active_elapsed_seconds": 57.345,
+      "successful_statement_count": 1,
+      "failed_statement_count": 1,
+      "sql_cancellations": 0,
+      "sql_error_code": "BAD_REQUEST",
+      "runtime_error": "[USER_RAISED_EXCEPTION] V2 target schema contract mismatch SQLSTATE: P0001",
+      "created_directories": 0,
+      "uploaded_sql_files": 0,
+      "uploaded_record_artifacts": 0,
+      "job_creations": 0,
+      "job_runs": 0,
+      "data_or_manifest_dml": 0,
+      "table_or_view_ddl": 0,
+      "grants_or_warehouse_setting_changes": 0,
+      "automatic_retries": 0,
+      "cleanup": 0,
+      "native_verified": [
+        "AUTHENTICATED_EXPECTED_WORKSPACE",
+        "WAREHOUSE_CONFIGURATION_AND_ACL",
+        "ZERO_ACTIVE_RUNS",
+        "ELEVEN_OBJECT_METADATA_SNAPSHOTS",
+        "SOURCE_AND_TRANSPORT_HASHES",
+        "COMPOUND_NAMED_MARKER_STATEMENT_API_PROBE"
+      ],
+      "not_executed": [
+        "LIVE_COMPLETE_MANIFEST_SNAPSHOT",
+        "SUCCESSFUL_SOURCE_CONTENT_AND_QUALITY_RECONCILIATION",
+        "DELTA_HISTORY_BASELINES",
+        "GOLD_BASELINE_READS",
+        "WORKSPACE_UPLOADS",
+        "JOB_CREATION",
+        "JOB_SQL_FILE_TASKS",
+        "POSTFLIGHT_PRESERVATION"
+      ],
+      "local_correction": {
+        "status": "OFFLINE_CORRECTED_NOT_REEXECUTED_NATIVELY",
+        "field": "INFORMATION_SCHEMA.COLUMNS.ORDINAL_POSITION",
+        "old_expected_base": 1,
+        "documented_base": 0,
+        "observed_uc_api_position_base": 0,
+        "official_reference": "https://docs.databricks.com/aws/en/sql/language-manual/information-schema/columns",
+        "changed_modules": [
+          "src/winterops/batch_sql.py",
+          "tests/test_batch.py"
+        ]
+      },
+      "offline_tests": {
+        "tests": 157,
+        "failures": 0,
+        "errors": 0,
+        "elapsed_seconds": 7.54
+      },
+      "new_source_processing_ready": false,
+      "continuation": "docs/ON_DEMAND_BATCH_TRIAL_CONTINUATION.json",
+      "continuation_approved": false
+    },
+    {
+      "status": "STOPPED_NO_RETRY",
+      "approved_revision": "85f8024c500c029b02f94c0db06941537cf584ec",
+      "approved_proposal_sha256": "87915d4910cbfe45826d689fe48cec483b0bdbe3c5cf3547b574529630d292ee",
+      "approval_received": "yes",
+      "matrix_sha256": "47a904d89e63c5b0fe9ecf613ed73d52c90072acb701c59b85745bee1693c3a1",
+      "recorded_at_utc": "2026-10-30T17:58:21.844407+00:00",
+      "metadata_operations": [
+        {
+          "label": "identity",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 0.931
+        },
+        {
+          "label": "before-warehouse",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 0.837
+        },
+        {
+          "label": "corrected-active-runs",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 0.781
+        },
+        {
+          "label": "before-object-workspace.default.winterops_bronze_windsor_activity",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 0.989
+        },
+        {
+          "label": "before-object-workspace.default.winterops_silver_windsor_week_sample",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 0.963
+        },
+        {
+          "label": "before-object-workspace.default.winterops_silver_windsor_valid",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 0.96
+        },
+        {
+          "label": "before-object-workspace.default.winterops_silver_windsor_quarantine",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 0.953
+        },
+        {
+          "label": "before-object-workspace.default.winterops_gold_windsor_hourly_observations",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 0.938
+        },
+        {
+          "label": "before-object-workspace.default.winterops_v2_dev_bronze",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 1.101
+        },
+        {
+          "label": "before-object-workspace.default.winterops_v2_dev_silver",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 1.101
+        },
+        {
+          "label": "before-object-workspace.default.winterops_v2_dev_manifest",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 0.969
+        },
+        {
+          "label": "before-object-workspace.default.winterops_v2_gold_hourly_observations",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 1.103
+        },
+        {
+          "label": "before-object-workspace.default.winterops_v2_gold_daily_activity",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 1.084
+        },
+        {
+          "label": "before-object-workspace.default.winterops_v2_gold_weekly_quality",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 1.106
+        },
+        {
+          "label": "before-job-name",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 0.828
+        },
+        {
+          "label": "before-file-destination-0",
+          "method": "GET",
+          "http_status": 404,
+          "elapsed_seconds": 0.928
+        },
+        {
+          "label": "before-file-destination-1",
+          "method": "GET",
+          "http_status": 404,
+          "elapsed_seconds": 0.819
+        },
+        {
+          "label": "before-file-destination-2",
+          "method": "GET",
+          "http_status": 404,
+          "elapsed_seconds": 0.947
+        },
+        {
+          "label": "before-file-destination-3",
+          "method": "GET",
+          "http_status": 404,
+          "elapsed_seconds": 0.982
+        },
+        {
+          "label": "before-file-destination-4",
+          "method": "GET",
+          "http_status": 404,
+          "elapsed_seconds": 0.924
+        },
+        {
+          "label": "before-file-destination-5",
+          "method": "GET",
+          "http_status": 404,
+          "elapsed_seconds": 0.899
+        },
+        {
+          "label": "before-file-destination-6",
+          "method": "GET",
+          "http_status": 404,
+          "elapsed_seconds": 0.811
+        },
+        {
+          "label": "before-file-destination-7",
+          "method": "GET",
+          "http_status": 404,
+          "elapsed_seconds": 0.794
+        },
+        {
+          "label": "before-original",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 1.8
+        },
+        {
+          "label": "before-artifact",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 2.741
+        },
+        {
+          "label": "before-volume-owner",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 0.823
+        },
+        {
+          "label": "before-warehouse-acl",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 0.943
+        },
+        {
+          "label": "before-parent-acl",
+          "method": "GET",
+          "http_status": 200,
+          "elapsed_seconds": 0.904
+        }
+      ],
+      "metadata_gets": 28,
+      "active_runs_check": "PASS_ZERO_ACTIVE",
+      "source_hashes": [
+        {
+          "label": "before-original",
+          "bytes": 221818,
+          "sha256": "271c9339a42043f441b6c17e82dd309609db4b20e9953b9f368a95ec472d763d",
+          "result": "PASS"
+        },
+        {
+          "label": "before-artifact",
+          "bytes": 3619379,
+          "sha256": "375d6c5980ed66f61b2dcb0601f639f5e2a3a20ce546ac08d3e20fc60c17edd3",
+          "result": "PASS"
+        }
+      ],
+      "statements": [
+        {
+          "position": 1,
+          "label": "corrected-source-schema-quality-and-manifest-guard",
+          "sql_sha256": "7f0b7d91268aa9c0a9d03a61f6a1a6104786fde6c069970678595c2593f0cc32",
+          "phase": "before",
+          "elapsed_seconds": 21.216,
+          "state": "FAILED",
+          "error_code": "BAD_REQUEST",
+          "runtime_error": "[USER_RAISED_EXCEPTION] V2 target schema contract mismatch SQLSTATE: P0001"
+        }
+      ],
+      "sql_submissions": 1,
+      "sql_client_seconds": 21.216,
+      "active_elapsed_seconds": 50.561,
+      "uploaded_sql_files": 0,
+      "created_directories": 0,
+      "job_creations": 0,
+      "job_runs": 0,
+      "data_or_manifest_dml": 0,
+      "table_or_view_ddl": 0,
+      "automatic_retries": 0,
+      "cleanup": 0,
+      "reused_probe": {
+        "position": 1,
+        "label": "compound-named-marker-probe",
+        "sql_sha256": "81b94f024bc3bcdea4fa1928256846fe0daa852693d0cc7872d17449d4bb70cd",
+        "phase": "before",
+        "elapsed_seconds": 8.203,
+        "state": "SUCCEEDED",
+        "row_count": 1,
+        "columns": [
+          "compound_parameter_check"
+        ],
+        "truncated": false,
+        "verification": "PASS"
+      }
+    }
+  ],
+  "totals": {
+    "sql_submissions": 3,
+    "successful_statements": 1,
+    "failed_statements": 2,
+    "cancellations": 0,
+    "metadata_gets": 56,
+    "sql_client_seconds": 49.375,
+    "active_elapsed_seconds": 107.906,
+    "uploaded_sql_files": 0,
+    "uploaded_record_artifacts": 0,
+    "created_directories": 0,
+    "job_creations": 0,
+    "job_runs": 0,
+    "data_or_manifest_dml": 0,
+    "table_or_view_ddl": 0,
+    "grants_or_warehouse_setting_changes": 0,
+    "automatic_retries": 0,
+    "cleanup": 0
+  },
+  "latest_runtime_error": "[USER_RAISED_EXCEPTION] V2 target schema contract mismatch SQLSTATE: P0001",
+  "native_jobs_execution": "NOT_REACHED",
+  "native_info_schema_rows": "NOT_OBSERVED_ASSERTION_RETURNED_NO_ROWS",
+  "native_complete_manifest": "NOT_SUCCESSFULLY_RECONCILED_IN_THIS_TRIAL",
+  "native_postflight_preservation": "NOT_REACHED",
+  "new_source_processing_ready": false,
+  "local_implementation": {
+    "documented_zero_based_expectation": true,
+    "further_guard_relaxation": false,
+    "diagnostics_added": true,
+    "all_six_job_sql_file_hashes_unchanged_by_diagnostic_refactor": true
+  },
+  "offline_tests": {
+    "tests": 161,
+    "failures": 0,
+    "errors": 0,
+    "elapsed_seconds": 8.157
+  },
+  "next_proposal": "docs/ON_DEMAND_BATCH_SCHEMA_DIAGNOSTIC_APPROVAL.json"
+}

@@ -45,10 +45,11 @@ class OfflineJob:
         db.create_function('concat_ws', -1, lambda sep, *values: sep.join(v for v in values if v is not None))
         db.create_aggregate('count_if', 1, CountIf)
         db.execute("ATTACH DATABASE ':memory:' AS information_schema")
-        db.execute('CREATE TABLE information_schema.columns (table_schema,table_name,column_name,data_type,ordinal_position)')
+        db.execute('CREATE TABLE information_schema.columns (table_schema,table_name,column_name,data_type,ordinal_position,full_data_type)')
         for layer, types in (('bronze', BRONZE_TYPES), ('silver', SILVER_TYPES), ('manifest', MANIFEST_TYPES)):
-            db.executemany('INSERT INTO information_schema.columns VALUES (?,?,?,?,?)',
-                           [('default', 'winterops_v2_dev_' + layer, k, v, i) for i, (k, v) in enumerate(types.items(), 1)])
+            db.executemany('INSERT INTO information_schema.columns VALUES (?,?,?,?,?,?)',
+                           # Model the documented zero-based Databricks contract.
+                           [('default', 'winterops_v2_dev_' + layer, k, v, i, v) for i, (k, v) in enumerate(types.items())])
 
     def dialect(self, sql):
         sql = sql.replace(self.p.incoming, 'SELECT * FROM artifact')
@@ -311,6 +312,64 @@ class BatchWorkflowTests(unittest.TestCase):
         self.assertIsNotNone(self.job.run()[2])
         self.assertEqual(self.db.total_changes, before)
 
+    def test_documented_zero_based_schema_positions_pass(self):
+        # Independent fixed anchors from the real V2 schema/API contract.
+        anchors = [('bronze', 'source_version_id', 0), ('bronze', 'record_sha256', 15),
+                   ('silver', 'event_time_unzoned', 18), ('silver', 'quality_warnings', 29),
+                   ('manifest', 'processing_key', 0), ('manifest', 'updated_at_utc', 12)]
+        for layer, column, expected in anchors:
+            row = self.db.execute('SELECT ordinal_position FROM information_schema.columns '
+                                  'WHERE table_name=? AND column_name=?',
+                                  ('winterops_v2_dev_' + layer, column)).fetchone()
+            self.assertEqual(row[0], expected)
+        self.assertEqual(self.job.execute(BatchSql(self.r).schema_guard(), {}), [{'schema_check': None}])
+
+    def test_one_based_positions_are_rejected_without_writes(self):
+        self.empty_selected()
+        self.db.execute('UPDATE information_schema.columns SET ordinal_position=ordinal_position+1')
+        before = self.db.total_changes
+        states, _, error = self.job.run()
+        self.assertIsNotNone(error)
+        self.assertEqual(states['preflight'], 'failed')
+        self.assertEqual(self.db.total_changes, before)
+
+    def test_schema_diagnostic_reports_every_expected_column_without_writes(self):
+        before = self.db.total_changes
+        rows = self.job.execute(BatchSql(self.r).schema_diagnostic(), {})
+        self.assertEqual(len(rows), 59)
+        self.assertEqual({row['match_status'] for row in rows}, {'MATCH'})
+        self.assertTrue(all(row['expected_column_count'] == row['actual_column_count'] ==
+                            row['guard_joined_rows'] == row['guard_matching_rows'] == 59 for row in rows))
+        self.assertEqual(self.db.total_changes, before)
+
+    def test_schema_diagnostic_retains_missing_extra_type_and_position_evidence(self):
+        self.db.execute("UPDATE information_schema.columns SET data_type='TIMESTAMP_LTZ', ordinal_position=999 "
+                        "WHERE table_name='winterops_v2_dev_manifest' AND column_name='updated_at_utc'")
+        self.db.execute("DELETE FROM information_schema.columns WHERE table_name='winterops_v2_dev_bronze' AND column_name='source_file_name'")
+        self.db.execute("INSERT INTO information_schema.columns VALUES ('default','winterops_v2_dev_bronze','SYN_UNEXPECTED','STRING',999,'STRING')")
+        before = self.db.total_changes
+        rows = self.job.execute(BatchSql(self.r).schema_diagnostic(), {})
+        self.assertEqual(len(rows), 60)
+        statuses = {row['column_name']: row['match_status'] for row in rows if row['match_status'] != 'MATCH'}
+        self.assertEqual(statuses, {'updated_at_utc': 'TYPE_AND_POSITION', 'source_file_name': 'MISSING_COLUMN', 'SYN_UNEXPECTED': 'UNEXPECTED_COLUMN'})
+        changed = next(row for row in rows if row['column_name'] == 'updated_at_utc')
+        self.assertEqual((changed['actual_type'], changed['actual_full_type']), ('TIMESTAMP_LTZ', 'TIMESTAMP'))
+        self.assertEqual((changed['guard_joined_rows'], changed['guard_matching_rows']), (59, 57))
+        self.assertEqual(self.db.total_changes, before)
+
+    def test_schema_diagnostic_exposes_casing_without_relaxing_the_guard(self):
+        self.db.execute('UPDATE information_schema.columns SET table_schema=upper(table_schema), '
+                        'table_name=upper(table_name), column_name=upper(column_name)')
+        before = self.db.total_changes
+        rows = self.job.execute(BatchSql(self.r).schema_diagnostic(), {})
+        self.assertEqual(len(rows), 118)
+        self.assertEqual({row['match_status'] for row in rows}, {'MISSING_COLUMN', 'UNEXPECTED_COLUMN'})
+        self.assertTrue(all(row['actual_column_count'] == 59 and row['guard_actual_column_count'] == 0 for row in rows))
+        self.assertEqual({row['actual_table_schema'] for row in rows}, {None, 'DEFAULT'})
+        with self.assertRaises(sqlite3.OperationalError):
+            self.job.execute(BatchSql(self.r).schema_guard(), {})
+        self.assertEqual(self.db.total_changes, before)
+
     def test_new_explicit_policy_reuses_bronze_and_preserves_existing_processing(self):
         previous = {layer: Counter(self.db.execute('SELECT * FROM winterops_v2_dev_' + layer).fetchall())
                     for layer in ('bronze', 'silver', 'manifest')}
@@ -359,6 +418,14 @@ class BatchWorkflowTests(unittest.TestCase):
 
 
 class BatchContractTests(unittest.TestCase):
+    def test_committed_metadata_diagnostic_matches_read_only_generator(self):
+        sql = BatchSql(synthetic_request()).schema_diagnostic()
+        path = Path(__file__).resolve().parents[1] / 'sql/batch_schema_metadata_diagnostic.sql'
+        self.assertEqual(path.read_text(encoding='utf-8'), sql + ';\n')
+        self.assertNotIn('read_files', sql)
+        self.assertNotIn('assert_true', sql)
+        self.assertNotRegex(sql, r'(?i)\b(INSERT|UPDATE|DELETE|CREATE|ALTER|DROP|GRANT)\b')
+
     def test_committed_declarative_example_matches_generator(self):
         path = Path(__file__).resolve().parents[1] / 'jobs/on_demand_batch_v1.job.json'
         self.assertEqual(json.loads(path.read_text(encoding='utf-8')),

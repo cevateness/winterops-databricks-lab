@@ -1,5 +1,7 @@
 # On-demand V1 — native deployment review plan
 
+**Later execution:** The initial approved trial and a separately approved corrected continuation both stopped at the schema assertion. The compound/named-marker probe passed; no deployment occurred. Both packages/proposals are retained for audit and must not be replayed. The next [metadata-only diagnostic](ON_DEMAND_BATCH_SCHEMA_DIAGNOSTIC_APPROVAL.json) requires new approval before any further SQL; it does not authorize deployment. See [actual outcomes](ON_DEMAND_BATCH_NATIVE_TRIAL.md).
+
 **PREPARED LOCALLY; NO APPROVAL, DEPLOYMENT OR EXECUTION YET.** This is a proposed future scope, not modification authority. [Machine-readable limits and exact file hashes](ON_DEMAND_BATCH_NATIVE_PLAN.json) pin request `4222da72f52c8699baf731fe01fbad7fbd8391615c1ae0f46b896380d38f966d`. Review the final code commit as well as that package; a change to either requires a new review. Real Jobs settings/request/SQL are private under the local WinterOps `batch_v1/review_20261030_final` directory. Public evidence omits the warehouse ID, local provenance paths, identity and private workspace URL.
 
 ## Selected source and expected results

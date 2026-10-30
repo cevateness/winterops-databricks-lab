@@ -1,0 +1,336 @@
+{
+  "status": "PREPARED_GATED_TRIAL_APPROVAL_REQUIRED",
+  "git_revision": "eaf17ffa1872dac06de1c54f06af89d5fd09195a",
+  "feature_branch": "feat/native-job-trial",
+  "request_sha256": "4222da72f52c8699baf731fe01fbad7fbd8391615c1ae0f46b896380d38f966d",
+  "code_sha256": {
+    "src/winterops/batch.py": "8afdfddb4467c1320c5a7548811e5a5403b8996802846b37e9a9e846d1c2505a",
+    "src/winterops/batch_sql.py": "23644da89b9a05d2542c904fc3121f062983c4c1748cced8dca7d8c55fa3464f",
+    "src/winterops/spark_ingestion.py": "fd4b3a8c1f7d51859f38d6450d8a1d02abff618ce407a33f50bcc2236d031d6b",
+    "src/winterops/unified_gold.py": "b81aefd6ac975efb10db83493decedeab51fb5d38855631cc4c00fc8e045cfbf",
+    "src/winterops/sql/v2_silver.sql": "f37625c269c7c64b05bd2531deeeb846823e808561e697abacfda668cf4ccef4",
+    "src/winterops/foundation.py": "6875c7d840a9a4102b8511da3f2ced73da8dd0f668586ef5b62860b8bbc40f5a",
+    "src/winterops/sources.py": "195843094002c59195ea7d306d941cac30d612a804a9eb7a890ca708c235bf19"
+  },
+  "local_package_and_sources": "PASS",
+  "authenticated_expected_workspace": true,
+  "warehouse": {
+    "identity": "MATCHES_PREVIOUS",
+    "configuration": "UNCHANGED",
+    "serverless": true,
+    "cluster_size": "2X-Small",
+    "state": "STOPPED",
+    "active_sessions": 0
+  },
+  "workspace_admin_membership_confirmed": true,
+  "warehouse_use_permission": "CONFIRMED",
+  "objects": {
+    "workspace.default.winterops_bronze_windsor_activity": "IDENTITY_OWNER_SCHEMA_DEFINITION_MATCH_PRIOR",
+    "workspace.default.winterops_silver_windsor_week_sample": "IDENTITY_OWNER_SCHEMA_DEFINITION_MATCH_PRIOR",
+    "workspace.default.winterops_silver_windsor_valid": "IDENTITY_OWNER_SCHEMA_DEFINITION_MATCH_PRIOR",
+    "workspace.default.winterops_silver_windsor_quarantine": "IDENTITY_OWNER_SCHEMA_DEFINITION_MATCH_PRIOR",
+    "workspace.default.winterops_gold_windsor_hourly_observations": "IDENTITY_OWNER_SCHEMA_DEFINITION_MATCH_PRIOR",
+    "workspace.default.winterops_v2_dev_bronze": "IDENTITY_OWNER_SCHEMA_DEFINITION_MATCH_PRIOR",
+    "workspace.default.winterops_v2_dev_silver": "IDENTITY_OWNER_SCHEMA_DEFINITION_MATCH_PRIOR",
+    "workspace.default.winterops_v2_dev_manifest": "IDENTITY_OWNER_SCHEMA_DEFINITION_MATCH_PRIOR",
+    "workspace.default.winterops_v2_gold_hourly_observations": "IDENTITY_OWNER_SCHEMA_DEFINITION_MATCH_PRIOR",
+    "workspace.default.winterops_v2_gold_daily_activity": "IDENTITY_OWNER_SCHEMA_DEFINITION_MATCH_PRIOR",
+    "workspace.default.winterops_v2_gold_weekly_quality": "IDENTITY_OWNER_SCHEMA_DEFINITION_MATCH_PRIOR"
+  },
+  "privileges": {
+    "workspace": [
+      "USE_CATALOG"
+    ],
+    "workspace.default": [
+      "USE_SCHEMA"
+    ],
+    "workspace.default.winterops_raw": [
+      "READ_VOLUME"
+    ],
+    "workspace.default.winterops_v2_dev_bronze": [
+      "MODIFY",
+      "SELECT"
+    ],
+    "workspace.default.winterops_v2_dev_silver": [
+      "MODIFY",
+      "SELECT"
+    ],
+    "workspace.default.winterops_v2_dev_manifest": [
+      "MODIFY",
+      "SELECT"
+    ]
+  },
+  "job_name": "ABSENT_AMONG_ACCESSIBLE_JOBS",
+  "workspace_parent_permission": "CONFIRMED",
+  "workspace_destinations": "TWO_DIRECTORIES_AND_SIX_FILES_ABSENT",
+  "remote_source_files": [
+    {
+      "kind": "original",
+      "bytes": 221818,
+      "sha256": "271c9339a42043f441b6c17e82dd309609db4b20e9953b9f368a95ec472d763d",
+      "result": "PASS"
+    },
+    {
+      "kind": "artifact",
+      "bytes": 3619379,
+      "sha256": "375d6c5980ed66f61b2dcb0601f639f5e2a3a20ce546ac08d3e20fc60c17edd3",
+      "result": "PASS"
+    }
+  ],
+  "operations": [
+    {
+      "label": "identity",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.835
+    },
+    {
+      "label": "warehouse",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.768
+    },
+    {
+      "label": "warehouse-acl",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.89
+    },
+    {
+      "label": "object-workspace.default.winterops_bronze_windsor_activity",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.953
+    },
+    {
+      "label": "object-workspace.default.winterops_silver_windsor_week_sample",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.925
+    },
+    {
+      "label": "object-workspace.default.winterops_silver_windsor_valid",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.92
+    },
+    {
+      "label": "object-workspace.default.winterops_silver_windsor_quarantine",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.902
+    },
+    {
+      "label": "object-workspace.default.winterops_gold_windsor_hourly_observations",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.905
+    },
+    {
+      "label": "object-workspace.default.winterops_v2_dev_bronze",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 1.052
+    },
+    {
+      "label": "object-workspace.default.winterops_v2_dev_silver",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 1.065
+    },
+    {
+      "label": "object-workspace.default.winterops_v2_dev_manifest",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.92
+    },
+    {
+      "label": "object-workspace.default.winterops_v2_gold_hourly_observations",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 1.039
+    },
+    {
+      "label": "object-workspace.default.winterops_v2_gold_daily_activity",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 1.053
+    },
+    {
+      "label": "object-workspace.default.winterops_v2_gold_weekly_quality",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 1.072
+    },
+    {
+      "label": "grants-workspace",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.784
+    },
+    {
+      "label": "grants-workspace.default",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.727
+    },
+    {
+      "label": "grants-workspace.default.winterops_raw",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.795
+    },
+    {
+      "label": "current-volume-owner",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.837
+    },
+    {
+      "label": "grants-workspace.default.winterops_v2_dev_bronze",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.767
+    },
+    {
+      "label": "grants-workspace.default.winterops_v2_dev_silver",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.789
+    },
+    {
+      "label": "grants-workspace.default.winterops_v2_dev_manifest",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.775
+    },
+    {
+      "label": "job-name-conflict",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.773
+    },
+    {
+      "label": "active-job-runs",
+      "method": "GET",
+      "http_status": 400,
+      "elapsed_seconds": 0.755
+    },
+    {
+      "label": "workspace-shared-parent",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.92
+    },
+    {
+      "label": "workspace-parent-acl",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.952
+    },
+    {
+      "label": "workspace-destination-0",
+      "method": "GET",
+      "http_status": 404,
+      "elapsed_seconds": 0.882
+    },
+    {
+      "label": "workspace-destination-1",
+      "method": "GET",
+      "http_status": 404,
+      "elapsed_seconds": 0.895
+    },
+    {
+      "label": "workspace-destination-2",
+      "method": "GET",
+      "http_status": 404,
+      "elapsed_seconds": 0.862
+    },
+    {
+      "label": "workspace-destination-3",
+      "method": "GET",
+      "http_status": 404,
+      "elapsed_seconds": 0.78
+    },
+    {
+      "label": "workspace-destination-4",
+      "method": "GET",
+      "http_status": 404,
+      "elapsed_seconds": 0.756
+    },
+    {
+      "label": "workspace-destination-5",
+      "method": "GET",
+      "http_status": 404,
+      "elapsed_seconds": 0.733
+    },
+    {
+      "label": "workspace-destination-6",
+      "method": "GET",
+      "http_status": 404,
+      "elapsed_seconds": 0.867
+    },
+    {
+      "label": "workspace-destination-7",
+      "method": "GET",
+      "http_status": 404,
+      "elapsed_seconds": 0.747
+    },
+    {
+      "label": "original-head",
+      "method": "HEAD",
+      "http_status": 200,
+      "elapsed_seconds": 1.095
+    },
+    {
+      "label": "original-hash",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 1.764
+    },
+    {
+      "label": "artifact-head",
+      "method": "HEAD",
+      "http_status": 200,
+      "elapsed_seconds": 0.947
+    },
+    {
+      "label": "artifact-hash",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 2.799
+    }
+  ],
+  "active_metadata_elapsed_seconds": 35.983,
+  "historical_events": [
+    {
+      "event": "VOLUME_PRIVILEGE_EVALUATOR_STOP",
+      "http_status": 200,
+      "result": "RESOLVED_BY_CURRENT_OWNER_METADATA_WITHOUT_REPEATING_GRANTS_GET"
+    },
+    {
+      "event": "ACTIVE_RUNS_QUERY_REJECTED",
+      "http_status": 400,
+      "error_code": "INVALID_PARAMETER_VALUE",
+      "message": "Invalid limit 100 - it has to be no more than 26.",
+      "automatic_retry": false,
+      "proposed_corrected_limit": 20
+    }
+  ],
+  "live_complete_manifest_and_counts": "NOT_QUERIED_SQL_APPROVAL_REQUIRED",
+  "active_job_run_inventory": "UNKNOWN_CORRECTED_REQUEST_REQUIRES_APPROVAL",
+  "job_creation_permission": "ADMIN_MEMBERSHIP_CONFIRMED_CREATE_ENDPOINT_NOT_EXECUTED",
+  "sql_and_jobs_runtime": "NOT_EXECUTED",
+  "sql_statements": 0,
+  "remote_uploads": 0,
+  "remote_writes": 0,
+  "job_creations": 0,
+  "job_runs": 0,
+  "automatic_retries": 0,
+  "baseline_ci": {
+    "status": "SUCCESS",
+    "head_sha": "eaf17ffa1872dac06de1c54f06af89d5fd09195a",
+    "url": "https://github.com/cevateness/winterops-databricks-lab/actions/runs/41076933725"
+  },
+  "new_source_processing_ready": false
+}
