@@ -1,4 +1,28 @@
-# Native Job trials — schema passed; legacy Gold preflight blocked
+# Native Job trials — preflights passed; import response blocked deployment
+
+## Approved Gold continuation — five preflights PASS; partial Workspace landing (2026-10-31)
+
+The reviewed correction/evidence was committed and pushed as `74336854812939ee34f5652f6faad082c7640416` in PR #13. [Exact-head GitHub CI](https://github.com/cevateness/winterops-databricks-lab/actions/runs/41220727089) passed **170 tests in 2.850 seconds** and every render check; the local pre-commit run passed 170 tests in 6.702 seconds. The user conditionally approved proposal `cf4b4431…14f9fe` / immutable matrix `a597db8c…27d975`. Both digests, all code/request/package hashes and all 14 audited contracts matched. Only matrix SQL positions 2 and 14 differ from the previous stopped matrix; the original six-file / 189,744-byte Job package remains unchanged.
+
+All **28 fresh readiness GETs** and **all five sequential SQL preflights passed**, without retries, SQL failures, cancellation or truncation:
+
+| Matrix position | Verified native result | Client seconds |
+|---|---|---:|
+| 1 | Declared-type schema/source/quality/state and exact COMPLETE manifest; `SKIP_VERIFIED` | 25.656 |
+| 2 | Corrected legacy and V2 Gold baselines; three expected weekly rows | 11.792 |
+| 3 | V2 Bronze latest Delta version **3** | 3.731 |
+| 4 | V2 Silver latest Delta version **4** | 2.323 |
+| 5 | V2 manifest latest Delta version **13** | 2.132 |
+
+January 5–11 reconciles to **2,810 Bronze/Silver = 19 HEADER + 2,791 VALID + 0 INVALID**; the exact COMPLETE attempt 2, full timestamp and metadata/policy fingerprints matched. The native Gold baseline returned 231,227 valid / 175,008 plow / 119,439 spreader observations over the three selected weeks. The legacy aggregate matched 79 hourly rows / 110,311 observations / 79,471 plow / 68,870 spreader. These are observation counts, not work duration, coverage or productivity.
+
+Only after the five gates passed, the executor created the two approved parent/request directories and submitted the first RAW code-file import: **`preflight.sql`, 42,883 bytes**, with the expected input fingerprint. The API returned **HTTP 200 with `{"object_id": <positive integer>}`**; the real ID remains private. The unchanged strict executor expected `{}` and stopped with `UNEXPECTED_IMPORT_RESULT` **before** marking the upload successful or issuing its export/hash verification. This is a client response-contract assertion, not an HTTP failure, SQL error, source/schema mismatch or proven content corruption.
+
+**Actual Job status: NOT CREATED. Neither `verify` nor `process` was submitted.** The first import was accepted and returned an object reference, but its actual content hash/readability was not independently verified. The remaining five files were not uploaded. The two directories and imported object are preserved; no automatic retry, parser correction, overwrite, repair or cleanup occurred. No further Databricks request followed the assertion. The approved matrix/package/proposal and previous execution evidence remain unchanged.
+
+This attempt used **five successful SQL submissions, 28 metadata GETs, 45.634 SQL client seconds and 77.586 active seconds**. Cumulative trial consumption is **11 SQL submissions (eight success / three historic failures), 115 execution metadata GETs and 257.371 active seconds**, excluding the separate historical 37-readiness-request inventory. Nine SQL slots / 22 metadata GETs / 642.629 active seconds remain under the old ceilings, but unused capacity does not authorize a restart. There were **zero Bronze/Silver/manifest DML, table/view DDL, Gold/source changes, new compute, schedules, Job requests or Job-state/output GETs**. Jobs-based no-write reruns and postflight preservation remain unexercised.
+
+[Sanitized native evidence](ON_DEMAND_BATCH_GOLD_BASELINE_NATIVE_RESULTS.json) records all statuses, aggregate outputs, Delta anchors, partial landing and resource usage. Next: separately review the narrow import-response contract and a partial-state-aware continuation that verifies the existing file's hash before adoption. Do not blindly replay absent-destination checks or overwrite/delete the returned object. Native Jobs creation, SQL-file scripts/markers, DAG states/outputs, task timeout behavior and genuinely new-source processing/recovery remain unverified. Results stay in the same PR; unrelated local files are unchanged.
 
 ## Approved type-fix trial — stopped before deployment (2026-10-31)
 
