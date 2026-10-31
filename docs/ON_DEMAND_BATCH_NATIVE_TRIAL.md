@@ -1,6 +1,51 @@
-# Native Job trials — schema assertion unresolved
+# Native Job trials — preflights passed; import response blocked deployment
 
-**Latest state: the separately approved corrected continuation also stopped at the schema assertion.** Three Statement API requests have now been submitted in total (one succeeded, two failed), with **zero uploads, Jobs, runs or table writes**. The documented ordinal correction was not sufficient to resolve native validation. Actual `INFORMATION_SCHEMA` rows remain unobserved. A [single metadata-only diagnostic proposal](ON_DEMAND_BATCH_SCHEMA_DIAGNOSTIC_APPROVAL.json) is prepared and requires new approval; the existing guard is not relaxed.
+## Approved Gold continuation — five preflights PASS; partial Workspace landing (2026-10-31)
+
+The reviewed correction/evidence was committed and pushed as `74336854812939ee34f5652f6faad082c7640416` in PR #13. [Exact-head GitHub CI](https://github.com/cevateness/winterops-databricks-lab/actions/runs/41220727089) passed **170 tests in 2.850 seconds** and every render check; the local pre-commit run passed 170 tests in 6.702 seconds. The user conditionally approved proposal `cf4b4431…14f9fe` / immutable matrix `a597db8c…27d975`. Both digests, all code/request/package hashes and all 14 audited contracts matched. Only matrix SQL positions 2 and 14 differ from the previous stopped matrix; the original six-file / 189,744-byte Job package remains unchanged.
+
+All **28 fresh readiness GETs** and **all five sequential SQL preflights passed**, without retries, SQL failures, cancellation or truncation:
+
+| Matrix position | Verified native result | Client seconds |
+|---|---|---:|
+| 1 | Declared-type schema/source/quality/state and exact COMPLETE manifest; `SKIP_VERIFIED` | 25.656 |
+| 2 | Corrected legacy and V2 Gold baselines; three expected weekly rows | 11.792 |
+| 3 | V2 Bronze latest Delta version **3** | 3.731 |
+| 4 | V2 Silver latest Delta version **4** | 2.323 |
+| 5 | V2 manifest latest Delta version **13** | 2.132 |
+
+January 5–11 reconciles to **2,810 Bronze/Silver = 19 HEADER + 2,791 VALID + 0 INVALID**; the exact COMPLETE attempt 2, full timestamp and metadata/policy fingerprints matched. The native Gold baseline returned 231,227 valid / 175,008 plow / 119,439 spreader observations over the three selected weeks. The legacy aggregate matched 79 hourly rows / 110,311 observations / 79,471 plow / 68,870 spreader. These are observation counts, not work duration, coverage or productivity.
+
+Only after the five gates passed, the executor created the two approved parent/request directories and submitted the first RAW code-file import: **`preflight.sql`, 42,883 bytes**, with the expected input fingerprint. The API returned **HTTP 200 with `{"object_id": <positive integer>}`**; the real ID remains private. The unchanged strict executor expected `{}` and stopped with `UNEXPECTED_IMPORT_RESULT` **before** marking the upload successful or issuing its export/hash verification. This is a client response-contract assertion, not an HTTP failure, SQL error, source/schema mismatch or proven content corruption.
+
+**Actual Job status: NOT CREATED. Neither `verify` nor `process` was submitted.** The first import was accepted and returned an object reference, but its actual content hash/readability was not independently verified. The remaining five files were not uploaded. The two directories and imported object are preserved; no automatic retry, parser correction, overwrite, repair or cleanup occurred. No further Databricks request followed the assertion. The approved matrix/package/proposal and previous execution evidence remain unchanged.
+
+This attempt used **five successful SQL submissions, 28 metadata GETs, 45.634 SQL client seconds and 77.586 active seconds**. Cumulative trial consumption is **11 SQL submissions (eight success / three historic failures), 115 execution metadata GETs and 257.371 active seconds**, excluding the separate historical 37-readiness-request inventory. Nine SQL slots / 22 metadata GETs / 642.629 active seconds remain under the old ceilings, but unused capacity does not authorize a restart. There were **zero Bronze/Silver/manifest DML, table/view DDL, Gold/source changes, new compute, schedules, Job requests or Job-state/output GETs**. Jobs-based no-write reruns and postflight preservation remain unexercised.
+
+[Sanitized native evidence](ON_DEMAND_BATCH_GOLD_BASELINE_NATIVE_RESULTS.json) records all statuses, aggregate outputs, Delta anchors, partial landing and resource usage. Next: separately review the narrow import-response contract and a partial-state-aware continuation that verifies the existing file's hash before adoption. Do not blindly replay absent-destination checks or overwrite/delete the returned object. Native Jobs creation, SQL-file scripts/markers, DAG states/outputs, task timeout behavior and genuinely new-source processing/recovery remain unverified. Results stay in the same PR; unrelated local files are unchanged.
+
+## Approved type-fix trial — stopped before deployment (2026-10-31)
+
+From merged PR #12 / main `a202e8264c623d779efb1ec02e70819e6862bc52`, the user explicitly approved proposal `8e328347…638710` / private matrix `4986733c…f9257d`, renewing the SQL ceiling to 18 cumulative submissions. The exact code/request/package/matrix hashes matched; all six immutable SQL files remain unchanged at 189,744 bytes. All **28 fresh metadata/file readiness GETs passed**, including identity/admin membership, the existing warehouse configuration/use permission, zero active sessions/Jobs, all 11 object identities/owners/schemas/definitions, source CSV/artifact fingerprints, required ownership/parent permissions and absent destinations. Readiness is a snapshot, not a global writer lock.
+
+| Approved preflight | Actual result | Client seconds | Complete result |
+|---|---|---:|---|
+| 1: corrected schema/source/quality/state guard and exact manifest | **SUCCEEDED / PASS** | 24.931 | One row / 29 columns; no truncation |
+| 2: published three-week/legacy Gold baselines | **FAILED**, `UNRESOLVED_COLUMN.WITH_SUGGESTION`, SQLSTATE `42703` | 3.724 | No successful baseline result |
+
+**The native schema guard passed:** all 59 expected columns satisfy UPPER(FULL_DATA_TYPE), strict names/counts/schema/table and zero-based positions. The same successful query reconciled **2,810 Bronze = Silver = 19 HEADER + 2,791 VALID + 0 INVALID**, returned `SKIP_VERIFIED` and matched the exact existing COMPLETE manifest, attempt 2, full timestamp and metadata/policy fingerprints. These are actual native SQL results, independent of prior offline metadata tests.
+
+The failing baseline query's **legacy CTE** requests `plow_active_observations` and `spreader_active_observations`. Its first unresolved reference is `plow_active_observations`; fresh object metadata saved during readiness confirms that both names are absent and the actual legacy fields are **`plow_active_observation_count` / `spreader_active_observation_count`**. The V2 weekly view retains its plural names. This is a query-column mismatch, not another schema-guard failure or a reason to change published objects. No query/package/matrix correction was made during execution.
+
+Execution stopped immediately after position 2: **two SQL submissions (one success / one failure), 28 metadata GETs, 28.655 SQL client seconds / 57.693 active seconds**. Positions 3–14, Delta-history snapshots, deployments and both Jobs runs were not reached. **Zero directories, uploads, Job creations/runs, DML, DDL, Gold changes, retries, repair, cleanup or after-failure Databricks requests occurred.** This attempt made no writes; Jobs-native zero-write reruns/postflight preservation were not exercised. No partial deployment exists to clean up.
+
+See [sanitized statuses, outputs and evidence](ON_DEMAND_BATCH_JOB_TRIAL_RESULTS.json). Cumulative trial totals now stand at **six SQL submissions (three successes / three failures), 87 execution metadata GETs and 179.785 active seconds**; the separate initial readiness inventory remains 37 requests. Of the approved ceilings, 12 SQL slots / 22 metadata slots / 720.215 seconds are unused. They do **not** authorize continuation after this stop. A future corrected proposal must explicitly account for these consumed budgets; neither stopped matrix may be replayed.
+
+The smallest recommended follow-up is to correct only the two legacy CTE column references in a separately reviewed, rehashed plan; keep the V2 names, pipeline and published objects unchanged. No automatic correction, retry or new proposal approval is implied. Native Jobs SQL-file scripting/parameter binding, task/result handling, both COMPLETE-only runs, timeout behavior and genuinely new-source processing/recovery remain unverified. The existing **166 offline tests passed** after the stopped attempt (zero failures/errors, 8.038 seconds); [merged-main CI](https://github.com/cevateness/winterops-databricks-lab/actions/runs/41180576063) passed before execution. Evidence/status changes are local on `feat/native-jobs-trial`; no extra PR cycle was opened, and unrelated local files are unchanged.
+
+## Prior stopped attempts (historical)
+
+**State before the later diagnostic and type-fix trial:** the separately approved corrected continuation also stopped at the schema assertion. Three Statement API requests had then been submitted in total (one succeeded, two failed), with **zero uploads, Jobs, runs or table writes**. The ordinal correction was not sufficient. Actual `INFORMATION_SCHEMA` rows had not yet been observed; the metadata-only diagnostic was the next proposed step. Later observed LONG/BIGINT evidence and the current successful declared-type guard supersede that uncertainty.
 
 **2026-10-30: STOPPED_BEFORE_DEPLOYMENT_SCHEMA_GUARD_FAILED.** The user explicitly approved [the exact proposal](ON_DEMAND_BATCH_TRIAL_APPROVAL.json) from merged PR #10 / main `eaf17ffa1872dac06de1c54f06af89d5fd09195a`. The one-shot controller stopped at its second SQL statement. **No Workspace directories/files, Job or runs were created; no data/manifest DML, table/view DDL, grant/configuration change, retry or cleanup occurred.** See [sanitized execution evidence](ON_DEMAND_BATCH_NATIVE_RESULTS.json).
 

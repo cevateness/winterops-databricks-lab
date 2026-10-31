@@ -1,0 +1,379 @@
+{
+  "status": "PREPARED_LOCAL_NOT_APPROVED_NOT_EXECUTED",
+  "baseline_main": "a202e8264c623d779efb1ec02e70819e6862bc52",
+  "branch": "feat/native-jobs-trial",
+  "purpose": "Correct only the two legacy Gold baseline column references at positions 2 and 14; preserve every V2 field, result alias, statement and Job/package byte",
+  "previous_proposal_sha256_lf": "8e328347cff6d54085001ad1e745de131cf9ab6f7d4a0d0138a855e2db638710",
+  "previous_matrix_sha256": "4986733c9890ed088f673a6e20b872e8fd1b4af5c9030ff14fe271f4cdf9257d",
+  "stopped_execution_evidence": "docs/ON_DEMAND_BATCH_JOB_TRIAL_RESULTS.json",
+  "stopped_execution_evidence_sha256_lf": "6dbad87e6f129281f26831312d698aff7c6a7372b173b2a13f99107dbb45ecba",
+  "column_audit": "docs/ON_DEMAND_BATCH_MATRIX_COLUMN_AUDIT.json",
+  "column_audit_sha256_lf": "3336c2bcfbe28679e791549e5b3a9d96d9df20498026b974e5097ea36ed7a2e2",
+  "private_matrix_sha256": "a597db8cf73dc5f18dab944ebc3a933c23a14e1a310bbd12180bd9f18c27d975",
+  "private_matrix_relative_to_local_winterops": "batch_v1/trial_legacy_baseline_20261031/a597db8cf73dc5f18dab944ebc3a933c23a14e1a310bbd12180bd9f18c27d975/statement_matrix.json",
+  "changed_sql_positions": [
+    2,
+    14
+  ],
+  "unchanged_sql_positions": [
+    1,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13
+  ],
+  "statement_matrix": [
+    {
+      "position": 1,
+      "phase": "before",
+      "label": "declared-type-source-schema-quality-and-manifest-guard",
+      "sql_sha256": "faa5606e34c9160fed96cb0dc9aa5fab256a79d79705957758af94a50d3990da",
+      "expectation": "ALL_ASSERTIONS_NULL_SKIP_VERIFIED_AND_EXACT_PRIOR_MANIFEST",
+      "replaces_original_positions": [
+        2,
+        3
+      ],
+      "sql_bytes": 31123
+    },
+    {
+      "position": 2,
+      "phase": "before",
+      "label": "published-gold-baselines",
+      "sql_sha256": "5cae3ad02952b1aa279be16dd38b2cd334d86280921869365fed49ec0c0ec135",
+      "expectation": "THREE_WEEK_ROWS_MATCH_2810_110337_118159_AND_LEGACY_BASELINE",
+      "original_position": 4,
+      "sql_bytes": 674
+    },
+    {
+      "position": 3,
+      "phase": "before",
+      "label": "before-history-bronze",
+      "sql_sha256": "2ee2ab735ede78283bb585333346d618d93d35afd0e0043be76d06d40ab392a9",
+      "expectation": "ONE_LATEST_VERSION_ROW_SAVE_PRIVATELY",
+      "original_position": 5,
+      "sql_bytes": 66
+    },
+    {
+      "position": 4,
+      "phase": "before",
+      "label": "before-history-silver",
+      "sql_sha256": "4618c85a19573c24271ab529fdf9a85237a733dae13edfdfa29508c33297495d",
+      "expectation": "ONE_LATEST_VERSION_ROW_SAVE_PRIVATELY",
+      "original_position": 6,
+      "sql_bytes": 66
+    },
+    {
+      "position": 5,
+      "phase": "before",
+      "label": "before-history-manifest",
+      "sql_sha256": "5801549ab947fe28093d6a96ef6e8a593a759caefc594f44624732c81d1d8d16",
+      "expectation": "ONE_LATEST_VERSION_ROW_SAVE_PRIVATELY",
+      "original_position": 7,
+      "sql_bytes": 68
+    },
+    {
+      "position": 6,
+      "phase": "after_run_1",
+      "label": "after_run_1-history-bronze",
+      "sql_sha256": "2ee2ab735ede78283bb585333346d618d93d35afd0e0043be76d06d40ab392a9",
+      "expectation": "LATEST_VERSION_EXACTLY_EQUALS_BEFORE",
+      "original_position": 8,
+      "sql_bytes": 66
+    },
+    {
+      "position": 7,
+      "phase": "after_run_1",
+      "label": "after_run_1-history-silver",
+      "sql_sha256": "4618c85a19573c24271ab529fdf9a85237a733dae13edfdfa29508c33297495d",
+      "expectation": "LATEST_VERSION_EXACTLY_EQUALS_BEFORE",
+      "original_position": 9,
+      "sql_bytes": 66
+    },
+    {
+      "position": 8,
+      "phase": "after_run_1",
+      "label": "after_run_1-history-manifest",
+      "sql_sha256": "5801549ab947fe28093d6a96ef6e8a593a759caefc594f44624732c81d1d8d16",
+      "expectation": "LATEST_VERSION_EXACTLY_EQUALS_BEFORE",
+      "original_position": 10,
+      "sql_bytes": 68
+    },
+    {
+      "position": 9,
+      "phase": "after_run_1",
+      "label": "after_run_1-manifest-snapshot",
+      "sql_sha256": "bb43ab6b6672a6fbf83f6525b271cc95405213dae77484fe840d230b6d90ee03",
+      "expectation": "FULL_RETURNED_ROW_EXACTLY_EQUALS_BEFORE",
+      "original_position": 11,
+      "sql_bytes": 437
+    },
+    {
+      "position": 10,
+      "phase": "after_run_2",
+      "label": "after_run_2-history-bronze",
+      "sql_sha256": "2ee2ab735ede78283bb585333346d618d93d35afd0e0043be76d06d40ab392a9",
+      "expectation": "LATEST_VERSION_EXACTLY_EQUALS_BEFORE",
+      "original_position": 12,
+      "sql_bytes": 66
+    },
+    {
+      "position": 11,
+      "phase": "after_run_2",
+      "label": "after_run_2-history-silver",
+      "sql_sha256": "4618c85a19573c24271ab529fdf9a85237a733dae13edfdfa29508c33297495d",
+      "expectation": "LATEST_VERSION_EXACTLY_EQUALS_BEFORE",
+      "original_position": 13,
+      "sql_bytes": 66
+    },
+    {
+      "position": 12,
+      "phase": "after_run_2",
+      "label": "after_run_2-history-manifest",
+      "sql_sha256": "5801549ab947fe28093d6a96ef6e8a593a759caefc594f44624732c81d1d8d16",
+      "expectation": "LATEST_VERSION_EXACTLY_EQUALS_BEFORE",
+      "original_position": 14,
+      "sql_bytes": 68
+    },
+    {
+      "position": 13,
+      "phase": "after_run_2",
+      "label": "after_run_2-manifest-snapshot",
+      "sql_sha256": "bb43ab6b6672a6fbf83f6525b271cc95405213dae77484fe840d230b6d90ee03",
+      "expectation": "FULL_RETURNED_ROW_EXACTLY_EQUALS_BEFORE",
+      "original_position": 15,
+      "sql_bytes": 437
+    },
+    {
+      "position": 14,
+      "phase": "after_run_2",
+      "label": "after-published-gold-baselines",
+      "sql_sha256": "5cae3ad02952b1aa279be16dd38b2cd334d86280921869365fed49ec0c0ec135",
+      "expectation": "ALL_RETURNED_AGGREGATES_EXACTLY_EQUAL_BEFORE",
+      "original_position": 16,
+      "sql_bytes": 674
+    }
+  ],
+  "preflight_1": {
+    "previous_result": "PASS_NATIVE_NOT_REINVESTIGATED",
+    "repeat_now": false,
+    "proposed_future_reexecution": "ONCE_FOR_SAFE_FRESH_READINESS",
+    "reason": "Prior attempt stopped before Delta history positions 3-5. No transactional version anchors exist for the successful guard, so fresh content/schema/manifest reconciliation is required once before deployment; no diagnostic or compound probe repeat.",
+    "if_fresh_scope_or_lineage_conflicts": "STOP_NO_AUTOMATIC_RECOVERY"
+  },
+  "prior_consumption": {
+    "sql_submissions": 6,
+    "metadata_file_gets": 87,
+    "job_state_gets": 0,
+    "task_output_gets": 0,
+    "active_seconds": 179.785,
+    "separate_initial_readiness_gets": 37,
+    "uploads": 0,
+    "job_creations": 0,
+    "job_runs": 0
+  },
+  "proposed_new_sql_requests_maximum": 14,
+  "previous_cumulative_sql_ceiling": 18,
+  "proposed_cumulative_sql_ceiling": 20,
+  "metadata_file_gets_maximum": 50,
+  "previous_cumulative_metadata_file_get_ceiling": 109,
+  "proposed_cumulative_execution_metadata_file_get_ceiling": 137,
+  "job_state_gets_maximum": 90,
+  "task_output_gets_maximum": 10,
+  "remaining_active_deadline_seconds": 720.215,
+  "cumulative_active_deadline_seconds": 900,
+  "renewal_requires_new_explicit_approval": true,
+  "unused_prior_budget_confers_authority": false,
+  "deployment_gate": {
+    "require_approval_of_final_commit_proposal_matrix_hashes_and_renewed_limits": true,
+    "require_reviewed_commit_offline_tests_and_ci": true,
+    "fresh_readiness_metadata_file_checks": true,
+    "required_sequential_preflight_positions": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "all_must_pass_before_mkdirs_uploads_job_create_or_run": true,
+    "source": "EXACT_PRIOR_COMPLETE_JANUARY_5_11_REQUEST",
+    "active_writer_check": "ZERO_JOBS_AND_WAREHOUSE_SESSIONS_NO_PAGINATION",
+    "completed_probe_or_diagnostic_reexecution": false,
+    "stop_rule": "FIRST_FAILURE_TIMEOUT_CANCELLATION_UNEXPECTED_RESPONSE_TRUNCATION_OR_MISMATCH_NO_AUTOMATIC_RETRY"
+  },
+  "request_sha256": "4222da72f52c8699baf731fe01fbad7fbd8391615c1ae0f46b896380d38f966d",
+  "source_version_id": "8ccb2a2dd5ec057361cf6d7cc7193b5acbdd858b84102ba550a92febe9bb4ed1",
+  "processing_key": "f07ba6a0ad499a9baf53d2f7c46df09607523371428791593143a29b56f6b466",
+  "write_policy": "complete_only",
+  "expected_manifest": {
+    "status": "COMPLETE",
+    "bronze_rows": 2810,
+    "silver_rows": 2810,
+    "header_rows": 19,
+    "valid_rows": 2791,
+    "invalid_rows": 0,
+    "prior_native_row": {
+      "processing_key": "f07ba6a0ad499a9baf53d2f7c46df09607523371428791593143a29b56f6b466",
+      "source_version_id": "8ccb2a2dd5ec057361cf6d7cc7193b5acbdd858b84102ba550a92febe9bb4ed1",
+      "source_file_sha256": "271c9339a42043f441b6c17e82dd309609db4b20e9953b9f368a95ec472d763d",
+      "status": "COMPLETE",
+      "last_successful_stage": "COMPLETE",
+      "attempts": 2,
+      "bronze_rows": 2810,
+      "silver_rows": 2810,
+      "error_code": null,
+      "updated_at_utc": "2026-10-29 13:14:58.044428",
+      "metadata_sha256": "c2d08257c9d97b523832c5494b93ab59aa1ba3f263a02307d416b28a4df624d0",
+      "policy_json_sha256": "ecb195bd0381aa104a562a121f9e7e43b5f8f97d57e19ffb0698571636b323b5"
+    },
+    "prior_native_evidence": "docs/THREE_WEEK_NATIVE_RESULTS.json"
+  },
+  "expected_task_outputs": {
+    "preflight": {
+      "columns": [
+        "state_check",
+        "decision",
+        "bronze_n",
+        "silver_n"
+      ],
+      "rows": 1,
+      "decision": "SKIP_VERIFIED",
+      "bronze_n": 2810,
+      "silver_n": 2810
+    },
+    "bronze": {
+      "columns": [
+        "schema_check"
+      ],
+      "rows": 1
+    },
+    "silver": {
+      "columns": [
+        "schema_check"
+      ],
+      "rows": 1
+    },
+    "quality": {
+      "columns": [
+        "schema_check"
+      ],
+      "rows": 1
+    },
+    "complete": {
+      "columns": [
+        "batch_outcome"
+      ],
+      "rows": 1,
+      "batch_outcome": "COMPLETE_ELIGIBLE"
+    },
+    "failure_audit": {
+      "result_state": "EXCLUDED"
+    }
+  },
+  "private_package_relative_to_local_winterops": "batch_v1/review_full_type_20261030/4222da72f52c8699baf731fe01fbad7fbd8391615c1ae0f46b896380d38f966d",
+  "package_files_sha256": {
+    "preflight.sql": "b4fb88bb236c8d137d843ec8e04c36a16cfb860540d5768c47ac7896c390d9b1",
+    "bronze.sql": "7686e557cfe590f3d86db051a35d11d92714792fafd1e24e1357d629de1e19b5",
+    "silver.sql": "5966f34731ab1884d05d501f32dd614437685e8754fe2bf3e1812c1a0f2122df",
+    "quality.sql": "9c09d940d80666b521e4055f81c5b385db42f189c08698a64db85e99f8088301",
+    "complete.sql": "74ce4183f6c507edebcfa5ae5844e7635a936c21af56f3db376379543fca76e7",
+    "failure_audit.sql": "42cfe7eb2992e7c9ee45132e9b47153707faf7895ea861ce0a5994ebe286470f",
+    "job.json": "991c9e2679dd0fd614e0fee440f36003b03ac60a6c1b21438e6415e5a28ae032",
+    "request.json": "01e7b848d7fde5410fad008a5c9f2732e5b91bd0cac1069beeb636ed77cbd1e6"
+  },
+  "sql_file_bytes": {
+    "preflight.sql": 42883,
+    "bronze.sql": 29211,
+    "silver.sql": 39420,
+    "quality.sql": 30222,
+    "complete.sql": 42538,
+    "failure_audit.sql": 5470
+  },
+  "sql_upload_total_bytes": 189744,
+  "code_sha256_lf_normalized": {
+    "src/winterops/batch.py": "8afdfddb4467c1320c5a7548811e5a5403b8996802846b37e9a9e846d1c2505a",
+    "src/winterops/batch_sql.py": "baf24f0d3ad22db7f45fdc850ddcf2094ddeaa2ddc04f309e442fc4330ca0fc5",
+    "src/winterops/spark_ingestion.py": "fd4b3a8c1f7d51859f38d6450d8a1d02abff618ce407a33f50bcc2236d031d6b",
+    "src/winterops/unified_gold.py": "b81aefd6ac975efb10db83493decedeab51fb5d38855631cc4c00fc8e045cfbf",
+    "src/winterops/sql/v2_silver.sql": "f37625c269c7c64b05bd2531deeeb846823e808561e697abacfda668cf4ccef4",
+    "src/winterops/foundation.py": "6875c7d840a9a4102b8511da3f2ced73da8dd0f668586ef5b62860b8bbc40f5a",
+    "src/winterops/sources.py": "195843094002c59195ea7d306d941cac30d612a804a9eb7a890ca708c235bf19",
+    "tests/test_batch.py": "3045b3d39229a42a2885373166922e58081497df71e5c087413347b3f050d854",
+    "sql/batch_schema_metadata_diagnostic.sql": "a4648e831a1d3360cdc117e372ed52758f048874ad8df066e7296a780d13ed7c",
+    "src/winterops/sql/gold_hourly.sql": "ba5178a7633b4d5eca669bb51e26b1bbc4a5b156b7a76994b1726d0f657222f7",
+    "src/winterops/sql/batch_gold_baselines.sql": "4a5972a953cc7a5ef0f93ee4ef23deba7d224a1151d9bae768317831dde900b3",
+    "tests/test_batch_baseline_contracts.py": "5cc0ff72fe278fe55d881b0ba83cd947466923c642922c411b0b4c7bfeace4a2"
+  },
+  "package_original_matrix_and_execution_evidence_preserved": true,
+  "workspace_target": "SAME_PREVIOUSLY_VERIFIED_WORKSPACE_AND_EXISTING_WAREHOUSE_PINNED_IN_PRIVATE_PACKAGE",
+  "workspace_file_root": "/Workspace/Shared/winterops_on_demand_v1/4222da72f52c8699baf731fe01fbad7fbd8391615c1ae0f46b896380d38f966d",
+  "workspace_sql_files": [
+    "preflight.sql",
+    "bronze.sql",
+    "silver.sql",
+    "quality.sql",
+    "complete.sql",
+    "failure_audit.sql"
+  ],
+  "workspace_mkdirs_maximum": 2,
+  "workspace_import_overwrite": false,
+  "sql_uploads_maximum": 6,
+  "job_creations_maximum": 1,
+  "job_name": "WinterOps on-demand V1",
+  "runs_maximum": 2,
+  "proposed_runs": [
+    {
+      "execution_mode": "verify",
+      "recovery": "deny"
+    },
+    {
+      "execution_mode": "process",
+      "recovery": "deny"
+    }
+  ],
+  "job_sql_file_task_executions_maximum": 11,
+  "job_timeout_seconds": 600,
+  "task_timeout_seconds": 90,
+  "status_poll_interval_seconds": 5,
+  "sql_wait_timeout": "30s",
+  "on_wait_timeout": "CANCEL",
+  "sql_client_deadline_seconds": 45,
+  "sql_row_limit": 200,
+  "sql_byte_limit": 65536,
+  "metadata_client_deadline_seconds": 30,
+  "metadata_response_byte_limit": 1048576,
+  "sql_file_byte_limit": 262144,
+  "total_sql_upload_byte_limit": 1048576,
+  "max_concurrent_runs": 1,
+  "queue_enabled": false,
+  "retries": 0,
+  "schedule": null,
+  "record_bearing_uploads": 0,
+  "bronze_silver_manifest_dml": 0,
+  "table_view_ddl": 0,
+  "gold_changes": 0,
+  "new_compute": 0,
+  "grants_or_warehouse_changes": 0,
+  "run_cancellations_maximum": 1,
+  "cleanup": 0,
+  "failure_recovery": "Stop without retries, task repair, overwrite or cleanup. Leave partial files/Job intact; known active run may receive one cancellation if deadline or failure occurs.",
+  "excluded": [
+    "NEW_SOURCE_WRITES",
+    "APPEND_MISSING_POLICY",
+    "NATIVE_FAILURE_INJECTION_OR_RECOVERY",
+    "TASK_REPAIR",
+    "SCHEDULES",
+    "NEW_COMPUTE",
+    "GOLD_CHANGES",
+    "GRANT_OR_WAREHOUSE_CHANGES",
+    "AUTOMATIC_CLEANUP"
+  ],
+  "native_sql_or_jobs_execution_this_task": false,
+  "new_source_processing_ready": false
+}
