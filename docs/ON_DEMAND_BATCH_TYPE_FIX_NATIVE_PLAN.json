@@ -1,0 +1,368 @@
+{
+  "status": "FINALIZED_CONDITIONAL_NOT_APPROVED_NOT_EXECUTED",
+  "baseline_main": "89fc2378a3d79ef8e129dc9cb355382c6bec56e2",
+  "local_branch": "feat/native-schema-type-comparison",
+  "request_sha256": "4222da72f52c8699baf731fe01fbad7fbd8391615c1ae0f46b896380d38f966d",
+  "code_sha256_lf_normalized": {
+    "src/winterops/batch.py": "8afdfddb4467c1320c5a7548811e5a5403b8996802846b37e9a9e846d1c2505a",
+    "src/winterops/batch_sql.py": "baf24f0d3ad22db7f45fdc850ddcf2094ddeaa2ddc04f309e442fc4330ca0fc5",
+    "src/winterops/spark_ingestion.py": "fd4b3a8c1f7d51859f38d6450d8a1d02abff618ce407a33f50bcc2236d031d6b",
+    "src/winterops/unified_gold.py": "b81aefd6ac975efb10db83493decedeab51fb5d38855631cc4c00fc8e045cfbf",
+    "src/winterops/sql/v2_silver.sql": "f37625c269c7c64b05bd2531deeeb846823e808561e697abacfda668cf4ccef4",
+    "src/winterops/foundation.py": "6875c7d840a9a4102b8511da3f2ced73da8dd0f668586ef5b62860b8bbc40f5a",
+    "src/winterops/sources.py": "195843094002c59195ea7d306d941cac30d612a804a9eb7a890ca708c235bf19",
+    "tests/test_batch.py": "3045b3d39229a42a2885373166922e58081497df71e5c087413347b3f050d854",
+    "sql/batch_schema_metadata_diagnostic.sql": "a4648e831a1d3360cdc117e372ed52758f048874ad8df066e7296a780d13ed7c"
+  },
+  "package_files_sha256": {
+    "preflight.sql": "b4fb88bb236c8d137d843ec8e04c36a16cfb860540d5768c47ac7896c390d9b1",
+    "bronze.sql": "7686e557cfe590f3d86db051a35d11d92714792fafd1e24e1357d629de1e19b5",
+    "silver.sql": "5966f34731ab1884d05d501f32dd614437685e8754fe2bf3e1812c1a0f2122df",
+    "quality.sql": "9c09d940d80666b521e4055f81c5b385db42f189c08698a64db85e99f8088301",
+    "complete.sql": "74ce4183f6c507edebcfa5ae5844e7635a936c21af56f3db376379543fca76e7",
+    "failure_audit.sql": "42cfe7eb2992e7c9ee45132e9b47153707faf7895ea861ce0a5994ebe286470f",
+    "job.json": "991c9e2679dd0fd614e0fee440f36003b03ac60a6c1b21438e6415e5a28ae032",
+    "request.json": "01e7b848d7fde5410fad008a5c9f2732e5b91bd0cac1069beeb636ed77cbd1e6"
+  },
+  "private_matrix_sha256": "4986733c9890ed088f673a6e20b872e8fd1b4af5c9030ff14fe271f4cdf9257d",
+  "private_package_relative_to_local_winterops": "batch_v1/review_full_type_20261030/4222da72f52c8699baf731fe01fbad7fbd8391615c1ae0f46b896380d38f966d",
+  "private_matrix_relative_to_local_winterops": "batch_v1/trial_full_type_20261030/statement_matrix.json",
+  "sql_file_bytes": {
+    "preflight.sql": 42883,
+    "bronze.sql": 29211,
+    "silver.sql": 39420,
+    "quality.sql": 30222,
+    "complete.sql": 42538,
+    "failure_audit.sql": 5470
+  },
+  "sql_upload_total_bytes": 189744,
+  "prior_package_comparison": "Only schema_guard text changed in five normal task files; failure_audit.sql, job.json and request.json unchanged",
+  "source_file_name": "snowplow-2026-01-05_2026-01-11.csv",
+  "source_file_sha256": "271c9339a42043f441b6c17e82dd309609db4b20e9953b9f368a95ec472d763d",
+  "source_version_id": "8ccb2a2dd5ec057361cf6d7cc7193b5acbdd858b84102ba550a92febe9bb4ed1",
+  "processing_key": "f07ba6a0ad499a9baf53d2f7c46df09607523371428791593143a29b56f6b466",
+  "quality_policy_sha256": "03829a2ce3b308a45e0205ca12a5288e5cb08b97189cf20b69c0e37d4c546e08",
+  "source_csv_bytes": 221818,
+  "artifact_sha256": "375d6c5980ed66f61b2dcb0601f639f5e2a3a20ce546ac08d3e20fc60c17edd3",
+  "artifact_bytes": 3619379,
+  "local_source_and_artifact": "HASH_AND_SIZE_MATCH",
+  "native_state_this_task": "NOT_RECHECKED_NO_REMOTE_OPERATIONS",
+  "reused_diagnostic": {
+    "path": "docs/ON_DEMAND_BATCH_SCHEMA_DIAGNOSTIC_RESULTS.json",
+    "sha256": "9f2c8ab7c76b7b255cf7a285490fe4eabaaa24bba43f5ee487ba36e185f8d270",
+    "query_sha256": "a4648e831a1d3360cdc117e372ed52758f048874ad8df066e7296a780d13ed7c",
+    "reexecute": false
+  },
+  "correction": "UPPER(FULL_DATA_TYPE) equals exact expected SQL declaration; strict counts/names/schema/table/zero-based positions retained",
+  "statement_matrix": [
+    {
+      "position": 1,
+      "phase": "before",
+      "label": "declared-type-source-schema-quality-and-manifest-guard",
+      "sql_sha256": "faa5606e34c9160fed96cb0dc9aa5fab256a79d79705957758af94a50d3990da",
+      "expectation": "ALL_ASSERTIONS_NULL_SKIP_VERIFIED_AND_EXACT_PRIOR_MANIFEST",
+      "replaces_original_positions": [
+        2,
+        3
+      ],
+      "sql_bytes": 31123
+    },
+    {
+      "position": 2,
+      "phase": "before",
+      "label": "published-gold-baselines",
+      "sql_sha256": "ef0513f0228f45f36089b2994bd83d48c126b264c0b3531902bef2151d17ff09",
+      "expectation": "THREE_WEEK_ROWS_MATCH_2810_110337_118159_AND_LEGACY_BASELINE",
+      "original_position": 4,
+      "sql_bytes": 664
+    },
+    {
+      "position": 3,
+      "phase": "before",
+      "label": "before-history-bronze",
+      "sql_sha256": "2ee2ab735ede78283bb585333346d618d93d35afd0e0043be76d06d40ab392a9",
+      "expectation": "ONE_LATEST_VERSION_ROW_SAVE_PRIVATELY",
+      "original_position": 5,
+      "sql_bytes": 66
+    },
+    {
+      "position": 4,
+      "phase": "before",
+      "label": "before-history-silver",
+      "sql_sha256": "4618c85a19573c24271ab529fdf9a85237a733dae13edfdfa29508c33297495d",
+      "expectation": "ONE_LATEST_VERSION_ROW_SAVE_PRIVATELY",
+      "original_position": 6,
+      "sql_bytes": 66
+    },
+    {
+      "position": 5,
+      "phase": "before",
+      "label": "before-history-manifest",
+      "sql_sha256": "5801549ab947fe28093d6a96ef6e8a593a759caefc594f44624732c81d1d8d16",
+      "expectation": "ONE_LATEST_VERSION_ROW_SAVE_PRIVATELY",
+      "original_position": 7,
+      "sql_bytes": 68
+    },
+    {
+      "position": 6,
+      "phase": "after_run_1",
+      "label": "after_run_1-history-bronze",
+      "sql_sha256": "2ee2ab735ede78283bb585333346d618d93d35afd0e0043be76d06d40ab392a9",
+      "expectation": "LATEST_VERSION_EXACTLY_EQUALS_BEFORE",
+      "original_position": 8,
+      "sql_bytes": 66
+    },
+    {
+      "position": 7,
+      "phase": "after_run_1",
+      "label": "after_run_1-history-silver",
+      "sql_sha256": "4618c85a19573c24271ab529fdf9a85237a733dae13edfdfa29508c33297495d",
+      "expectation": "LATEST_VERSION_EXACTLY_EQUALS_BEFORE",
+      "original_position": 9,
+      "sql_bytes": 66
+    },
+    {
+      "position": 8,
+      "phase": "after_run_1",
+      "label": "after_run_1-history-manifest",
+      "sql_sha256": "5801549ab947fe28093d6a96ef6e8a593a759caefc594f44624732c81d1d8d16",
+      "expectation": "LATEST_VERSION_EXACTLY_EQUALS_BEFORE",
+      "original_position": 10,
+      "sql_bytes": 68
+    },
+    {
+      "position": 9,
+      "phase": "after_run_1",
+      "label": "after_run_1-manifest-snapshot",
+      "sql_sha256": "bb43ab6b6672a6fbf83f6525b271cc95405213dae77484fe840d230b6d90ee03",
+      "expectation": "FULL_RETURNED_ROW_EXACTLY_EQUALS_BEFORE",
+      "original_position": 11,
+      "sql_bytes": 437
+    },
+    {
+      "position": 10,
+      "phase": "after_run_2",
+      "label": "after_run_2-history-bronze",
+      "sql_sha256": "2ee2ab735ede78283bb585333346d618d93d35afd0e0043be76d06d40ab392a9",
+      "expectation": "LATEST_VERSION_EXACTLY_EQUALS_BEFORE",
+      "original_position": 12,
+      "sql_bytes": 66
+    },
+    {
+      "position": 11,
+      "phase": "after_run_2",
+      "label": "after_run_2-history-silver",
+      "sql_sha256": "4618c85a19573c24271ab529fdf9a85237a733dae13edfdfa29508c33297495d",
+      "expectation": "LATEST_VERSION_EXACTLY_EQUALS_BEFORE",
+      "original_position": 13,
+      "sql_bytes": 66
+    },
+    {
+      "position": 12,
+      "phase": "after_run_2",
+      "label": "after_run_2-history-manifest",
+      "sql_sha256": "5801549ab947fe28093d6a96ef6e8a593a759caefc594f44624732c81d1d8d16",
+      "expectation": "LATEST_VERSION_EXACTLY_EQUALS_BEFORE",
+      "original_position": 14,
+      "sql_bytes": 68
+    },
+    {
+      "position": 13,
+      "phase": "after_run_2",
+      "label": "after_run_2-manifest-snapshot",
+      "sql_sha256": "bb43ab6b6672a6fbf83f6525b271cc95405213dae77484fe840d230b6d90ee03",
+      "expectation": "FULL_RETURNED_ROW_EXACTLY_EQUALS_BEFORE",
+      "original_position": 15,
+      "sql_bytes": 437
+    },
+    {
+      "position": 14,
+      "phase": "after_run_2",
+      "label": "after-published-gold-baselines",
+      "sql_sha256": "ef0513f0228f45f36089b2994bd83d48c126b264c0b3531902bef2151d17ff09",
+      "expectation": "ALL_RETURNED_AGGREGATES_EXACTLY_EQUAL_BEFORE",
+      "original_position": 16,
+      "sql_bytes": 664
+    }
+  ],
+  "previous_sql_submissions": 4,
+  "new_sql_requests_maximum": 14,
+  "proposed_cumulative_sql_maximum": 18,
+  "previous_cumulative_sql_ceiling": 16,
+  "renewed_sql_budget_requires_explicit_approval": true,
+  "budget_explanation": "Retain all 14 outstanding checks from the prior continuation; two subsequent submissions (failed continuation and successful diagnostic) mean 18 cumulative, requiring explicit renewal from 16. No automatic budget carryover.",
+  "previous_active_seconds": 122.092,
+  "proposed_active_deadline_seconds": 777.908,
+  "cumulative_active_deadline_seconds": 900,
+  "reuse_completed_probe": true,
+  "compound_probe_reexecution": false,
+  "metadata_get_head_maximum": 50,
+  "prior_execution_metadata_gets": 59,
+  "proposed_cumulative_execution_metadata_get_head_maximum": 109,
+  "initial_readiness_gets_separate": 37,
+  "metadata_client_deadline_seconds": 30,
+  "metadata_response_byte_limit": 1048576,
+  "active_runs_limit": 20,
+  "stop_on_pagination_or_active_runs": true,
+  "job_name": "WinterOps on-demand V1",
+  "workspace_file_root": "/Workspace/Shared/winterops_on_demand_v1/4222da72f52c8699baf731fe01fbad7fbd8391615c1ae0f46b896380d38f966d",
+  "workspace_sql_files": [
+    "preflight.sql",
+    "bronze.sql",
+    "silver.sql",
+    "quality.sql",
+    "complete.sql",
+    "failure_audit.sql"
+  ],
+  "sql_code_uploads_maximum": 6,
+  "job_creations_maximum": 1,
+  "runs_maximum": 2,
+  "workspace_mkdirs_maximum": 2,
+  "workspace_import_overwrite": false,
+  "upload_content_verification_gets_included_in_metadata_cap": true,
+  "proposed_runs": [
+    {
+      "execution_mode": "verify",
+      "recovery": "deny"
+    },
+    {
+      "execution_mode": "process",
+      "recovery": "deny"
+    }
+  ],
+  "task_output_gets_maximum": 10,
+  "job_status_gets_maximum": 90,
+  "status_poll_interval_seconds": 5,
+  "statement_wait_timeout": "30s",
+  "on_wait_timeout": "CANCEL",
+  "statement_client_deadline_seconds": 45,
+  "statement_row_limit": 200,
+  "statement_byte_limit": 65536,
+  "sql_file_byte_limit": 262144,
+  "total_sql_upload_byte_limit": 1048576,
+  "job_timeout_seconds": 600,
+  "task_timeout_seconds": 90,
+  "max_concurrent_runs": 1,
+  "queue_enabled": false,
+  "retries": 0,
+  "schedule": null,
+  "record_bearing_uploads": 0,
+  "table_or_manifest_dml": 0,
+  "table_or_view_ddl": 0,
+  "workspace_target": "SAME_PREVIOUSLY_VERIFIED_WORKSPACE_AND_EXISTING_WAREHOUSE_PINNED_IN_PRIVATE_PACKAGE",
+  "source_objects": [
+    "workspace.default.winterops_v2_dev_bronze",
+    "workspace.default.winterops_v2_dev_silver",
+    "workspace.default.winterops_v2_dev_manifest"
+  ],
+  "write_policy": "complete_only",
+  "expected_manifest": {
+    "status": "COMPLETE",
+    "bronze_rows": 2810,
+    "silver_rows": 2810,
+    "header_rows": 19,
+    "valid_rows": 2791,
+    "invalid_rows": 0,
+    "prior_native_row": {
+      "processing_key": "f07ba6a0ad499a9baf53d2f7c46df09607523371428791593143a29b56f6b466",
+      "source_version_id": "8ccb2a2dd5ec057361cf6d7cc7193b5acbdd858b84102ba550a92febe9bb4ed1",
+      "source_file_sha256": "271c9339a42043f441b6c17e82dd309609db4b20e9953b9f368a95ec472d763d",
+      "status": "COMPLETE",
+      "last_successful_stage": "COMPLETE",
+      "attempts": 2,
+      "bronze_rows": 2810,
+      "silver_rows": 2810,
+      "error_code": null,
+      "updated_at_utc": "2026-10-29 13:14:58.044428",
+      "metadata_sha256": "c2d08257c9d97b523832c5494b93ab59aa1ba3f263a02307d416b28a4df624d0",
+      "policy_json_sha256": "ecb195bd0381aa104a562a121f9e7e43b5f8f97d57e19ffb0698571636b323b5"
+    },
+    "prior_native_evidence": "docs/THREE_WEEK_NATIVE_RESULTS.json"
+  },
+  "expected_task_outputs": {
+    "preflight": {
+      "columns": [
+        "state_check",
+        "decision",
+        "bronze_n",
+        "silver_n"
+      ],
+      "rows": 1,
+      "decision": "SKIP_VERIFIED",
+      "bronze_n": 2810,
+      "silver_n": 2810
+    },
+    "bronze": {
+      "columns": [
+        "schema_check"
+      ],
+      "rows": 1
+    },
+    "silver": {
+      "columns": [
+        "schema_check"
+      ],
+      "rows": 1
+    },
+    "quality": {
+      "columns": [
+        "schema_check"
+      ],
+      "rows": 1
+    },
+    "complete": {
+      "columns": [
+        "batch_outcome"
+      ],
+      "rows": 1,
+      "batch_outcome": "COMPLETE_ELIGIBLE"
+    },
+    "failure_audit": {
+      "result_state": "EXCLUDED"
+    }
+  },
+  "stop_rule": "FIRST_FAILURE_TIMEOUT_CANCELLATION_UNEXPECTED_RESPONSE_TRUNCATION_OR_MISMATCH_NO_AUTOMATIC_RETRY",
+  "excluded": [
+    "NEW_SOURCE_WRITES",
+    "APPEND_MISSING_POLICY",
+    "NATIVE_FAILURE_INJECTION_OR_RECOVERY",
+    "TASK_REPAIR",
+    "SCHEDULES",
+    "NEW_COMPUTE",
+    "GOLD_CHANGES",
+    "GRANT_OR_WAREHOUSE_CHANGES",
+    "AUTOMATIC_CLEANUP"
+  ],
+  "scope_note": "Conditional proposal only. New explicit approval must name the reviewed commit, final plan digest, immutable package/matrix hashes and renewed 18 cumulative / 14 new SQL and metadata limits. No Databricks authority is granted by finalizing, committing, pushing or running GitHub CI.",
+  "failure_recovery": "Stop without retries, task repair, overwrite or cleanup. Leave partial files/Job intact; known active run may receive one cancellation if deadline or failure occurs.",
+  "run_cancellations_maximum": 1,
+  "job_delete_reset_update_maximum": 0,
+  "existing_compute_changes": 0,
+  "gold_changes": 0,
+  "new_source_processing": "NOT_INCLUDED_NOT_VERIFIED",
+  "finalized_on": "2026-10-31",
+  "deployment_gate": {
+    "new_explicit_approval_of_exact_commit_plan_package_and_renewed_budgets_required": true,
+    "github_ci_required": "SUCCESS_FOR_EXACT_REVIEWED_COMMIT_INCLUDING_ALL_166_TESTS",
+    "fresh_identity_workspace_warehouse_permissions_source_artifacts_and_target_absence_required": true,
+    "required_statement_positions_before_any_deployment": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "required_guard": "CORRECTED_UPPER_FULL_DATA_TYPE_SCHEMA_ASSERTION_AND_ALL_OTHER_ASSERTIONS_PASS",
+    "required_complete_manifest": "EXACT_PRIOR_COMPLETE_JANUARY_5_11_VERSION_ATTEMPT_COUNTS_TIMESTAMP_METADATA_AND_POLICY_MATCH",
+    "required_baselines": "SOURCE_CONTENT_QUALITY_STATE_GOLD_AND_ALL_THREE_DELTA_HISTORIES_VERIFIED",
+    "blocked_actions_until_pass": [
+      "WORKSPACE_MKDIRS",
+      "WORKSPACE_IMPORT",
+      "JOBS_CREATE",
+      "JOBS_RUN_NOW"
+    ],
+    "on_failure": "STOP_NO_DEPLOYMENT_NO_RETRY_NO_REPLAY_OF_PREVIOUS_MATRICES"
+  },
+  "second_run_gate": "FIRST_RUN_ALL_TASK_OUTPUTS_AND_STATEMENT_POSITIONS_6_TO_9_PASS_WITH_ZERO_DATA_OR_MANIFEST_WRITES",
+  "package_preservation": "EXISTING_IMMUTABLE_REVIEW_PACKAGE_AND_PRIVATE_MATRIX_PRESERVED_BYTE_FOR_BYTE;_DO_NOT_REGENERATE_IN_PLACE"
+}
