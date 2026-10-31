@@ -1,0 +1,435 @@
+{
+  "status": "STOPPED_PREFLIGHT_LEGACY_GOLD_COLUMN_NAMES_NO_DEPLOYMENT",
+  "user_facing_date": "2026-10-31",
+  "recorded_at_utc": "2026-10-31T09:50:14.733844+00:00",
+  "git_revision": "a202e8264c623d779efb1ec02e70819e6862bc52",
+  "approved_proposal_sha256_lf": "8e328347cff6d54085001ad1e745de131cf9ab6f7d4a0d0138a855e2db638710",
+  "private_matrix_sha256": "4986733c9890ed088f673a6e20b872e8fd1b4af5c9030ff14fe271f4cdf9257d",
+  "approval": "EXPLICIT_USER_APPROVAL_OF_EXACT_CONDITIONAL_TRIAL_AND_RENEWAL_TO_18_CUMULATIVE_SQL",
+  "proposal_and_matrix_changed": false,
+  "package_payload_hashes": {
+    "preflight.sql": "b4fb88bb236c8d137d843ec8e04c36a16cfb860540d5768c47ac7896c390d9b1",
+    "bronze.sql": "7686e557cfe590f3d86db051a35d11d92714792fafd1e24e1357d629de1e19b5",
+    "silver.sql": "5966f34731ab1884d05d501f32dd614437685e8754fe2bf3e1812c1a0f2122df",
+    "quality.sql": "9c09d940d80666b521e4055f81c5b385db42f189c08698a64db85e99f8088301",
+    "complete.sql": "74ce4183f6c507edebcfa5ae5844e7635a936c21af56f3db376379543fca76e7",
+    "failure_audit.sql": "42cfe7eb2992e7c9ee45132e9b47153707faf7895ea861ce0a5994ebe286470f",
+    "job.json": "991c9e2679dd0fd614e0fee440f36003b03ac60a6c1b21438e6415e5a28ae032",
+    "request.json": "01e7b848d7fde5410fad008a5c9f2732e5b91bd0cac1069beeb636ed77cbd1e6"
+  },
+  "package_preserved": true,
+  "sql_package_files": 6,
+  "sql_package_bytes": 189744,
+  "request_sha256": "4222da72f52c8699baf731fe01fbad7fbd8391615c1ae0f46b896380d38f966d",
+  "write_policy": "complete_only",
+  "source_file_name": "snowplow-2026-01-05_2026-01-11.csv",
+  "source_version_id": "8ccb2a2dd5ec057361cf6d7cc7193b5acbdd858b84102ba550a92febe9bb4ed1",
+  "processing_key": "f07ba6a0ad499a9baf53d2f7c46df09607523371428791593143a29b56f6b466",
+  "source_hashes": [
+    {
+      "label": "before-original",
+      "bytes": 221818,
+      "sha256": "271c9339a42043f441b6c17e82dd309609db4b20e9953b9f368a95ec472d763d",
+      "result": "PASS"
+    },
+    {
+      "label": "before-artifact",
+      "bytes": 3619379,
+      "sha256": "375d6c5980ed66f61b2dcb0601f639f5e2a3a20ce546ac08d3e20fc60c17edd3",
+      "result": "PASS"
+    }
+  ],
+  "readiness": {
+    "result": "PASS_ALL_28_CHECKS",
+    "metadata_requests": 28,
+    "warehouse": {
+      "state": "STOPPED",
+      "active_sessions": 0,
+      "configuration": "UNCHANGED"
+    },
+    "active_jobs": "ZERO_NO_PAGINATION",
+    "expected_identity_and_admin_membership": "MATCH",
+    "protected_object_count": 11,
+    "protected_object_identity_owner_schema_definitions": "MATCH_PRIOR",
+    "target_ownership_volume_owner_warehouse_use_workspace_parent_access": "CONFIRMED",
+    "job_and_file_destinations": "ABSENT_EXPECTED_404",
+    "source_csv_and_artifact": "HASH_AND_SIZE_MATCH",
+    "global_writer_lock": "NOT_PROVIDED_READINESS_IS_A_SNAPSHOT"
+  },
+  "metadata_request_statuses": [
+    {
+      "label": "identity",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 1.06
+    },
+    {
+      "label": "before-warehouse",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.757
+    },
+    {
+      "label": "corrected-active-runs",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.751
+    },
+    {
+      "label": "before-object-workspace.default.winterops_bronze_windsor_activity",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.98
+    },
+    {
+      "label": "before-object-workspace.default.winterops_silver_windsor_week_sample",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.903
+    },
+    {
+      "label": "before-object-workspace.default.winterops_silver_windsor_valid",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.968
+    },
+    {
+      "label": "before-object-workspace.default.winterops_silver_windsor_quarantine",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.937
+    },
+    {
+      "label": "before-object-workspace.default.winterops_gold_windsor_hourly_observations",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 1.253
+    },
+    {
+      "label": "before-object-workspace.default.winterops_v2_dev_bronze",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 1.111
+    },
+    {
+      "label": "before-object-workspace.default.winterops_v2_dev_silver",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 1.062
+    },
+    {
+      "label": "before-object-workspace.default.winterops_v2_dev_manifest",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.933
+    },
+    {
+      "label": "before-object-workspace.default.winterops_v2_gold_hourly_observations",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 1.119
+    },
+    {
+      "label": "before-object-workspace.default.winterops_v2_gold_daily_activity",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 1.076
+    },
+    {
+      "label": "before-object-workspace.default.winterops_v2_gold_weekly_quality",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 1.088
+    },
+    {
+      "label": "before-job-name",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.858
+    },
+    {
+      "label": "before-file-destination-0",
+      "method": "GET",
+      "http_status": 404,
+      "elapsed_seconds": 0.937
+    },
+    {
+      "label": "before-file-destination-1",
+      "method": "GET",
+      "http_status": 404,
+      "elapsed_seconds": 0.917
+    },
+    {
+      "label": "before-file-destination-2",
+      "method": "GET",
+      "http_status": 404,
+      "elapsed_seconds": 0.894
+    },
+    {
+      "label": "before-file-destination-3",
+      "method": "GET",
+      "http_status": 404,
+      "elapsed_seconds": 0.803
+    },
+    {
+      "label": "before-file-destination-4",
+      "method": "GET",
+      "http_status": 404,
+      "elapsed_seconds": 0.754
+    },
+    {
+      "label": "before-file-destination-5",
+      "method": "GET",
+      "http_status": 404,
+      "elapsed_seconds": 0.759
+    },
+    {
+      "label": "before-file-destination-6",
+      "method": "GET",
+      "http_status": 404,
+      "elapsed_seconds": 0.995
+    },
+    {
+      "label": "before-file-destination-7",
+      "method": "GET",
+      "http_status": 404,
+      "elapsed_seconds": 0.76
+    },
+    {
+      "label": "before-original",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 1.733
+    },
+    {
+      "label": "before-artifact",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 2.585
+    },
+    {
+      "label": "before-volume-owner",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.768
+    },
+    {
+      "label": "before-warehouse-acl",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.861
+    },
+    {
+      "label": "before-parent-acl",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.901
+    }
+  ],
+  "statements": [
+    {
+      "position": 1,
+      "label": "declared-type-source-schema-quality-and-manifest-guard",
+      "sql_sha256": "faa5606e34c9160fed96cb0dc9aa5fab256a79d79705957758af94a50d3990da",
+      "phase": "before",
+      "elapsed_seconds": 24.931,
+      "state": "SUCCEEDED",
+      "row_count": 1,
+      "columns": [
+        "guard_parameters_parameter_check",
+        "guard_parameters_write_policy_check",
+        "guard_schema_schema_check",
+        "guard_content_persisted_check",
+        "guard_content_silver_rows",
+        "guard_content_header_rows",
+        "guard_content_valid_rows",
+        "guard_content_invalid_rows",
+        "guard_quality_quality_check",
+        "guard_quality_silver_rows",
+        "guard_quality_header_rows",
+        "guard_quality_valid_rows",
+        "guard_quality_invalid_rows",
+        "guard_scope_state_check",
+        "guard_scope_decision",
+        "guard_scope_bronze_n",
+        "guard_scope_silver_n",
+        "manifest_processing_key",
+        "manifest_source_version_id",
+        "manifest_source_file_sha256",
+        "manifest_status",
+        "manifest_last_successful_stage",
+        "manifest_attempts",
+        "manifest_bronze_rows",
+        "manifest_silver_rows",
+        "manifest_error_code",
+        "manifest_updated_at_utc",
+        "manifest_metadata_sha256",
+        "manifest_policy_json_sha256"
+      ],
+      "truncated": false,
+      "sanitized_results": {
+        "guard_parameters_parameter_check": null,
+        "guard_parameters_write_policy_check": null,
+        "guard_schema_schema_check": null,
+        "guard_content_persisted_check": null,
+        "guard_content_silver_rows": "2810",
+        "guard_content_header_rows": "19",
+        "guard_content_valid_rows": "2791",
+        "guard_content_invalid_rows": "0",
+        "guard_quality_quality_check": null,
+        "guard_quality_silver_rows": "2810",
+        "guard_quality_header_rows": "19",
+        "guard_quality_valid_rows": "2791",
+        "guard_quality_invalid_rows": "0",
+        "guard_scope_state_check": null,
+        "guard_scope_decision": "SKIP_VERIFIED",
+        "guard_scope_bronze_n": "2810",
+        "guard_scope_silver_n": "2810",
+        "manifest_processing_key": "f07ba6a0ad499a9baf53d2f7c46df09607523371428791593143a29b56f6b466",
+        "manifest_source_version_id": "8ccb2a2dd5ec057361cf6d7cc7193b5acbdd858b84102ba550a92febe9bb4ed1",
+        "manifest_source_file_sha256": "271c9339a42043f441b6c17e82dd309609db4b20e9953b9f368a95ec472d763d",
+        "manifest_status": "COMPLETE",
+        "manifest_last_successful_stage": "COMPLETE",
+        "manifest_attempts": "2",
+        "manifest_bronze_rows": "2810",
+        "manifest_silver_rows": "2810",
+        "manifest_error_code": null,
+        "manifest_updated_at_utc": "2026-10-29 13:14:58.044428",
+        "manifest_metadata_sha256": "c2d08257c9d97b523832c5494b93ab59aa1ba3f263a02307d416b28a4df624d0",
+        "manifest_policy_json_sha256": "ecb195bd0381aa104a562a121f9e7e43b5f8f97d57e19ffb0698571636b323b5"
+      },
+      "verification": "PASS"
+    },
+    {
+      "position": 2,
+      "label": "published-gold-baselines",
+      "sql_sha256": "ef0513f0228f45f36089b2994bd83d48c126b264c0b3531902bef2151d17ff09",
+      "phase": "before",
+      "elapsed_seconds": 3.724,
+      "state": "FAILED",
+      "error_code": "BAD_REQUEST",
+      "runtime_error": "[UNRESOLVED_COLUMN.WITH_SUGGESTION] A column, variable, or function parameter with name `plow_active_observations` cannot be resolved. Did you mean one of the following? [`plow_active_observation_count`, `spreader_active_observation_count`, `source_file_name`, `observation_count`, `source_dataset`]. SQLSTATE: 42703; line 3 pos 5"
+    }
+  ],
+  "native_schema_guard": {
+    "result": "PASS",
+    "comparison": "UPPER(FULL_DATA_TYPE)=EXPECTED_SQL_DECLARATION",
+    "expected_columns": 59,
+    "strict_names_counts_schema_table_and_zero_based_positions": true,
+    "assertion_result": null,
+    "source_reconciliation": "PASS_2810_BRONZE_SILVER_19_HEADER_2791_VALID_0_INVALID",
+    "exact_complete_manifest": "PASS_ATTEMPT_2_TIMESTAMP_METADATA_POLICY_COUNTS_MATCH",
+    "scope_decision": "SKIP_VERIFIED"
+  },
+  "failure": {
+    "position": 2,
+    "label": "published-gold-baselines",
+    "state": "FAILED",
+    "error_code": "BAD_REQUEST",
+    "sqlstate": "42703",
+    "runtime_error": "[UNRESOLVED_COLUMN.WITH_SUGGESTION] A column, variable, or function parameter with name `plow_active_observations` cannot be resolved. Did you mean one of the following? [`plow_active_observation_count`, `spreader_active_observation_count`, `source_file_name`, `observation_count`, `source_dataset`]. SQLSTATE: 42703; line 3 pos 5",
+    "affected_query_component": "LEGACY_CTE_IN_PUBLISHED_GOLD_BASELINE_READ",
+    "observed_missing_column": "plow_active_observations",
+    "saved_fresh_legacy_metadata": {
+      "actual_columns": [
+        "plow_active_observation_count",
+        "spreader_active_observation_count"
+      ],
+      "absent_query_columns": [
+        "plow_active_observations",
+        "spreader_active_observations"
+      ]
+    },
+    "interpretation": "Legacy baseline query incorrectly uses the V2-style activity column names; schema guard is successful and existing view definitions are unchanged",
+    "recommended_future_correction": "Use the two *_active_observation_count fields only in the legacy CTE; retain V2 column names. Rehash/review a bounded revised plan before new explicit approval; no correction or retry performed"
+  },
+  "deployment_gate": "CLOSED_PREFLIGHT_POSITION_2_FAILED_POSITIONS_3_TO_5_NOT_EXECUTED",
+  "job_deployed": false,
+  "job_runs": "NOT_EXECUTED",
+  "native_jobs_sql_file_capabilities": "NOT_REACHED_NOT_VERIFIED",
+  "no_write_invariant": {
+    "remote_mutation_requests": 0,
+    "bronze_silver_manifest_dml": 0,
+    "table_view_ddl": 0,
+    "gold_changes": 0,
+    "deployment_actions": 0,
+    "basis": "ONLY_METADATA_FILE_GETS_AND_TWO_READ_ONLY_SQL_SUBMISSIONS",
+    "jobs_zero_write_rerun_and_postflight": "NOT_EXERCISED",
+    "delta_history_baselines": "NOT_REACHED",
+    "final_gold_and_preservation_reconciliation": "NOT_REACHED_NO_AFTER_FAILURE_NATIVE_REQUESTS"
+  },
+  "execution": {
+    "new_sql_submissions": 2,
+    "successful_sql": 1,
+    "failed_sql": 1,
+    "canceled_sql": 0,
+    "metadata_file_gets": 28,
+    "job_state_gets": 0,
+    "task_output_gets": 0,
+    "directories_created": 0,
+    "sql_files_uploaded": 0,
+    "job_creations": 0,
+    "job_runs": 0,
+    "sql_client_seconds": 28.655,
+    "active_elapsed_seconds": 57.693,
+    "automatic_retries": 0,
+    "task_repair": 0,
+    "cleanup": 0,
+    "after_failure_native_requests": 0
+  },
+  "cumulative_trial": {
+    "sql_submissions": 6,
+    "successful_sql": 3,
+    "failed_sql": 3,
+    "canceled_sql": 0,
+    "metadata_file_gets": 87,
+    "separate_initial_readiness_gets": 37,
+    "sql_client_seconds": 89.651,
+    "active_elapsed_seconds": 179.785,
+    "approved_sql_ceiling": 18,
+    "unused_sql_slots": 12,
+    "unused_metadata_file_slots": 22,
+    "remaining_active_seconds": 720.215,
+    "unused_budget_authority": "NONE_AFTER_STOP_REQUIRES_REVISED_REVIEW_AND_NEW_EXPLICIT_APPROVAL"
+  },
+  "limits": {
+    "wait_timeout": "30s",
+    "on_wait_timeout": "CANCEL",
+    "sql_client_deadline_seconds": 45,
+    "row_limit": 200,
+    "byte_limit": 65536,
+    "metadata_response_bytes": 1048576,
+    "metadata_deadline_seconds": 30,
+    "trial_active_deadline_seconds": 777.908
+  },
+  "native_verified_now": [
+    "CORRECTED_DECLARED_TYPE_SCHEMA_GUARD",
+    "EXACT_SELECTED_SOURCE_CONTENT_AND_QUALITY_RECONCILIATION",
+    "EXACT_COMPLETE_MANIFEST_AND_SKIP_VERIFIED_DECISION",
+    "CURRENT_IDENTITY_WAREHOUSE_PERMISSIONS_METADATA_SOURCE_FILE_HASHES"
+  ],
+  "native_not_verified": [
+    "JOBS_SQL_FILE_SCRIPTS_AND_NAMED_PARAMETER_BINDING",
+    "JOBS_TASK_DEPENDENCY_RESULT_STATES_AND_OUTPUTS",
+    "JOBS_TIMEOUT_BEHAVIOR",
+    "BOTH_COMPLETE_ONLY_RUNS_AND_POSTFLIGHT_NO_WRITE_PROOF",
+    "GENUINELY_NEW_SOURCE_PROCESSING_AND_RECOVERY"
+  ],
+  "prior_published_three_week_results": "HISTORICAL_UNCHANGED_BY_THIS_READ_ONLY_ATTEMPT_NOT_REVERIFIED_AFTER_FAILURE",
+  "offline_tests": {
+    "command": "python -m unittest discover -s tests -v",
+    "tests": 166,
+    "failures": 0,
+    "errors": 0,
+    "elapsed_seconds": 8.038
+  },
+  "github_ci": {
+    "revision": "a202e8264c623d779efb1ec02e70819e6862bc52",
+    "status": "SUCCESS",
+    "url": "https://github.com/cevateness/winterops-databricks-lab/actions/runs/41180576063",
+    "scope": "MERGED_IMPLEMENTATION_BEFORE_NATIVE_TRIAL"
+  },
+  "implementation_transformation_gold_or_test_changes": false,
+  "unrelated_local_files": "HASHES_UNCHANGED",
+  "new_source_processing_ready": false
+}
