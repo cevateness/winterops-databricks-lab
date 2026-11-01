@@ -1,0 +1,1899 @@
+{
+  "status": "PASS_NATIVE_JOB_DEPLOYMENT_AND_BOTH_COMPLETE_ONLY_RUNS",
+  "execution_date_local": "2026-11-01",
+  "recorded_at_utc": "2026-11-01T12:16:24.746730+00:00",
+  "approved_implementation_revision": "53511c74bbe0c5a41ad9574d2b74aa69f8b3d73f",
+  "execution_main_revision": "375bd82988171521c58872109dd6a49779e94962",
+  "implementation_pr": 14,
+  "merged_tree_matches_reviewed_code": true,
+  "explicit_authorization": "USER_APPROVED_EXACT_OPTIONAL_METADATA_PLAN_24_CUMULATIVE_SQL_218_METADATA_900_SECONDS",
+  "approved_proposal_sha256_lf": "9e2b006be614ba50b86acf3c706207f27b56e73fe1e3848be51b93853b872511",
+  "private_sql_matrix_sha256": "17ee67ef456ab606845ff5394b880b2a813019f93f73ee717ae114ba95aede07",
+  "private_metadata_operation_sha256": "6f317e80b34650928f839fb378e1b45473df128fe9c829a82b8abd686d1f6374",
+  "request_sha256": "4222da72f52c8699baf731fe01fbad7fbd8391615c1ae0f46b896380d38f966d",
+  "source_version_id": "8ccb2a2dd5ec057361cf6d7cc7193b5acbdd858b84102ba550a92febe9bb4ed1",
+  "processing_key": "f07ba6a0ad499a9baf53d2f7c46df09607523371428791593143a29b56f6b466",
+  "package_files_sha256": {
+    "preflight.sql": "b4fb88bb236c8d137d843ec8e04c36a16cfb860540d5768c47ac7896c390d9b1",
+    "bronze.sql": "7686e557cfe590f3d86db051a35d11d92714792fafd1e24e1357d629de1e19b5",
+    "silver.sql": "5966f34731ab1884d05d501f32dd614437685e8754fe2bf3e1812c1a0f2122df",
+    "quality.sql": "9c09d940d80666b521e4055f81c5b385db42f189c08698a64db85e99f8088301",
+    "complete.sql": "74ce4183f6c507edebcfa5ae5844e7635a936c21af56f3db376379543fca76e7",
+    "failure_audit.sql": "42cfe7eb2992e7c9ee45132e9b47153707faf7895ea861ce0a5994ebe286470f",
+    "job.json": "991c9e2679dd0fd614e0fee440f36003b03ac60a6c1b21438e6415e5a28ae032",
+    "request.json": "01e7b848d7fde5410fad008a5c9f2732e5b91bd0cac1069beeb636ed77cbd1e6"
+  },
+  "ci_before_native": {
+    "commit": "53511c74bbe0c5a41ad9574d2b74aa69f8b3d73f",
+    "conclusion": "success",
+    "tests": 193,
+    "test_seconds": 2.915,
+    "render_checks": "PASS",
+    "run_id": 41300398539,
+    "url": "https://github.com/cevateness/winterops-databricks-lab/actions/runs/41300398539"
+  },
+  "local_review": "PASS_ALL_PINNED_CODE_PLANS_SOURCE_PACKAGE_EVIDENCE_FIXTURE_CI_AND_USER_FILE_HASHES",
+  "local_rehearsal": "PASS_OFFLINE_ONLY_NO_NATIVE_RUNTIME_CLAIM",
+  "readiness": {
+    "status": "PASS_ALL_29_FRESH_GATES",
+    "authenticated_profile": "winterops",
+    "workspace_identity": "MATCH_EXPECTED_PRIVATE_TARGET",
+    "warehouse": "SAME_APPROVED_EXISTING_WAREHOUSE",
+    "active_jobs_and_sessions": "ZERO_AT_READINESS",
+    "protected_objects": "ALL_11_METADATA_CONTRACTS_MATCH",
+    "source_fingerprints": "ORIGINAL_AND_TRANSPORT_MATCH",
+    "permissions": "MATCH_APPROVED_USE_AND_PARENT_WRITE_REQUIREMENTS",
+    "job_name": "UNUSED_BEFORE_CREATION",
+    "other_five_destinations": "ABSENT_BEFORE_IMPORT",
+    "directories": "BOTH_EXISTING_DIRECTORY_IDENTITIES_PRESERVED",
+    "existing_preflight": "AUTO_EXPORT_COMPLETE_IDENTITY_BYTES_SHA_PASS_REUSED_NO_REIMPORT",
+    "predeployment_sql": "ALL_FOUR_PASS_DELTA_3_4_13_AND_GOLD_BASELINES",
+    "prior_complete_manifest_guard": "REUSED_ONLY_UNDER_FRESH_UNCHANGED_SOURCE_METADATA_AND_DELTA_GATES"
+  },
+  "all_six_files_verified": true,
+  "file_integrity_verifications": [
+    {
+      "phase": "before",
+      "file": "preflight.sql",
+      "bytes": 42883,
+      "sha256": "b4fb88bb236c8d137d843ec8e04c36a16cfb860540d5768c47ac7896c390d9b1",
+      "result": "PASS",
+      "action": "REUSE"
+    },
+    {
+      "phase": "after_each_new_import",
+      "file": "bronze.sql",
+      "bytes": 29211,
+      "sha256": "7686e557cfe590f3d86db051a35d11d92714792fafd1e24e1357d629de1e19b5",
+      "result": "PASS",
+      "action": "CODE_VERIFIED"
+    },
+    {
+      "phase": "after_each_new_import",
+      "file": "silver.sql",
+      "bytes": 39420,
+      "sha256": "5966f34731ab1884d05d501f32dd614437685e8754fe2bf3e1812c1a0f2122df",
+      "result": "PASS",
+      "action": "CODE_VERIFIED"
+    },
+    {
+      "phase": "after_each_new_import",
+      "file": "quality.sql",
+      "bytes": 30222,
+      "sha256": "9c09d940d80666b521e4055f81c5b385db42f189c08698a64db85e99f8088301",
+      "result": "PASS",
+      "action": "CODE_VERIFIED"
+    },
+    {
+      "phase": "after_each_new_import",
+      "file": "complete.sql",
+      "bytes": 42538,
+      "sha256": "74ce4183f6c507edebcfa5ae5844e7635a936c21af56f3db376379543fca76e7",
+      "result": "PASS",
+      "action": "CODE_VERIFIED"
+    },
+    {
+      "phase": "after_each_new_import",
+      "file": "failure_audit.sql",
+      "bytes": 5470,
+      "sha256": "42cfe7eb2992e7c9ee45132e9b47153707faf7895ea861ce0a5994ebe286470f",
+      "result": "PASS",
+      "action": "CODE_VERIFIED"
+    },
+    {
+      "phase": "before_run_2",
+      "file": "preflight.sql",
+      "bytes": 42883,
+      "sha256": "b4fb88bb236c8d137d843ec8e04c36a16cfb860540d5768c47ac7896c390d9b1",
+      "result": "PASS",
+      "action": "REUSE"
+    },
+    {
+      "phase": "before_run_2",
+      "file": "bronze.sql",
+      "bytes": 29211,
+      "sha256": "7686e557cfe590f3d86db051a35d11d92714792fafd1e24e1357d629de1e19b5",
+      "result": "PASS",
+      "action": "CODE_VERIFIED"
+    },
+    {
+      "phase": "before_run_2",
+      "file": "silver.sql",
+      "bytes": 39420,
+      "sha256": "5966f34731ab1884d05d501f32dd614437685e8754fe2bf3e1812c1a0f2122df",
+      "result": "PASS",
+      "action": "CODE_VERIFIED"
+    },
+    {
+      "phase": "before_run_2",
+      "file": "quality.sql",
+      "bytes": 30222,
+      "sha256": "9c09d940d80666b521e4055f81c5b385db42f189c08698a64db85e99f8088301",
+      "result": "PASS",
+      "action": "CODE_VERIFIED"
+    },
+    {
+      "phase": "before_run_2",
+      "file": "complete.sql",
+      "bytes": 42538,
+      "sha256": "74ce4183f6c507edebcfa5ae5844e7635a936c21af56f3db376379543fca76e7",
+      "result": "PASS",
+      "action": "CODE_VERIFIED"
+    },
+    {
+      "phase": "before_run_2",
+      "file": "failure_audit.sql",
+      "bytes": 5470,
+      "sha256": "42cfe7eb2992e7c9ee45132e9b47153707faf7895ea861ce0a5994ebe286470f",
+      "result": "PASS",
+      "action": "CODE_VERIFIED"
+    },
+    {
+      "phase": "final",
+      "file": "preflight.sql",
+      "bytes": 42883,
+      "sha256": "b4fb88bb236c8d137d843ec8e04c36a16cfb860540d5768c47ac7896c390d9b1",
+      "result": "PASS",
+      "action": "REUSE"
+    },
+    {
+      "phase": "final",
+      "file": "bronze.sql",
+      "bytes": 29211,
+      "sha256": "7686e557cfe590f3d86db051a35d11d92714792fafd1e24e1357d629de1e19b5",
+      "result": "PASS",
+      "action": "CODE_VERIFIED"
+    },
+    {
+      "phase": "final",
+      "file": "silver.sql",
+      "bytes": 39420,
+      "sha256": "5966f34731ab1884d05d501f32dd614437685e8754fe2bf3e1812c1a0f2122df",
+      "result": "PASS",
+      "action": "CODE_VERIFIED"
+    },
+    {
+      "phase": "final",
+      "file": "quality.sql",
+      "bytes": 30222,
+      "sha256": "9c09d940d80666b521e4055f81c5b385db42f189c08698a64db85e99f8088301",
+      "result": "PASS",
+      "action": "CODE_VERIFIED"
+    },
+    {
+      "phase": "final",
+      "file": "complete.sql",
+      "bytes": 42538,
+      "sha256": "74ce4183f6c507edebcfa5ae5844e7635a936c21af56f3db376379543fca76e7",
+      "result": "PASS",
+      "action": "CODE_VERIFIED"
+    },
+    {
+      "phase": "final",
+      "file": "failure_audit.sql",
+      "bytes": 5470,
+      "sha256": "42cfe7eb2992e7c9ee45132e9b47153707faf7895ea861ce0a5994ebe286470f",
+      "result": "PASS",
+      "action": "CODE_VERIFIED"
+    }
+  ],
+  "new_code_uploads": [
+    {
+      "file": "bronze.sql",
+      "bytes": 29211,
+      "sha256": "7686e557cfe590f3d86db051a35d11d92714792fafd1e24e1357d629de1e19b5",
+      "result": "ACKNOWLEDGED_AND_CONTENT_VERIFIED",
+      "object_identity_verified": true,
+      "object_id_received": true
+    },
+    {
+      "file": "silver.sql",
+      "bytes": 39420,
+      "sha256": "5966f34731ab1884d05d501f32dd614437685e8754fe2bf3e1812c1a0f2122df",
+      "result": "ACKNOWLEDGED_AND_CONTENT_VERIFIED",
+      "object_identity_verified": true,
+      "object_id_received": true
+    },
+    {
+      "file": "quality.sql",
+      "bytes": 30222,
+      "sha256": "9c09d940d80666b521e4055f81c5b385db42f189c08698a64db85e99f8088301",
+      "result": "ACKNOWLEDGED_AND_CONTENT_VERIFIED",
+      "object_identity_verified": true,
+      "object_id_received": true
+    },
+    {
+      "file": "complete.sql",
+      "bytes": 42538,
+      "sha256": "74ce4183f6c507edebcfa5ae5844e7635a936c21af56f3db376379543fca76e7",
+      "result": "ACKNOWLEDGED_AND_CONTENT_VERIFIED",
+      "object_identity_verified": true,
+      "object_id_received": true
+    },
+    {
+      "file": "failure_audit.sql",
+      "bytes": 5470,
+      "sha256": "42cfe7eb2992e7c9ee45132e9b47153707faf7895ea861ce0a5994ebe286470f",
+      "result": "ACKNOWLEDGED_AND_CONTENT_VERIFIED",
+      "object_identity_verified": true,
+      "object_id_received": true
+    }
+  ],
+  "new_upload_bytes": 146861,
+  "original_preflight": {
+    "reused": true,
+    "repeat_imports": 0,
+    "bytes": 42883,
+    "sha256": "b4fb88bb236c8d137d843ec8e04c36a16cfb860540d5768c47ac7896c390d9b1",
+    "export_format": "AUTO",
+    "direct_download": false
+  },
+  "job": {
+    "created": true,
+    "name": "WinterOps on-demand V1",
+    "settings_verified_before_run_and_final": true,
+    "job_id": "PRIVATE_NOT_PUBLISHED",
+    "schedule": null,
+    "warehouse": "EXISTING_APPROVED_WAREHOUSE",
+    "max_concurrent_runs": 1,
+    "queue_enabled": false,
+    "max_retries": 0,
+    "job_timeout_seconds": 600,
+    "task_timeout_seconds": 90,
+    "write_policy": "complete_only",
+    "new_compute": 0,
+    "updates_after_creation": 0
+  },
+  "runs": [
+    {
+      "index": 1,
+      "mode": "verify",
+      "state": "TERMINATED",
+      "tasks": [
+        {
+          "task_key": "preflight",
+          "state": "TERMINATED",
+          "result_state": "SUCCESS",
+          "execution_duration_ms": 21000,
+          "setup_duration_ms": 0,
+          "columns": [
+            "state_check",
+            "decision",
+            "bronze_n",
+            "silver_n"
+          ],
+          "row_count": 1,
+          "truncated": false,
+          "results": [
+            {
+              "state_check": null,
+              "decision": "SKIP_VERIFIED",
+              "bronze_n": "2810",
+              "silver_n": "2810"
+            }
+          ]
+        },
+        {
+          "task_key": "bronze",
+          "state": "TERMINATED",
+          "result_state": "SUCCESS",
+          "execution_duration_ms": 3000,
+          "setup_duration_ms": 0,
+          "columns": [
+            "schema_check"
+          ],
+          "row_count": 1,
+          "truncated": false,
+          "results": [
+            {
+              "schema_check": null
+            }
+          ]
+        },
+        {
+          "task_key": "silver",
+          "state": "TERMINATED",
+          "result_state": "SUCCESS",
+          "execution_duration_ms": 3000,
+          "setup_duration_ms": 0,
+          "columns": [
+            "schema_check"
+          ],
+          "row_count": 1,
+          "truncated": false,
+          "results": [
+            {
+              "schema_check": null
+            }
+          ]
+        },
+        {
+          "task_key": "quality",
+          "state": "TERMINATED",
+          "result_state": "SUCCESS",
+          "execution_duration_ms": 2000,
+          "setup_duration_ms": 0,
+          "columns": [
+            "schema_check"
+          ],
+          "row_count": 1,
+          "truncated": false,
+          "results": [
+            {
+              "schema_check": null
+            }
+          ]
+        },
+        {
+          "task_key": "complete",
+          "state": "TERMINATED",
+          "result_state": "SUCCESS",
+          "execution_duration_ms": 3000,
+          "setup_duration_ms": 0,
+          "columns": [
+            "batch_outcome"
+          ],
+          "row_count": 1,
+          "truncated": false,
+          "results": [
+            {
+              "batch_outcome": "COMPLETE_ELIGIBLE"
+            }
+          ]
+        },
+        {
+          "task_key": "failure_audit",
+          "state": "SKIPPED",
+          "result_state": "EXCLUDED",
+          "execution_duration_ms": 0,
+          "setup_duration_ms": 0
+        }
+      ],
+      "result_state": "SUCCESS",
+      "elapsed_seconds": 41.059,
+      "verification": "PASS"
+    },
+    {
+      "index": 2,
+      "mode": "process",
+      "state": "TERMINATED",
+      "tasks": [
+        {
+          "task_key": "preflight",
+          "state": "TERMINATED",
+          "result_state": "SUCCESS",
+          "execution_duration_ms": 11000,
+          "setup_duration_ms": 0,
+          "columns": [
+            "state_check",
+            "decision",
+            "bronze_n",
+            "silver_n"
+          ],
+          "row_count": 1,
+          "truncated": false,
+          "results": [
+            {
+              "state_check": null,
+              "decision": "SKIP_VERIFIED",
+              "bronze_n": "2810",
+              "silver_n": "2810"
+            }
+          ]
+        },
+        {
+          "task_key": "bronze",
+          "state": "TERMINATED",
+          "result_state": "SUCCESS",
+          "execution_duration_ms": 2000,
+          "setup_duration_ms": 0,
+          "columns": [
+            "schema_check"
+          ],
+          "row_count": 1,
+          "truncated": false,
+          "results": [
+            {
+              "schema_check": null
+            }
+          ]
+        },
+        {
+          "task_key": "silver",
+          "state": "TERMINATED",
+          "result_state": "SUCCESS",
+          "execution_duration_ms": 2000,
+          "setup_duration_ms": 0,
+          "columns": [
+            "schema_check"
+          ],
+          "row_count": 1,
+          "truncated": false,
+          "results": [
+            {
+              "schema_check": null
+            }
+          ]
+        },
+        {
+          "task_key": "quality",
+          "state": "TERMINATED",
+          "result_state": "SUCCESS",
+          "execution_duration_ms": 3000,
+          "setup_duration_ms": 0,
+          "columns": [
+            "schema_check"
+          ],
+          "row_count": 1,
+          "truncated": false,
+          "results": [
+            {
+              "schema_check": null
+            }
+          ]
+        },
+        {
+          "task_key": "complete",
+          "state": "TERMINATED",
+          "result_state": "SUCCESS",
+          "execution_duration_ms": 3000,
+          "setup_duration_ms": 0,
+          "columns": [
+            "batch_outcome"
+          ],
+          "row_count": 1,
+          "truncated": false,
+          "results": [
+            {
+              "batch_outcome": "COMPLETE_ELIGIBLE"
+            }
+          ]
+        },
+        {
+          "task_key": "failure_audit",
+          "state": "SKIPPED",
+          "result_state": "EXCLUDED",
+          "execution_duration_ms": 0,
+          "setup_duration_ms": 0
+        }
+      ],
+      "result_state": "SUCCESS",
+      "elapsed_seconds": 25.945,
+      "verification": "PASS"
+    }
+  ],
+  "statement_results": [
+    {
+      "position": 1,
+      "label": "before-history-bronze",
+      "sql_sha256": "2ee2ab735ede78283bb585333346d618d93d35afd0e0043be76d06d40ab392a9",
+      "phase": "before",
+      "elapsed_seconds": 12.31,
+      "state": "SUCCEEDED",
+      "row_count": 1,
+      "columns": [
+        "version",
+        "timestamp",
+        "userId",
+        "userName",
+        "operation",
+        "operationParameters",
+        "job",
+        "notebook",
+        "queryHistoryStatementId",
+        "clusterId",
+        "readVersion",
+        "isolationLevel",
+        "isBlindAppend",
+        "operationMetrics",
+        "userMetadata",
+        "engineInfo"
+      ],
+      "truncated": false,
+      "delta_version": 3,
+      "verification": "PASS"
+    },
+    {
+      "position": 2,
+      "label": "before-history-silver",
+      "sql_sha256": "4618c85a19573c24271ab529fdf9a85237a733dae13edfdfa29508c33297495d",
+      "phase": "before",
+      "elapsed_seconds": 2.935,
+      "state": "SUCCEEDED",
+      "row_count": 1,
+      "columns": [
+        "version",
+        "timestamp",
+        "userId",
+        "userName",
+        "operation",
+        "operationParameters",
+        "job",
+        "notebook",
+        "queryHistoryStatementId",
+        "clusterId",
+        "readVersion",
+        "isolationLevel",
+        "isBlindAppend",
+        "operationMetrics",
+        "userMetadata",
+        "engineInfo"
+      ],
+      "truncated": false,
+      "delta_version": 4,
+      "verification": "PASS"
+    },
+    {
+      "position": 3,
+      "label": "before-history-manifest",
+      "sql_sha256": "5801549ab947fe28093d6a96ef6e8a593a759caefc594f44624732c81d1d8d16",
+      "phase": "before",
+      "elapsed_seconds": 2.552,
+      "state": "SUCCEEDED",
+      "row_count": 1,
+      "columns": [
+        "version",
+        "timestamp",
+        "userId",
+        "userName",
+        "operation",
+        "operationParameters",
+        "job",
+        "notebook",
+        "queryHistoryStatementId",
+        "clusterId",
+        "readVersion",
+        "isolationLevel",
+        "isBlindAppend",
+        "operationMetrics",
+        "userMetadata",
+        "engineInfo"
+      ],
+      "truncated": false,
+      "delta_version": 13,
+      "verification": "PASS"
+    },
+    {
+      "position": 4,
+      "label": "published-gold-baselines",
+      "sql_sha256": "5cae3ad02952b1aa279be16dd38b2cd334d86280921869365fed49ec0c0ec135",
+      "phase": "before",
+      "elapsed_seconds": 3.574,
+      "state": "SUCCEEDED",
+      "row_count": 3,
+      "columns": [
+        "source_week_start",
+        "bronze_rows",
+        "silver_rows",
+        "header_rows",
+        "valid_rows",
+        "invalid_rows",
+        "observation_count",
+        "plow_active_observations",
+        "spreader_active_observations",
+        "hours_containing_telemetry",
+        "days_containing_telemetry",
+        "legacy_hourly_rows",
+        "legacy_observations",
+        "legacy_plow_observations",
+        "legacy_spreader_observations"
+      ],
+      "truncated": false,
+      "sanitized_results": [
+        {
+          "source_week_start": "2026-01-05",
+          "bronze_rows": 2810,
+          "silver_rows": 2810,
+          "header_rows": 19,
+          "valid_rows": 2791,
+          "invalid_rows": 0,
+          "observation_count": 2791,
+          "plow_active_observations": 2790,
+          "spreader_active_observations": 164,
+          "hours_containing_telemetry": 42,
+          "days_containing_telemetry": 7,
+          "legacy_hourly_rows": 79,
+          "legacy_observations": 110311,
+          "legacy_plow_observations": 79471,
+          "legacy_spreader_observations": 68870
+        },
+        {
+          "source_week_start": "2026-01-12",
+          "bronze_rows": 110337,
+          "silver_rows": 110337,
+          "header_rows": 26,
+          "valid_rows": 110311,
+          "invalid_rows": 0,
+          "observation_count": 110311,
+          "plow_active_observations": 79471,
+          "spreader_active_observations": 68870,
+          "hours_containing_telemetry": 79,
+          "days_containing_telemetry": 7,
+          "legacy_hourly_rows": 79,
+          "legacy_observations": 110311,
+          "legacy_plow_observations": 79471,
+          "legacy_spreader_observations": 68870
+        },
+        {
+          "source_week_start": "2026-01-19",
+          "bronze_rows": 118159,
+          "silver_rows": 118159,
+          "header_rows": 34,
+          "valid_rows": 118125,
+          "invalid_rows": 0,
+          "observation_count": 118125,
+          "plow_active_observations": 92747,
+          "spreader_active_observations": 50405,
+          "hours_containing_telemetry": 115,
+          "days_containing_telemetry": 6,
+          "legacy_hourly_rows": 79,
+          "legacy_observations": 110311,
+          "legacy_plow_observations": 79471,
+          "legacy_spreader_observations": 68870
+        }
+      ],
+      "verification": "PASS"
+    },
+    {
+      "position": 5,
+      "label": "after_run_1-history-bronze",
+      "sql_sha256": "2ee2ab735ede78283bb585333346d618d93d35afd0e0043be76d06d40ab392a9",
+      "phase": "after_run_1",
+      "elapsed_seconds": 1.961,
+      "state": "SUCCEEDED",
+      "row_count": 1,
+      "columns": [
+        "version",
+        "timestamp",
+        "userId",
+        "userName",
+        "operation",
+        "operationParameters",
+        "job",
+        "notebook",
+        "queryHistoryStatementId",
+        "clusterId",
+        "readVersion",
+        "isolationLevel",
+        "isBlindAppend",
+        "operationMetrics",
+        "userMetadata",
+        "engineInfo"
+      ],
+      "truncated": false,
+      "delta_version": 3,
+      "verification": "PASS"
+    },
+    {
+      "position": 6,
+      "label": "after_run_1-history-silver",
+      "sql_sha256": "4618c85a19573c24271ab529fdf9a85237a733dae13edfdfa29508c33297495d",
+      "phase": "after_run_1",
+      "elapsed_seconds": 2.175,
+      "state": "SUCCEEDED",
+      "row_count": 1,
+      "columns": [
+        "version",
+        "timestamp",
+        "userId",
+        "userName",
+        "operation",
+        "operationParameters",
+        "job",
+        "notebook",
+        "queryHistoryStatementId",
+        "clusterId",
+        "readVersion",
+        "isolationLevel",
+        "isBlindAppend",
+        "operationMetrics",
+        "userMetadata",
+        "engineInfo"
+      ],
+      "truncated": false,
+      "delta_version": 4,
+      "verification": "PASS"
+    },
+    {
+      "position": 7,
+      "label": "after_run_1-history-manifest",
+      "sql_sha256": "5801549ab947fe28093d6a96ef6e8a593a759caefc594f44624732c81d1d8d16",
+      "phase": "after_run_1",
+      "elapsed_seconds": 1.891,
+      "state": "SUCCEEDED",
+      "row_count": 1,
+      "columns": [
+        "version",
+        "timestamp",
+        "userId",
+        "userName",
+        "operation",
+        "operationParameters",
+        "job",
+        "notebook",
+        "queryHistoryStatementId",
+        "clusterId",
+        "readVersion",
+        "isolationLevel",
+        "isBlindAppend",
+        "operationMetrics",
+        "userMetadata",
+        "engineInfo"
+      ],
+      "truncated": false,
+      "delta_version": 13,
+      "verification": "PASS"
+    },
+    {
+      "position": 8,
+      "label": "after_run_1-manifest-snapshot",
+      "sql_sha256": "bb43ab6b6672a6fbf83f6525b271cc95405213dae77484fe840d230b6d90ee03",
+      "phase": "after_run_1",
+      "elapsed_seconds": 1.519,
+      "state": "SUCCEEDED",
+      "row_count": 1,
+      "columns": [
+        "processing_key",
+        "source_version_id",
+        "source_file_sha256",
+        "status",
+        "last_successful_stage",
+        "attempts",
+        "bronze_rows",
+        "silver_rows",
+        "error_code",
+        "updated_at_utc",
+        "metadata_sha256",
+        "policy_json_sha256"
+      ],
+      "truncated": false,
+      "sanitized_results": {
+        "processing_key": "f07ba6a0ad499a9baf53d2f7c46df09607523371428791593143a29b56f6b466",
+        "source_version_id": "8ccb2a2dd5ec057361cf6d7cc7193b5acbdd858b84102ba550a92febe9bb4ed1",
+        "source_file_sha256": "271c9339a42043f441b6c17e82dd309609db4b20e9953b9f368a95ec472d763d",
+        "status": "COMPLETE",
+        "last_successful_stage": "COMPLETE",
+        "attempts": 2,
+        "bronze_rows": 2810,
+        "silver_rows": 2810,
+        "error_code": null,
+        "updated_at_utc": "2026-10-29 13:14:58.044428",
+        "metadata_sha256": "c2d08257c9d97b523832c5494b93ab59aa1ba3f263a02307d416b28a4df624d0",
+        "policy_json_sha256": "ecb195bd0381aa104a562a121f9e7e43b5f8f97d57e19ffb0698571636b323b5"
+      },
+      "verification": "PASS"
+    },
+    {
+      "position": 9,
+      "label": "after_run_2-history-bronze",
+      "sql_sha256": "2ee2ab735ede78283bb585333346d618d93d35afd0e0043be76d06d40ab392a9",
+      "phase": "after_run_2",
+      "elapsed_seconds": 2.018,
+      "state": "SUCCEEDED",
+      "row_count": 1,
+      "columns": [
+        "version",
+        "timestamp",
+        "userId",
+        "userName",
+        "operation",
+        "operationParameters",
+        "job",
+        "notebook",
+        "queryHistoryStatementId",
+        "clusterId",
+        "readVersion",
+        "isolationLevel",
+        "isBlindAppend",
+        "operationMetrics",
+        "userMetadata",
+        "engineInfo"
+      ],
+      "truncated": false,
+      "delta_version": 3,
+      "verification": "PASS"
+    },
+    {
+      "position": 10,
+      "label": "after_run_2-history-silver",
+      "sql_sha256": "4618c85a19573c24271ab529fdf9a85237a733dae13edfdfa29508c33297495d",
+      "phase": "after_run_2",
+      "elapsed_seconds": 1.991,
+      "state": "SUCCEEDED",
+      "row_count": 1,
+      "columns": [
+        "version",
+        "timestamp",
+        "userId",
+        "userName",
+        "operation",
+        "operationParameters",
+        "job",
+        "notebook",
+        "queryHistoryStatementId",
+        "clusterId",
+        "readVersion",
+        "isolationLevel",
+        "isBlindAppend",
+        "operationMetrics",
+        "userMetadata",
+        "engineInfo"
+      ],
+      "truncated": false,
+      "delta_version": 4,
+      "verification": "PASS"
+    },
+    {
+      "position": 11,
+      "label": "after_run_2-history-manifest",
+      "sql_sha256": "5801549ab947fe28093d6a96ef6e8a593a759caefc594f44624732c81d1d8d16",
+      "phase": "after_run_2",
+      "elapsed_seconds": 2.132,
+      "state": "SUCCEEDED",
+      "row_count": 1,
+      "columns": [
+        "version",
+        "timestamp",
+        "userId",
+        "userName",
+        "operation",
+        "operationParameters",
+        "job",
+        "notebook",
+        "queryHistoryStatementId",
+        "clusterId",
+        "readVersion",
+        "isolationLevel",
+        "isBlindAppend",
+        "operationMetrics",
+        "userMetadata",
+        "engineInfo"
+      ],
+      "truncated": false,
+      "delta_version": 13,
+      "verification": "PASS"
+    },
+    {
+      "position": 12,
+      "label": "after_run_2-manifest-snapshot",
+      "sql_sha256": "bb43ab6b6672a6fbf83f6525b271cc95405213dae77484fe840d230b6d90ee03",
+      "phase": "after_run_2",
+      "elapsed_seconds": 1.415,
+      "state": "SUCCEEDED",
+      "row_count": 1,
+      "columns": [
+        "processing_key",
+        "source_version_id",
+        "source_file_sha256",
+        "status",
+        "last_successful_stage",
+        "attempts",
+        "bronze_rows",
+        "silver_rows",
+        "error_code",
+        "updated_at_utc",
+        "metadata_sha256",
+        "policy_json_sha256"
+      ],
+      "truncated": false,
+      "sanitized_results": {
+        "processing_key": "f07ba6a0ad499a9baf53d2f7c46df09607523371428791593143a29b56f6b466",
+        "source_version_id": "8ccb2a2dd5ec057361cf6d7cc7193b5acbdd858b84102ba550a92febe9bb4ed1",
+        "source_file_sha256": "271c9339a42043f441b6c17e82dd309609db4b20e9953b9f368a95ec472d763d",
+        "status": "COMPLETE",
+        "last_successful_stage": "COMPLETE",
+        "attempts": 2,
+        "bronze_rows": 2810,
+        "silver_rows": 2810,
+        "error_code": null,
+        "updated_at_utc": "2026-10-29 13:14:58.044428",
+        "metadata_sha256": "c2d08257c9d97b523832c5494b93ab59aa1ba3f263a02307d416b28a4df624d0",
+        "policy_json_sha256": "ecb195bd0381aa104a562a121f9e7e43b5f8f97d57e19ffb0698571636b323b5"
+      },
+      "verification": "PASS"
+    },
+    {
+      "position": 13,
+      "label": "after-published-gold-baselines",
+      "sql_sha256": "5cae3ad02952b1aa279be16dd38b2cd334d86280921869365fed49ec0c0ec135",
+      "phase": "after_run_2",
+      "elapsed_seconds": 1.923,
+      "state": "SUCCEEDED",
+      "row_count": 3,
+      "columns": [
+        "source_week_start",
+        "bronze_rows",
+        "silver_rows",
+        "header_rows",
+        "valid_rows",
+        "invalid_rows",
+        "observation_count",
+        "plow_active_observations",
+        "spreader_active_observations",
+        "hours_containing_telemetry",
+        "days_containing_telemetry",
+        "legacy_hourly_rows",
+        "legacy_observations",
+        "legacy_plow_observations",
+        "legacy_spreader_observations"
+      ],
+      "truncated": false,
+      "sanitized_results": [
+        {
+          "source_week_start": "2026-01-05",
+          "bronze_rows": 2810,
+          "silver_rows": 2810,
+          "header_rows": 19,
+          "valid_rows": 2791,
+          "invalid_rows": 0,
+          "observation_count": 2791,
+          "plow_active_observations": 2790,
+          "spreader_active_observations": 164,
+          "hours_containing_telemetry": 42,
+          "days_containing_telemetry": 7,
+          "legacy_hourly_rows": 79,
+          "legacy_observations": 110311,
+          "legacy_plow_observations": 79471,
+          "legacy_spreader_observations": 68870
+        },
+        {
+          "source_week_start": "2026-01-12",
+          "bronze_rows": 110337,
+          "silver_rows": 110337,
+          "header_rows": 26,
+          "valid_rows": 110311,
+          "invalid_rows": 0,
+          "observation_count": 110311,
+          "plow_active_observations": 79471,
+          "spreader_active_observations": 68870,
+          "hours_containing_telemetry": 79,
+          "days_containing_telemetry": 7,
+          "legacy_hourly_rows": 79,
+          "legacy_observations": 110311,
+          "legacy_plow_observations": 79471,
+          "legacy_spreader_observations": 68870
+        },
+        {
+          "source_week_start": "2026-01-19",
+          "bronze_rows": 118159,
+          "silver_rows": 118159,
+          "header_rows": 34,
+          "valid_rows": 118125,
+          "invalid_rows": 0,
+          "observation_count": 118125,
+          "plow_active_observations": 92747,
+          "spreader_active_observations": 50405,
+          "hours_containing_telemetry": 115,
+          "days_containing_telemetry": 6,
+          "legacy_hourly_rows": 79,
+          "legacy_observations": 110311,
+          "legacy_plow_observations": 79471,
+          "legacy_spreader_observations": 68870
+        }
+      ],
+      "verification": "PASS"
+    }
+  ],
+  "metadata_gates_by_phase": {
+    "before": 29,
+    "after_each_new_import": 10,
+    "after_create": 1,
+    "before_run_2": 12,
+    "final": 29
+  },
+  "metadata_gate_results": [
+    {
+      "label": "before:identity",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.898,
+      "verification": "PASS"
+    },
+    {
+      "label": "before:existing-preflight-status",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.92,
+      "verification": "PASS"
+    },
+    {
+      "label": "before:existing-preflight-export",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 1.363,
+      "verification": "PASS"
+    },
+    {
+      "label": "before:warehouse",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.757,
+      "verification": "PASS"
+    },
+    {
+      "label": "before:active-runs",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.749,
+      "verification": "PASS"
+    },
+    {
+      "label": "before:object-workspace.default.winterops_bronze_windsor_activity",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.771,
+      "verification": "PASS"
+    },
+    {
+      "label": "before:object-workspace.default.winterops_silver_windsor_week_sample",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.926,
+      "verification": "PASS"
+    },
+    {
+      "label": "before:object-workspace.default.winterops_silver_windsor_valid",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.906,
+      "verification": "PASS"
+    },
+    {
+      "label": "before:object-workspace.default.winterops_silver_windsor_quarantine",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.922,
+      "verification": "PASS"
+    },
+    {
+      "label": "before:object-workspace.default.winterops_gold_windsor_hourly_observations",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.9,
+      "verification": "PASS"
+    },
+    {
+      "label": "before:object-workspace.default.winterops_v2_dev_bronze",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 1.048,
+      "verification": "PASS"
+    },
+    {
+      "label": "before:object-workspace.default.winterops_v2_dev_silver",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 1.058,
+      "verification": "PASS"
+    },
+    {
+      "label": "before:object-workspace.default.winterops_v2_dev_manifest",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 1.52,
+      "verification": "PASS"
+    },
+    {
+      "label": "before:object-workspace.default.winterops_v2_gold_hourly_observations",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 1.025,
+      "verification": "PASS"
+    },
+    {
+      "label": "before:object-workspace.default.winterops_v2_gold_daily_activity",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 1.04,
+      "verification": "PASS"
+    },
+    {
+      "label": "before:object-workspace.default.winterops_v2_gold_weekly_quality",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 1.088,
+      "verification": "PASS"
+    },
+    {
+      "label": "before:job-name-unused",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.812,
+      "verification": "PASS"
+    },
+    {
+      "label": "before:preserve-directory-parent",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.863,
+      "verification": "PASS"
+    },
+    {
+      "label": "before:preserve-directory-request",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.862,
+      "verification": "PASS"
+    },
+    {
+      "label": "before:remaining-absent-bronze.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 404,
+      "elapsed_seconds": 0.911,
+      "verification": "PASS"
+    },
+    {
+      "label": "before:remaining-absent-silver.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 404,
+      "elapsed_seconds": 0.926,
+      "verification": "PASS"
+    },
+    {
+      "label": "before:remaining-absent-quality.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 404,
+      "elapsed_seconds": 0.821,
+      "verification": "PASS"
+    },
+    {
+      "label": "before:remaining-absent-complete.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 404,
+      "elapsed_seconds": 0.884,
+      "verification": "PASS"
+    },
+    {
+      "label": "before:remaining-absent-failure_audit.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 404,
+      "elapsed_seconds": 0.851,
+      "verification": "PASS"
+    },
+    {
+      "label": "before:source-hash-original",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 1.781,
+      "verification": "PASS"
+    },
+    {
+      "label": "before:source-hash-transport",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 2.351,
+      "verification": "PASS"
+    },
+    {
+      "label": "before:volume-owner",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.767,
+      "verification": "PASS"
+    },
+    {
+      "label": "before:warehouse-acl",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.847,
+      "verification": "PASS"
+    },
+    {
+      "label": "before:parent-acl",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.877,
+      "verification": "PASS"
+    },
+    {
+      "label": "after_each_new_import:verify-status-bronze.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.867,
+      "verification": "PASS"
+    },
+    {
+      "label": "after_each_new_import:verify-content-bronze.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.996,
+      "verification": "PASS"
+    },
+    {
+      "label": "after_each_new_import:verify-status-silver.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.75,
+      "verification": "PASS"
+    },
+    {
+      "label": "after_each_new_import:verify-content-silver.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 1.092,
+      "verification": "PASS"
+    },
+    {
+      "label": "after_each_new_import:verify-status-quality.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.754,
+      "verification": "PASS"
+    },
+    {
+      "label": "after_each_new_import:verify-content-quality.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 1.198,
+      "verification": "PASS"
+    },
+    {
+      "label": "after_each_new_import:verify-status-complete.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.792,
+      "verification": "PASS"
+    },
+    {
+      "label": "after_each_new_import:verify-content-complete.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 1.086,
+      "verification": "PASS"
+    },
+    {
+      "label": "after_each_new_import:verify-status-failure_audit.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.877,
+      "verification": "PASS"
+    },
+    {
+      "label": "after_each_new_import:verify-content-failure_audit.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.797,
+      "verification": "PASS"
+    },
+    {
+      "label": "after_create:created-job-settings",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.821,
+      "verification": "PASS"
+    },
+    {
+      "label": "before_run_2:status-preflight.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.893,
+      "verification": "PASS"
+    },
+    {
+      "label": "before_run_2:export-preflight.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 1.447,
+      "verification": "PASS"
+    },
+    {
+      "label": "before_run_2:status-bronze.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 1.035,
+      "verification": "PASS"
+    },
+    {
+      "label": "before_run_2:export-bronze.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 1.027,
+      "verification": "PASS"
+    },
+    {
+      "label": "before_run_2:status-silver.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.759,
+      "verification": "PASS"
+    },
+    {
+      "label": "before_run_2:export-silver.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 1.182,
+      "verification": "PASS"
+    },
+    {
+      "label": "before_run_2:status-quality.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.746,
+      "verification": "PASS"
+    },
+    {
+      "label": "before_run_2:export-quality.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.918,
+      "verification": "PASS"
+    },
+    {
+      "label": "before_run_2:status-complete.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.892,
+      "verification": "PASS"
+    },
+    {
+      "label": "before_run_2:export-complete.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 1.135,
+      "verification": "PASS"
+    },
+    {
+      "label": "before_run_2:status-failure_audit.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.894,
+      "verification": "PASS"
+    },
+    {
+      "label": "before_run_2:export-failure_audit.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.996,
+      "verification": "PASS"
+    },
+    {
+      "label": "final:object-workspace.default.winterops_bronze_windsor_activity",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 1.233,
+      "verification": "PASS"
+    },
+    {
+      "label": "final:object-workspace.default.winterops_silver_windsor_week_sample",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.915,
+      "verification": "PASS"
+    },
+    {
+      "label": "final:object-workspace.default.winterops_silver_windsor_valid",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.925,
+      "verification": "PASS"
+    },
+    {
+      "label": "final:object-workspace.default.winterops_silver_windsor_quarantine",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.901,
+      "verification": "PASS"
+    },
+    {
+      "label": "final:object-workspace.default.winterops_gold_windsor_hourly_observations",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.923,
+      "verification": "PASS"
+    },
+    {
+      "label": "final:object-workspace.default.winterops_v2_dev_bronze",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 1.046,
+      "verification": "PASS"
+    },
+    {
+      "label": "final:object-workspace.default.winterops_v2_dev_silver",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 1.034,
+      "verification": "PASS"
+    },
+    {
+      "label": "final:object-workspace.default.winterops_v2_dev_manifest",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.889,
+      "verification": "PASS"
+    },
+    {
+      "label": "final:object-workspace.default.winterops_v2_gold_hourly_observations",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 1.042,
+      "verification": "PASS"
+    },
+    {
+      "label": "final:object-workspace.default.winterops_v2_gold_daily_activity",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 1.034,
+      "verification": "PASS"
+    },
+    {
+      "label": "final:object-workspace.default.winterops_v2_gold_weekly_quality",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 1.163,
+      "verification": "PASS"
+    },
+    {
+      "label": "final:warehouse",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.74,
+      "verification": "PASS"
+    },
+    {
+      "label": "final:source-hash-original",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 1.594,
+      "verification": "PASS"
+    },
+    {
+      "label": "final:source-hash-transport",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 2.262,
+      "verification": "PASS"
+    },
+    {
+      "label": "final:job-settings",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.846,
+      "verification": "PASS"
+    },
+    {
+      "label": "final:status-preflight.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.872,
+      "verification": "PASS"
+    },
+    {
+      "label": "final:export-preflight.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 1.217,
+      "verification": "PASS"
+    },
+    {
+      "label": "final:status-bronze.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.775,
+      "verification": "PASS"
+    },
+    {
+      "label": "final:export-bronze.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 1.048,
+      "verification": "PASS"
+    },
+    {
+      "label": "final:status-silver.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.856,
+      "verification": "PASS"
+    },
+    {
+      "label": "final:export-silver.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 1.097,
+      "verification": "PASS"
+    },
+    {
+      "label": "final:status-quality.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.897,
+      "verification": "PASS"
+    },
+    {
+      "label": "final:export-quality.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 1.0,
+      "verification": "PASS"
+    },
+    {
+      "label": "final:status-complete.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.736,
+      "verification": "PASS"
+    },
+    {
+      "label": "final:export-complete.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 1.143,
+      "verification": "PASS"
+    },
+    {
+      "label": "final:status-failure_audit.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.864,
+      "verification": "PASS"
+    },
+    {
+      "label": "final:export-failure_audit.sql",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.799,
+      "verification": "PASS"
+    },
+    {
+      "label": "final:preserved-directory-parent",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.731,
+      "verification": "PASS"
+    },
+    {
+      "label": "final:preserved-directory-request",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.747,
+      "verification": "PASS"
+    }
+  ],
+  "preservation": {
+    "no_write_invariant": "VERIFIED",
+    "delta_versions_before": {
+      "bronze": 3,
+      "silver": 4,
+      "manifest": 13
+    },
+    "delta_versions_after_verify": {
+      "bronze": 3,
+      "silver": 4,
+      "manifest": 13
+    },
+    "delta_versions_after_process": {
+      "bronze": 3,
+      "silver": 4,
+      "manifest": 13
+    },
+    "exact_manifest_match_after_both_runs": true,
+    "selected_manifest_row": {
+      "processing_key": "f07ba6a0ad499a9baf53d2f7c46df09607523371428791593143a29b56f6b466",
+      "source_version_id": "8ccb2a2dd5ec057361cf6d7cc7193b5acbdd858b84102ba550a92febe9bb4ed1",
+      "source_file_sha256": "271c9339a42043f441b6c17e82dd309609db4b20e9953b9f368a95ec472d763d",
+      "status": "COMPLETE",
+      "last_successful_stage": "COMPLETE",
+      "attempts": 2,
+      "bronze_rows": 2810,
+      "silver_rows": 2810,
+      "error_code": null,
+      "updated_at_utc": "2026-10-29 13:14:58.044428",
+      "metadata_sha256": "c2d08257c9d97b523832c5494b93ab59aa1ba3f263a02307d416b28a4df624d0",
+      "policy_json_sha256": "ecb195bd0381aa104a562a121f9e7e43b5f8f97d57e19ffb0698571636b323b5"
+    },
+    "protected_object_metadata": "ALL_11_IDENTITIES_OWNERS_SCHEMAS_DEFINITIONS_MATCH_AT_FINAL",
+    "warehouse_configuration": "UNCHANGED_AT_FINAL",
+    "job_settings": "MATCH_FROZEN_JOB_AT_FINAL",
+    "source_hash_checks": [
+      {
+        "phase": "before",
+        "label": "source-hash-original",
+        "sha256": "271c9339a42043f441b6c17e82dd309609db4b20e9953b9f368a95ec472d763d",
+        "bytes": 221818,
+        "result": "PASS"
+      },
+      {
+        "phase": "before",
+        "label": "source-hash-transport",
+        "sha256": "375d6c5980ed66f61b2dcb0601f639f5e2a3a20ce546ac08d3e20fc60c17edd3",
+        "bytes": 3619379,
+        "result": "PASS"
+      },
+      {
+        "phase": "final",
+        "label": "source-hash-original",
+        "sha256": "271c9339a42043f441b6c17e82dd309609db4b20e9953b9f368a95ec472d763d",
+        "bytes": 221818,
+        "result": "PASS"
+      },
+      {
+        "phase": "final",
+        "label": "source-hash-transport",
+        "sha256": "375d6c5980ed66f61b2dcb0601f639f5e2a3a20ce546ac08d3e20fc60c17edd3",
+        "bytes": 3619379,
+        "result": "PASS"
+      }
+    ],
+    "directory_checks": [
+      {
+        "phase": "before",
+        "role": "PARENT",
+        "result": "PASS"
+      },
+      {
+        "phase": "before",
+        "role": "REQUEST",
+        "result": "PASS"
+      },
+      {
+        "phase": "final",
+        "role": "PARENT",
+        "result": "PASS"
+      },
+      {
+        "phase": "final",
+        "role": "REQUEST",
+        "result": "PASS"
+      }
+    ],
+    "original_sql_package_and_prior_evidence": "UNCHANGED",
+    "unrelated_local_files": "BYTE_FOR_BYTE_UNCHANGED"
+  },
+  "gold": {
+    "before_and_after": "EXACT_BASELINE_MATCH",
+    "three_week_rows": [
+      {
+        "source_week_start": "2026-01-05",
+        "bronze_rows": 2810,
+        "silver_rows": 2810,
+        "header_rows": 19,
+        "valid_rows": 2791,
+        "invalid_rows": 0,
+        "observation_count": 2791,
+        "plow_active_observations": 2790,
+        "spreader_active_observations": 164,
+        "hours_containing_telemetry": 42,
+        "days_containing_telemetry": 7,
+        "legacy_hourly_rows": 79,
+        "legacy_observations": 110311,
+        "legacy_plow_observations": 79471,
+        "legacy_spreader_observations": 68870
+      },
+      {
+        "source_week_start": "2026-01-12",
+        "bronze_rows": 110337,
+        "silver_rows": 110337,
+        "header_rows": 26,
+        "valid_rows": 110311,
+        "invalid_rows": 0,
+        "observation_count": 110311,
+        "plow_active_observations": 79471,
+        "spreader_active_observations": 68870,
+        "hours_containing_telemetry": 79,
+        "days_containing_telemetry": 7,
+        "legacy_hourly_rows": 79,
+        "legacy_observations": 110311,
+        "legacy_plow_observations": 79471,
+        "legacy_spreader_observations": 68870
+      },
+      {
+        "source_week_start": "2026-01-19",
+        "bronze_rows": 118159,
+        "silver_rows": 118159,
+        "header_rows": 34,
+        "valid_rows": 118125,
+        "invalid_rows": 0,
+        "observation_count": 118125,
+        "plow_active_observations": 92747,
+        "spreader_active_observations": 50405,
+        "hours_containing_telemetry": 115,
+        "days_containing_telemetry": 6,
+        "legacy_hourly_rows": 79,
+        "legacy_observations": 110311,
+        "legacy_plow_observations": 79471,
+        "legacy_spreader_observations": 68870
+      }
+    ],
+    "total_valid_observations": 231227,
+    "total_plow_active_observations": 175008,
+    "total_spreader_active_observations": 119439,
+    "legacy": {
+      "hourly_buckets": 79,
+      "observations": 110311,
+      "plow_active_observations": 79471,
+      "spreader_active_observations": 68870
+    },
+    "semantics": "SOURCE_LOCAL_NAIVE_OBSERVATION_COUNTS_NOT_WORKING_TIME_COVERAGE_OR_PRODUCTIVITY"
+  },
+  "actual_usage": {
+    "sql_statement_api_submissions": 13,
+    "sql_succeeded": 13,
+    "sql_failed": 0,
+    "metadata_file_gets": 81,
+    "job_state_gets": 15,
+    "task_output_gets": 10,
+    "code_uploads": 5,
+    "code_upload_bytes": 146861,
+    "job_creations": 1,
+    "job_runs": 2,
+    "successful_normal_sql_file_tasks": 10,
+    "failure_audit_executions": 0,
+    "file_integrity_checks": 18,
+    "source_hash_checks": 4,
+    "directory_checks": 4,
+    "active_seconds": 212.167,
+    "sql_client_seconds": 38.396
+  },
+  "prohibited_effects": {
+    "bronze_silver_manifest_dml": 0,
+    "table_view_ddl": 0,
+    "gold_changes": 0,
+    "new_source_processing": 0,
+    "directory_creation": 0,
+    "preflight_reimport": 0,
+    "overwrite": 0,
+    "record_bearing_uploads": 0,
+    "new_compute": 0,
+    "grants_or_warehouse_changes": 0,
+    "schedules": 0,
+    "automatic_retries": 0,
+    "repairs": 0,
+    "cleanup": 0,
+    "run_cancellations": 0
+  },
+  "cumulative_trial": {
+    "sql_submissions": 24,
+    "metadata_file_gets": 218,
+    "active_seconds": 491.403,
+    "separate_initial_readiness_gets": 37,
+    "code_imports": 6,
+    "code_import_bytes": 189744,
+    "directory_creations": 2,
+    "jobs_created": 1,
+    "runs_submitted": 2,
+    "cumulative_ceilings": {
+      "sql": 24,
+      "metadata_file_gets": 218,
+      "active_seconds": 900
+    },
+    "unused_sql_slots": 0,
+    "unused_metadata_slots": 0,
+    "unused_active_seconds": 408.597,
+    "remaining_capacity_does_not_authorize_new_requests": true
+  },
+  "native_compatibility_verified": [
+    "WORKSPACE_RAW_IMPORT_ACKNOWLEDGEMENT_AND_FILE_IDENTITY",
+    "AUTO_JSON_EXPORT_WITH_EMPTY_OPTIONAL_FILE_TYPE_EXACT_BYTES_AND_SHA256",
+    "UNSCHEDULED_JOB_CREATION_WITH_EXISTING_SQL_WAREHOUSE",
+    "WORKSPACE_SQL_FILE_COMPOUND_SCRIPTS_AND_NAMED_JOB_PARAMETERS",
+    "TASK_DEPENDENCIES_SUCCESS_EXCLUDED_STATES_AND_COMPLETE_UNTRUNCATED_OUTPUTS",
+    "DECLARED_TYPE_SCHEMA_AND_SELECTED_COMPLETE_SCOPE_GUARDS_IN_NATIVE_JOB",
+    "VERIFY_AND_PROCESS_COMPLETE_ONLY_RERUNS_WITH_ZERO_DATA_MANIFEST_WRITES"
+  ],
+  "runtime_errors": [],
+  "timeouts": 0,
+  "truncations": 0,
+  "remaining_limitations": [
+    "GENUINELY_NEW_SOURCE_APPEND_AND_MANIFEST_DML_NOT_EXECUTED_IN_JOBS",
+    "NATIVE_FAILURE_AUDIT_AND_INTERRUPTED_RUN_RECOVERY_NOT_EXERCISED",
+    "TIMEOUT_FAILURE_AND_RETRY_BEHAVIOR_NOT_INJECTED",
+    "SOURCE_ACQUISITION_AND_ARTIFACT_STAGING_REMAIN_SEPARATE",
+    "NO_GOLD_BROADENING_SCHEDULE_OR_AUTOMATIC_INGESTION_AUTHORIZED",
+    "FUTURE_NEW_SOURCE_TRIAL_REQUIRES_SEPARATE_PINNED_PACKAGE_AND_BOUNDED_APPROVAL"
+  ],
+  "offline_checks_after_native": {
+    "tests": 193,
+    "failures": 0,
+    "errors": 0,
+    "elapsed_seconds": 8.344,
+    "syntax": "PASS",
+    "aggregate_fixture": "PASS",
+    "sql_render_checks": 5,
+    "sql_render_checks_status": "PASS",
+    "synthetic_job_render": "PASS",
+    "additional_native_requests": 0,
+    "runtime_code_changed": false
+  }
+}
