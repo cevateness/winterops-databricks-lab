@@ -181,6 +181,43 @@ def validate_absent_destination(http_status, body, *, requested_path, expected_p
     require(_json(body).get('error_code') == 'RESOURCE_DOES_NOT_EXIST', 'NOT_FOUND_ERROR_CONTRACT_MISMATCH')
 
 
+def validate_absent_volume_file(http_status, body, *, requested_method, requested_endpoint, expected_path):
+    """Prove Files API absence for one caller-pinned Volume file, without I/O.
+
+    Details are optional, including an empty array or unrelated typed details.
+    Every supplied ErrorInfo must identify the same missing-file cause/domain.
+    Messages are informational; neither message text nor HTTP 404 alone is proof.
+    """
+    api_path(expected_path)
+    require(expected_path.startswith('/Volumes/') and len(expected_path.split('/')) >= 6,
+            'VOLUME_FILE_PATH_REQUIRED')
+    require(requested_method == 'GET' and requested_endpoint == '/api/2.0/fs/files' + expected_path,
+            'FILES_ABSENCE_REQUEST_MISMATCH')
+    require(type(http_status) is int and http_status == 404, 'FILES_DESTINATION_NOT_PROVEN_ABSENT')
+    body = _json(body)
+    try:
+        encoded = json.dumps(body, allow_nan=False).encode('utf-8')
+    except (TypeError, ValueError, UnicodeError):
+        raise WorkspaceContractError('INVALID_FILES_ERROR_JSON') from None
+    require(len(encoded) <= 1048576, 'RESPONSE_TOO_LARGE')
+    require({'error_code', 'message'} <= set(body) <= {'error_code', 'message', 'details'}
+            and isinstance(body['message'], str), 'INVALID_FILES_ERROR_RESPONSE')
+    require(body['error_code'] == 'NOT_FOUND', 'FILES_NOT_FOUND_ERROR_REQUIRED')
+    details = body.get('details', [])
+    require(type(details) is list, 'INVALID_FILES_ERROR_DETAILS')
+    for detail in details:
+        require(type(detail) is dict and isinstance(detail.get('@type'), str)
+                and bool(re.fullmatch(r'type\.googleapis\.com/[A-Za-z][A-Za-z0-9_.]*', detail['@type'])),
+                'INVALID_FILES_ERROR_DETAIL')
+        if detail['@type'] == 'type.googleapis.com/google.rpc.ErrorInfo':
+            require({'@type', 'reason', 'domain'} <= set(detail) <= {'@type', 'reason', 'domain', 'metadata'}
+                    and detail['reason'] == 'FILES_API_FILE_NOT_FOUND'
+                    and detail['domain'] == 'filesystem.databricks.com', 'FILES_ERROR_INFO_CONFLICT')
+            metadata = detail.get('metadata', {})
+            require(type(metadata) is dict and all(isinstance(k, str) and isinstance(v, str)
+                    for k, v in metadata.items()), 'INVALID_FILES_ERROR_INFO_METADATA')
+
+
 def validate_unused_job_name(http_status, body, *, requested_name, expected_name):
     require(isinstance(expected_name, str) and expected_name and requested_name == expected_name, 'JOB_NAME_REQUEST_MISMATCH')
     body = _ok(http_status, body)
