@@ -1,0 +1,618 @@
+{
+  "status": "STOPPED_IMPORT_RESPONSE_CONTRACT_PARTIAL_WORKSPACE_LANDING_NO_JOB",
+  "user_facing_date": "2026-10-31",
+  "recorded_at_utc": "2026-10-31T16:41:17.277901+00:00",
+  "approved_git_revision": "74336854812939ee34f5652f6faad082c7640416",
+  "approved_proposal_sha256_lf": "cf4b4431c6fb26d7c8a0fb51e0af2b680f0286138016aeb6dd387aad1b14f9fe",
+  "private_matrix_sha256": "a597db8cf73dc5f18dab944ebc3a933c23a14e1a310bbd12180bd9f18c27d975",
+  "approval": "USER_CONDITIONALLY_APPROVED_EXACT_CONTINUATION_AFTER_COMMIT_AND_CI",
+  "correction_sql_positions": [
+    2,
+    14
+  ],
+  "source_request_sha256": "4222da72f52c8699baf731fe01fbad7fbd8391615c1ae0f46b896380d38f966d",
+  "write_policy": "complete_only",
+  "proposal_matrix_and_package": "EXACT_HASH_MATCH_UNCHANGED",
+  "package_files_sha256": {
+    "preflight.sql": "b4fb88bb236c8d137d843ec8e04c36a16cfb860540d5768c47ac7896c390d9b1",
+    "bronze.sql": "7686e557cfe590f3d86db051a35d11d92714792fafd1e24e1357d629de1e19b5",
+    "silver.sql": "5966f34731ab1884d05d501f32dd614437685e8754fe2bf3e1812c1a0f2122df",
+    "quality.sql": "9c09d940d80666b521e4055f81c5b385db42f189c08698a64db85e99f8088301",
+    "complete.sql": "74ce4183f6c507edebcfa5ae5844e7635a936c21af56f3db376379543fca76e7",
+    "failure_audit.sql": "42cfe7eb2992e7c9ee45132e9b47153707faf7895ea861ce0a5994ebe286470f",
+    "job.json": "991c9e2679dd0fd614e0fee440f36003b03ac60a6c1b21438e6415e5a28ae032",
+    "request.json": "01e7b848d7fde5410fad008a5c9f2732e5b91bd0cac1069beeb636ed77cbd1e6"
+  },
+  "sql_package_files": 6,
+  "sql_package_bytes": 189744,
+  "ci_before_native": {
+    "commit": "74336854812939ee34f5652f6faad082c7640416",
+    "status": "completed",
+    "conclusion": "success",
+    "tests": 170,
+    "test_seconds": 2.85,
+    "render_checks": "PASS",
+    "run_id": 41220727089,
+    "url": "https://github.com/cevateness/winterops-databricks-lab/actions/runs/41220727089"
+  },
+  "offline_tests_before_commit": {
+    "tests": 170,
+    "failures": 0,
+    "errors": 0,
+    "elapsed_seconds": 6.702
+  },
+  "readiness": {
+    "status": "PASS",
+    "metadata_file_gets": 28,
+    "expected_workspace_identity_admin": "MATCH",
+    "warehouse": {
+      "state": "STOPPED",
+      "active_sessions": 0,
+      "configuration": "UNCHANGED"
+    },
+    "active_job_runs": "ZERO_NO_PAGINATION",
+    "protected_objects": 11,
+    "object_identity_owner_schema_definitions": "MATCH_PRIOR",
+    "required_ownership_volume_parent_and_warehouse_access": "CONFIRMED",
+    "deployment_destinations": "ABSENT_BEFORE_THIS_ATTEMPT",
+    "source_hashes": [
+      {
+        "label": "before-original",
+        "bytes": 221818,
+        "sha256": "271c9339a42043f441b6c17e82dd309609db4b20e9953b9f368a95ec472d763d",
+        "result": "PASS"
+      },
+      {
+        "label": "before-artifact",
+        "bytes": 3619379,
+        "sha256": "375d6c5980ed66f61b2dcb0601f639f5e2a3a20ce546ac08d3e20fc60c17edd3",
+        "result": "PASS"
+      }
+    ]
+  },
+  "metadata_request_statuses": [
+    {
+      "label": "identity",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 1.0
+    },
+    {
+      "label": "before-warehouse",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.82
+    },
+    {
+      "label": "corrected-active-runs",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.763
+    },
+    {
+      "label": "before-object-workspace.default.winterops_bronze_windsor_activity",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 1.077
+    },
+    {
+      "label": "before-object-workspace.default.winterops_silver_windsor_week_sample",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.95
+    },
+    {
+      "label": "before-object-workspace.default.winterops_silver_windsor_valid",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 1.094
+    },
+    {
+      "label": "before-object-workspace.default.winterops_silver_windsor_quarantine",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.957
+    },
+    {
+      "label": "before-object-workspace.default.winterops_gold_windsor_hourly_observations",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.934
+    },
+    {
+      "label": "before-object-workspace.default.winterops_v2_dev_bronze",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 1.105
+    },
+    {
+      "label": "before-object-workspace.default.winterops_v2_dev_silver",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 1.096
+    },
+    {
+      "label": "before-object-workspace.default.winterops_v2_dev_manifest",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.95
+    },
+    {
+      "label": "before-object-workspace.default.winterops_v2_gold_hourly_observations",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 1.097
+    },
+    {
+      "label": "before-object-workspace.default.winterops_v2_gold_daily_activity",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 1.112
+    },
+    {
+      "label": "before-object-workspace.default.winterops_v2_gold_weekly_quality",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 1.105
+    },
+    {
+      "label": "before-job-name",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.792
+    },
+    {
+      "label": "before-file-destination-0",
+      "method": "GET",
+      "http_status": 404,
+      "elapsed_seconds": 0.796
+    },
+    {
+      "label": "before-file-destination-1",
+      "method": "GET",
+      "http_status": 404,
+      "elapsed_seconds": 0.858
+    },
+    {
+      "label": "before-file-destination-2",
+      "method": "GET",
+      "http_status": 404,
+      "elapsed_seconds": 0.897
+    },
+    {
+      "label": "before-file-destination-3",
+      "method": "GET",
+      "http_status": 404,
+      "elapsed_seconds": 0.903
+    },
+    {
+      "label": "before-file-destination-4",
+      "method": "GET",
+      "http_status": 404,
+      "elapsed_seconds": 0.77
+    },
+    {
+      "label": "before-file-destination-5",
+      "method": "GET",
+      "http_status": 404,
+      "elapsed_seconds": 0.773
+    },
+    {
+      "label": "before-file-destination-6",
+      "method": "GET",
+      "http_status": 404,
+      "elapsed_seconds": 0.786
+    },
+    {
+      "label": "before-file-destination-7",
+      "method": "GET",
+      "http_status": 404,
+      "elapsed_seconds": 0.751
+    },
+    {
+      "label": "before-original",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 1.815
+    },
+    {
+      "label": "before-artifact",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 2.682
+    },
+    {
+      "label": "before-volume-owner",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.771
+    },
+    {
+      "label": "before-warehouse-acl",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.855
+    },
+    {
+      "label": "before-parent-acl",
+      "method": "GET",
+      "http_status": 200,
+      "elapsed_seconds": 0.869
+    }
+  ],
+  "preflight_status": "ALL_FIVE_PASS",
+  "schema_guard": "PASS_NATIVE_UPPER_FULL_DATA_TYPE",
+  "preflight_statements": [
+    {
+      "position": 1,
+      "label": "declared-type-source-schema-quality-and-manifest-guard",
+      "sql_sha256": "faa5606e34c9160fed96cb0dc9aa5fab256a79d79705957758af94a50d3990da",
+      "phase": "before",
+      "elapsed_seconds": 25.656,
+      "state": "SUCCEEDED",
+      "row_count": 1,
+      "columns": [
+        "guard_parameters_parameter_check",
+        "guard_parameters_write_policy_check",
+        "guard_schema_schema_check",
+        "guard_content_persisted_check",
+        "guard_content_silver_rows",
+        "guard_content_header_rows",
+        "guard_content_valid_rows",
+        "guard_content_invalid_rows",
+        "guard_quality_quality_check",
+        "guard_quality_silver_rows",
+        "guard_quality_header_rows",
+        "guard_quality_valid_rows",
+        "guard_quality_invalid_rows",
+        "guard_scope_state_check",
+        "guard_scope_decision",
+        "guard_scope_bronze_n",
+        "guard_scope_silver_n",
+        "manifest_processing_key",
+        "manifest_source_version_id",
+        "manifest_source_file_sha256",
+        "manifest_status",
+        "manifest_last_successful_stage",
+        "manifest_attempts",
+        "manifest_bronze_rows",
+        "manifest_silver_rows",
+        "manifest_error_code",
+        "manifest_updated_at_utc",
+        "manifest_metadata_sha256",
+        "manifest_policy_json_sha256"
+      ],
+      "truncated": false,
+      "sanitized_results": {
+        "guard_parameters_parameter_check": null,
+        "guard_parameters_write_policy_check": null,
+        "guard_schema_schema_check": null,
+        "guard_content_persisted_check": null,
+        "guard_content_silver_rows": "2810",
+        "guard_content_header_rows": "19",
+        "guard_content_valid_rows": "2791",
+        "guard_content_invalid_rows": "0",
+        "guard_quality_quality_check": null,
+        "guard_quality_silver_rows": "2810",
+        "guard_quality_header_rows": "19",
+        "guard_quality_valid_rows": "2791",
+        "guard_quality_invalid_rows": "0",
+        "guard_scope_state_check": null,
+        "guard_scope_decision": "SKIP_VERIFIED",
+        "guard_scope_bronze_n": "2810",
+        "guard_scope_silver_n": "2810",
+        "manifest_processing_key": "f07ba6a0ad499a9baf53d2f7c46df09607523371428791593143a29b56f6b466",
+        "manifest_source_version_id": "8ccb2a2dd5ec057361cf6d7cc7193b5acbdd858b84102ba550a92febe9bb4ed1",
+        "manifest_source_file_sha256": "271c9339a42043f441b6c17e82dd309609db4b20e9953b9f368a95ec472d763d",
+        "manifest_status": "COMPLETE",
+        "manifest_last_successful_stage": "COMPLETE",
+        "manifest_attempts": "2",
+        "manifest_bronze_rows": "2810",
+        "manifest_silver_rows": "2810",
+        "manifest_error_code": null,
+        "manifest_updated_at_utc": "2026-10-29 13:14:58.044428",
+        "manifest_metadata_sha256": "c2d08257c9d97b523832c5494b93ab59aa1ba3f263a02307d416b28a4df624d0",
+        "manifest_policy_json_sha256": "ecb195bd0381aa104a562a121f9e7e43b5f8f97d57e19ffb0698571636b323b5"
+      },
+      "verification": "PASS"
+    },
+    {
+      "position": 2,
+      "label": "published-gold-baselines",
+      "sql_sha256": "5cae3ad02952b1aa279be16dd38b2cd334d86280921869365fed49ec0c0ec135",
+      "phase": "before",
+      "elapsed_seconds": 11.792,
+      "state": "SUCCEEDED",
+      "row_count": 3,
+      "columns": [
+        "source_week_start",
+        "bronze_rows",
+        "silver_rows",
+        "header_rows",
+        "valid_rows",
+        "invalid_rows",
+        "observation_count",
+        "plow_active_observations",
+        "spreader_active_observations",
+        "hours_containing_telemetry",
+        "days_containing_telemetry",
+        "legacy_hourly_rows",
+        "legacy_observations",
+        "legacy_plow_observations",
+        "legacy_spreader_observations"
+      ],
+      "truncated": false,
+      "sanitized_results": [
+        {
+          "source_week_start": "2026-01-05",
+          "bronze_rows": 2810,
+          "silver_rows": 2810,
+          "header_rows": 19,
+          "valid_rows": 2791,
+          "invalid_rows": 0,
+          "observation_count": 2791,
+          "plow_active_observations": 2790,
+          "spreader_active_observations": 164,
+          "hours_containing_telemetry": 42,
+          "days_containing_telemetry": 7,
+          "legacy_hourly_rows": 79,
+          "legacy_observations": 110311,
+          "legacy_plow_observations": 79471,
+          "legacy_spreader_observations": 68870
+        },
+        {
+          "source_week_start": "2026-01-12",
+          "bronze_rows": 110337,
+          "silver_rows": 110337,
+          "header_rows": 26,
+          "valid_rows": 110311,
+          "invalid_rows": 0,
+          "observation_count": 110311,
+          "plow_active_observations": 79471,
+          "spreader_active_observations": 68870,
+          "hours_containing_telemetry": 79,
+          "days_containing_telemetry": 7,
+          "legacy_hourly_rows": 79,
+          "legacy_observations": 110311,
+          "legacy_plow_observations": 79471,
+          "legacy_spreader_observations": 68870
+        },
+        {
+          "source_week_start": "2026-01-19",
+          "bronze_rows": 118159,
+          "silver_rows": 118159,
+          "header_rows": 34,
+          "valid_rows": 118125,
+          "invalid_rows": 0,
+          "observation_count": 118125,
+          "plow_active_observations": 92747,
+          "spreader_active_observations": 50405,
+          "hours_containing_telemetry": 115,
+          "days_containing_telemetry": 6,
+          "legacy_hourly_rows": 79,
+          "legacy_observations": 110311,
+          "legacy_plow_observations": 79471,
+          "legacy_spreader_observations": 68870
+        }
+      ],
+      "verification": "PASS"
+    },
+    {
+      "position": 3,
+      "label": "before-history-bronze",
+      "sql_sha256": "2ee2ab735ede78283bb585333346d618d93d35afd0e0043be76d06d40ab392a9",
+      "phase": "before",
+      "elapsed_seconds": 3.731,
+      "state": "SUCCEEDED",
+      "row_count": 1,
+      "columns": [
+        "version",
+        "timestamp",
+        "userId",
+        "userName",
+        "operation",
+        "operationParameters",
+        "job",
+        "notebook",
+        "queryHistoryStatementId",
+        "clusterId",
+        "readVersion",
+        "isolationLevel",
+        "isBlindAppend",
+        "operationMetrics",
+        "userMetadata",
+        "engineInfo"
+      ],
+      "truncated": false,
+      "delta_version": 3,
+      "verification": "PASS"
+    },
+    {
+      "position": 4,
+      "label": "before-history-silver",
+      "sql_sha256": "4618c85a19573c24271ab529fdf9a85237a733dae13edfdfa29508c33297495d",
+      "phase": "before",
+      "elapsed_seconds": 2.323,
+      "state": "SUCCEEDED",
+      "row_count": 1,
+      "columns": [
+        "version",
+        "timestamp",
+        "userId",
+        "userName",
+        "operation",
+        "operationParameters",
+        "job",
+        "notebook",
+        "queryHistoryStatementId",
+        "clusterId",
+        "readVersion",
+        "isolationLevel",
+        "isBlindAppend",
+        "operationMetrics",
+        "userMetadata",
+        "engineInfo"
+      ],
+      "truncated": false,
+      "delta_version": 4,
+      "verification": "PASS"
+    },
+    {
+      "position": 5,
+      "label": "before-history-manifest",
+      "sql_sha256": "5801549ab947fe28093d6a96ef6e8a593a759caefc594f44624732c81d1d8d16",
+      "phase": "before",
+      "elapsed_seconds": 2.132,
+      "state": "SUCCEEDED",
+      "row_count": 1,
+      "columns": [
+        "version",
+        "timestamp",
+        "userId",
+        "userName",
+        "operation",
+        "operationParameters",
+        "job",
+        "notebook",
+        "queryHistoryStatementId",
+        "clusterId",
+        "readVersion",
+        "isolationLevel",
+        "isBlindAppend",
+        "operationMetrics",
+        "userMetadata",
+        "engineInfo"
+      ],
+      "truncated": false,
+      "delta_version": 13,
+      "verification": "PASS"
+    }
+  ],
+  "delta_version_baselines": {
+    "bronze": 3,
+    "silver": 4,
+    "manifest": 13
+  },
+  "observed_gold": {
+    "weekly_rows": 3,
+    "source_week_starts": [
+      "2026-01-05",
+      "2026-01-12",
+      "2026-01-19"
+    ],
+    "valid_observations": 231227,
+    "plow_observations": 175008,
+    "spreader_observations": 119439,
+    "legacy_hourly_rows": 79,
+    "legacy_observations": 110311,
+    "legacy_plow_observations": 79471,
+    "legacy_spreader_observations": 68870
+  },
+  "workspace_partial_state": {
+    "directories": [
+      {
+        "path_role": "PARENT",
+        "state": "SUCCEEDED"
+      },
+      {
+        "path_role": "REQUEST_SCOPE",
+        "state": "SUCCEEDED"
+      }
+    ],
+    "import_file": "preflight.sql",
+    "import_bytes": 42883,
+    "import_input_sha256": "b4fb88bb236c8d137d843ec8e04c36a16cfb860540d5768c47ac7896c390d9b1",
+    "import_http_status": 200,
+    "http_status_basis": "The bounded call required HTTP_200 before returning the body to the failed assertion",
+    "response_keys": [
+      "object_id"
+    ],
+    "object_id_type": "POSITIVE_INTEGER_VALUE_REDACTED",
+    "interpretation": "Server accepted the RAW import and returned an object reference; uploaded content was not independently exported or hash-verified",
+    "executor_upload_state": "SUBMITTED",
+    "file_export_hash_verification": "NOT_REACHED",
+    "remaining_five_file_imports": "NOT_ATTEMPTED",
+    "cleanup": "NONE_PRESERVE_PARTIAL_STATE"
+  },
+  "failure": {
+    "type": "CLIENT_RESPONSE_CONTRACT_ASSERTION",
+    "reason": "UNEXPECTED_IMPORT_RESULT",
+    "expected_response": "EMPTY_JSON_OBJECT",
+    "actual_response_shape": {
+      "object_id": "POSITIVE_INTEGER_REDACTED"
+    },
+    "sql_runtime_errors": 0,
+    "sql_cancellations": 0,
+    "interpretation": "The import HTTP request succeeded; the executor rejected the nonempty body before marking upload success or verifying the exported file",
+    "no_automatic_correction_or_retry": true,
+    "recommended_next_step": "Separately review a narrow import-response validator and a partial-state-aware continuation that read-only verifies the existing file hash; do not overwrite or blindly replay absence checks"
+  },
+  "job_created": false,
+  "job_create_requests": 0,
+  "verify_run": "NOT_SUBMITTED",
+  "process_run": "NOT_SUBMITTED",
+  "job_task_states_or_outputs": "NOT_AVAILABLE_NO_JOB_OR_RUN",
+  "no_data_write_result": {
+    "bronze_silver_manifest_dml": 0,
+    "table_view_ddl": 0,
+    "gold_changes": 0,
+    "source_data_changes": 0,
+    "basis": "Only metadata/file reads, five read-only SQL statements and approved Workspace mkdir/import requests were submitted",
+    "jobs_complete_only_rerun_invariant": "NOT_EXERCISED",
+    "postflight_preservation": "NOT_REACHED"
+  },
+  "execution": {
+    "sql_submissions": 5,
+    "sql_succeeded": 5,
+    "sql_failed": 0,
+    "sql_canceled": 0,
+    "metadata_file_gets": 28,
+    "job_state_gets": 0,
+    "task_output_gets": 0,
+    "workspace_mkdir_requests": 2,
+    "code_import_requests": 1,
+    "code_import_bytes": 42883,
+    "job_creations": 0,
+    "job_run_submissions": 0,
+    "sql_client_seconds": 45.634,
+    "active_elapsed_seconds": 77.586,
+    "automatic_retries": 0,
+    "repair": 0,
+    "cleanup": 0,
+    "after_failure_native_requests": 0
+  },
+  "cumulative_trial": {
+    "sql_submissions": 11,
+    "sql_succeeded": 8,
+    "sql_failed": 3,
+    "sql_canceled": 0,
+    "execution_metadata_file_gets": 115,
+    "separate_initial_readiness_gets": 37,
+    "sql_client_seconds": 135.285,
+    "active_elapsed_seconds": 257.371,
+    "approved_sql_ceiling": 20,
+    "unused_sql_slots": 9,
+    "unused_metadata_file_slots": 22,
+    "remaining_original_active_seconds": 642.629,
+    "unused_budget_authority": "NONE_AFTER_STOP_NO_AUTOMATIC_RESUME"
+  },
+  "native_verified_now": [
+    "ALL_FIVE_READ_ONLY_PREFLIGHTS",
+    "CORRECTED_SCHEMA_SOURCE_QUALITY_AND_EXACT_COMPLETE_MANIFEST",
+    "CORRECTED_LEGACY_AND_V2_GOLD_BASELINE_SQL",
+    "V2_DELTA_HISTORY_BASELINES",
+    "APPROVED_WORKSPACE_DIRECTORY_CREATION",
+    "RAW_IMPORT_ACCEPTED_WITH_OBJECT_ID_RESPONSE_NOT_CONTENT_HASH_VERIFIED"
+  ],
+  "not_verified": [
+    "UPLOADED_FILE_EXPORTED_HASH",
+    "REMAINING_FIVE_CODE_FILES",
+    "JOBS_CREATION_OR_SQL_FILE_EXECUTION",
+    "JOBS_NAMED_MARKERS_COMPOUND_SCRIPTS_DAG_STATES_OUTPUTS_TIMEOUTS",
+    "BOTH_COMPLETE_ONLY_RUNS_AND_POSTFLIGHT_NO_WRITE_PROOF",
+    "GENUINELY_NEW_SOURCE_PROCESSING_OR_RECOVERY"
+  ],
+  "no_forecasting_optimization_or_scheduling": true,
+  "unrelated_files": "HASHES_UNCHANGED",
+  "new_source_processing_ready": false
+}
