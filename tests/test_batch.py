@@ -20,9 +20,9 @@ from test_foundation_v2_sql import adapt
 import test_unified_gold as gold_fixture
 from winterops.batch import BatchRequest, Sql, When, job_definition, prepare_job, synthetic_request
 from winterops.batch_sql import BatchSql, tasks
-from winterops.foundation import _number, _timestamp
-from winterops.landing import VOLUME
-from winterops.sources import SourceVersion
+from winterops.foundation import _number, _timestamp, read_bronze, silver_rows
+from winterops.landing import OriginalLanding, VOLUME
+from winterops.sources import SourceVersion, WeeklySource
 from winterops.spark_ingestion import BRONZE_TYPES, MANIFEST_TYPES, SILVER_TYPES
 
 
@@ -182,6 +182,47 @@ class BatchWorkflowTests(unittest.TestCase):
         self.assertEqual(out['complete'], [{'batch_outcome': 'VERIFIED_NOT_PROCESSED'}])
         self.assertEqual(self.db.total_changes, before)
         self.assertIsNone(self.manifest())
+
+    def test_fourth_source_verify_process_rerun_preserves_three_complete_weeks(self):
+        source=WeeklySource.from_url('https://opendata.citywindsor.ca/Uploads/snowplow-2026-01-26_2026-02-01.csv')
+        header='Latitude,Longitude,Date time,Plow status,Spreader status,Engine status,Truck\n'
+        repeated='42.3,-83.0,2026-01-26 00:00:00,True,False,True,SYNTHETIC_A\n'
+        data=(header+repeated+repeated+'42.3,-83.0,2026-01-27 10:00:00,False,True,True,SYNTHETIC_B\n'
+              +header+'999,-83.0,2026-01-27 11:00:00,True,False,True,SYNTHETIC_BAD\n').encode()
+        path=self.root/source.source_file_name;path.write_bytes(data)
+        version=SourceVersion(source,hashlib.sha256(data).hexdigest(),len(data),'2026-02-02T00:00:00+00:00',str(path))
+        bronze=list(read_bronze(version));silver=silver_rows(bronze,version)
+        encoded=gzip.compress(''.join(json.dumps(row)+'\n' for row in bronze).encode(),mtime=0)
+        digest=hashlib.sha256(encoded).hexdigest()
+        original=OriginalLanding(source,version.source_file_sha256,len(data)).path
+        self.r=BatchRequest(version,f'{VOLUME}/foundation_v2_dev/{version.version_id}/{digest}/bronze.jsonl.gz',
+            digest,len(encoded),len(bronze),1,3,1,original,write_policy='append_missing',prior_attempts=0)
+        self.db.execute('DROP TABLE artifact')
+        self.db.commit()
+        self.db.execute('DETACH DATABASE information_schema')
+        self.job=OfflineJob(self.db,self.r,data,encoded,[tuple(row[k] for k in BRONZE_TYPES) for row in bronze])
+        self.outer_before=self.other_scopes()
+        self.assertEqual(sum(1 for _ in self.db.execute("SELECT * FROM winterops_v2_dev_manifest WHERE status='COMPLETE'")),3)
+        executed=[];before=self.db.total_changes
+        first=self.assert_ok(self.job.run(mode='verify',after_sql=executed.append))
+        self.assertEqual(first['preflight'][0]['decision'],'NEW_OR_REUSE_BRONZE')
+        self.assertEqual(first['complete'],[{'batch_outcome':'VERIFIED_NOT_PROCESSED'}])
+        self.assertEqual(self.db.total_changes,before);self.assertIsNone(self.manifest())
+        self.assertFalse(any(re.match(r'(?i)^\s*(INSERT|UPDATE|DELETE)\b',s) for s in executed))
+        marks=[];p=BatchSql(self.r)
+        def observed(sql):
+            for stage in ('PROCESSING','BRONZE_WRITTEN','SILVER_WRITTEN','COMPLETE'):
+                if sql==p.mark(stage):marks.append((stage,self.manifest()['status'],self.manifest()['attempts']))
+        self.assert_ok(self.job.run(mode='process',after_sql=observed))
+        self.assertEqual(marks,[(s,s,1) for s in ('PROCESSING','BRONZE_WRITTEN','SILVER_WRITTEN','COMPLETE')])
+        self.assertEqual((self.manifest()['bronze_rows'],self.manifest()['silver_rows']),(5,5))
+        self.assertEqual([r['quality_status'] for r in silver].count('VALID'),3)
+        self.assertEqual(self.db.execute('SELECT COUNT(*) FROM winterops_v2_dev_silver WHERE processing_key=? AND quality_status="INVALID"',(self.r.key,)).fetchone()[0],1)
+        completed=dict(self.manifest());before=self.db.total_changes;executed=[]
+        final=self.assert_ok(self.job.run(mode='process',after_sql=executed.append))
+        self.assertEqual(final['preflight'][0]['decision'],'SKIP_VERIFIED')
+        self.assertEqual(self.db.total_changes,before);self.assertEqual(self.manifest(),completed)
+        self.assertFalse(any(re.match(r'(?i)^\s*(INSERT|UPDATE|DELETE)\b',s) for s in executed))
 
     def test_invalid_runtime_parameters_stop_without_audit_mutation(self):
         for override in ({'source_version_id': '0' * 64}, {'processing_key': '0' * 64},
@@ -534,6 +575,33 @@ class BatchContractTests(unittest.TestCase):
         self.assertEqual(job['tasks'][-1]['run_if'], 'AT_LEAST_ONE_FAILED')
         self.assertEqual(job['tasks'][-1]['sql_task']['parameters']['batch_preflight_state'], '{{tasks.preflight.result_state}}')
         self.assertEqual({p['name']: p['default'] for p in job['parameters']}['execution_mode'], 'verify')
+
+    def test_custom_job_name_changes_only_name_and_preserves_default_definition(self):
+        r=synthetic_request();args=(r,'0'*16,'/Workspace/Shared/winterops_batch_EXAMPLE')
+        default=job_definition(*args)
+        custom=job_definition(*args,job_name='WinterOps incremental acceptance EXAMPLE')
+        self.assertEqual(default['name'],'WinterOps on-demand V1')
+        self.assertEqual(custom,{**default,'name':'WinterOps incremental acceptance EXAMPLE'})
+
+    def test_job_name_rejects_empty_controls_and_excessive_lengths(self):
+        for name in (None,True,'',' ',' padded','padded ','bad\nname','bad\x00name','x'*121):
+            with self.subTest(name_type=type(name).__name__),self.assertRaises(ValueError):
+                job_definition(synthetic_request(),'0'*16,'/Workspace/Shared/EXAMPLE',job_name=name)
+
+    def test_custom_package_is_isolated_and_cannot_overwrite_default_package(self):
+        r=synthetic_request()
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp);args=('0'*16,'/Workspace/Shared/winterops_batch_EXAMPLE')
+            default=prepare_job(r,root/'default',*args)
+            before={p.name:p.read_bytes() for p in (root/'default'/r.sha256).iterdir()}
+            custom=prepare_job(r,root/'acceptance',*args,job_name='WinterOps acceptance EXAMPLE')
+            self.assertEqual(custom,prepare_job(r,root/'acceptance',*args,job_name='WinterOps acceptance EXAMPLE'))
+            self.assertNotEqual(default['files_sha256']['job.json'],custom['files_sha256']['job.json'])
+            for name in [t.key+'.sql' for t in tasks(r)]+['request.json']:
+                self.assertEqual(default['files_sha256'][name],custom['files_sha256'][name])
+            with self.assertRaisesRegex(ValueError,'IMMUTABLE_JOB_PACKAGE_CONFLICT'):
+                prepare_job(r,root/'default',*args,job_name='WinterOps acceptance EXAMPLE')
+            self.assertEqual(before,{p.name:p.read_bytes() for p in (root/'default'/r.sha256).iterdir()})
 
     def test_rendering_contains_no_ddl_gold_publication_or_acquisition(self):
         r = synthetic_request()

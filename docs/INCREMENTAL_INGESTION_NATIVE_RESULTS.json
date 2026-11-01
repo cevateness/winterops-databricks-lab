@@ -1,0 +1,356 @@
+{
+  "status": "STOPPED_BEFORE_SQL_AND_ALL_REMOTE_WRITES",
+  "execution_date_local": "2026-11-01",
+  "recorded_at_utc": "2026-11-01T18:20:28.023368+00:00",
+  "approved_git_revision": "25faab5c0ca6b1d22267e53c491cb9e67b5990bb",
+  "implementation_pr": 15,
+  "explicit_authorization": "USER_APPROVED_EXACT_INCREMENTAL_PLAN_NEW_SOURCE_APPEND_SCOPE_1200_SECONDS",
+  "approved_proposal_sha256_lf": "7489c5a8e971a79723070d7f0b9b2c353c2191bc76d1b9b1a427d5aa51c78d4a",
+  "private_sql_matrix_sha256": "3eb5830b2232daf8a7b7ebf5794b17683695baa67944ae9f0a6a51ca0c81b404",
+  "private_metadata_operation_sha256": "2c7e3ebfb66fbc5d9bef1c5868b506a5358e62118ab53e0e34ea8d88349b2c38",
+  "private_upload_list_sha256": "25d9278e168ae8e82286e37095d49cbf3fb810f746fcf2475f6ee819452356f6",
+  "request_sha256": "876c8aa2aa64352454d9b4ef4984e443b96257426c0ada61648d4a3c26434508",
+  "package_files_sha256": {
+    "preflight.sql": "4495cb12cc41a979f58a98b57f59c47828c5a80607312c63f9323c4e09c49f56",
+    "bronze.sql": "1a4ca20307c94180c7e78cccbd7a9315153709b6bd453d47d92cfb7c2ddc77d7",
+    "silver.sql": "648557096633725c94fd879b67473c7d8984f0a720ae52d9c7501a0399c72870",
+    "quality.sql": "ee16847e420778e07ff6a635d34ae7b1fba499c82f8a8ae6d329d11338abffcc",
+    "complete.sql": "f62ae34158a8a58397c33b8ba4e9c66407b319616df5fb4ddab246367f8ea631",
+    "failure_audit.sql": "0ce150a887ae9b26e84fa5e0e45518e9c3d925c6a7f9918b55def321d96a512a",
+    "job.json": "e5cae37468994dabed528e882fdc384fe6844673a66b693252ae2483fbcef44c",
+    "request.json": "3c65f674b21a9c923d6f3603a4b96ba9f2df03ce49b72d7882ee81301afb6a99"
+  },
+  "ci_before_native": {
+    "commit": "25faab5c0ca6b1d22267e53c491cb9e67b5990bb",
+    "conclusion": "success",
+    "tests": 197,
+    "render_checks": "PASS",
+    "run_id": 41320503893,
+    "url": "https://github.com/cevateness/winterops-databricks-lab/actions/runs/41320503893"
+  },
+  "local_review": "PASS_EXACT_COMMIT_CODE_CI_PLANS_SOURCE_ARTIFACT_DECODED_JSONL_PACKAGES_AND_USER_FILE_HASHES",
+  "offline_rehearsal": {
+    "status": "PASS_OFFLINE_ONLY",
+    "sql_contracts": 23,
+    "metadata_contracts": 86,
+    "native_requests": 0,
+    "limitation": "Synthetic absence fixtures used the Workspace error code; they did not establish Files API absence compatibility."
+  },
+  "readiness": {
+    "status": "17_PASSED_18TH_STOPPED_19TH_NOT_REQUESTED",
+    "authenticated_profile": "winterops",
+    "workspace_identity": "MATCH_EXPECTED_PRIVATE_TARGET",
+    "warehouse": "SAME_APPROVED_EXISTING_CONFIGURATION_ZERO_ACTIVE_SESSIONS",
+    "active_job_runs": "NONE_AT_READINESS",
+    "protected_object_metadata": "THREE_V2_TABLES_AND_FOUR_GOLD_VIEW_CONTRACTS_MATCH",
+    "protected_original_job_settings": "MATCH_APPROVED_PACKAGE",
+    "new_job_name": "UNUSED",
+    "workspace_root": "ABSENT_WORKSPACE_404_CONTRACT_PASSED",
+    "shared_parent_permissions_volume_identity_and_warehouse_permissions": "PASS",
+    "original_csv_destination": "HTTP_404_RESPONSE_REJECTED_BY_APPROVED_ABSENCE_VALIDATOR",
+    "gzip_destination": "NOT_REQUESTED",
+    "gates": [
+      {
+        "label": "before:identity",
+        "method": "GET",
+        "kind": "metadata",
+        "http_status": 200,
+        "elapsed_seconds": 0.834,
+        "verification": "PASS"
+      },
+      {
+        "label": "before:warehouse",
+        "method": "GET",
+        "kind": "metadata",
+        "http_status": 200,
+        "elapsed_seconds": 0.879,
+        "verification": "PASS"
+      },
+      {
+        "label": "before:active-runs",
+        "method": "GET",
+        "kind": "metadata",
+        "http_status": 200,
+        "elapsed_seconds": 0.764,
+        "verification": "PASS"
+      },
+      {
+        "label": "before:object-workspace.default.winterops_v2_dev_bronze",
+        "method": "GET",
+        "kind": "metadata",
+        "http_status": 200,
+        "elapsed_seconds": 1.369,
+        "verification": "PASS"
+      },
+      {
+        "label": "before:object-workspace.default.winterops_v2_dev_silver",
+        "method": "GET",
+        "kind": "metadata",
+        "http_status": 200,
+        "elapsed_seconds": 1.119,
+        "verification": "PASS"
+      },
+      {
+        "label": "before:object-workspace.default.winterops_v2_dev_manifest",
+        "method": "GET",
+        "kind": "metadata",
+        "http_status": 200,
+        "elapsed_seconds": 1.031,
+        "verification": "PASS"
+      },
+      {
+        "label": "before:object-workspace.default.winterops_gold_windsor_hourly_observations",
+        "method": "GET",
+        "kind": "metadata",
+        "http_status": 200,
+        "elapsed_seconds": 0.925,
+        "verification": "PASS"
+      },
+      {
+        "label": "before:object-workspace.default.winterops_v2_gold_hourly_observations",
+        "method": "GET",
+        "kind": "metadata",
+        "http_status": 200,
+        "elapsed_seconds": 1.072,
+        "verification": "PASS"
+      },
+      {
+        "label": "before:object-workspace.default.winterops_v2_gold_daily_activity",
+        "method": "GET",
+        "kind": "metadata",
+        "http_status": 200,
+        "elapsed_seconds": 1.194,
+        "verification": "PASS"
+      },
+      {
+        "label": "before:object-workspace.default.winterops_v2_gold_weekly_quality",
+        "method": "GET",
+        "kind": "metadata",
+        "http_status": 200,
+        "elapsed_seconds": 1.088,
+        "verification": "PASS"
+      },
+      {
+        "label": "before:protected-original-job",
+        "method": "GET",
+        "kind": "metadata",
+        "http_status": 200,
+        "elapsed_seconds": 0.857,
+        "verification": "PASS"
+      },
+      {
+        "label": "before:new-job-name-unused",
+        "method": "GET",
+        "kind": "metadata",
+        "http_status": 200,
+        "elapsed_seconds": 0.801,
+        "verification": "PASS"
+      },
+      {
+        "label": "before:shared-parent",
+        "method": "GET",
+        "kind": "metadata",
+        "http_status": 200,
+        "elapsed_seconds": 1.348,
+        "verification": "PASS"
+      },
+      {
+        "label": "before:shared-parent-acl",
+        "method": "GET",
+        "kind": "metadata",
+        "http_status": 200,
+        "elapsed_seconds": 0.899,
+        "verification": "PASS"
+      },
+      {
+        "label": "before:new-root-absent",
+        "method": "GET",
+        "kind": "metadata",
+        "http_status": 404,
+        "elapsed_seconds": 0.89,
+        "verification": "PASS"
+      },
+      {
+        "label": "before:volume-owner",
+        "method": "GET",
+        "kind": "metadata",
+        "http_status": 200,
+        "elapsed_seconds": 0.764,
+        "verification": "PASS"
+      },
+      {
+        "label": "before:warehouse-acl",
+        "method": "GET",
+        "kind": "metadata",
+        "http_status": 200,
+        "elapsed_seconds": 0.858,
+        "verification": "PASS"
+      },
+      {
+        "label": "before:original-source-file",
+        "method": "GET",
+        "kind": "metadata",
+        "http_status": 404,
+        "elapsed_seconds": 1.352
+      }
+    ]
+  },
+  "stopped_gate": {
+    "ordinal": 18,
+    "label": "before:original-source-file",
+    "api": "GET_FILES_API_ORIGINAL_CSV_DESTINATION",
+    "http_status": 404,
+    "observed_sanitized_body": {
+      "error_code": "NOT_FOUND",
+      "message": "The file being accessed is not found.",
+      "details": [
+        {
+          "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+          "reason": "FILES_API_FILE_NOT_FOUND",
+          "domain": "filesystem.databricks.com"
+        }
+      ]
+    },
+    "validator": "winterops.workspace_files.validate_absent_destination",
+    "expected_error_code": "RESOURCE_DOES_NOT_EXIST",
+    "observed_error_code": "NOT_FOUND",
+    "contract_error": "NOT_FOUND_ERROR_CONTRACT_MISMATCH",
+    "technical_interpretation": "The runner reused a Workspace-specific absence validator for a Files API endpoint. The Files API explicitly reported a missing file with NOT_FOUND / FILES_API_FILE_NOT_FOUND. The approved gate rejected that response; this is not an observed permission denial or a SQL, data, artifact or Job failure.",
+    "action": "STOPPED_WITHOUT_RETRY_FALLBACK_OR_VALIDATOR_CHANGE",
+    "smallest_recommended_follow_up": "Review an endpoint-specific Files API absence validator and regressions using the saved native response; retain the strict Workspace contract, exact approved path/status checks and fail-closed behavior. Review a continuation before any new native request."
+  },
+  "native_sql": {
+    "status": "NOT_SUBMITTED",
+    "predeployment": 0,
+    "postdeployment": 0
+  },
+  "landing": {
+    "original_csv": "NOT_UPLOADED",
+    "gzip_artifact": "NOT_UPLOADED",
+    "sql_code_files": "NOT_UPLOADED"
+  },
+  "job": {
+    "created": false,
+    "name": "WinterOps incremental 2026-01-26 acceptance V1",
+    "protected_original_job_modified": false
+  },
+  "runs": [
+    {
+      "ordinal": 1,
+      "mode": "verify",
+      "status": "NOT_SUBMITTED",
+      "tasks": "NOT_STARTED"
+    },
+    {
+      "ordinal": 2,
+      "mode": "process",
+      "status": "NOT_SUBMITTED",
+      "tasks": "NOT_STARTED"
+    },
+    {
+      "ordinal": 3,
+      "mode": "process",
+      "status": "NOT_SUBMITTED",
+      "tasks": "NOT_STARTED"
+    }
+  ],
+  "writes": {
+    "bronze": 0,
+    "silver": 0,
+    "manifest": 0,
+    "table_view_ddl": 0,
+    "gold_changes": 0,
+    "volume_directory_puts": 0,
+    "workspace_mkdirs": 0,
+    "record_uploads": 0,
+    "code_imports": 0,
+    "job_creates": 0,
+    "job_runs": 0,
+    "permission_or_compute_changes": 0,
+    "schedules": 0,
+    "automatic_retries": 0,
+    "repairs": 0,
+    "cleanup": 0
+  },
+  "preservation": {
+    "zero_write_invariant_this_attempt": "VERIFIED_FROM_EXECUTED_REQUEST_SET_AUTH_AND_METADATA_GETS_ONLY",
+    "protected_object_and_original_job_metadata": "MATCHED_AT_READINESS",
+    "fresh_delta_history_source_rows_manifest_and_gold_data": "NOT_QUERIED",
+    "last_prior_verified_delta_versions": {
+      "bronze": 3,
+      "silver": 4,
+      "manifest": 13
+    },
+    "historical_evidence": "docs/ON_DEMAND_BATCH_OPTIONAL_METADATA_RESULTS.json",
+    "new_source_native_rows_and_manifest": "NOT_OBSERVED_EXPECTED_ABSENCE_SQL_NOT_REACHED",
+    "expected_process_versions_4_5_17": "NOT_OBSERVED",
+    "prior_scope_full_multisets_and_gold_aggregate_stability": "NOT_REVERIFIED_THIS_ATTEMPT",
+    "published_fourth_week": "NO",
+    "immutable_private_source_and_packages": "UNCHANGED",
+    "unrelated_local_files": "HASHES_UNCHANGED"
+  },
+  "resource_usage": {
+    "sql_submissions": 0,
+    "metadata_file_gets": 18,
+    "metadata_gates_passed": 17,
+    "job_state_gets": 0,
+    "task_output_gets": 0,
+    "record_uploads": 0,
+    "record_upload_bytes": 0,
+    "code_uploads": 0,
+    "code_upload_bytes": 0,
+    "jobs_created": 0,
+    "runs_submitted": 0,
+    "active_elapsed_seconds": 18.517,
+    "approved_maxima": {
+      "sql_submissions": 23,
+      "metadata_file_gets": 86,
+      "job_state_gets": 180,
+      "task_output_gets": 15,
+      "active_seconds": 1200
+    },
+    "unused_at_stop": {
+      "sql_submissions": 23,
+      "metadata_file_gets": 68,
+      "active_seconds": 1181.483
+    },
+    "unused_capacity_is_continuation_authority": false
+  },
+  "remaining_limitations": [
+    "New-source Jobs write path, four attempt-1 manifest transitions, full native multisets and unchanged rerun remain unexecuted.",
+    "Native ingestion performance and the natural-failure audit branch remain unverified.",
+    "No after-stop Databricks requests occurred; no current data-state claims are inferred from schema metadata or historical anchors."
+  ],
+  "privacy": "Only aggregate counts, code/data fingerprints and sanitized protocol errors are public; detailed telemetry, identifiers, credentials and private workspace/resource identities remain outside Git.",
+  "post_execution_offline_validation": {
+    "unit_tests": {
+      "status": "PASS",
+      "count": 197,
+      "failures": 0,
+      "errors": 0,
+      "elapsed_seconds": 8.877
+    },
+    "syntax": {
+      "status": "PASS",
+      "python_files": 33,
+      "spark_execution": false
+    },
+    "aggregate_fixture": "PASS",
+    "render_checks": {
+      "analytics_publication": "PASS",
+      "analytics_read_only": "PASS",
+      "gold_products": "PASS",
+      "three_week_candidate": "PASS",
+      "three_week_publication": "PASS",
+      "synthetic_job_package_outside_git": "PASS"
+    },
+    "exact_reviewed_plan_matrix_metadata_upload_list_source_artifact_and_package_hashes": "PASS_UNCHANGED",
+    "existing_default_job_package_and_unrelated_local_file_hashes": "PASS_UNCHANGED",
+    "environment_notes": [
+      "The initial sandbox test attempt reported 139 errors caused by WinError 5 accessing temporary fixture directories; the unchanged suite passed with required filesystem access.",
+      "The initial synthetic Job render rejected an in-repository output directory; rerendering to private staging outside Git passed."
+    ],
+    "native_requests_during_documentation_and_tests": 0,
+    "evidence_commit_ci": "RECORDED_IN_PR_15_AND_COMPLETION_REPORT"
+  }
+}

@@ -1,0 +1,191 @@
+{
+  "status": "PASS_LOCAL_ONLY_NO_DATABRICKS_REQUESTS",
+  "base_commit": "d658511755158a9cd42c9ef550413bb5458b4938",
+  "source": {
+    "source_file_name": "snowplow-2026-01-26_2026-02-01.csv",
+    "source_url": "https://opendata.citywindsor.ca/Uploads/snowplow-2026-01-26_2026-02-01.csv",
+    "source_file_sha256": "cebcbd758e2a0cf5d0624ecf9cd6993244e7becdd1846a4057b4f63be22ed6c6",
+    "source_version_id": "ad5c201ccee0b96b2f4907f10ee3a064a7562d17429146d2205b1eaca46fdc00",
+    "covered_start": "2026-01-26",
+    "covered_end_exclusive": "2026-02-02",
+    "retrieved_at_utc": "2026-11-01T14:19:16.417758+00:00",
+    "source_bytes": 5272022,
+    "processing_key": "9c8e1b6f640e75c21f1c9f429ec670c389bf178269afd2f1543b2ae759c3eeae",
+    "pipeline_version": "windsor-foundation-v2.1",
+    "quality_policy": {
+      "review_lat_min": 42.1,
+      "review_lat_max": 42.5,
+      "review_lon_min": -83.3,
+      "review_lon_max": -82.6,
+      "nominal_interval_seconds": 15,
+      "long_gap_seconds": 1800,
+      "dense_hour_observations": 1000
+    },
+    "quality_policy_sha256": "03829a2ce3b308a45e0205ca12a5288e5cb08b97189cf20b69c0e37d4c546e08",
+    "bronze_rows": 66850,
+    "silver_rows": 66850,
+    "header_rows": 26,
+    "valid_rows": 66824,
+    "invalid_rows": 0,
+    "csv_width_mismatch_rows": 0,
+    "required_source_columns": [
+      "Latitude",
+      "Longitude",
+      "Date time",
+      "Plow status",
+      "Spreader status",
+      "Engine status",
+      "Truck"
+    ],
+    "missing_values_excluding_headers": {},
+    "invalid_issue_counts": {},
+    "warning_counts": {},
+    "status_counts_excluding_headers": {
+      "plow_active": {
+        "true": 64336,
+        "false": 2488,
+        "unknown": 0
+      },
+      "spreader_active": {
+        "true": 7793,
+        "false": 59031,
+        "unknown": 0
+      },
+      "engine_active": {
+        "true": 66824,
+        "false": 0,
+        "unknown": 0
+      }
+    },
+    "distinct_valid_identifiers": 223,
+    "hourly_buckets": 89,
+    "minimum_hourly_identifiers": 1,
+    "maximum_hourly_identifiers": 16,
+    "daily_identifier_counts": [
+      {
+        "source_local_naive_day": "2026-01-26",
+        "observed_identifier_count": 111
+      },
+      {
+        "source_local_naive_day": "2026-01-27",
+        "observed_identifier_count": 93
+      },
+      {
+        "source_local_naive_day": "2026-01-28",
+        "observed_identifier_count": 19
+      },
+      {
+        "source_local_naive_day": "2026-01-29",
+        "observed_identifier_count": 14
+      },
+      {
+        "source_local_naive_day": "2026-01-30",
+        "observed_identifier_count": 6
+      }
+    ],
+    "identifier_reporting_days": [
+      {
+        "days_with_observations": 1,
+        "identifier_count": 203
+      },
+      {
+        "days_with_observations": 2,
+        "identifier_count": 20
+      }
+    ],
+    "valid_identifier_format_counts": {
+      "digits_only": 223,
+      "other": 0
+    },
+    "first_valid_source_time": "2026-01-26 00:00:00",
+    "last_valid_source_time": "2026-01-30 13:12:52",
+    "repeated_valid_payload_groups": 116,
+    "repeated_valid_payload_observations": 234,
+    "excess_valid_payload_observations": 118,
+    "conflicting_identifier_timestamp_groups": 470,
+    "consecutive_valid_timestamp_pairs": 66601,
+    "zero_gap_pairs": 590,
+    "positive_below_nominal_pairs": 6002,
+    "nominal_interval_pairs": 49890,
+    "above_nominal_within_threshold_pairs": 9979,
+    "long_gap_pairs": 140,
+    "minimum_positive_source_clock_gap_seconds": 1.0,
+    "maximum_source_clock_gap_seconds": 26722.0,
+    "dense_identifier_hours": 0,
+    "reconciliation": "PASS",
+    "timestamp_semantics": "source-local/naive; timezone unverified"
+  },
+  "source_download": {
+    "method": "OFFICIAL_HTTPS",
+    "content_type": "application/octet-stream",
+    "exact_requested_official_url": true,
+    "redirects": 0,
+    "action": "NEW_BYTES",
+    "discovery": "NEW_SOURCE",
+    "catalogue_url": "https://opendata.citywindsor.ca/details/224",
+    "catalogue_exact_link_verified": true
+  },
+  "csv": {
+    "encoding": "UTF-8 strict; ASCII-compatible",
+    "utf8_bom": false,
+    "columns": [
+      "Latitude",
+      "Longitude",
+      "Date time",
+      "Plow status",
+      "Spreader status",
+      "Engine status",
+      "Truck"
+    ],
+    "delimiter": ",",
+    "parsed_records_after_outer_header": 66850,
+    "width_counts": {
+      "7": 66850
+    },
+    "physical_lf_count": 66851,
+    "physical_crlf_count": 66851
+  },
+  "artifact": {
+    "source_version_id": "ad5c201ccee0b96b2f4907f10ee3a064a7562d17429146d2205b1eaca46fdc00",
+    "artifact_sha256": "4aa85d0024845ab8662201127938a4ba9ec8fd23e05c282b352130952d414191",
+    "row_count": 66850,
+    "compression": "gzip",
+    "uncompressed_sha256": "92b8ba14fd997620fc5ac396369b0272dada7e177ebd951cf11d6ed7f102206a",
+    "artifact_bytes": 5616699,
+    "uncompressed_bytes": 86262730
+  },
+  "accepted_bounds": {
+    "source_bytes": 67108864,
+    "source_download_deadline_seconds": 60,
+    "parsed_records": 500000,
+    "decoded_artifact_bytes": 268435456,
+    "compressed_artifact_bytes": 268435456
+  },
+  "existing_local_scopes_preserved": {
+    "versions": {
+      "previous_rows": 3,
+      "unchanged": true
+    },
+    "runs": {
+      "previous_rows": 3,
+      "unchanged": true
+    },
+    "attempts": {
+      "previous_rows": 3,
+      "unchanged": true
+    },
+    "bronze": {
+      "previous_rows": 231306,
+      "unchanged": true
+    },
+    "silver": {
+      "previous_rows": 231306,
+      "unchanged": true
+    }
+  },
+  "native_source_scope": "NOT_INSPECTED_REQUIRE_FRESH_ABSENCE_GATE_BEFORE_ACCEPTANCE",
+  "source_cadence": "ACTIVITY_TRIGGERED_NOMINAL_15_SECONDS_NOT_CONTINUOUS_AVAILABILITY",
+  "timestamp_semantics": "SOURCE_LOCAL_NAIVE_NO_TIMEZONE_INFERENCE",
+  "attribution": "Contains information licensed under the Open Government Licence \u2013 The Corporation of the City of Windsor.",
+  "native_requests": 0
+}

@@ -1,0 +1,172 @@
+{
+  "status": "PREPARED_NOT_APPROVED_NOT_EXECUTED",
+  "preparation_base_commit": "b244f7f15cd4ec623818bd039fdc5811bd0c8f36",
+  "implementation_pr": 15,
+  "base_plan": "docs/INCREMENTAL_INGESTION_NATIVE_PLAN.json",
+  "base_plan_sha256_lf": "7489c5a8e971a79723070d7f0b9b2c353c2191bc76d1b9b1a427d5aa51c78d4a",
+  "inheritance": "All base statements, source identities, immutable destinations, package hashes, request, write scope, protections, response/time/upload/polling bounds and outputs remain required. Only the code, two Files absence gates and explicitly listed budgets change.",
+  "stopped_evidence": "docs/INCREMENTAL_INGESTION_NATIVE_RESULTS.json",
+  "stopped_evidence_sha256_lf": "2be2a6a0990583efc02a1e1608295511d41d672e86860e4f3e52e90c3c449da3",
+  "prior_consumption": {
+    "metadata_file_gets": 18,
+    "statement_api_submissions": 0,
+    "active_seconds": 18.517,
+    "record_uploads": 0,
+    "code_uploads": 0,
+    "job_creations": 0,
+    "job_runs": 0,
+    "data_manifest_writes": 0
+  },
+  "additional_limits": {
+    "active_seconds": 1181.483,
+    "statement_api_submissions": 23,
+    "metadata_file_gets": 86,
+    "job_state_gets": 180,
+    "task_output_gets": 15,
+    "record_file_uploads": 2,
+    "record_upload_total_bytes": 10888721,
+    "record_upload_max_file_bytes": 16777216,
+    "record_upload_max_total_bytes": 33554432,
+    "record_upload_deadline_seconds": 120,
+    "record_upload_combined_seconds": 180,
+    "code_uploads": 6,
+    "code_upload_bytes": 190473,
+    "code_max_file_bytes": 262144,
+    "code_max_total_bytes": 1048576,
+    "volume_parent_directory_puts": 2,
+    "maximum_new_volume_directories": 4,
+    "workspace_mkdir_requests": 2,
+    "job_creations": 1,
+    "job_runs": 3,
+    "sql_file_task_executions": 16,
+    "known_active_run_cancellations": 1,
+    "normal_bronze_commits": 1,
+    "normal_silver_commits": 1,
+    "normal_manifest_transitions": 4,
+    "conditional_failed_manifest_updates": 1
+  },
+  "cumulative_limits": {
+    "active_seconds": 1200,
+    "statement_api_submissions": 23,
+    "metadata_file_gets": 104,
+    "job_state_gets": 180,
+    "task_output_gets": 15,
+    "record_file_uploads": 2,
+    "record_upload_total_bytes": 10888721,
+    "record_upload_max_file_bytes": 16777216,
+    "record_upload_max_total_bytes": 33554432,
+    "record_upload_deadline_seconds": 120,
+    "record_upload_combined_seconds": 180,
+    "code_uploads": 6,
+    "code_upload_bytes": 190473,
+    "code_max_file_bytes": 262144,
+    "code_max_total_bytes": 1048576,
+    "volume_parent_directory_puts": 2,
+    "maximum_new_volume_directories": 4,
+    "workspace_mkdir_requests": 2,
+    "job_creations": 1,
+    "job_runs": 3,
+    "sql_file_task_executions": 16,
+    "known_active_run_cancellations": 1,
+    "normal_bronze_commits": 1,
+    "normal_silver_commits": 1,
+    "normal_manifest_transitions": 4,
+    "conditional_failed_manifest_updates": 1
+  },
+  "renewal_required": "86 fresh metadata/file GETs plus 18 consumed = 104 cumulative (18 above the original 86); 23 SQL additional/cumulative; 1181.483 active seconds additional plus 18.517 consumed = original 1200 ceiling. No new native request until explicit approval of this corrected scope and exact code/CI/hashes.",
+  "metadata_gets_by_phase": {
+    "before": 19,
+    "after_landing": 4,
+    "after_code_upload": 12,
+    "after_create": 1,
+    "before_process": 12,
+    "before_rerun": 12,
+    "final": 26
+  },
+  "metadata_gate_changes_only": [
+    {
+      "ordinal": 18,
+      "phase": "before",
+      "label": "original-source-file",
+      "old_gate": "RESOURCE_DOES_NOT_EXIST_ONLY",
+      "new_gate": "FILES_API_NOT_FOUND_OPTIONAL_ERROR_INFO",
+      "validator": "winterops.workspace_files.validate_absent_volume_file"
+    },
+    {
+      "ordinal": 19,
+      "phase": "before",
+      "label": "gzip-source-file",
+      "old_gate": "RESOURCE_DOES_NOT_EXIST_ONLY",
+      "new_gate": "FILES_API_NOT_FOUND_OPTIONAL_ERROR_INFO",
+      "validator": "winterops.workspace_files.validate_absent_volume_file"
+    }
+  ],
+  "workspace_absence_contract": "UNCHANGED_RESOURCE_DOES_NOT_EXIST_ONLY",
+  "private_metadata_operations_sha256": "b25d44df7c35e99bdf0ac5d6cac15bf70eef471e4bb7704d52087adf47e52eda",
+  "private_metadata_operations_relative_to_local_winterops": "incremental_ingestion_v1/acceptance/3eb5830b2232daf8a7b7ebf5794b17683695baa67944ae9f0a6a51ca0c81b404/b25d44df7c35e99bdf0ac5d6cac15bf70eef471e4bb7704d52087adf47e52eda/metadata_operations.json",
+  "private_matrix_sha256": "3eb5830b2232daf8a7b7ebf5794b17683695baa67944ae9f0a6a51ca0c81b404",
+  "private_record_uploads_sha256": "25d9278e168ae8e82286e37095d49cbf3fb810f746fcf2475f6ee819452356f6",
+  "request_sha256": "876c8aa2aa64352454d9b4ef4984e443b96257426c0ada61648d4a3c26434508",
+  "package_files_sha256": {
+    "preflight.sql": "4495cb12cc41a979f58a98b57f59c47828c5a80607312c63f9323c4e09c49f56",
+    "bronze.sql": "1a4ca20307c94180c7e78cccbd7a9315153709b6bd453d47d92cfb7c2ddc77d7",
+    "silver.sql": "648557096633725c94fd879b67473c7d8984f0a720ae52d9c7501a0399c72870",
+    "quality.sql": "ee16847e420778e07ff6a635d34ae7b1fba499c82f8a8ae6d329d11338abffcc",
+    "complete.sql": "f62ae34158a8a58397c33b8ba4e9c66407b319616df5fb4ddab246367f8ea631",
+    "failure_audit.sql": "0ce150a887ae9b26e84fa5e0e45518e9c3d925c6a7f9918b55def321d96a512a",
+    "job.json": "e5cae37468994dabed528e882fdc384fe6844673a66b693252ae2483fbcef44c",
+    "request.json": "3c65f674b21a9c923d6f3603a4b96ba9f2df03ce49b72d7882ee81301afb6a99"
+  },
+  "private_executor_relative_to_repo": ".venv/execute_incremental_files_absence_once.py",
+  "private_executor_sha256": "a93d885cdaadc26c17b904a788352d46bbeaa1a28971faceba67bc3bfcadd451",
+  "private_fixture_relative_to_repo": ".venv/incremental-files-absence-native-response.json",
+  "private_fixture_sha256": "b83ecdc053afa08c45af385da7564d3e7fec30718df6ae246cc2675961598f13",
+  "code_sha256_lf": {
+    "src/winterops/workspace_files.py": "42f411bf5c320ada1b1487e27533e03decf2109bcf471f37dfbbd277342e46fc",
+    "tests/test_files_api_absence.py": "6803dc537cea78ddbd343f48269f1db663461c348816549f7391b6f02f51236e"
+  },
+  "fresh_gate_requirement": "All 19 metadata readiness checks and five SQL predeployments before the first mutation; do not reuse previous metadata as current-state proof. Delta 3/4/13, prior records/COMPLETE manifests, new filename/version/key absence, both destinations absent, original Job/settings and no active writer are mandatory.",
+  "sequence": "VERIFY_ZERO_WRITES_THEN_PROCESS_APPEND_MISSING_COMPLETE_ATTEMPT_1_THEN_PROCESS_SKIP_VERIFIED_WITH_NO_NEW_COMMITS",
+  "expected_delta_versions": {
+    "before": {
+      "bronze": 3,
+      "silver": 4,
+      "manifest": 13
+    },
+    "after_verify": {
+      "bronze": 3,
+      "silver": 4,
+      "manifest": 13
+    },
+    "after_process": {
+      "bronze": 4,
+      "silver": 5,
+      "manifest": 17
+    },
+    "after_rerun": {
+      "bronze": 4,
+      "silver": 5,
+      "manifest": 17
+    }
+  },
+  "normal_writes": "ONLY_NEW_SOURCE_BRONZE_1_SILVER_1_MANIFEST_4_TRANSITIONS",
+  "conditional_failure": "STOP_FIRST_FAILURE_PRESERVE_PARTIAL_SCOPE_EXISTING_FAILURE_AUDIT_MAY_MARK_ONLY_OWN_ATTEMPT_1_FAILED_NEVER_DOWNGRADE_COMPLETE_NO_RECOVERY",
+  "protections": {
+    "existing_job_updates": 0,
+    "existing_workspace_file_writes": 0,
+    "old_scope_changes": 0,
+    "gold_ddl_or_selection_changes": 0,
+    "new_compute": 0,
+    "schedules": 0,
+    "grants_or_configuration_changes": 0,
+    "table_ddl": 0,
+    "overwrite_uploads": false,
+    "automatic_retries": 0,
+    "repairs": 0,
+    "cleanup": 0,
+    "intentional_failure_injection": 0
+  },
+  "native_requests_during_preparation": 0,
+  "continuation_not_authorized_by_unused_allowances": true,
+  "required_ci_tests": 209
+}
