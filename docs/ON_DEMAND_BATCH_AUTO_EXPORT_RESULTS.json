@@ -1,0 +1,194 @@
+{
+  "status": "STOPPED_AUTO_HTTP_200_EMPTY_FILE_TYPE_REJECTED_NO_REUSE_OR_DEPLOYMENT",
+  "recorded_at_utc": "2026-11-01T10:24:56.689797+00:00",
+  "execution_date_local": "2026-11-01",
+  "approved_implementation_revision": "4527d74ff27497b1e0d9d5e35fedffe53f49a5fb",
+  "execution_main_revision": "af7b03a9f4cdf2d9bdc215c3515e7dfc16020a45",
+  "merged_pr": 13,
+  "merged_tree_matches_reviewed_implementation": true,
+  "explicit_approval": "USER_APPROVED_EXACT_AUTO_PROBE_AND_CONDITIONAL_JOBS_24_SQL_215_METADATA_900_CUMULATIVE_SECONDS",
+  "approved_proposal_sha256_lf": "07db88a7ff053581c58eafd7135d1188c90c8b54e7141a65dd5f7a53c5550b94",
+  "private_sql_matrix_sha256": "920211e3d8a3edc3c512478736bf135f1958fb91a992a85b9a561aeedc6e8817",
+  "private_metadata_operation_sha256": "e35e1c1521c856ba6142e40746d4fe455bc1f77ac4a2d02b810cc62502ab8b1b",
+  "request_sha256": "4222da72f52c8699baf731fe01fbad7fbd8391615c1ae0f46b896380d38f966d",
+  "package_files_sha256": {
+    "preflight.sql": "b4fb88bb236c8d137d843ec8e04c36a16cfb860540d5768c47ac7896c390d9b1",
+    "bronze.sql": "7686e557cfe590f3d86db051a35d11d92714792fafd1e24e1357d629de1e19b5",
+    "silver.sql": "5966f34731ab1884d05d501f32dd614437685e8754fe2bf3e1812c1a0f2122df",
+    "quality.sql": "9c09d940d80666b521e4055f81c5b385db42f189c08698a64db85e99f8088301",
+    "complete.sql": "74ce4183f6c507edebcfa5ae5844e7635a936c21af56f3db376379543fca76e7",
+    "failure_audit.sql": "42cfe7eb2992e7c9ee45132e9b47153707faf7895ea861ce0a5994ebe286470f",
+    "job.json": "991c9e2679dd0fd614e0fee440f36003b03ac60a6c1b21438e6415e5a28ae032",
+    "request.json": "01e7b848d7fde5410fad008a5c9f2732e5b91bd0cac1069beeb636ed77cbd1e6"
+  },
+  "ci_before_native": {
+    "commit": "4527d74ff27497b1e0d9d5e35fedffe53f49a5fb",
+    "conclusion": "success",
+    "tests": 190,
+    "test_seconds": 2.018,
+    "render_checks": "PASS",
+    "run_id": 41293099506,
+    "url": "https://github.com/cevateness/winterops-databricks-lab/actions/runs/41293099506"
+  },
+  "local_gate_review": "PASS_ALL_CODE_PACKAGE_MATRIX_EVIDENCE_SOURCE_VERSION_CI_AND_USER_FILE_HASHES",
+  "local_rehearsal": "PASS_OFFLINE_ONLY_81_GET_13_SQL_AND_AUTO_PHASE_DEADLINE_NO_NATIVE_RUNTIME_CLAIM",
+  "native_request_statuses": [
+    {
+      "label": "auto_probe:identity",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.824,
+      "verification": "PASS"
+    },
+    {
+      "label": "auto_probe:existing-preflight-status",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 0.925,
+      "verification": "PASS"
+    },
+    {
+      "label": "auto_probe:existing-preflight-export",
+      "method": "GET",
+      "kind": "metadata",
+      "http_status": 200,
+      "elapsed_seconds": 1.447
+    }
+  ],
+  "phase_1": {
+    "planned_gets": 3,
+    "submitted_gets": 3,
+    "http_200_responses": 3,
+    "completed_validation_gates": 2,
+    "phase_deadline_seconds": 90,
+    "observed_active_seconds": 3.386,
+    "identity_workspace_gate": "PASS_SAME_APPROVED_IDENTITY_AND_WORKSPACE",
+    "file_status_gate": "PASS_EXACT_PATH_FILE_SAVED_POSITIVE_OBJECT_ID_AND_42883_BYTE_SIZE",
+    "object_id": "PRIVATE_NOT_PUBLISHED",
+    "export_format": "AUTO",
+    "direct_download": false,
+    "export_requests": 1,
+    "response_keys": [
+      "content",
+      "file_type"
+    ],
+    "observed_file_type": "",
+    "observed_file_type_json_type": "STRING",
+    "response_contract": "REJECTED_INVALID_EXPORT_FILE_TYPE_BEFORE_BASE64_DECODE",
+    "reuse_decision": "NOT_GRANTED",
+    "formats_fallen_back_to": [],
+    "retries": 0
+  },
+  "saved_response_offline_analysis": {
+    "analysis_performed_after_native_stop": true,
+    "new_workspace_requests": 0,
+    "canonical_base64": true,
+    "decoded_bytes": 42883,
+    "sha256": "b4fb88bb236c8d137d843ec8e04c36a16cfb860540d5768c47ac7896c390d9b1",
+    "expected_bytes_and_sha256": "MATCH",
+    "distinction": "SAVED_NATIVE_CONTENT_MATCHES_BUT_APPROVED_LIVE_VALIDATOR_DID_NOT_PASS_NO_CONTINUATION_AUTHORITY"
+  },
+  "blocker": {
+    "category": "CLIENT_OPTIONAL_METADATA_RESPONSE_CONTRACT",
+    "observed": "HTTP_200_AUTO_EXPORT_RETURNED_EMPTY_STRING_FILE_TYPE_AND_EXACT_PINNED_CONTENT",
+    "validator_requirement": "PRESENT_FILE_TYPE_MUST_BE_STRING_WITH_LENGTH_1_TO_64",
+    "reason": "NATIVE_EMPTY_OPTIONAL_FILE_TYPE_FAILS_NONEMPTY_STRING_CHECK",
+    "interpretation": "AUTO_ENDPOINT_RETURNED_EXPECTED_BYTES_RAW_UNSUPPORTED_ERROR_DID_NOT_RECUR_GUARD_REJECTED_METADATA_BEFORE_INTEGRITY_CHECKS",
+    "smallest_recommended_review": "CONSIDER_EMPTY_OPTIONAL_FILE_TYPE_AS_UNSPECIFIED_FOR_PINNED_FILE_WITH_ALL_PATH_IDENTITY_BASE64_SIZE_SHA_GATES_RETAINED",
+    "correction_applied": false,
+    "next_execution_requires_new_review_and_explicit_approval": true
+  },
+  "phase_2": "NOT_ENTERED",
+  "all_six_files_verified": false,
+  "approved_live_content_gate_successes": 0,
+  "job": {
+    "created": false,
+    "create_requests": 0,
+    "verify_run": "NOT_SUBMITTED",
+    "process_run": "NOT_SUBMITTED",
+    "task_statuses": [],
+    "task_outputs": []
+  },
+  "preservation": {
+    "delta_versions": "NOT_RECHECKED_THIS_ATTEMPT",
+    "last_known_historical_versions": {
+      "bronze": 3,
+      "silver": 4,
+      "manifest": 13
+    },
+    "manifest": "NOT_RECHECKED_THIS_ATTEMPT",
+    "gold": "NOT_RECHECKED_THIS_ATTEMPT",
+    "no_write_rerun_invariant": "NOT_EXERCISED",
+    "directories": "NOT_RECHECKED_OR_MODIFIED_THIS_ATTEMPT",
+    "prior_partial_footprint": "TWO_EXISTING_DIRECTORIES_AND_ONE_ACCEPTED_PREFLIGHT_SQL_NO_JOB",
+    "local_original_packages_plans_and_evidence": "UNCHANGED",
+    "unrelated_local_files": "BYTE_FOR_BYTE_UNCHANGED"
+  },
+  "actual_effects": {
+    "metadata_file_gets": 3,
+    "sql_submissions": 0,
+    "job_state_gets": 0,
+    "task_output_gets": 0,
+    "uploads": 0,
+    "upload_bytes": 0,
+    "job_creations": 0,
+    "job_runs": 0,
+    "directory_writes": 0,
+    "bronze_silver_manifest_dml": 0,
+    "table_view_ddl": 0,
+    "gold_changes": 0,
+    "new_source_processing": 0,
+    "new_compute": 0,
+    "grants_warehouse_or_schedule_changes": 0,
+    "overwrites": 0,
+    "preflight_reimports": 0,
+    "automatic_retries": 0,
+    "repairs": 0,
+    "cleanup": 0,
+    "after_failure_workspace_requests": 0
+  },
+  "active_elapsed_seconds": 3.386,
+  "cumulative_trial": {
+    "sql_submissions": 11,
+    "metadata_file_gets": 137,
+    "separate_initial_readiness_gets": 37,
+    "active_elapsed_seconds": 279.236,
+    "prior_directory_creations": 2,
+    "prior_accepted_code_imports": 1,
+    "prior_import_bytes": 42883,
+    "jobs_created": 0,
+    "job_runs": 0,
+    "unused_sql_slots": 13,
+    "unused_metadata_slots": 78,
+    "unused_active_seconds": 620.764,
+    "cumulative_ceilings": {
+      "sql": 24,
+      "metadata_file_gets": 215,
+      "active_seconds": 900
+    },
+    "unused_capacity_authority": "NONE_AFTER_STOP_NO_AUTOMATIC_CONTINUATION"
+  },
+  "native_capabilities": {
+    "auto_export_http_200": "OBSERVED",
+    "pinned_content_returned": "PROVED_BY_OFFLINE_ANALYSIS_OF_SAVED_NATIVE_RESPONSE",
+    "approved_full_response_gate": "FAILED",
+    "file_reuse": "NOT_GRANTED",
+    "jobs_creation_sql_file_execution_and_complete_only_reruns": "STILL_UNVERIFIED",
+    "genuinely_new_source_processing": "NOT_VERIFIED_OR_AUTHORIZED"
+  },
+  "offline_checks_after_native": {
+    "tests": 190,
+    "failures": 0,
+    "errors": 0,
+    "elapsed_seconds": 8.823,
+    "syntax": "PASS",
+    "aggregate_fixture": "PASS",
+    "sql_render_checks": 5,
+    "sql_render_checks_status": "PASS",
+    "synthetic_job_render": "PASS",
+    "native_requests": 0,
+    "reviewed_code_changed": false
+  }
+}
