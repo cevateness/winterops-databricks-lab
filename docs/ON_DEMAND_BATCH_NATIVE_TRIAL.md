@@ -1,4 +1,18 @@
-# Native Job trials — preflights passed; import response blocked deployment
+# Native Job trials — recovery blocked by RAW file export
+
+## Approved Workspace recovery — FILE identity/size PASS; RAW export unsupported (2026-11-01)
+
+From the exact approved PR #13 commit `eb6e689742c3eb17f05648ae1961db7cfe94fdd7`, proposal `4da8acaf…586a88`, SQL matrix `ecf753ee…fd6e61` and metadata-operation plan `22d0f622…62758a` matched all pins. All code/SQL/request/package/evidence hashes matched; [exact-head CI](https://github.com/cevateness/winterops-databricks-lab/actions/runs/41277726657) passed 186 tests and all render checks. The new runner used `workspace_files.py`, strict JSON and the exact ordered operation plan; an offline saved/synthetic-response rehearsal was separate from native evidence.
+
+**The native attempt stopped at metadata GET 19, before SQL or any mutation.** The first 18 gates passed: same authenticated identity/administrator, unchanged warehouse configuration with zero sessions, zero active Jobs, all 11 protected object metadata contracts, unused Job name and both existing directory path/type checks. Get-status confirmed the exact existing `preflight.sql` API path, **FILE** type, the same private object ID as the saved import, and **42,883 bytes**. The directories were preserved; no mkdir/delete/replace call occurred.
+
+The next approved request, `GET /api/2.0/workspace/export` with `format=RAW` and `direct_download=false`, returned **HTTP 400 / BAD_REQUEST**. Its sanitized error explicitly states that exporting a **FILE asset in RAW format is not supported**. The generic reference's format enumeration did not establish FILE-specific support in this workspace. This is an observed native API format-compatibility blocker, not a file identity mismatch or a successful content verification. The expected SHA-256 remains `b4fb88bb236c8d137d843ec8e04c36a16cfb860540d5768c47ac7896c390d9b1`; **no exported bytes/hash were obtained** and no reuse decision was returned.
+
+**Job creation: NOT ATTEMPTED. Both `verify` and `process`: NOT SUBMITTED.** There are no new task statuses, outputs or Job-based no-write/preservation results. The other five destination checks, source Volume fingerprints/ACL readiness and all four SQL checks were not reached. Delta anchors **3 / 4 / 13** and the exact COMPLETE manifest remain historical evidence and were **not reverified** by this attempt. No table/manifest DML, table/view DDL, Gold changes, new compute, directory writes, imports, scheduling, retries, repair or cleanup occurred. No alternate format, direct-download/file endpoint or after-failure workspace request was attempted.
+
+Actual usage: **19 metadata/file GETs (18 PASS / one HTTP 400), zero SQL, zero Job-state/output GETs, 18.479 active seconds**. Cumulative trial: **11 SQL / 134 execution metadata GETs / 275.850 active seconds**; the original separate readiness inventory remains 37. Old ceilings leave 13 SQL / 62 metadata GETs / 624.150 seconds unused, but they provide no authority to continue after this stop. The two directories and one earlier accepted code import remain; the file's content is still unverified.
+
+[Sanitized recovery results](ON_DEMAND_BATCH_WORKSPACE_RECOVERY_RESULTS.json) preserve request statuses, passed metadata gates, the unsupported-format error and unexecuted checks. The approved plan/matrices/package and original execution evidence remain unchanged. Next: review a supported FILE content-download/export route and its exact byte semantics, then obtain new bounded read-only approval before any request. Do not automatically switch to AUTO/SOURCE, reimport, overwrite or clean up the existing file. Results stay in PR #13; unrelated local files are preserved. Native Jobs compatibility and genuinely new-source processing remain unverified.
 
 ## Approved Gold continuation — five preflights PASS; partial Workspace landing (2026-10-31)
 
