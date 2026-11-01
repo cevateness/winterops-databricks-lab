@@ -213,3 +213,46 @@ class WorkspaceFileTests(unittest.TestCase):
         with self.assertRaises(WorkspaceContractError):
             verify_file_export(200,self.export,self.file,requested_path=self.file.path,
                 export_format='AUTO',direct_download=True)
+
+    def test_optional_empty_file_type_proves_full_reuse_without_import_or_overwrite(self):
+        args=dict(status_http=200,status_body=self.status,status_path=self.file.path,
+            export_http=200,export_path=self.file.path,export_format='AUTO',
+            direct_download=False,expected_object_id=42)
+        for body in (self.export,dict(self.export,file_type=''),dict(self.export,file_type='SQL'),
+                     dict(self.export,file_type='x'*64)):
+            with self.subTest(file_type=body.get('file_type')):
+                proof=verify_existing_file(self.file,export_body=body,**args)
+                self.assertEqual((proof.action,proof.import_required,proof.overwrite),('REUSE',False,False))
+                self.assertEqual((proof.byte_count,proof.sha256),(len(self.data),self.file.sha256))
+
+    def test_optional_file_type_rejects_non_strings_and_values_above_64_characters(self):
+        for value in (None,True,False,0,1,1.0,[],{},b'',b'SQL','x'*65):
+            with self.subTest(value_type=type(value).__name__),self.assertRaisesRegex(
+                    WorkspaceContractError,'^INVALID_EXPORT_FILE_TYPE$'):
+                verify_file_export(200,dict(self.export,file_type=value),self.file,
+                    requested_path=self.file.path,export_format='AUTO',direct_download=False)
+
+    def test_empty_file_type_does_not_bypass_content_or_identity_gates(self):
+        body=dict(self.export,file_type='')
+        args=dict(status_http=200,status_body=self.status,status_path=self.file.path,
+            export_http=200,export_body=body,export_path=self.file.path,export_format='AUTO',
+            direct_download=False,expected_object_id=42)
+        cases=(
+            (dict(export_body=dict(body,unexpected=True)),'UNEXPECTED_EXPORT_RESPONSE'),
+            (dict(export_body=dict(body,truncated=True)),'UNEXPECTED_EXPORT_RESPONSE'),
+            (dict(export_body=dict(body,next_page_token='more')),'UNEXPECTED_EXPORT_RESPONSE'),
+            (dict(export_body=dict(body,content='!'*len(body['content']))),'INVALID_BASE64_EXPORT'),
+            (dict(export_body=dict(body,content=body['content'][:-4])),'EXPORT_ENCODED_SIZE_MISMATCH'),
+            (dict(export_body=dict(body,content=base64.b64encode(b'X'*len(self.data)).decode())),'EXPORT_SHA256_MISMATCH'),
+            (dict(export_body='{"file_type":"","file_type":"","content":"'+body['content']+'"}'),'DUPLICATE_JSON_KEY'),
+            (dict(export_body='{'),'INVALID_JSON_RESPONSE'),
+            (dict(status_body=dict(self.status,object_type='NOTEBOOK')),'OBJECT_TYPE_MISMATCH'),
+            (dict(expected_object_id=43),'OBJECT_ID_CHANGED'),
+            (dict(export_path=self.file.path+'.other'),'EXPORT_REQUEST_PATH_MISMATCH'),
+            (dict(export_format='SOURCE'),'EXPLICIT_FILE_JSON_EXPORT_REQUIRED'),
+            (dict(direct_download=True),'EXPLICIT_FILE_JSON_EXPORT_REQUIRED'),
+            (dict(export_http=206),'HTTP_200_REQUIRED_STOP_NO_RETRY'),
+        )
+        for change,code in cases:
+            with self.subTest(code=code),self.assertRaisesRegex(WorkspaceContractError,'^'+code+'$'):
+                verify_existing_file(self.file,**dict(args,**change))
