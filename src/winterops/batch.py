@@ -14,6 +14,8 @@ from winterops.landing import OriginalLanding, VOLUME
 from winterops.sources import SourceVersion, WeeklySource, outside_git
 from winterops.spark_ingestion import DevelopmentTargets
 
+DEFAULT_JOB_NAME = 'WinterOps on-demand V1'
+
 
 def digest(value):
     return hashlib.sha256(json.dumps(value, sort_keys=True, separators=(',', ':'),
@@ -120,16 +122,19 @@ class Task:
             step.render() for step in self.steps) + '\nEND;\n'
 
 
-def job_definition(request, warehouse_id, workspace_root):
+def job_definition(request, warehouse_id, workspace_root, *, job_name=DEFAULT_JOB_NAME):
     """Jobs create-settings JSON; no schedules, clusters, deployment or run-now."""
     from winterops.batch_sql import tasks
+    if (not isinstance(job_name, str) or not job_name.strip() or job_name != job_name.strip()
+            or len(job_name) > 120 or any(ord(c) < 32 or ord(c) == 127 for c in job_name)):
+        raise ValueError('Require an explicit bounded Job name without control characters')
     if (not re.fullmatch('[0-9a-f]{16}', warehouse_id)
             or not re.fullmatch(r'/Workspace/(?:[A-Za-z0-9_.@-]+/)*[A-Za-z0-9_.@-]+', workspace_root)
             or any(part in ('.', '..') for part in workspace_root.split('/'))):
         raise ValueError('Explicit existing warehouse and safe private workspace file root required')
     params = dict(source_version_id=request.version.version_id, processing_key=request.key,
                   request_sha256=request.sha256, execution_mode='verify', recovery='deny')
-    result = dict(name='WinterOps on-demand V1', max_concurrent_runs=1,
+    result = dict(name=job_name, max_concurrent_runs=1,
                 queue={'enabled': False}, timeout_seconds=600,
                 parameters=[dict(name=k, default=v) for k, v in params.items()],
                 tasks=[dict(task_key=t.key, depends_on=[{'task_key': d} for d in t.dependencies],
@@ -142,10 +147,10 @@ def job_definition(request, warehouse_id, workspace_root):
     return result
 
 
-def prepare_job(request, output_root, warehouse_id, workspace_root):
+def prepare_job(request, output_root, warehouse_id, workspace_root, *, job_name=DEFAULT_JOB_NAME):
     """Write an immutable private review package outside every Git working tree."""
     from winterops.batch_sql import tasks
-    job = job_definition(request, warehouse_id, workspace_root)
+    job = job_definition(request, warehouse_id, workspace_root, job_name=job_name)
     rendered = {t.key + '.sql': t.render() for t in tasks(request)}
     rendered['job.json'] = json.dumps(job, indent=2) + '\n'
     rendered['request.json'] = json.dumps(request.to_dict(), indent=2) + '\n'

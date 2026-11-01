@@ -5,7 +5,7 @@ from pathlib import Path
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'src'))
-from winterops.batch import BatchRequest, prepare_job, synthetic_request
+from winterops.batch import DEFAULT_JOB_NAME, BatchRequest, prepare_job, synthetic_request
 
 
 def main():
@@ -16,11 +16,13 @@ def main():
     parser.add_argument('--output-root', type=Path, required=True, help='Private directory outside Git')
     parser.add_argument('--warehouse-id', required=True, help='Previously approved existing SQL warehouse')
     parser.add_argument('--workspace-root', required=True, help='Reviewed private Workspace files destination')
+    parser.add_argument('--job-name', default=DEFAULT_JOB_NAME, help='Distinct acceptance Job name; existing default is preserved')
     args = parser.parse_args()
     try:
         request = synthetic_request() if args.synthetic_example else BatchRequest.from_dict(
             json.loads(args.request.read_text(encoding='utf-8-sig')))
-        print(json.dumps(prepare_job(request, args.output_root, args.warehouse_id, args.workspace_root), indent=2))
+        print(json.dumps(prepare_job(request, args.output_root, args.warehouse_id, args.workspace_root,
+                                     job_name=args.job_name), indent=2))
     except Exception as error:
         # Paths, API configuration and record-bearing exception text stay private.
         print(json.dumps(dict(status='FAILED', error_type=type(error).__name__)), file=sys.stderr)
