@@ -1,8 +1,8 @@
 """Pure Workspace response gates. No auth, HTTP client, writes or retries.
 
 An import acknowledgement never proves content integrity. Reuse requires exact
-get-status metadata followed by RAW export length/hash verification. Errors use
-fixed codes so response bodies, object IDs and private paths are not echoed.
+get-status metadata followed by explicitly selected export length/hash verification.
+Errors use fixed codes so response bodies, object IDs and private paths are not echoed.
 """
 import base64
 import binascii
@@ -120,11 +120,11 @@ class VerifiedExport:
     sha256: str
 
 
-def verify_raw_export(http_status, body, contract, *, requested_path, export_format, direct_download):
-    """Return hash/size proof only; never return decoded private SQL content."""
+def verify_file_export(http_status, body, contract, *, requested_path, export_format, direct_download):
+    """Verify an explicitly selected RAW or AUTO JSON export; never fall back."""
     require(isinstance(contract, FileContract), 'FILE_CONTRACT_REQUIRED')
     require(requested_path == contract.path, 'EXPORT_REQUEST_PATH_MISMATCH')
-    require(export_format == 'RAW' and direct_download is False, 'RAW_JSON_EXPORT_REQUIRED')
+    require(export_format in ('RAW', 'AUTO') and direct_download is False, 'EXPLICIT_FILE_JSON_EXPORT_REQUIRED')
     body = _ok(http_status, body)
     require('content' in body and set(body) <= {'content', 'file_type'}, 'UNEXPECTED_EXPORT_RESPONSE')
     if 'file_type' in body:
@@ -139,6 +139,13 @@ def verify_raw_export(http_status, body, contract, *, requested_path, export_for
     require(len(decoded) == contract.byte_count, 'EXPORT_DECODED_SIZE_MISMATCH')
     require(hashlib.sha256(decoded).hexdigest() == contract.sha256, 'EXPORT_SHA256_MISMATCH')
     return VerifiedExport(len(decoded), contract.sha256)
+
+
+def verify_raw_export(http_status, body, contract, *, requested_path, export_format, direct_download):
+    """Historical RAW-only entrypoint; AUTO must be explicitly selected elsewhere."""
+    require(export_format == 'RAW', 'RAW_JSON_EXPORT_REQUIRED')
+    return verify_file_export(http_status, body, contract, requested_path=requested_path,
+        export_format=export_format, direct_download=direct_download)
 
 
 @dataclass(frozen=True)
@@ -161,7 +168,7 @@ def verify_existing_file(contract, *, status_http, status_body, status_path,
     object_id = validate_object_status(status_http, status_body, requested_path=status_path,
         expected_path=contract.path, object_type='FILE', expected_object_id=expected_object_id,
         expected_bytes=contract.byte_count)
-    proof = verify_raw_export(export_http, export_body, contract, requested_path=export_path,
+    proof = verify_file_export(export_http, export_body, contract, requested_path=export_path,
         export_format=export_format, direct_download=direct_download)
     return ReusableWorkspaceFile(contract.path, object_id, proof.byte_count, proof.sha256)
 

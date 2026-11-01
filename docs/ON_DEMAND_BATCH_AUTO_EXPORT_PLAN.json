@@ -1,0 +1,448 @@
+{
+  "status": "PREPARED_NOT_APPROVED_NOT_EXECUTED",
+  "prepared_on": "2026-11-01",
+  "baseline_commit": "098585824bc292376e387b15d279b141c7961f32",
+  "pr": 13,
+  "requires_approval_of_exact_code_commit_plan_matrix_and_metadata_operation_hashes": true,
+  "requires_exact_commit_ci_success": true,
+  "reviewed_official_api_sources": [
+    "https://docs.databricks.com/api/workspace-files/v1/import",
+    "https://docs.databricks.com/api/workspace-files/v1/get-status",
+    "https://docs.databricks.com/api/workspace-files/v1/export"
+  ],
+  "import_object_id_success_source": "OBSERVED_HTTP_200_RESPONSE_IN_SAVED_NATIVE_EVIDENCE; retrieved API reference does not enumerate import success-body variants",
+  "source_evidence": "docs/ON_DEMAND_BATCH_WORKSPACE_RECOVERY_RESULTS.json",
+  "source_evidence_sha256_lf": "a38c9be92cecfe4ba41c5156a445f85d50842ffd8d0da3934214a65dd3c9f54c",
+  "private_matrix_sha256": "920211e3d8a3edc3c512478736bf135f1958fb91a992a85b9a561aeedc6e8817",
+  "private_matrix_relative_to_local_winterops": "batch_v1/workspace_auto_export_20261101/920211e3d8a3edc3c512478736bf135f1958fb91a992a85b9a561aeedc6e8817/statement_matrix.json",
+  "private_metadata_operations_sha256": "e35e1c1521c856ba6142e40746d4fe455bc1f77ac4a2d02b810cc62502ab8b1b",
+  "private_metadata_operations_relative_to_local_winterops": "batch_v1/workspace_auto_export_20261101/920211e3d8a3edc3c512478736bf135f1958fb91a992a85b9a561aeedc6e8817/e35e1c1521c856ba6142e40746d4fe455bc1f77ac4a2d02b810cc62502ab8b1b/metadata_operations.json",
+  "request_sha256": "4222da72f52c8699baf731fe01fbad7fbd8391615c1ae0f46b896380d38f966d",
+  "write_policy": "complete_only",
+  "source_version_id": "8ccb2a2dd5ec057361cf6d7cc7193b5acbdd858b84102ba550a92febe9bb4ed1",
+  "processing_key": "f07ba6a0ad499a9baf53d2f7c46df09607523371428791593143a29b56f6b466",
+  "existing_preflight": {
+    "job_path": "/Workspace/Shared/winterops_on_demand_v1/4222da72f52c8699baf731fe01fbad7fbd8391615c1ae0f46b896380d38f966d/preflight.sql",
+    "api_path": "/Shared/winterops_on_demand_v1/4222da72f52c8699baf731fe01fbad7fbd8391615c1ae0f46b896380d38f966d/preflight.sql",
+    "object_type": "FILE",
+    "decoded_bytes": 42883,
+    "sha256": "b4fb88bb236c8d137d843ec8e04c36a16cfb860540d5768c47ac7896c390d9b1",
+    "status_object_id": "MUST_EQUAL_SAVED_POSITIVE_IMPORT_ID_PINNED_PRIVATELY",
+    "get_status_required": true,
+    "direct_download": false,
+    "reuse_only_after_both_gates": true,
+    "repeat_imports": 0,
+    "overwrite": false,
+    "remote_verification": "AUTO_NOT_ATTEMPTED_RAW_HTTP_400_SAVED_METADATA_ONLY",
+    "export_format": "AUTO",
+    "content_readback_required": true,
+    "fallback_formats": [],
+    "retries": 0
+  },
+  "existing_directories": [
+    {
+      "api_path": "/Shared/winterops_on_demand_v1",
+      "object_type": "DIRECTORY"
+    },
+    {
+      "api_path": "/Shared/winterops_on_demand_v1/4222da72f52c8699baf731fe01fbad7fbd8391615c1ae0f46b896380d38f966d",
+      "object_type": "DIRECTORY"
+    }
+  ],
+  "mkdir_requests": 0,
+  "delete_requests": 0,
+  "reset_requests": 0,
+  "overwrite": false,
+  "task_repair": 0,
+  "cleanup": 0,
+  "new_upload_files": [
+    "bronze.sql",
+    "silver.sql",
+    "quality.sql",
+    "complete.sql",
+    "failure_audit.sql"
+  ],
+  "new_uploads_maximum": 5,
+  "new_upload_total_bytes": 146861,
+  "prior_uploads": 1,
+  "prior_upload_bytes": 42883,
+  "cumulative_uploads_maximum": 6,
+  "cumulative_upload_bytes": 189744,
+  "sql_statements": [
+    {
+      "position": 1,
+      "phase": "before",
+      "label": "before-history-bronze",
+      "sql_sha256": "2ee2ab735ede78283bb585333346d618d93d35afd0e0043be76d06d40ab392a9",
+      "expectation": "ONE_LATEST_VERSION_ROW_SAVE_PRIVATELY",
+      "original_position": 5,
+      "sql_bytes": 66,
+      "source_position": 3
+    },
+    {
+      "position": 2,
+      "phase": "before",
+      "label": "before-history-silver",
+      "sql_sha256": "4618c85a19573c24271ab529fdf9a85237a733dae13edfdfa29508c33297495d",
+      "expectation": "ONE_LATEST_VERSION_ROW_SAVE_PRIVATELY",
+      "original_position": 6,
+      "sql_bytes": 66,
+      "source_position": 4
+    },
+    {
+      "position": 3,
+      "phase": "before",
+      "label": "before-history-manifest",
+      "sql_sha256": "5801549ab947fe28093d6a96ef6e8a593a759caefc594f44624732c81d1d8d16",
+      "expectation": "ONE_LATEST_VERSION_ROW_SAVE_PRIVATELY",
+      "original_position": 7,
+      "sql_bytes": 68,
+      "source_position": 5
+    },
+    {
+      "position": 4,
+      "phase": "before",
+      "label": "published-gold-baselines",
+      "sql_sha256": "5cae3ad02952b1aa279be16dd38b2cd334d86280921869365fed49ec0c0ec135",
+      "expectation": "THREE_WEEK_ROWS_MATCH_2810_110337_118159_AND_LEGACY_BASELINE",
+      "original_position": 4,
+      "sql_bytes": 674,
+      "source_position": 2
+    },
+    {
+      "position": 5,
+      "phase": "after_run_1",
+      "label": "after_run_1-history-bronze",
+      "sql_sha256": "2ee2ab735ede78283bb585333346d618d93d35afd0e0043be76d06d40ab392a9",
+      "expectation": "LATEST_VERSION_EXACTLY_EQUALS_BEFORE",
+      "original_position": 8,
+      "sql_bytes": 66,
+      "source_position": 6
+    },
+    {
+      "position": 6,
+      "phase": "after_run_1",
+      "label": "after_run_1-history-silver",
+      "sql_sha256": "4618c85a19573c24271ab529fdf9a85237a733dae13edfdfa29508c33297495d",
+      "expectation": "LATEST_VERSION_EXACTLY_EQUALS_BEFORE",
+      "original_position": 9,
+      "sql_bytes": 66,
+      "source_position": 7
+    },
+    {
+      "position": 7,
+      "phase": "after_run_1",
+      "label": "after_run_1-history-manifest",
+      "sql_sha256": "5801549ab947fe28093d6a96ef6e8a593a759caefc594f44624732c81d1d8d16",
+      "expectation": "LATEST_VERSION_EXACTLY_EQUALS_BEFORE",
+      "original_position": 10,
+      "sql_bytes": 68,
+      "source_position": 8
+    },
+    {
+      "position": 8,
+      "phase": "after_run_1",
+      "label": "after_run_1-manifest-snapshot",
+      "sql_sha256": "bb43ab6b6672a6fbf83f6525b271cc95405213dae77484fe840d230b6d90ee03",
+      "expectation": "FULL_RETURNED_ROW_EXACTLY_EQUALS_BEFORE",
+      "original_position": 11,
+      "sql_bytes": 437,
+      "source_position": 9
+    },
+    {
+      "position": 9,
+      "phase": "after_run_2",
+      "label": "after_run_2-history-bronze",
+      "sql_sha256": "2ee2ab735ede78283bb585333346d618d93d35afd0e0043be76d06d40ab392a9",
+      "expectation": "LATEST_VERSION_EXACTLY_EQUALS_BEFORE",
+      "original_position": 12,
+      "sql_bytes": 66,
+      "source_position": 10
+    },
+    {
+      "position": 10,
+      "phase": "after_run_2",
+      "label": "after_run_2-history-silver",
+      "sql_sha256": "4618c85a19573c24271ab529fdf9a85237a733dae13edfdfa29508c33297495d",
+      "expectation": "LATEST_VERSION_EXACTLY_EQUALS_BEFORE",
+      "original_position": 13,
+      "sql_bytes": 66,
+      "source_position": 11
+    },
+    {
+      "position": 11,
+      "phase": "after_run_2",
+      "label": "after_run_2-history-manifest",
+      "sql_sha256": "5801549ab947fe28093d6a96ef6e8a593a759caefc594f44624732c81d1d8d16",
+      "expectation": "LATEST_VERSION_EXACTLY_EQUALS_BEFORE",
+      "original_position": 14,
+      "sql_bytes": 68,
+      "source_position": 12
+    },
+    {
+      "position": 12,
+      "phase": "after_run_2",
+      "label": "after_run_2-manifest-snapshot",
+      "sql_sha256": "bb43ab6b6672a6fbf83f6525b271cc95405213dae77484fe840d230b6d90ee03",
+      "expectation": "FULL_RETURNED_ROW_EXACTLY_EQUALS_BEFORE",
+      "original_position": 15,
+      "sql_bytes": 437,
+      "source_position": 13
+    },
+    {
+      "position": 13,
+      "phase": "after_run_2",
+      "label": "after-published-gold-baselines",
+      "sql_sha256": "5cae3ad02952b1aa279be16dd38b2cd334d86280921869365fed49ec0c0ec135",
+      "expectation": "ALL_RETURNED_AGGREGATES_EXACTLY_EQUAL_BEFORE",
+      "original_position": 16,
+      "sql_bytes": 674,
+      "source_position": 14
+    }
+  ],
+  "sql_queries_changed": false,
+  "reuse_native_guard": {
+    "evidence": "SUCCESSFUL_ORIGINAL_POSITION_1",
+    "fresh_required_delta_versions": {
+      "bronze": 3,
+      "silver": 4,
+      "manifest": 13
+    },
+    "fresh_object_schema_identity_definitions_required": true,
+    "fresh_source_file_fingerprints_required": true,
+    "exact_manifest_seed": {
+      "processing_key": "f07ba6a0ad499a9baf53d2f7c46df09607523371428791593143a29b56f6b466",
+      "source_version_id": "8ccb2a2dd5ec057361cf6d7cc7193b5acbdd858b84102ba550a92febe9bb4ed1",
+      "source_file_sha256": "271c9339a42043f441b6c17e82dd309609db4b20e9953b9f368a95ec472d763d",
+      "status": "COMPLETE",
+      "last_successful_stage": "COMPLETE",
+      "attempts": 2,
+      "bronze_rows": 2810,
+      "silver_rows": 2810,
+      "error_code": null,
+      "updated_at_utc": "2026-10-29 13:14:58.044428",
+      "metadata_sha256": "c2d08257c9d97b523832c5494b93ab59aa1ba3f263a02307d416b28a4df624d0",
+      "policy_json_sha256": "ecb195bd0381aa104a562a121f9e7e43b5f8f97d57e19ffb0698571636b323b5"
+    },
+    "on_any_version_or_lineage_mismatch": "STOP_DO_NOT_REPEAT_GUARD_OR_REPAIR_AUTOMATICALLY"
+  },
+  "predeployment_sql_positions": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "predeployment_source_positions": [
+    3,
+    4,
+    5,
+    2
+  ],
+  "metadata_gets_by_phase": {
+    "auto_probe": 3,
+    "before": 26,
+    "after_each_new_import": 10,
+    "after_create": 1,
+    "before_run_2": 12,
+    "final": 29
+  },
+  "metadata_file_gets_maximum": 81,
+  "job_state_gets_maximum": 90,
+  "task_output_gets_maximum": 10,
+  "prior_consumed": {
+    "sql": 11,
+    "metadata_file_gets": 134,
+    "active_seconds": 275.85,
+    "separate_initial_readiness_gets": 37,
+    "directories": 2,
+    "code_imports": 1,
+    "code_import_bytes": 42883,
+    "jobs_created": 0,
+    "runs_submitted": 0
+  },
+  "new_sql_maximum": 13,
+  "previous_sql_ceiling": 24,
+  "proposed_cumulative_sql_ceiling": 24,
+  "previous_metadata_ceiling": 196,
+  "proposed_cumulative_metadata_file_get_ceiling": 215,
+  "remaining_active_seconds": 624.15,
+  "cumulative_active_ceiling_seconds": 900,
+  "new_explicit_approval_required": true,
+  "statement_wait_timeout": "30s",
+  "on_wait_timeout": "CANCEL",
+  "sql_client_deadline_seconds": 45,
+  "row_limit": 200,
+  "byte_limit": 65536,
+  "metadata_client_deadline_seconds": 30,
+  "metadata_response_byte_limit": 1048576,
+  "sql_file_byte_limit": 262144,
+  "total_sql_upload_byte_limit": 1048576,
+  "job_name": "WinterOps on-demand V1",
+  "job_creations_maximum": 1,
+  "job_updates": 0,
+  "job_runs_maximum": 2,
+  "proposed_runs": [
+    {
+      "execution_mode": "verify",
+      "recovery": "deny"
+    },
+    {
+      "execution_mode": "process",
+      "recovery": "deny"
+    }
+  ],
+  "expected_task_outputs": {
+    "preflight": {
+      "columns": [
+        "state_check",
+        "decision",
+        "bronze_n",
+        "silver_n"
+      ],
+      "rows": 1,
+      "decision": "SKIP_VERIFIED",
+      "bronze_n": 2810,
+      "silver_n": 2810
+    },
+    "bronze": {
+      "columns": [
+        "schema_check"
+      ],
+      "rows": 1
+    },
+    "silver": {
+      "columns": [
+        "schema_check"
+      ],
+      "rows": 1
+    },
+    "quality": {
+      "columns": [
+        "schema_check"
+      ],
+      "rows": 1
+    },
+    "complete": {
+      "columns": [
+        "batch_outcome"
+      ],
+      "rows": 1,
+      "batch_outcome": "COMPLETE_ELIGIBLE"
+    },
+    "failure_audit": {
+      "result_state": "EXCLUDED"
+    }
+  },
+  "job_timeout_seconds": 600,
+  "task_timeout_seconds": 90,
+  "max_concurrent_runs": 1,
+  "queue_enabled": false,
+  "schedule": null,
+  "retries": 0,
+  "status_poll_interval_seconds": 5,
+  "job_sql_file_executions_maximum": 11,
+  "run_cancellations_maximum": 1,
+  "private_package_relative_to_local_winterops": "batch_v1/review_full_type_20261030/4222da72f52c8699baf731fe01fbad7fbd8391615c1ae0f46b896380d38f966d",
+  "package_files_sha256": {
+    "preflight.sql": "b4fb88bb236c8d137d843ec8e04c36a16cfb860540d5768c47ac7896c390d9b1",
+    "bronze.sql": "7686e557cfe590f3d86db051a35d11d92714792fafd1e24e1357d629de1e19b5",
+    "silver.sql": "5966f34731ab1884d05d501f32dd614437685e8754fe2bf3e1812c1a0f2122df",
+    "quality.sql": "9c09d940d80666b521e4055f81c5b385db42f189c08698a64db85e99f8088301",
+    "complete.sql": "74ce4183f6c507edebcfa5ae5844e7635a936c21af56f3db376379543fca76e7",
+    "failure_audit.sql": "42cfe7eb2992e7c9ee45132e9b47153707faf7895ea861ce0a5994ebe286470f",
+    "job.json": "991c9e2679dd0fd614e0fee440f36003b03ac60a6c1b21438e6415e5a28ae032",
+    "request.json": "01e7b848d7fde5410fad008a5c9f2732e5b91bd0cac1069beeb636ed77cbd1e6"
+  },
+  "sql_package_bytes": 189744,
+  "job_package_rewritten": false,
+  "code_sha256_lf_normalized": {
+    "src/winterops/batch.py": "8afdfddb4467c1320c5a7548811e5a5403b8996802846b37e9a9e846d1c2505a",
+    "src/winterops/batch_sql.py": "baf24f0d3ad22db7f45fdc850ddcf2094ddeaa2ddc04f309e442fc4330ca0fc5",
+    "src/winterops/spark_ingestion.py": "fd4b3a8c1f7d51859f38d6450d8a1d02abff618ce407a33f50bcc2236d031d6b",
+    "src/winterops/unified_gold.py": "b81aefd6ac975efb10db83493decedeab51fb5d38855631cc4c00fc8e045cfbf",
+    "src/winterops/sql/v2_silver.sql": "f37625c269c7c64b05bd2531deeeb846823e808561e697abacfda668cf4ccef4",
+    "src/winterops/foundation.py": "6875c7d840a9a4102b8511da3f2ced73da8dd0f668586ef5b62860b8bbc40f5a",
+    "src/winterops/sources.py": "195843094002c59195ea7d306d941cac30d612a804a9eb7a890ca708c235bf19",
+    "tests/test_batch.py": "3045b3d39229a42a2885373166922e58081497df71e5c087413347b3f050d854",
+    "sql/batch_schema_metadata_diagnostic.sql": "a4648e831a1d3360cdc117e372ed52758f048874ad8df066e7296a780d13ed7c",
+    "src/winterops/sql/gold_hourly.sql": "ba5178a7633b4d5eca669bb51e26b1bbc4a5b156b7a76994b1726d0f657222f7",
+    "src/winterops/sql/batch_gold_baselines.sql": "4a5972a953cc7a5ef0f93ee4ef23deba7d224a1151d9bae768317831dde900b3",
+    "tests/test_batch_baseline_contracts.py": "5cc0ff72fe278fe55d881b0ba83cd947466923c642922c411b0b4c7bfeace4a2",
+    "src/winterops/workspace_files.py": "de3c0dada54f5d235d45f4504867d706c0764d71623d90325e9c35bf11f8af29",
+    "tests/test_workspace_files.py": "e040ab01fc1bf2a85cd91f7074b129f298d741d6735efb04eca94990fbc812d6"
+  },
+  "import_response_policy": "HTTP_200_EMPTY_BODY_OR_EXACT_POSITIVE_INT64_OBJECT_ID_ACK_ONLY_NEVER_CONTENT_PROOF",
+  "body_decoder_policy": "STRICT_JSON_NO_DUPLICATE_KEYS_NO_MALFORMED_OR_MISSING_RESPONSES",
+  "code_integrity": "STATUS_AND_EXPLICIT_AUTO_EXPORT_ALL_SIX_BEFORE_RUN_1_AND_RUN_2_AND_FINAL",
+  "deployment_gate": "FRESH_READINESS_EXISTING_FILE_AND_DIRECTORIES_VERIFIED_FIVE_DESTINATIONS_ABSENT_JOB_NAME_UNUSED_ALL_FOUR_FRESH_SQL_CHECKS_PASS_ALL_SIX_CODE_CONTENT_HASHES_PASS",
+  "stop_rule": "FIRST_FAILURE_MISMATCH_TIMEOUT_CANCELLATION_INCOMPLETE_OR_UNEXPECTED_RESULT_NO_RETRY_NO_AUTOMATIC_RECOVERY",
+  "prohibited": {
+    "table_manifest_dml": 0,
+    "table_view_ddl": 0,
+    "gold_changes": 0,
+    "new_compute": 0,
+    "grants_or_warehouse_changes": 0,
+    "new_source_processing": 0,
+    "record_bearing_uploads": 0,
+    "preflight_reimport": 0,
+    "directory_recreation": 0
+  },
+  "native_workspace_requests_during_preparation": 0,
+  "native_jobs_compatibility": "STILL_UNVERIFIED",
+  "supersedes_proposal_sha256_lf": "4da8acafbb6283ad12a52116198cc658db90edb4316a0101c97a6b0dbe586a88",
+  "reused_successful_guard_evidence": "docs/ON_DEMAND_BATCH_GOLD_BASELINE_NATIVE_RESULTS.json",
+  "reused_successful_guard_evidence_sha256_lf": "565ef4298c011a1f8d3bca5ee52e40823c3a31b85bd573e80b6819dd071528fe",
+  "official_export_contract": "EXPLICIT_CASE_SENSITIVE_AUTO_OBJECT_TYPE_SELECTED_REPRESENTATION_WITH_DIRECT_DOWNLOAD_FALSE_BASE64_CONTENT_JSON",
+  "native_auto_export_compatibility": "UNVERIFIED_UNTIL_EXACT_BYTES_AND_SHA256_PASS",
+  "previous_private_matrix_sha256": "ecf753ee6146875099bb630858fe20fa5bf3c53dba3829d5cbd14d3401fd6e61",
+  "private_matrix_change": "ONLY_PRIOR_AND_REMAINING_ACTIVE_SECONDS_ALL_13_SQL_STEPS_BYTE_IDENTICAL",
+  "previous_private_metadata_operations_sha256": "22d0f622f744c1d2ef4b802d73b8c1ba8ab150ed6037a24fa7fd0a5cdd62758a",
+  "metadata_operation_changes": "MOVE_IDENTITY_EXISTING_FILE_STATUS_EXPORT_TO_THREE_GET_PROBE_SELECT_AUTO_FOR_ALL_18_PLANNED_CONTENT_READBACKS",
+  "import_format": "RAW",
+  "content_readback_format": "AUTO",
+  "direct_download": false,
+  "format_fallbacks": 0,
+  "automatic_retries": 0,
+  "single_read_only_auto_test": {
+    "phase": "auto_probe",
+    "metadata_file_gets_maximum": 3,
+    "ordered_operations": [
+      "identity",
+      "existing-preflight-status",
+      "existing-preflight-export"
+    ],
+    "export_requests_maximum": 1,
+    "format": "AUTO",
+    "direct_download": false,
+    "sql_submissions": 0,
+    "uploads": 0,
+    "directory_writes": 0,
+    "jobs_created": 0,
+    "runs_submitted": 0,
+    "phase_deadline_seconds": 90,
+    "request_deadline_seconds": 30,
+    "response_byte_limit": 1048576,
+    "deadline_includes_auth_and_all_three_requests": true,
+    "consumes_same_81_get_and_624_150_second_continuation_budget": true,
+    "require_exact_path_file_saved_identity_decoded_bytes_and_sha256": true,
+    "on_failure": "STOP_NO_FALLBACK_NO_RETRY_NO_DEPLOYMENT"
+  },
+  "conditional_continuation": {
+    "requires_new_explicit_approval_of_this_combined_scope": true,
+    "requires_auto_probe_success": true,
+    "remaining_metadata_gets_maximum": 78,
+    "remaining_active_deadline": "624.150_MINUS_ACTUAL_AUTO_PROBE_ACTIVE_SECONDS",
+    "fresh_readiness_metadata_gets": 26,
+    "fresh_predeployment_sql_statements": 4,
+    "imports": 5,
+    "import_bytes": 146861,
+    "import_format": "RAW",
+    "overwrite": false,
+    "preflight_reimport": 0,
+    "mkdir": 0,
+    "job_creations": 1,
+    "runs": 2,
+    "code_file_export_format": "AUTO",
+    "no_other_route_or_execution_is_authorized_by_unused_capacity": true
+  }
+}

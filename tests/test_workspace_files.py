@@ -10,7 +10,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'src'))
 from winterops.workspace_files import (
     FileContract, WorkspaceContractError, validate_import_response,
     validate_object_status, verify_raw_export, validate_absent_destination,
-    validate_unused_job_name, verify_existing_file,
+    validate_unused_job_name, verify_existing_file, verify_file_export,
 )
 
 
@@ -165,3 +165,51 @@ class WorkspaceFileTests(unittest.TestCase):
                        dict(export_body={'content':base64.b64encode(b'X'*len(self.data)).decode()})):
             with self.subTest(change=list(change)),self.assertRaises(WorkspaceContractError):
                 verify_existing_file(self.file,**dict(args,**change))
+
+    def test_explicit_auto_export_proves_the_same_exact_bytes_without_raw_fallback(self):
+        proof=verify_file_export(200,self.export,self.file,requested_path=self.file.path,
+            export_format='AUTO',direct_download=False)
+        self.assertEqual((proof.byte_count,proof.sha256),(len(self.data),self.file.sha256))
+        self.assertEqual(proof,self.export_check())
+        self.assertEqual(proof,verify_file_export(200,
+            ('{"content":"'+self.export['content']+'","file_type":"SQL"}').encode(),self.file,
+            requested_path=self.file.path,export_format='AUTO',direct_download=False))
+        with self.assertRaises(WorkspaceContractError):
+            self.export_check(export_format='AUTO')  # Historical RAW-only wrapper stays strict.
+
+    def test_auto_reuse_preserves_exact_file_path_identity_type_size_and_digest(self):
+        args=dict(status_http=200,status_body=self.status,status_path=self.file.path,
+            export_http=200,export_body=self.export,export_path=self.file.path,
+            export_format='AUTO',direct_download=False,expected_object_id=42)
+        proof=verify_existing_file(self.file,**args)
+        self.assertEqual((proof.action,proof.import_required,proof.overwrite),('REUSE',False,False))
+        for change in (dict(status_body=dict(self.status,object_type='NOTEBOOK')),dict(expected_object_id=43),
+                       dict(status_path=self.file.path+'.other'),dict(export_path=self.file.path+'.other'),
+                       dict(status_body=dict(self.status,size=len(self.data)+1)),
+                       dict(export_body={'content':base64.b64encode(b'X'*len(self.data)).decode()})):
+            with self.subTest(change=list(change)),self.assertRaises(WorkspaceContractError):
+                verify_existing_file(self.file,**dict(args,**change))
+
+    def test_auto_export_rejects_corrupt_malformed_or_partial_results(self):
+        for body in (None,{},'null','{',b'\xff',{'content':None},{'content':''},
+                     {'content':'!'*len(self.export['content'])},
+                     {'content':base64.b64encode(self.data[:-1]).decode()},
+                     {'content':base64.b64encode(b'X'*len(self.data)).decode()},
+                     dict(self.export,truncated=True),dict(self.export,next_page_token='more'),
+                     dict(self.export,next_chunk_internal_link='more'),dict(self.export,file_type=False)):
+            with self.subTest(body_type=type(body).__name__),self.assertRaises(WorkspaceContractError):
+                verify_file_export(200,body,self.file,requested_path=self.file.path,
+                    export_format='AUTO',direct_download=False)
+
+    def test_file_export_requires_an_explicit_supported_format_and_complete_http_200(self):
+        for fmt in (None,'','auto','SOURCE','HTML','DBC','JUPYTER',False):
+            with self.subTest(fmt=fmt),self.assertRaises(WorkspaceContractError):
+                verify_file_export(200,self.export,self.file,requested_path=self.file.path,
+                    export_format=fmt,direct_download=False)
+        for code in (None,202,204,206,400,404,500):
+            with self.subTest(code=code),self.assertRaises(WorkspaceContractError):
+                verify_file_export(code,self.export,self.file,requested_path=self.file.path,
+                    export_format='AUTO',direct_download=False)
+        with self.assertRaises(WorkspaceContractError):
+            verify_file_export(200,self.export,self.file,requested_path=self.file.path,
+                export_format='AUTO',direct_download=True)
