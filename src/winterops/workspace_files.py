@@ -128,7 +128,8 @@ def verify_file_export(http_status, body, contract, *, requested_path, export_fo
     body = _ok(http_status, body)
     require('content' in body and set(body) <= {'content', 'file_type'}, 'UNEXPECTED_EXPORT_RESPONSE')
     if 'file_type' in body:
-        require(isinstance(body['file_type'], str) and 0 < len(body['file_type']) <= 64, 'INVALID_EXPORT_FILE_TYPE')
+        # An empty optional file_type is unspecified; content proof still follows.
+        require(isinstance(body['file_type'], str) and len(body['file_type']) <= 64, 'INVALID_EXPORT_FILE_TYPE')
     content = body['content']
     require(isinstance(content, str) and len(content) == 4 * ((contract.byte_count + 2) // 3), 'EXPORT_ENCODED_SIZE_MISMATCH')
     try:
