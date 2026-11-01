@@ -1,0 +1,948 @@
+{
+  "status": "PASS_NATIVE_INCREMENTAL_VERIFY_PROCESS_RERUN",
+  "execution_date_local": "2026-11-01",
+  "recorded_at_utc": "2026-11-01T20:35:48.630193+00:00",
+  "implementation_pr": 15,
+  "approved_main_revision": "ca8cbb6e8c9222cd4a62dd9254d56b4db11710b4",
+  "approved_correction_revision": "a1d5b3071152425e0ae8cbcaeab262d22bf11f28",
+  "merged_tree_matches_approved": true,
+  "explicit_authorization": "USER_APPROVED_FILES_ABSENCE_CONTINUATION_23_SQL_104_CUMULATIVE_METADATA_1200_CUMULATIVE_SECONDS_SOURCE_SCOPED_APPEND",
+  "approved_proposal_sha256_lf": "380b00887523a9baf1df21f256082b85123185bd9b3a83bf47006c92149733b1",
+  "original_proposal_sha256_lf": "7489c5a8e971a79723070d7f0b9b2c353c2191bc76d1b9b1a427d5aa51c78d4a",
+  "private_executor_sha256": "a93d885cdaadc26c17b904a788352d46bbeaa1a28971faceba67bc3bfcadd451",
+  "private_metadata_operations_sha256": "b25d44df7c35e99bdf0ac5d6cac15bf70eef471e4bb7704d52087adf47e52eda",
+  "private_sql_matrix_sha256": "3eb5830b2232daf8a7b7ebf5794b17683695baa67944ae9f0a6a51ca0c81b404",
+  "private_upload_list_sha256": "25d9278e168ae8e82286e37095d49cbf3fb810f746fcf2475f6ee819452356f6",
+  "request_sha256": "876c8aa2aa64352454d9b4ef4984e443b96257426c0ada61648d4a3c26434508",
+  "package_files_sha256": {
+    "preflight.sql": "4495cb12cc41a979f58a98b57f59c47828c5a80607312c63f9323c4e09c49f56",
+    "bronze.sql": "1a4ca20307c94180c7e78cccbd7a9315153709b6bd453d47d92cfb7c2ddc77d7",
+    "silver.sql": "648557096633725c94fd879b67473c7d8984f0a720ae52d9c7501a0399c72870",
+    "quality.sql": "ee16847e420778e07ff6a635d34ae7b1fba499c82f8a8ae6d329d11338abffcc",
+    "complete.sql": "f62ae34158a8a58397c33b8ba4e9c66407b319616df5fb4ddab246367f8ea631",
+    "failure_audit.sql": "0ce150a887ae9b26e84fa5e0e45518e9c3d925c6a7f9918b55def321d96a512a",
+    "job.json": "e5cae37468994dabed528e882fdc384fe6844673a66b693252ae2483fbcef44c",
+    "request.json": "3c65f674b21a9c923d6f3603a4b96ba9f2df03ce49b72d7882ee81301afb6a99"
+  },
+  "ci_before_native": {
+    "commit": "ca8cbb6e8c9222cd4a62dd9254d56b4db11710b4",
+    "conclusion": "success",
+    "tests": 209,
+    "render_checks": "PASS",
+    "run_id": 41347315096,
+    "url": "https://github.com/cevateness/winterops-databricks-lab/actions/runs/41347315096",
+    "reviewed_implementation_commit": "a1d5b3071152425e0ae8cbcaeab262d22bf11f28",
+    "merged_tree_matches_approved": true
+  },
+  "readiness": {
+    "metadata_gates": 19,
+    "all_passed": true,
+    "profile": "winterops",
+    "workspace_identity_warehouse_and_permissions": "MATCH_APPROVED_PRIVATE_BINDINGS",
+    "active_sessions_and_runs": "NONE_AT_READINESS",
+    "protected_three_table_four_view_contracts": "MATCH",
+    "original_job_settings": "MATCH",
+    "acceptance_job_name_and_workspace_root": "UNUSED_ABSENT",
+    "both_volume_file_destinations": "HTTP_404_NOT_FOUND_ACCEPTED_BY_FILES_SPECIFIC_VALIDATOR",
+    "workspace_absence_validator": "UNCHANGED_RESOURCE_DOES_NOT_EXIST",
+    "predeployment_sql": "ALL_FIVE_PASS",
+    "new_filename_version_processing_key": "ABSENT_IN_ALL_THREE_TABLES",
+    "prior_complete_scopes": 3,
+    "prior_bronze_silver_rows_each": 231306,
+    "delta_versions": {
+      "bronze": 3,
+      "silver": 4,
+      "manifest": 13
+    }
+  },
+  "landing": {
+    "record_uploads": [
+      {
+        "kind": "original_csv",
+        "bytes": 5272022,
+        "sha256": "cebcbd758e2a0cf5d0624ecf9cd6993244e7becdd1846a4057b4f63be22ed6c6",
+        "state": "ACKNOWLEDGED_HTTP_204",
+        "http_status": 204,
+        "elapsed_seconds": 13.57
+      },
+      {
+        "kind": "gzip_bronze_artifact",
+        "bytes": 5616699,
+        "sha256": "4aa85d0024845ab8662201127938a4ba9ec8fd23e05c282b352130952d414191",
+        "state": "ACKNOWLEDGED_HTTP_204",
+        "http_status": 204,
+        "elapsed_seconds": 13.85
+      }
+    ],
+    "record_uploaded_bytes": 10888721,
+    "overwrite": false,
+    "csv_and_gzip_content_sha_checks": [
+      {
+        "phase": "after_landing",
+        "kind": "original_csv",
+        "bytes": 5272022,
+        "sha256": "cebcbd758e2a0cf5d0624ecf9cd6993244e7becdd1846a4057b4f63be22ed6c6",
+        "result": "PASS"
+      },
+      {
+        "phase": "after_landing",
+        "kind": "gzip_bronze_artifact",
+        "bytes": 5616699,
+        "sha256": "4aa85d0024845ab8662201127938a4ba9ec8fd23e05c282b352130952d414191",
+        "result": "PASS"
+      },
+      {
+        "phase": "final",
+        "kind": "original_csv",
+        "bytes": 5272022,
+        "sha256": "cebcbd758e2a0cf5d0624ecf9cd6993244e7becdd1846a4057b4f63be22ed6c6",
+        "result": "PASS"
+      },
+      {
+        "phase": "final",
+        "kind": "gzip_bronze_artifact",
+        "bytes": 5616699,
+        "sha256": "4aa85d0024845ab8662201127938a4ba9ec8fd23e05c282b352130952d414191",
+        "result": "PASS"
+      }
+    ],
+    "volume_parent_put_requests": 2,
+    "maximum_new_volume_directories": 4,
+    "workspace_mkdir_requests": 2,
+    "code_uploads": [
+      {
+        "file": "preflight.sql",
+        "bytes": 42972,
+        "sha256": "4495cb12cc41a979f58a98b57f59c47828c5a80607312c63f9323c4e09c49f56",
+        "state": "ACKNOWLEDGED"
+      },
+      {
+        "file": "bronze.sql",
+        "bytes": 29387,
+        "sha256": "1a4ca20307c94180c7e78cccbd7a9315153709b6bd453d47d92cfb7c2ddc77d7",
+        "state": "ACKNOWLEDGED"
+      },
+      {
+        "file": "silver.sql",
+        "bytes": 39599,
+        "sha256": "648557096633725c94fd879b67473c7d8984f0a720ae52d9c7501a0399c72870",
+        "state": "ACKNOWLEDGED"
+      },
+      {
+        "file": "quality.sql",
+        "bytes": 30287,
+        "sha256": "ee16847e420778e07ff6a635d34ae7b1fba499c82f8a8ae6d329d11338abffcc",
+        "state": "ACKNOWLEDGED"
+      },
+      {
+        "file": "complete.sql",
+        "bytes": 42656,
+        "sha256": "f62ae34158a8a58397c33b8ba4e9c66407b319616df5fb4ddab246367f8ea631",
+        "state": "ACKNOWLEDGED"
+      },
+      {
+        "file": "failure_audit.sql",
+        "bytes": 5572,
+        "sha256": "0ce150a887ae9b26e84fa5e0e45518e9c3d925c6a7f9918b55def321d96a512a",
+        "state": "ACKNOWLEDGED"
+      }
+    ],
+    "code_uploaded_bytes": 190473,
+    "code_file_identity_auto_size_sha_verifications": 24,
+    "workspace_directory_identity_checks": 4,
+    "original_source_and_six_file_package_unchanged": true
+  },
+  "job": {
+    "created": true,
+    "name": "WinterOps incremental 2026-01-26 acceptance V1",
+    "unscheduled": true,
+    "existing_warehouse_only": true,
+    "new_compute": false,
+    "settings_verified_after_creation_and_final": true,
+    "protected_original_job_unchanged": true,
+    "immutable_sql_files_verified_between_runs": true
+  },
+  "runs": [
+    {
+      "index": 1,
+      "mode": "verify",
+      "recovery": "deny",
+      "state": "TERMINATED",
+      "result": "SUCCESS",
+      "client_seconds_until_terminal": 30.778,
+      "decision": "NEW_OR_REUSE_BRONZE",
+      "selected_bronze_rows_at_preflight": 0,
+      "selected_silver_rows_at_preflight": 0,
+      "batch_outcome": "VERIFIED_NOT_PROCESSED",
+      "tasks": [
+        {
+          "task": "preflight",
+          "state": "TERMINATED",
+          "result": "SUCCESS",
+          "execution_duration_ms": 15000
+        },
+        {
+          "task": "bronze",
+          "state": "TERMINATED",
+          "result": "SUCCESS",
+          "execution_duration_ms": 3000
+        },
+        {
+          "task": "silver",
+          "state": "TERMINATED",
+          "result": "SUCCESS",
+          "execution_duration_ms": 2000
+        },
+        {
+          "task": "quality",
+          "state": "TERMINATED",
+          "result": "SUCCESS",
+          "execution_duration_ms": 2000
+        },
+        {
+          "task": "complete",
+          "state": "TERMINATED",
+          "result": "SUCCESS",
+          "execution_duration_ms": 3000
+        },
+        {
+          "task": "failure_audit",
+          "state": "SKIPPED",
+          "result": "EXCLUDED",
+          "execution_duration_ms": 0
+        }
+      ],
+      "task_outputs_complete_untruncated": true,
+      "external_validation": "PASS_EXTERNAL_VALIDATION_AND_PRESERVATION",
+      "data_manifest_commits": {
+        "bronze": 0,
+        "silver": 0,
+        "manifest": 0
+      }
+    },
+    {
+      "index": 2,
+      "mode": "process",
+      "recovery": "deny",
+      "state": "TERMINATED",
+      "result": "SUCCESS",
+      "client_seconds_until_terminal": 60.819,
+      "decision": "NEW_OR_REUSE_BRONZE",
+      "selected_bronze_rows_at_preflight": 0,
+      "selected_silver_rows_at_preflight": 0,
+      "batch_outcome": "COMPLETE_ELIGIBLE",
+      "tasks": [
+        {
+          "task": "preflight",
+          "state": "TERMINATED",
+          "result": "SUCCESS",
+          "execution_duration_ms": 8000
+        },
+        {
+          "task": "bronze",
+          "state": "TERMINATED",
+          "result": "SUCCESS",
+          "execution_duration_ms": 13000
+        },
+        {
+          "task": "silver",
+          "state": "TERMINATED",
+          "result": "SUCCESS",
+          "execution_duration_ms": 13000
+        },
+        {
+          "task": "quality",
+          "state": "TERMINATED",
+          "result": "SUCCESS",
+          "execution_duration_ms": 10000
+        },
+        {
+          "task": "complete",
+          "state": "TERMINATED",
+          "result": "SUCCESS",
+          "execution_duration_ms": 11000
+        },
+        {
+          "task": "failure_audit",
+          "state": "SKIPPED",
+          "result": "EXCLUDED",
+          "execution_duration_ms": 0
+        }
+      ],
+      "task_outputs_complete_untruncated": true,
+      "external_validation": "PASS_EXTERNAL_VALIDATION_AND_PRESERVATION",
+      "data_manifest_commits": {
+        "bronze": 1,
+        "silver": 1,
+        "manifest": 4
+      }
+    },
+    {
+      "index": 3,
+      "mode": "process",
+      "recovery": "deny",
+      "state": "TERMINATED",
+      "result": "SUCCESS",
+      "client_seconds_until_terminal": 26.018,
+      "decision": "SKIP_VERIFIED",
+      "selected_bronze_rows_at_preflight": 66850,
+      "selected_silver_rows_at_preflight": 66850,
+      "batch_outcome": "COMPLETE_ELIGIBLE",
+      "tasks": [
+        {
+          "task": "preflight",
+          "state": "TERMINATED",
+          "result": "SUCCESS",
+          "execution_duration_ms": 11000
+        },
+        {
+          "task": "bronze",
+          "state": "TERMINATED",
+          "result": "SUCCESS",
+          "execution_duration_ms": 2000
+        },
+        {
+          "task": "silver",
+          "state": "TERMINATED",
+          "result": "SUCCESS",
+          "execution_duration_ms": 2000
+        },
+        {
+          "task": "quality",
+          "state": "TERMINATED",
+          "result": "SUCCESS",
+          "execution_duration_ms": 2000
+        },
+        {
+          "task": "complete",
+          "state": "TERMINATED",
+          "result": "SUCCESS",
+          "execution_duration_ms": 3000
+        },
+        {
+          "task": "failure_audit",
+          "state": "SKIPPED",
+          "result": "EXCLUDED",
+          "execution_duration_ms": 0
+        }
+      ],
+      "task_outputs_complete_untruncated": true,
+      "external_validation": "PASS_EXTERNAL_VALIDATION_AND_PRESERVATION",
+      "data_manifest_commits": {
+        "bronze": 0,
+        "silver": 0,
+        "manifest": 0
+      }
+    }
+  ],
+  "delta_versions": {
+    "before": {
+      "bronze": 3,
+      "silver": 4,
+      "manifest": 13
+    },
+    "after_verify": {
+      "bronze": 3,
+      "silver": 4,
+      "manifest": 13
+    },
+    "after_process": {
+      "bronze": 4,
+      "silver": 5,
+      "manifest": 17
+    },
+    "after_rerun": {
+      "bronze": 4,
+      "silver": 5,
+      "manifest": 17
+    }
+  },
+  "source_reconciliation": {
+    "source_filename": "snowplow-2026-01-26_2026-02-01.csv",
+    "csv_sha256": "cebcbd758e2a0cf5d0624ecf9cd6993244e7becdd1846a4057b4f63be22ed6c6",
+    "source_version_id": "ad5c201ccee0b96b2f4907f10ee3a064a7562d17429146d2205b1eaca46fdc00",
+    "processing_key": "9c8e1b6f640e75c21f1c9f429ec670c389bf178269afd2f1543b2ae759c3eeae",
+    "bronze_rows": 66850,
+    "silver_rows": 66850,
+    "header_rows": 26,
+    "valid_rows": 66824,
+    "invalid_rows": 0,
+    "full_incoming_bronze_multiset": "PASS",
+    "full_expected_persisted_silver_multiset": "PASS",
+    "record_multiplicity_and_lineage": "PASS",
+    "gold_eligibility": "PASS_SELECT_ONLY_NO_PUBLICATION"
+  },
+  "manifest_transition_outcome": {
+    "processing_key": "9c8e1b6f640e75c21f1c9f429ec670c389bf178269afd2f1543b2ae759c3eeae",
+    "task_path": [
+      "PROCESSING",
+      "BRONZE_WRITTEN",
+      "SILVER_WRITTEN",
+      "COMPLETE"
+    ],
+    "observed_manifest_commits": 4,
+    "version_before": 13,
+    "version_after": 17,
+    "final_state": "COMPLETE",
+    "attempt": 1,
+    "error_code": null,
+    "evidence_limit": "The frozen task path succeeded, history advanced by four commits and the final full manifest passed. Intermediate manifest states were not individually queried or exported.",
+    "unchanged_on_rerun_including_timestamp": true
+  },
+  "complete_manifest": {
+    "complete_manifest_check": null,
+    "status": "COMPLETE",
+    "last_successful_stage": "COMPLETE",
+    "attempts": "1",
+    "bronze_rows": "66850",
+    "silver_rows": "66850",
+    "error_code": null,
+    "updated_at_utc": "2026-11-01 20:39:46.906623",
+    "metadata_sha256": "ef918164a84b475b33b4ccee7de744b997ac074ce12880f71c3422e0c9bd132f",
+    "policy_sha256": "ecb195bd0381aa104a562a121f9e7e43b5f8f97d57e19ffb0698571636b323b5"
+  },
+  "prior_scope_preservation": {
+    "method": "FULL_EXCEPT_ALL_AGAINST_BEFORE_DELTA_VERSIONS",
+    "bronze": {
+      "version_anchor": 3,
+      "old_rows": 231306,
+      "retained_rows": 231306,
+      "missing_rows": 0,
+      "extra_rows": 0
+    },
+    "silver": {
+      "version_anchor": 4,
+      "old_rows": 231306,
+      "retained_rows": 231306,
+      "missing_rows": 0,
+      "extra_rows": 0
+    },
+    "manifest": {
+      "version_anchor": 13,
+      "old_rows": 3,
+      "retained_rows": 3,
+      "missing_rows": 0,
+      "extra_rows": 0
+    },
+    "rerun_delta_histories_unchanged": true,
+    "all_old_scope_contents_preserved": true
+  },
+  "published_gold_baseline": [
+    {
+      "product": "legacy_hourly",
+      "result_rows": 79,
+      "observations": 110311,
+      "plow_observations": 79471,
+      "spreader_observations": 68870,
+      "new_source_rows": 0
+    },
+    {
+      "product": "v2_daily",
+      "result_rows": 20,
+      "observations": 231227,
+      "plow_observations": 175008,
+      "spreader_observations": 119439,
+      "new_source_rows": 0
+    },
+    {
+      "product": "v2_hourly",
+      "result_rows": 236,
+      "observations": 231227,
+      "plow_observations": 175008,
+      "spreader_observations": 119439,
+      "new_source_rows": 0
+    },
+    {
+      "product": "v2_weekly",
+      "result_rows": 3,
+      "observations": 231227,
+      "plow_observations": 175008,
+      "spreader_observations": 119439,
+      "new_source_rows": 0
+    }
+  ],
+  "gold_preservation": {
+    "all_four_aggregate_baselines_equal_before_after_each_run": true,
+    "definitions_and_ownership_unchanged": true,
+    "new_source_rows_in_each_published_view": 0,
+    "fourth_week_publication": false
+  },
+  "sql_statements": [
+    {
+      "position": 1,
+      "phase": "before",
+      "label": "before-history-bronze",
+      "sql_sha256": "2ee2ab735ede78283bb585333346d618d93d35afd0e0043be76d06d40ab392a9",
+      "state": "SUCCEEDED",
+      "elapsed_seconds": 14.499,
+      "row_count": 1,
+      "truncated": false,
+      "verification": "PASS",
+      "delta_version": 3,
+      "public_projection": "VERSION_ONLY_OTHER_HISTORY_FIELDS_PRIVATE"
+    },
+    {
+      "position": 2,
+      "phase": "before",
+      "label": "before-history-silver",
+      "sql_sha256": "4618c85a19573c24271ab529fdf9a85237a733dae13edfdfa29508c33297495d",
+      "state": "SUCCEEDED",
+      "elapsed_seconds": 3.051,
+      "row_count": 1,
+      "truncated": false,
+      "verification": "PASS",
+      "delta_version": 4,
+      "public_projection": "VERSION_ONLY_OTHER_HISTORY_FIELDS_PRIVATE"
+    },
+    {
+      "position": 3,
+      "phase": "before",
+      "label": "before-history-manifest",
+      "sql_sha256": "5801549ab947fe28093d6a96ef6e8a593a759caefc594f44624732c81d1d8d16",
+      "state": "SUCCEEDED",
+      "elapsed_seconds": 2.815,
+      "row_count": 1,
+      "truncated": false,
+      "verification": "PASS",
+      "delta_version": 13,
+      "public_projection": "VERSION_ONLY_OTHER_HISTORY_FIELDS_PRIVATE"
+    },
+    {
+      "position": 4,
+      "phase": "before",
+      "label": "new-source-absence-and-prior-counts",
+      "sql_sha256": "83a10a34fd1b24b10b8c0b29610dea3cf7a45439c934e6855086fdb384b61351",
+      "state": "SUCCEEDED",
+      "elapsed_seconds": 4.521,
+      "row_count": 1,
+      "truncated": false,
+      "verification": "PASS",
+      "sanitized_results": [
+        {
+          "absent_scope_check": null,
+          "new_bronze_rows": "0",
+          "new_silver_rows": "0",
+          "new_manifest_rows": "0"
+        }
+      ]
+    },
+    {
+      "position": 5,
+      "phase": "before",
+      "label": "published-gold-baselines",
+      "sql_sha256": "b3488c49290aa2f50ac54af25758dbcb39dff6f7d91b21311b48a19e09f05b1a",
+      "state": "SUCCEEDED",
+      "elapsed_seconds": 18.202,
+      "row_count": 4,
+      "truncated": false,
+      "verification": "PASS",
+      "aggregate_result_ref": "published_gold_baseline",
+      "matches_baseline": true
+    },
+    {
+      "position": 6,
+      "phase": "after_verify",
+      "label": "after_verify-history-bronze",
+      "sql_sha256": "2ee2ab735ede78283bb585333346d618d93d35afd0e0043be76d06d40ab392a9",
+      "state": "SUCCEEDED",
+      "elapsed_seconds": 2.415,
+      "row_count": 1,
+      "truncated": false,
+      "verification": "PASS",
+      "delta_version": 3,
+      "public_projection": "VERSION_ONLY_OTHER_HISTORY_FIELDS_PRIVATE"
+    },
+    {
+      "position": 7,
+      "phase": "after_verify",
+      "label": "after_verify-history-silver",
+      "sql_sha256": "4618c85a19573c24271ab529fdf9a85237a733dae13edfdfa29508c33297495d",
+      "state": "SUCCEEDED",
+      "elapsed_seconds": 2.237,
+      "row_count": 1,
+      "truncated": false,
+      "verification": "PASS",
+      "delta_version": 4,
+      "public_projection": "VERSION_ONLY_OTHER_HISTORY_FIELDS_PRIVATE"
+    },
+    {
+      "position": 8,
+      "phase": "after_verify",
+      "label": "after_verify-history-manifest",
+      "sql_sha256": "5801549ab947fe28093d6a96ef6e8a593a759caefc594f44624732c81d1d8d16",
+      "state": "SUCCEEDED",
+      "elapsed_seconds": 2.15,
+      "row_count": 1,
+      "truncated": false,
+      "verification": "PASS",
+      "delta_version": 13,
+      "public_projection": "VERSION_ONLY_OTHER_HISTORY_FIELDS_PRIVATE"
+    },
+    {
+      "position": 9,
+      "phase": "after_verify",
+      "label": "after-verify-gold-baselines",
+      "sql_sha256": "b3488c49290aa2f50ac54af25758dbcb39dff6f7d91b21311b48a19e09f05b1a",
+      "state": "SUCCEEDED",
+      "elapsed_seconds": 2.163,
+      "row_count": 4,
+      "truncated": false,
+      "verification": "PASS",
+      "aggregate_result_ref": "published_gold_baseline",
+      "matches_baseline": true
+    },
+    {
+      "position": 10,
+      "phase": "after_process",
+      "label": "after_process-history-bronze",
+      "sql_sha256": "2ee2ab735ede78283bb585333346d618d93d35afd0e0043be76d06d40ab392a9",
+      "state": "SUCCEEDED",
+      "elapsed_seconds": 2.975,
+      "row_count": 1,
+      "truncated": false,
+      "verification": "PASS",
+      "delta_version": 4,
+      "public_projection": "VERSION_ONLY_OTHER_HISTORY_FIELDS_PRIVATE"
+    },
+    {
+      "position": 11,
+      "phase": "after_process",
+      "label": "after_process-history-silver",
+      "sql_sha256": "4618c85a19573c24271ab529fdf9a85237a733dae13edfdfa29508c33297495d",
+      "state": "SUCCEEDED",
+      "elapsed_seconds": 2.217,
+      "row_count": 1,
+      "truncated": false,
+      "verification": "PASS",
+      "delta_version": 5,
+      "public_projection": "VERSION_ONLY_OTHER_HISTORY_FIELDS_PRIVATE"
+    },
+    {
+      "position": 12,
+      "phase": "after_process",
+      "label": "after_process-history-manifest",
+      "sql_sha256": "5801549ab947fe28093d6a96ef6e8a593a759caefc594f44624732c81d1d8d16",
+      "state": "SUCCEEDED",
+      "elapsed_seconds": 2.138,
+      "row_count": 1,
+      "truncated": false,
+      "verification": "PASS",
+      "delta_version": 17,
+      "public_projection": "VERSION_ONLY_OTHER_HISTORY_FIELDS_PRIVATE"
+    },
+    {
+      "position": 13,
+      "phase": "after_process",
+      "label": "new-source-full-multiset-and-quality",
+      "sql_sha256": "158c7a02f788c2239e7ee038efedbd244dfbfe6f065c7b3040ec6654964d0801",
+      "state": "SUCCEEDED",
+      "elapsed_seconds": 3.81,
+      "row_count": 1,
+      "truncated": false,
+      "verification": "PASS",
+      "sanitized_results": [
+        {
+          "persisted_check": null,
+          "silver_rows": "66850",
+          "header_rows": "26",
+          "valid_rows": "66824",
+          "invalid_rows": "0"
+        }
+      ]
+    },
+    {
+      "position": 14,
+      "phase": "after_process",
+      "label": "complete-quality-eligibility-manifest",
+      "sql_sha256": "c49b4f7fdd20d498a75284385e2ca3fdf984ea7af24636f99335227ebce1ed9c",
+      "state": "SUCCEEDED",
+      "elapsed_seconds": 3.814,
+      "row_count": 1,
+      "truncated": false,
+      "verification": "PASS",
+      "manifest_result_ref": "complete_manifest",
+      "exact_manifest_match_after_rerun": false
+    },
+    {
+      "position": 15,
+      "phase": "after_process",
+      "label": "preserve-all-prior-bronze",
+      "sql_sha256": "fb4f378a1f67581670b6fcb1a163671632c2a2987f42f5f78e6d8fefab0e6bf0",
+      "state": "SUCCEEDED",
+      "elapsed_seconds": 3.028,
+      "row_count": 1,
+      "truncated": false,
+      "verification": "PASS",
+      "sanitized_results": [
+        {
+          "prior_scope_check": null,
+          "old_rows": "231306",
+          "retained_rows": "231306",
+          "missing_rows": "0",
+          "extra_rows": "0"
+        }
+      ]
+    },
+    {
+      "position": 16,
+      "phase": "after_process",
+      "label": "preserve-all-prior-silver",
+      "sql_sha256": "fdada1487f052cb4e031510708c543c50cd1f52d4b409f92577edee0161f03f0",
+      "state": "SUCCEEDED",
+      "elapsed_seconds": 2.937,
+      "row_count": 1,
+      "truncated": false,
+      "verification": "PASS",
+      "sanitized_results": [
+        {
+          "prior_scope_check": null,
+          "old_rows": "231306",
+          "retained_rows": "231306",
+          "missing_rows": "0",
+          "extra_rows": "0"
+        }
+      ]
+    },
+    {
+      "position": 17,
+      "phase": "after_process",
+      "label": "preserve-all-prior-manifest",
+      "sql_sha256": "affe1b6dc2e0832885ac355ce60ca133a0597c9285b075d1e06f9399dd5cc1d7",
+      "state": "SUCCEEDED",
+      "elapsed_seconds": 2.189,
+      "row_count": 1,
+      "truncated": false,
+      "verification": "PASS",
+      "sanitized_results": [
+        {
+          "prior_scope_check": null,
+          "old_rows": "3",
+          "retained_rows": "3",
+          "missing_rows": "0",
+          "extra_rows": "0"
+        }
+      ]
+    },
+    {
+      "position": 18,
+      "phase": "after_process",
+      "label": "after-process-gold-baselines",
+      "sql_sha256": "b3488c49290aa2f50ac54af25758dbcb39dff6f7d91b21311b48a19e09f05b1a",
+      "state": "SUCCEEDED",
+      "elapsed_seconds": 10.386,
+      "row_count": 4,
+      "truncated": false,
+      "verification": "PASS",
+      "aggregate_result_ref": "published_gold_baseline",
+      "matches_baseline": true
+    },
+    {
+      "position": 19,
+      "phase": "after_rerun",
+      "label": "after_rerun-history-bronze",
+      "sql_sha256": "2ee2ab735ede78283bb585333346d618d93d35afd0e0043be76d06d40ab392a9",
+      "state": "SUCCEEDED",
+      "elapsed_seconds": 2.242,
+      "row_count": 1,
+      "truncated": false,
+      "verification": "PASS",
+      "delta_version": 4,
+      "public_projection": "VERSION_ONLY_OTHER_HISTORY_FIELDS_PRIVATE"
+    },
+    {
+      "position": 20,
+      "phase": "after_rerun",
+      "label": "after_rerun-history-silver",
+      "sql_sha256": "4618c85a19573c24271ab529fdf9a85237a733dae13edfdfa29508c33297495d",
+      "state": "SUCCEEDED",
+      "elapsed_seconds": 2.074,
+      "row_count": 1,
+      "truncated": false,
+      "verification": "PASS",
+      "delta_version": 5,
+      "public_projection": "VERSION_ONLY_OTHER_HISTORY_FIELDS_PRIVATE"
+    },
+    {
+      "position": 21,
+      "phase": "after_rerun",
+      "label": "after_rerun-history-manifest",
+      "sql_sha256": "5801549ab947fe28093d6a96ef6e8a593a759caefc594f44624732c81d1d8d16",
+      "state": "SUCCEEDED",
+      "elapsed_seconds": 2.006,
+      "row_count": 1,
+      "truncated": false,
+      "verification": "PASS",
+      "delta_version": 17,
+      "public_projection": "VERSION_ONLY_OTHER_HISTORY_FIELDS_PRIVATE"
+    },
+    {
+      "position": 22,
+      "phase": "after_rerun",
+      "label": "rerun-exact-manifest-snapshot",
+      "sql_sha256": "2018106211277ab25da04d219f9a952d5fd6173da8c00d8fa7c166e8cfaba456",
+      "state": "SUCCEEDED",
+      "elapsed_seconds": 1.444,
+      "row_count": 1,
+      "truncated": false,
+      "verification": "PASS",
+      "manifest_result_ref": "complete_manifest",
+      "exact_manifest_match_after_rerun": true
+    },
+    {
+      "position": 23,
+      "phase": "after_rerun",
+      "label": "final-gold-baselines",
+      "sql_sha256": "b3488c49290aa2f50ac54af25758dbcb39dff6f7d91b21311b48a19e09f05b1a",
+      "state": "SUCCEEDED",
+      "elapsed_seconds": 1.861,
+      "row_count": 4,
+      "truncated": false,
+      "verification": "PASS",
+      "aggregate_result_ref": "published_gold_baseline",
+      "matches_baseline": true
+    }
+  ],
+  "resource_usage": {
+    "additional_sql_submissions": 23,
+    "additional_metadata_file_gets": 86,
+    "job_state_gets": 26,
+    "task_output_gets": 15,
+    "record_uploads": 2,
+    "record_upload_bytes": 10888721,
+    "code_uploads": 6,
+    "code_upload_bytes": 190473,
+    "volume_parent_puts": 2,
+    "workspace_mkdirs": 2,
+    "jobs_created": 1,
+    "runs_submitted": 3,
+    "normal_sql_file_tasks_executed": 15,
+    "excluded_failure_audit_tasks": 3,
+    "active_seconds": 369.675,
+    "cumulative_sql_submissions": 23,
+    "cumulative_metadata_file_gets": 104,
+    "cumulative_active_seconds": 388.192,
+    "prior_consumption": {
+      "metadata_file_gets": 18,
+      "statement_api_submissions": 0,
+      "active_seconds": 18.517,
+      "record_uploads": 0,
+      "code_uploads": 0,
+      "job_creations": 0,
+      "job_runs": 0,
+      "data_manifest_writes": 0
+    },
+    "additional_limits": {
+      "active_seconds": 1181.483,
+      "statement_api_submissions": 23,
+      "metadata_file_gets": 86,
+      "job_state_gets": 180,
+      "task_output_gets": 15,
+      "record_file_uploads": 2,
+      "record_upload_total_bytes": 10888721,
+      "record_upload_max_file_bytes": 16777216,
+      "record_upload_max_total_bytes": 33554432,
+      "record_upload_deadline_seconds": 120,
+      "record_upload_combined_seconds": 180,
+      "code_uploads": 6,
+      "code_upload_bytes": 190473,
+      "code_max_file_bytes": 262144,
+      "code_max_total_bytes": 1048576,
+      "volume_parent_directory_puts": 2,
+      "maximum_new_volume_directories": 4,
+      "workspace_mkdir_requests": 2,
+      "job_creations": 1,
+      "job_runs": 3,
+      "sql_file_task_executions": 16,
+      "known_active_run_cancellations": 1,
+      "normal_bronze_commits": 1,
+      "normal_silver_commits": 1,
+      "normal_manifest_transitions": 4,
+      "conditional_failed_manifest_updates": 1
+    },
+    "cumulative_limits": {
+      "active_seconds": 1200,
+      "statement_api_submissions": 23,
+      "metadata_file_gets": 104,
+      "job_state_gets": 180,
+      "task_output_gets": 15,
+      "record_file_uploads": 2,
+      "record_upload_total_bytes": 10888721,
+      "record_upload_max_file_bytes": 16777216,
+      "record_upload_max_total_bytes": 33554432,
+      "record_upload_deadline_seconds": 120,
+      "record_upload_combined_seconds": 180,
+      "code_uploads": 6,
+      "code_upload_bytes": 190473,
+      "code_max_file_bytes": 262144,
+      "code_max_total_bytes": 1048576,
+      "volume_parent_directory_puts": 2,
+      "maximum_new_volume_directories": 4,
+      "workspace_mkdir_requests": 2,
+      "job_creations": 1,
+      "job_runs": 3,
+      "sql_file_task_executions": 16,
+      "known_active_run_cancellations": 1,
+      "normal_bronze_commits": 1,
+      "normal_silver_commits": 1,
+      "normal_manifest_transitions": 4,
+      "conditional_failed_manifest_updates": 1
+    },
+    "sql_client_seconds_total": 95.174,
+    "longest_sql_client_seconds": 18.202,
+    "timing_semantics": "Wall time observed by the bounded client; task execution_duration_ms comes from the Jobs API and is coarsely reported. These are not billed-compute measurements.",
+    "requests_after_completed_scope": 0,
+    "unused_time_is_new_execution_authority": false
+  },
+  "runtime_findings": [
+    "Files API NOT_FOUND response and unchanged Workspace RESOURCE_DOES_NOT_EXIST contract passed natively.",
+    "Both Volume uploads returned HTTP 204; independent byte/SHA readback passed at landing and final checks.",
+    "All six RAW code imports and 24 FILE identity/AUTO size/SHA checks passed.",
+    "Native Jobs compound SQL, named parameters, append_missing writes, completion and unchanged rerun passed for this pinned source.",
+    "All 23 Statement API results and 15 normal task outputs were complete and untruncated; no SQL error, cancellation, timeout or unexpected response occurred."
+  ],
+  "prohibited_actions": {
+    "original_job_updates": 0,
+    "old_scope_writes": 0,
+    "gold_changes": 0,
+    "table_view_ddl": 0,
+    "new_compute": 0,
+    "schedules": 0,
+    "permission_or_warehouse_configuration_changes": 0,
+    "overwrite_uploads": 0,
+    "automatic_retries": 0,
+    "task_repairs": 0,
+    "cleanup": 0,
+    "recovery_runs": 0,
+    "failure_audit_writes": 0,
+    "known_run_cancellations": 0
+  },
+  "remaining_limitations": [
+    "One pinned 66,850-record source is natively verified; performance at larger scales or with revised source/policy versions is unproven.",
+    "Natural-failure auditing and interrupted recovery were excluded and remain unverified in Jobs.",
+    "Competing-writer checks are point-in-time; no cross-writer lock or scheduled ingestion is implemented.",
+    "The fourth week is Gold-eligible but not selected by any published Gold view; no publication authority is implied.",
+    "Source-local/naive timestamp semantics remain; observation counts do not measure work duration, coverage, fleet availability or productivity."
+  ],
+  "privacy": "Only aggregate results, code/data fingerprints and sanitized task/statement statuses are public. Raw records, vehicle identifiers, coordinates, trajectories, credentials and private workspace/resource identities remain outside Git.",
+  "post_execution_offline_validation": {
+    "unit_tests": {
+      "status": "PASS",
+      "count": 209,
+      "failures": 0,
+      "errors": 0,
+      "elapsed_seconds": 8.993
+    },
+    "syntax": {
+      "status": "PASS",
+      "python_files": 33,
+      "spark_execution": false
+    },
+    "aggregate_fixture": "PASS",
+    "all_five_sql_renders": "PASS",
+    "synthetic_job_render_outside_git": "PASS",
+    "immutable_code_source_artifact_package_and_plan_hashes": "PASS",
+    "unrelated_local_file_hashes": "PASS",
+    "native_requests": 0,
+    "evidence_commit_ci": "RECORDED_IN_PR_15_AND_COMPLETION_REPORT"
+  }
+}
