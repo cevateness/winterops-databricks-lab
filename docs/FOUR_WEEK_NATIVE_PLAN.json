@@ -1,0 +1,458 @@
+{
+  "status": "PREPARED_NOT_APPROVED_NOT_EXECUTED",
+  "base_commit": "3b7fdb175d353c02cd695f728c4ced9ca8c7d86f",
+  "selection": "docs/FOUR_WEEK_SELECTION.json",
+  "selection_sha256_lf": "ecce32056f234a566b732d81b4d2c47b3b30632b51fc79b8028a2d81475471d1",
+  "previous_selection": "docs/THREE_WEEK_SELECTION.json",
+  "previous_selection_sha256_lf": "10ce5517aff6f2302173a48bbb190b874a33fed57679c9bfca6708789c85cca4",
+  "local_evidence": "docs/FOUR_WEEK_LOCAL_EVIDENCE.json",
+  "local_evidence_sha256_lf": "9af9ede3b8e039cdb30473b3fb7fedee472f4d235d4ff40ee097097cadea2241",
+  "prior_native_evidence": "docs/INCREMENTAL_INGESTION_FILES_ABSENCE_RESULTS.json",
+  "prior_native_evidence_sha256_lf": "124bfe7084e74ccaeee6efad1c6764686e2077816eabc2aed5abd8a746831b30",
+  "new_view_targets": [
+    "workspace.default.winterops_v2_gold_20260105_20260201_v1_hourly_observations",
+    "workspace.default.winterops_v2_gold_20260105_20260201_v1_daily_activity",
+    "workspace.default.winterops_v2_gold_20260105_20260201_v1_weekly_quality"
+  ],
+  "existing_gold_targets_preserved": [
+    "workspace.default.winterops_gold_windsor_hourly_observations",
+    "workspace.default.winterops_v2_gold_hourly_observations",
+    "workspace.default.winterops_v2_gold_daily_activity",
+    "workspace.default.winterops_v2_gold_weekly_quality"
+  ],
+  "private_matrix_sha256": "1a121d0a72f62681b3fcaf1a1f91d844d34fd91ab26e365f5ba29e6bdc80a3de",
+  "private_matrix_relative_to_local_winterops": "four_week_gold_v1/plans/1a121d0a72f62681b3fcaf1a1f91d844d34fd91ab26e365f5ba29e6bdc80a3de/statement_matrix.json",
+  "private_metadata_operations_sha256": "1ef8fcf73e9931422d10ecbfdf9b1d996d8caec6cf501a352ceeea1e9c6cc688",
+  "private_metadata_operations_relative_to_local_winterops": "four_week_gold_v1/plans/1ef8fcf73e9931422d10ecbfdf9b1d996d8caec6cf501a352ceeea1e9c6cc688/metadata_operations.json",
+  "statement_contracts": [
+    {
+      "position": 1,
+      "label": "before-manifest-snapshot",
+      "phase": "before",
+      "kind": "READ",
+      "sql_sha256": "68ec90e28b476dc12183ca626fdca64e23d9d6544e2f80e5e1648452cad9372d",
+      "expected": {
+        "rows": 4,
+        "complete": true,
+        "compare_all_fields_after": true
+      }
+    },
+    {
+      "position": 2,
+      "label": "before-original-csv-fingerprints",
+      "phase": "before",
+      "kind": "READ",
+      "sql_sha256": "0782d9703cdd3160cae9a6af73ad2bf750b3afe2847e37e6f166d80ac4c26ef2",
+      "expected": {
+        "rows": 1,
+        "assertions_null": true
+      }
+    },
+    {
+      "position": 3,
+      "label": "four-complete-selection",
+      "phase": "before",
+      "kind": "READ",
+      "sql_sha256": "585ae7e2d133fde3e6849540ec24c96d461d9ab7e0ce9fcd5559672b112e80bb",
+      "expected": {
+        "rows": 1,
+        "assertions_null": true
+      }
+    },
+    {
+      "position": 4,
+      "label": "candidate-full-reconciliation",
+      "phase": "before",
+      "kind": "READ",
+      "sql_sha256": "32e32fed64ecb0cc6742a30365507aeef929ec589d112a7d6a01857fd0be78da",
+      "expected": {
+        "rows": 1,
+        "assertions_null": true
+      }
+    },
+    {
+      "position": 5,
+      "label": "candidate-weekly",
+      "phase": "before",
+      "kind": "READ",
+      "sql_sha256": "1da2f15f32986707271481d85ac27af8b3aabd0aa07e9854230f6f96e7e83201",
+      "expected": {
+        "rows": 4,
+        "exact_local_product": "weekly"
+      }
+    },
+    {
+      "position": 6,
+      "label": "candidate-hourly-summary",
+      "phase": "before",
+      "kind": "READ",
+      "sql_sha256": "15685d2e58434875af291723b472d3c2680c77c20d4faa56d6a4c1517505e961",
+      "expected": {
+        "rows": 4,
+        "hourly_buckets": 325,
+        "compare_weekly_additive_totals": true
+      }
+    },
+    {
+      "position": 7,
+      "label": "candidate-daily",
+      "phase": "before",
+      "kind": "READ",
+      "sql_sha256": "108ce451da238b36d3c1a0ea7b1f45101f39d9838ed8e8ecd8e6c2cd32cd46a4",
+      "expected": {
+        "rows": 25,
+        "exact_local_product": "daily"
+      }
+    },
+    {
+      "position": 8,
+      "label": "candidate-fourth-week-all-hourly-metrics",
+      "phase": "before",
+      "kind": "READ",
+      "sql_sha256": "d79bf5a30470f20bd45a58bdbc7b191843ed351cad8aabf42b469d28556d6224",
+      "expected": {
+        "rows": 89,
+        "exact_local_product": "hourly",
+        "processing_key": "9c8e1b6f640e75c21f1c9f429ec670c389bf178269afd2f1543b2ae759c3eeae",
+        "columns": [
+          "source_version_id",
+          "processing_key",
+          "quality_policy_sha256",
+          "source_local_naive_hour",
+          "observation_count",
+          "plow_active_observations",
+          "spreader_active_observations",
+          "plow_only_observations",
+          "spreader_only_observations",
+          "both_active_observations",
+          "neither_active_observations",
+          "engine_off_observations",
+          "engine_off_with_equipment_flag_observations",
+          "repeated_valid_payload_observations",
+          "observed_identifier_count"
+        ]
+      }
+    },
+    {
+      "position": 9,
+      "label": "before-protected-gold-baselines",
+      "phase": "before",
+      "kind": "READ",
+      "sql_sha256": "b3488c49290aa2f50ac54af25758dbcb39dff6f7d91b21311b48a19e09f05b1a",
+      "expected": {
+        "rows": 4,
+        "match_recorded_legacy_and_three_week": true
+      }
+    },
+    {
+      "position": 10,
+      "label": "preserve-three-week-hourly",
+      "phase": "before",
+      "kind": "READ",
+      "sql_sha256": "955b606d7ccd740637add276f35c3b59335b3f5709e87cf084e70a5f9ba8f84d",
+      "expected": {
+        "rows": 1,
+        "assertions_null": true,
+        "aggregate_rows": 236
+      }
+    },
+    {
+      "position": 11,
+      "label": "preserve-three-week-daily",
+      "phase": "before",
+      "kind": "READ",
+      "sql_sha256": "7f850924e39f0fbea46c1f58a8d36eb0ed61db6f0bb5bbdb82c0734ff95c3663",
+      "expected": {
+        "rows": 1,
+        "assertions_null": true,
+        "aggregate_rows": 20
+      }
+    },
+    {
+      "position": 12,
+      "label": "preserve-three-week-weekly",
+      "phase": "before",
+      "kind": "READ",
+      "sql_sha256": "0e11daf928b26d1b2a8ea5caf519601ec3f17723eb9dac7f41c70a71a5344670",
+      "expected": {
+        "rows": 1,
+        "assertions_null": true,
+        "aggregate_rows": 3
+      }
+    },
+    {
+      "position": 13,
+      "label": "before-ddl-history-bronze",
+      "phase": "before",
+      "kind": "READ",
+      "sql_sha256": "2ee2ab735ede78283bb585333346d618d93d35afd0e0043be76d06d40ab392a9",
+      "expected": {
+        "rows": 1,
+        "delta_version": 4
+      }
+    },
+    {
+      "position": 14,
+      "label": "before-ddl-history-silver",
+      "phase": "before",
+      "kind": "READ",
+      "sql_sha256": "4618c85a19573c24271ab529fdf9a85237a733dae13edfdfa29508c33297495d",
+      "expected": {
+        "rows": 1,
+        "delta_version": 5
+      }
+    },
+    {
+      "position": 15,
+      "label": "before-ddl-history-manifest",
+      "phase": "before",
+      "kind": "READ",
+      "sql_sha256": "5801549ab947fe28093d6a96ef6e8a593a759caefc594f44624732c81d1d8d16",
+      "expected": {
+        "rows": 1,
+        "delta_version": 17
+      }
+    },
+    {
+      "position": 16,
+      "label": "all-three-targets-absent",
+      "phase": "before",
+      "kind": "READ",
+      "sql_sha256": "a8f374d8bde4b92744624ddf6a0048b0754ddb58b9968c54cceb6f3d7b5027bb",
+      "expected": {
+        "rows": 1,
+        "assertions_null": true,
+        "visibility": "SCHEMA_PRIVILEGES_CHECKED_CREATE_ONLY_FAILS_ON_ANY_HIDDEN_CONFLICT"
+      }
+    },
+    {
+      "position": 17,
+      "label": "create-four-week-hourly",
+      "phase": "publication",
+      "kind": "CREATE_VIEW",
+      "sql_sha256": "884a567576f0c5fbf323c1cb68e335d0ba57a37ac676e669e24e7dbab354a345",
+      "expected": {
+        "target": "workspace.default.winterops_v2_gold_20260105_20260201_v1_hourly_observations",
+        "result": "SUCCEEDED_NO_DATA_ROWS",
+        "overwrite": false
+      }
+    },
+    {
+      "position": 18,
+      "label": "create-four-week-daily",
+      "phase": "publication",
+      "kind": "CREATE_VIEW",
+      "sql_sha256": "5830c3781012d32e8c50962bfa61fd55249a79d6f511b3bf496f518f202d577d",
+      "expected": {
+        "target": "workspace.default.winterops_v2_gold_20260105_20260201_v1_daily_activity",
+        "result": "SUCCEEDED_NO_DATA_ROWS",
+        "overwrite": false
+      }
+    },
+    {
+      "position": 19,
+      "label": "create-four-week-weekly",
+      "phase": "publication",
+      "kind": "CREATE_VIEW",
+      "sql_sha256": "cf5d323339af4beb9b8dbe8d677683567930a1d1ee9f911a22771dc68a3019b2",
+      "expected": {
+        "target": "workspace.default.winterops_v2_gold_20260105_20260201_v1_weekly_quality",
+        "result": "SUCCEEDED_NO_DATA_ROWS",
+        "overwrite": false
+      }
+    },
+    {
+      "position": 20,
+      "label": "published-hourly-full-multiset",
+      "phase": "after",
+      "kind": "READ",
+      "sql_sha256": "3f8df36bbcfa0801931fb2cc053748ebd8f2081b3353e94ae29ad44fadf4d331",
+      "expected": {
+        "rows": 1,
+        "assertions_null": true,
+        "aggregate_rows": 325
+      }
+    },
+    {
+      "position": 21,
+      "label": "published-daily-full-multiset",
+      "phase": "after",
+      "kind": "READ",
+      "sql_sha256": "3144cdfe7a2cd7a8dfd1d1ce7bd22aa08f2af78eb8101f6580ef4021e10cb107",
+      "expected": {
+        "rows": 1,
+        "assertions_null": true,
+        "aggregate_rows": 25
+      }
+    },
+    {
+      "position": 22,
+      "label": "published-weekly-full-multiset",
+      "phase": "after",
+      "kind": "READ",
+      "sql_sha256": "f1eba3d9fceddc2463a8c88104003dc40c57c342d6eb63dbb958e00c39beb8f2",
+      "expected": {
+        "rows": 1,
+        "assertions_null": true,
+        "aggregate_rows": 4
+      }
+    },
+    {
+      "position": 23,
+      "label": "repeat-published-weekly",
+      "phase": "after",
+      "kind": "READ",
+      "sql_sha256": "027068782e08a6a9d55289a7ce5b4c4b0a033af380d1fff10366933b89669051",
+      "expected": {
+        "rows": 4,
+        "exact_local_product": "weekly",
+        "exact_candidate_position": 5
+      }
+    },
+    {
+      "position": 24,
+      "label": "after-protected-gold-baselines",
+      "phase": "after",
+      "kind": "READ",
+      "sql_sha256": "b3488c49290aa2f50ac54af25758dbcb39dff6f7d91b21311b48a19e09f05b1a",
+      "expected": {
+        "rows": 4,
+        "exact_before_position": 9
+      }
+    },
+    {
+      "position": 25,
+      "label": "after-manifest-snapshot",
+      "phase": "after",
+      "kind": "READ",
+      "sql_sha256": "68ec90e28b476dc12183ca626fdca64e23d9d6544e2f80e5e1648452cad9372d",
+      "expected": {
+        "rows": 4,
+        "exact_before_position": 1
+      }
+    },
+    {
+      "position": 26,
+      "label": "after-history-bronze",
+      "phase": "after",
+      "kind": "READ",
+      "sql_sha256": "2ee2ab735ede78283bb585333346d618d93d35afd0e0043be76d06d40ab392a9",
+      "expected": {
+        "rows": 1,
+        "delta_version": 4
+      }
+    },
+    {
+      "position": 27,
+      "label": "after-history-silver",
+      "phase": "after",
+      "kind": "READ",
+      "sql_sha256": "4618c85a19573c24271ab529fdf9a85237a733dae13edfdfa29508c33297495d",
+      "expected": {
+        "rows": 1,
+        "delta_version": 5
+      }
+    },
+    {
+      "position": 28,
+      "label": "after-history-manifest",
+      "phase": "after",
+      "kind": "READ",
+      "sql_sha256": "5801549ab947fe28093d6a96ef6e8a593a759caefc594f44624732c81d1d8d16",
+      "expected": {
+        "rows": 1,
+        "delta_version": 17
+      }
+    },
+    {
+      "position": 29,
+      "label": "after-original-csv-fingerprints",
+      "phase": "after",
+      "kind": "READ",
+      "sql_sha256": "0782d9703cdd3160cae9a6af73ad2bf750b3afe2847e37e6f166d80ac4c26ef2",
+      "expected": {
+        "rows": 1,
+        "assertions_null": true
+      }
+    }
+  ],
+  "metadata_gets_by_phase": {
+    "before": 18,
+    "before_ddl": 1,
+    "after_create": 3,
+    "final": 11
+  },
+  "execution_order": "METADATA_BEFORE;SQL_1_TO_15;METADATA_BEFORE_DDL;SQL_16_TO_19;METADATA_AFTER_CREATE;SQL_20_TO_29;METADATA_FINAL",
+  "limits": {
+    "total_statement_api_submissions": 29,
+    "read_only_statements": 26,
+    "create_view_statements": 3,
+    "metadata_gets": 33,
+    "active_seconds": 900,
+    "statement_wait_timeout": "30s",
+    "on_wait_timeout": "CANCEL",
+    "sql_client_seconds": 45,
+    "row_limit": 200,
+    "byte_limit": 65536,
+    "metadata_client_seconds": 30,
+    "metadata_byte_limit": 1048576,
+    "automatic_retries": 0,
+    "result_chunk_gets": 0,
+    "sql_polling_gets": 0,
+    "maximum_csv_file_bytes": 16777216,
+    "maximum_combined_csv_bytes": 33554432,
+    "uploads": 0,
+    "jobs_created_or_run": 0
+  },
+  "budgets": "NEW_FOUR_WEEK_GOLD_SCOPE_NOT_REUSE_OF_EXHAUSTED_INGESTION_ALLOWANCES",
+  "protected_delta_versions": {
+    "bronze": 4,
+    "silver": 5,
+    "manifest": 17
+  },
+  "expected_aggregate_rows": {
+    "hourly": 325,
+    "daily": 25,
+    "weekly": 4
+  },
+  "expected_totals": {
+    "bronze_rows": 298156,
+    "silver_rows": 298156,
+    "header_rows": 105,
+    "valid_rows": 298051,
+    "invalid_rows": 0,
+    "observation_count": 298051,
+    "plow_active_observations": 239344,
+    "spreader_active_observations": 127232,
+    "plow_only_observations": 170819,
+    "spreader_only_observations": 58707,
+    "both_active_observations": 68525,
+    "neither_active_observations": 0,
+    "engine_off_observations": 0,
+    "engine_off_with_equipment_flag_observations": 0,
+    "repeated_valid_payload_observations": 3981
+  },
+  "schemas": "Existing V2 contracts and published product column names/zero-based positions/UPPER(type_text) declarations; no DATA_TYPE LONG/BIGINT alias comparison.",
+  "permissions": "Fresh identity/groups, USE CATALOG/USE SCHEMA/CREATE TABLE and SELECT or ownership for dependencies must be resolved. No permission changes or inference from status alone.",
+  "publication": "Only sequential CREATE VIEW, never OR REPLACE/IF NOT EXISTS, no aliases or redirects. Hidden name conflicts fail at DDL; no adoption/replacement.",
+  "recovery": "Stop first failure/timeout/mismatch/unexpected response. Leave created subset intact. No DROP/ALTER/overwrite/retry/cleanup/repair/continuation without a new reviewed scope.",
+  "limitations": "Native four-scope optimizer/error propagation/performance not established by SQLite. Combined published reconciliation previously exceeded the wait; use one product per multiset request. No automatic fallback.",
+  "code_sha256_lf": {
+    "src/winterops/unified_gold.py": "4203329fd07a9c758a9cc5ace85b1d2b577168ad161a5227593e174e8fee26b0",
+    "scripts/render_unified_gold.py": "1c05bf9af2fd665ab44f3a3c3598264367328fca0b6326ece49fe7e08d99bf20",
+    "src/winterops/gold_products.py": "c8a2955b1031559faf7dd509a5dad81ad4c03d54e2d455cb5e5f9d519ebb54da",
+    "src/winterops/threeweek_plan.py": "92327c0103d88c7a361e3b1d28cb6ad59893d35f20676cd6327ec69961ab5d4d",
+    "src/winterops/landing.py": "58c6ca37a4a241a9f932d20f02911a412fdf95bf1bce38b6cc07cebce434e8d6",
+    "tests/test_four_week_gold.py": "96a3a65c5b6d07f4f591f42cb69d5a5637cbed62e3faabcecfdcd9f2a4d5844a",
+    "src/winterops/foundation.py": "6875c7d840a9a4102b8511da3f2ced73da8dd0f668586ef5b62860b8bbc40f5a",
+    "src/winterops/sources.py": "195843094002c59195ea7d306d941cac30d612a804a9eb7a890ca708c235bf19",
+    "src/winterops/spark_ingestion.py": "fd4b3a8c1f7d51859f38d6450d8a1d02abff618ce407a33f50bcc2236d031d6b"
+  },
+  "native_requests_during_preparation": 0,
+  "explicit_approval_required_before_any_native_request": true,
+  "expected_weekly_rows_ref": "docs/FOUR_WEEK_LOCAL_EVIDENCE.json#/weekly_aggregates",
+  "private_expected_aggregate_results_relative_to_local_winterops": "four_week_gold_v1/aggregate_results.json",
+  "private_expected_aggregate_results_sha256": "f9a17ad9c3027beb5aea7476155209fe28da71e67429ded264e41525d862f06f",
+  "fourth_hourly_data_array_estimated_bytes": 25992,
+  "expected_result_integrity": "Verify the private aggregate-result file hash and each product canonical hash from local evidence before native execution. Compare candidate daily/weekly rows and all fourth-week hourly metric rows exactly; old-hourly subset uses full native EXCEPT ALL."
+}

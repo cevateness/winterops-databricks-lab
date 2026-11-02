@@ -18,6 +18,7 @@ ADDITIVE = ('observation_count', 'plow_active_observations', 'spreader_active_ob
             'neither_active_observations', 'engine_off_observations',
             'engine_off_with_equipment_flag_observations', 'repeated_valid_payload_observations')
 HOUR = "CAST(substring(CAST(event_time_unzoned AS STRING),1,13) || ':00:00' AS TIMESTAMP_NTZ)"
+DEFAULT_VIEW_PREFIX = 'winterops_v2_gold'
 
 
 def literal(value):
@@ -77,8 +78,11 @@ class UnifiedGold:
     selected: tuple[SelectedVersion, ...]
     allow_mixed_policies: bool = False
     targets: DevelopmentTargets = DevelopmentTargets()
+    view_prefix: str = DEFAULT_VIEW_PREFIX
 
     def __post_init__(self):
+        if not isinstance(self.view_prefix, str) or not re.fullmatch('[a-z][a-z0-9_]{0,79}', self.view_prefix):
+            raise ValueError('Supply a bounded unqualified SQL view prefix')
         if not isinstance(self.selected, tuple) or not 1 <= len(self.selected) <= 12:
             raise ValueError('Supply 1..12 explicit source processing selections')
         if type(self.allow_mixed_policies) is not bool:
@@ -96,7 +100,7 @@ class UnifiedGold:
 
     def view_name(self, product):
         suffix = {'hourly': 'hourly_observations', 'daily': 'daily_activity', 'weekly': 'weekly_quality'}[product]
-        return f'{self.targets.catalog}.{self.targets.schema}.winterops_v2_gold_{suffix}'
+        return f'{self.targets.catalog}.{self.targets.schema}.{self.view_prefix}_{suffix}'
 
     def wanted_sql(self):
         rows = []
@@ -298,7 +302,8 @@ SELECT assert_true((SELECT ok FROM _selection_gate)=1
 
     def dashboard(self):
         weekly, daily, hourly = (self.view_name(p) for p in ('weekly','daily','hourly'))
-        return {'three_week_comparison': f'SELECT * FROM {weekly} ORDER BY source_week_start LIMIT 12',
+        comparison_name = 'three_week_comparison' if len(self.selected) == 3 else 'source_week_comparison'
+        return {comparison_name: f'SELECT * FROM {weekly} ORDER BY source_week_start LIMIT 12',
                 'daily_equipment': f'SELECT * FROM {daily} ORDER BY source_week_start,source_local_naive_day LIMIT 84',
                 'weekly_quality': f'SELECT source_week_start,source_version_id,processing_key,quality_policy_sha256,header_rows,invalid_rows,invalid_coordinate_rows,outside_review_envelope_rows,repeated_valid_payload_observations,long_gap_pairs FROM {weekly} ORDER BY source_week_start LIMIT 12',
                 **{'hourly_'+s.source.covered_start: f"SELECT source_week_start,source_version_id,processing_key,quality_policy_sha256,source_local_naive_hour,observation_count,plow_active_observations,spreader_active_observations,observed_identifier_count FROM {hourly} WHERE processing_key='{s.processing_key}' ORDER BY source_local_naive_hour LIMIT 168" for s in self.selected}}
@@ -323,4 +328,5 @@ def load_selection(path):
     mixed = data.get('allow_mixed_policies', False)
     if type(mixed) is not bool:
         raise ValueError('Mixed-policy selection requires an explicit Boolean')
-    return UnifiedGold(tuple(selected), allow_mixed_policies=mixed)
+    return UnifiedGold(tuple(selected), allow_mixed_policies=mixed,
+                       view_prefix=data.get('view_prefix', DEFAULT_VIEW_PREFIX))
