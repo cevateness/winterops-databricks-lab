@@ -63,3 +63,14 @@ jobs:
           --output-root /tmp/winterops-batch-example
           --warehouse-id 0000000000000000
           --workspace-root /Workspace/Shared/winterops_batch_EXAMPLE
+      - name: Four-week candidate SQL rendering (never executed)
+        run: >-
+          python scripts/render_unified_gold.py
+          --selection docs/FOUR_WEEK_SELECTION.json
+          --output /tmp/winterops-fourweek-candidate.sql
+      - name: Four-week versioned publication rendering (never executed)
+        run: >-
+          python scripts/render_unified_gold.py
+          --selection docs/FOUR_WEEK_SELECTION.json
+          --publication
+          --output /tmp/winterops-fourweek-publication.sql
