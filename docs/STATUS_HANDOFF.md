@@ -2,7 +2,20 @@
 
 This file resolves **stale status text** in earlier lesson ZIPs. It records known evidence; the user can resume after long pauses without replaying every lesson.
 
-## Current footprint extension — region discovery and collection efficiency (2026-11-03)
+## Current real-data plan — coverage ready; weather transfer approval pending (2026-11-03)
+
+- Recovered all four official public CSVs with exact pinned hashes (23,467,248 bytes). Local reconstruction reproduces all recorded counts: 298,156 parsed = 298,051 VALID + 105 HEADER; plow/spreader 239,344/127,232. No fresh native read or manifest-state claim. Raw coordinates remain outside Git.
+- Explicit private weather settings retain all valid records: minimum observations 1, weather-only context margin 1 degree. All 863 outside-source-review observations remain tagged; no sparse or hull exclusions. Actual demand: 842 cell/hours, nine coarse representatives, **24 requests / 2,088 hourly location records / 6,264 variable values**. Weather budget is 24 requests/8,192 rows; native Gold limits/pins are unchanged.
+- Automatic approval review rejected the coarse-location/date transfer to Open-Meteo for lack of explicit destination approval. No workaround/retry. Zero verified spatial weather bundles and no real matched output; initial request delivery is not established. Native requests remain zero. Finish retrieval only after explicit transfer approval.
+- **289 tests pass**, including reconstruction, units and boundary/context regressions. See [actual aggregate evidence](WEATHER_ACTIVITY_LOCAL_PLAN_RESULTS.json) and [reconstruction/reproduction](WEATHER_ACTIVITY_REVISION.md#real-source-recovery-and-complete-local-coverage-plan). The older private-coordinate blocker is superseded by public-source recovery; native Gold private matrices/auth remain blocked.
+
+## Earlier coverage clarification — collection units and boundary audit (2026-11-03)
+
+- “120 API hours” means **120 hourly location records across three planned requests**, not elapsed hours. New clear row-count labels accompany compatibility aliases; elapsed time remains unestimated. The example contains 360 variable values before missingness.
+- Hull/bounding-box geometry does not filter activity or returned weather grids. New valid points expand the cell set; exact internal/review edges and just-outside points are tested. Audits reconcile every supplied record into quality, geography, sparse or retained categories, with a 0.01-degree outside-near-review diagnostic and zero hull clipping.
+- **284 tests pass**, including six new units/boundary/accounting regressions. Real Windsor completeness remains unverified without private selected Silver coordinates. No new external weather or native requests, source mutations or Gold changes. See [units and coverage notes](WEATHER_ACTIVITY_REVISION.md#collection-units-and-boundary-coverage).
+
+## Earlier footprint extension — region discovery and collection efficiency (2026-11-03)
 
 - Added eligible/retained coarse footprints, bounding boxes and GeoJSON convex hulls of occupied cell corners. The planner previews hull/bounding-box collection sizes while keeping requests tied to occupied bins and relevant time windows. No raw GPS geometry, regional API calls or new native authority.
 - Synthetic comparison: 120 activity-driven API hours versus 144 for region-wide candidates/all required dates. Actual Windsor footprint and unique returned-grid count remain **blocked by unavailable private coordinates**. Counts are planned synthetic coverage, not measured savings.

@@ -118,7 +118,7 @@ class ActivityDemandTests(unittest.TestCase):
 
     def test_request_ceiling_prevents_a_large_sparse_calendar_fetch(self):
         hours = tuple(replace(self.hours[0], source_local_hour=(datetime(2026, 1, 5)
-                      + timedelta(days=i * 4)).isoformat(sep=' ')) for i in range(17))
+                      + timedelta(days=i * 4)).isoformat(sep=' ')) for i in range(33))
         with self.assertRaisesRegex(WeatherContractError, 'REQUEST_BUDGET'):
             DemandPlan(hours)
 

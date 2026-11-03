@@ -81,6 +81,10 @@ def main():
         p.add_argument('--selection', type=Path, default=ROOT / 'docs/FOUR_WEEK_SELECTION.json')
         p.add_argument('--output', type=Path, required=True, help='Private create-only JSON evidence file')
         p.add_argument('--lookback-hours', type=int, default=2)
+        p.add_argument('--minimum-observations', type=int, default=5,
+                       help='Use 1 for complete private coarse-hour acquisition; keep outputs private')
+        p.add_argument('--geographic-margin-degrees', type=float, default=0.0,
+                       help='Explicit weather-only regional context, at most 1 degree; source policy unchanged')
         if command in ('fetch', 'match'):
             p.add_argument('--snapshots', type=Path, required=True, help='Private weather snapshot cache outside Git')
     args = parser.parse_args()
@@ -98,7 +102,9 @@ def main():
                         row = json.loads(line)
                         require(type(row) is dict, 'DEMAND_PRIVATE_ROW_OBJECT')
                         yield row
-            hours, audit = aggregate_activity(read_rows(), load_selection(args.selection).selected)
+            hours, audit = aggregate_activity(read_rows(), load_selection(args.selection).selected,
+                                             minimum_observations=args.minimum_observations,
+                                             geographic_margin_degrees=args.geographic_margin_degrees)
             plan = DemandPlan(hours, args.lookback_hours)
             result = dict(evidence='PRIVATE_LOCAL_INPUT_NOT_NATIVE_VERIFIED_HERE', attribution=ATTRIBUTION,
                           audit=audit, demand=plan.public_contract())
@@ -110,6 +116,8 @@ def main():
         with args.output.open('xb') as output:
             output.write(canonical(result) + b'\n')
         print(json.dumps(dict(status='WROTE_LOCAL_CONTRACT_RESULT', evidence=result['evidence'],
+                              request_count=result['demand']['request_count'],
+                              hourly_location_records=result['demand']['requested_hourly_location_records'],
                               matches=len(result.get('matches', [])))))
         return 0
     except Exception as error:

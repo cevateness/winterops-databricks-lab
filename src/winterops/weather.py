@@ -83,7 +83,7 @@ class WeatherRequest:
         require(start.isoformat() == self.start_date and end.isoformat() == self.end_date
                 and 0 <= (end - start).days < 31, 'WEATHER_DATE_BOUND')
         require(finite(self.latitude) and finite(self.longitude)
-                and 42 <= self.latitude <= 43 and -84 <= self.longitude <= -82, 'WEATHER_WINDSOR_POINT_BOUND')
+                and 41 <= self.latitude <= 44 and -85 <= self.longitude <= -80, 'WEATHER_WINDSOR_POINT_BOUND')
         require(type(self.grid_only) is bool, 'WEATHER_GRID_MODE_REQUIRED')
 
     @property

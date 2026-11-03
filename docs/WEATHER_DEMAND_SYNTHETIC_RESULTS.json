@@ -11,7 +11,10 @@
   ],
   "demand": {
     "activity_hours": 3,
+    "collection_size_unit": "HOURLY_LOCATION_RECORDS_NOT_EXECUTION_HOURS",
     "contract": "activity-weather-demand-v1",
+    "estimated_runtime_seconds": null,
+    "hourly_location_record_budget": 8192,
     "hypotheses": [
       "America/Toronto",
       "UTC"
@@ -19,15 +22,22 @@
     "lookback_hours": 2,
     "regional_collection_comparison": {
       "activity_driven_api_hours": 120,
+      "activity_driven_hourly_location_records": 120,
       "bbox_region_all_dates_api_hours": 144,
+      "bbox_region_hourly_location_records": 144,
+      "collection_size_unit": "HOURLY_LOCATION_RECORDS_NOT_EXECUTION_HOURS",
       "hull_region_all_dates_api_hours": 144,
+      "hull_region_hourly_location_records": 144,
       "regional_requests_executed": false,
       "selection": "OCCUPIED_BIN_AND_HOUR_DEMAND",
       "union_required_utc_dates": 3,
       "unique_provider_grid_count": "UNKNOWN_UNTIL_RESPONSES_ARE_BOUND"
     },
+    "request_budget": 24,
     "request_count": 3,
     "requested_api_hours": 120,
+    "requested_hourly_location_records": 120,
+    "requested_measurement_values": 360,
     "requests": [
       {
         "parameters": {
@@ -253,5 +263,12 @@
     "before_seconds": 4.8844,
     "after_seconds": 0.4869,
     "coarse_counts_equal": true
+  },
+  "coverage_accounting": {
+    "all_input_rows_accounted_for": true,
+    "geographic_status": "NO_GEOGRAPHIC_EXCLUSIONS",
+    "hull_or_bbox_clipped_rows": 0,
+    "outside_review_band_degrees": 0.01,
+    "sparse_status": "NO_SPARSE_EXCLUSIONS"
   }
 }

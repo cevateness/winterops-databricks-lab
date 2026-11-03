@@ -78,6 +78,10 @@ def collection_comparison(footprint, *, utc_dates, activity_api_hours):
     """
     days = len(set(utc_dates))
     return dict(selection='OCCUPIED_BIN_AND_HOUR_DEMAND', union_required_utc_dates=days,
+                collection_size_unit='HOURLY_LOCATION_RECORDS_NOT_EXECUTION_HOURS',
+                activity_driven_hourly_location_records=activity_api_hours,
+                hull_region_hourly_location_records=24 * days * footprint['hull_candidate_count'],
+                bbox_region_hourly_location_records=24 * days * footprint['bbox_candidate_count'],
                 activity_driven_api_hours=activity_api_hours,
                 hull_region_all_dates_api_hours=24 * days * footprint['hull_candidate_count'],
                 bbox_region_all_dates_api_hours=24 * days * footprint['bbox_candidate_count'],

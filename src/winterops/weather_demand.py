@@ -33,9 +33,10 @@ class ActivityHour:
     representative_longitude: float
     source_local_hour: str
     observation_count: int
+    boundary_context_observations: int = 0
 
 
-def aggregate_activity(rows, selected, *, minimum_observations=5):
+def aggregate_activity(rows, selected, *, minimum_observations=5, geographic_margin_degrees=0.0):
     """Consume a private typed Silver projection; emit only coarse bin/hour counts.
 
     Bins are 0.25-degree candidates, NOT assumed ERA5 cells or City boundaries.
@@ -47,10 +48,13 @@ def aggregate_activity(rows, selected, *, minimum_observations=5):
     UnifiedGold(selected)  # Reuse nonoverlap/version/policy ambiguity guards.
     require(type(minimum_observations) is int and 1 <= minimum_observations <= 100,
             'DEMAND_MINIMUM_OBSERVATIONS')
+    require(finite(geographic_margin_degrees) and 0 <= geographic_margin_degrees <= 1.0,
+            'DEMAND_GEOGRAPHIC_MARGIN_BOUND')
     scopes = {s.processing_key: s for s in selected}
     dimensions = {key: scope.dimensions() for key, scope in scopes.items()}
-    counts, seen = Counter(), set()
+    counts, context_counts, seen = Counter(), Counter(), set()
     audit = Counter(input_rows=0, excluded_quality_rows=0, outside_review_rows=0,
+                    outside_near_review_rows=0, outside_selected_review_rows=0, included_boundary_context_rows=0,
                     eligible_observations=0, suppressed_observations=0, retained_observations=0)
     for row in rows:
         audit['input_rows'] += 1
@@ -74,14 +78,27 @@ def aggregate_activity(rows, selected, *, minimum_observations=5):
         require(stamp is not None and scope.source.covered_start <= stamp.date().isoformat()
                 < scope.source.covered_end_exclusive, 'DEMAND_VALID_NAIVE_TIME_REQUIRED')
         p = scope.policy
-        if not (p.review_lat_min <= lat <= p.review_lat_max and p.review_lon_min <= lon <= p.review_lon_max):
+        outside_original = not (p.review_lat_min <= lat <= p.review_lat_max and p.review_lon_min <= lon <= p.review_lon_max)
+        if outside_original:
+            audit['outside_selected_review_rows'] += 1
+            # Diagnostic only: an angular band, not a distance/geofence or a
+            # reason to silently enlarge the selected geographic policy.
+            if (p.review_lat_min - .01 <= lat <= p.review_lat_max + .01
+                    and p.review_lon_min - .01 <= lon <= p.review_lon_max + .01):
+                audit['outside_near_review_rows'] += 1
+        margin = geographic_margin_degrees
+        if not (p.review_lat_min - margin <= lat <= p.review_lat_max + margin
+                and p.review_lon_min - margin <= lon <= p.review_lon_max + margin):
             audit['outside_review_rows'] += 1
             continue
-        require(42.1 <= lat <= 42.5 and -83.3 <= lon <= -82.6, 'DEMAND_WINDSOR_PROTOTYPE_BOUND')
+        audit['included_boundary_context_rows'] += int(outside_original)
+        require(42.1 - margin <= lat <= 42.5 + margin and -83.3 - margin <= lon <= -82.6 + margin,
+                'DEMAND_WINDSOR_PROTOTYPE_BOUND')
         # Floor rather than truncation is essential for negative longitudes.
         y, x = math.floor(lat * 4), math.floor(lon * 4)
         hour = stamp.replace(minute=0, second=0, microsecond=0).isoformat(sep=' ')
         counts[(scope.processing_key, y, x, hour)] += 1
+        context_counts[(scope.processing_key, y, x, hour)] += int(outside_original)
         audit['eligible_observations'] += 1
     result = []
     for (key, y, x, hour), count in sorted(counts.items()):
@@ -90,11 +107,20 @@ def aggregate_activity(rows, selected, *, minimum_observations=5):
             continue
         s = scopes[key]
         result.append(ActivityHour(key, s.source_version_id, s.policy.policy_sha256,
-                                   f'q25:{y}:{x}', (y + .5) / 4, (x + .5) / 4, hour, count))
+                                   f'q25:{y}:{x}', (y + .5) / 4, (x + .5) / 4, hour, count,
+                                   context_counts[(key, y, x, hour)]))
         audit['retained_observations'] += count
     eligible_bins = {f'q25:{y}:{x}' for _, y, x, _ in counts}
+    require(audit['input_rows'] == audit['excluded_quality_rows'] + audit['outside_review_rows']
+            + audit['eligible_observations'] and audit['eligible_observations']
+            == audit['suppressed_observations'] + audit['retained_observations'], 'DEMAND_OBSERVATION_ACCOUNTING')
     return tuple(result), dict(audit, minimum_observations=minimum_observations,
+                               weather_geographic_margin_degrees=geographic_margin_degrees,
                                eligible_coarse_footprint=coarse_footprint(eligible_bins),
+                               coverage_accounting=dict(all_input_rows_accounted_for=True,
+                                   hull_or_bbox_clipped_rows=0, outside_review_band_degrees=.01,
+                                   geographic_status='REVIEW_EXCLUDED_COORDINATES' if audit['outside_review_rows'] else 'NO_GEOGRAPHIC_EXCLUSIONS',
+                                   sparse_status='SPARSE_BUCKETS_EXCLUDED' if audit['suppressed_observations'] else 'NO_SPARSE_EXCLUSIONS'),
                                input_completeness='NOT_ASSERTED_BY_THIS_LOCAL_PROJECTION')
 
 
@@ -103,6 +129,8 @@ def _validate_hours(hours):
     for a in hours:
         require(isinstance(a, ActivityHour) and type(a.observation_count) is int and a.observation_count > 0,
                 'DEMAND_ACTIVITY_HOUR_REQUIRED')
+        require(type(a.boundary_context_observations) is int
+                and 0 <= a.boundary_context_observations <= a.observation_count, 'DEMAND_BOUNDARY_CONTEXT_COUNT')
         try:
             prefix, y, x = a.spatial_bin.split(':')
             y, x = int(y), int(x)
@@ -143,7 +171,7 @@ class DemandPlan:
         for activity in self.activity:
             for hypothesis in HYPOTHESES:
                 required_epochs(activity, hypothesis, self.lookback_hours)
-        require(len(self.requests) <= 16 and sum(len(r.epochs) for r in self.requests) <= 8192,
+        require(len(self.requests) <= 24 and sum(len(r.epochs) for r in self.requests) <= 8192,
                 'DEMAND_REQUEST_BUDGET')
 
     @property
@@ -182,6 +210,11 @@ class DemandPlan:
                     spatial_bins=len(self.needed), lookback_hours=self.lookback_hours,
                     hypotheses=list(HYPOTHESES), request_count=len(self.requests),
                     requested_api_hours=api_hours, retained_coarse_footprint=footprint,
+                    requested_hourly_location_records=api_hours,
+                    requested_measurement_values=api_hours * len(MEASUREMENTS),
+                    collection_size_unit='HOURLY_LOCATION_RECORDS_NOT_EXECUTION_HOURS',
+                    estimated_runtime_seconds=None,
+                    request_budget=24, hourly_location_record_budget=8192,
                     regional_collection_comparison=collection_comparison(footprint, utc_dates=dates,
                                                                           activity_api_hours=api_hours),
                     required_bin_hours=sum(len(v) for v in self.needed.values()),
@@ -292,6 +325,7 @@ def matched_projection(plan, catalog):
             result.append(dict(processing_key=a.processing_key, source_version_id=a.source_version_id,
                                quality_policy_sha256=a.quality_policy_sha256, spatial_bin=a.spatial_bin,
                                source_local_hour=a.source_local_hour, observation_count=a.observation_count,
+                               outside_source_review_observations=a.boundary_context_observations,
                                timezone_hypothesis=hypothesis, grid_id=grid_id,
                                weather_snapshot_id=catalog['weather_snapshot_id'],
                                temperature_valid_time_utc=datetime.fromtimestamp(start, UTC).isoformat(),
@@ -306,4 +340,4 @@ def matched_projection(plan, catalog):
                                weather_coverage='COMPLETE' if complete else 'MISSING_GRID_OR_HOUR' if not instant or not interval else 'NULL_MEASUREMENT',
                                alignment_status='CONDITIONAL_UNVERIFIED_ACTIVITY_TIMEZONE', retrospective_only=True))
     return dict(matches=result, matched_weather_keys=[list(k) for k in sorted(used)],
-                evidence_status='LOCAL_CONTRACT_ONLY_LIVE_SPATIAL_MATCHING_NOT_ESTABLISHED')
+                evidence_status='MATCHED_SUPPLIED_INPUTS_NOT_NATIVE_VERIFIED')

@@ -1,0 +1,54 @@
+{
+  "evidence": "ACTUAL_LOCAL_RECONSTRUCTION_AND_DEMAND_PLAN_NOT_NATIVE_READ",
+  "source_files": 4,
+  "source_bytes": 23467248,
+  "source_hashes_match_selection": true,
+  "source_totals": {
+    "rows": 298156,
+    "valid": 298051,
+    "header": 105,
+    "invalid": 0,
+    "plow_active": 239344,
+    "spreader_active": 127232
+  },
+  "weather_planning_policy": {
+    "minimum_observations": 1,
+    "geographic_margin_degrees": 1.0,
+    "source_quality_policy_unchanged": true,
+    "real_projections_private": true
+  },
+  "coverage": {
+    "retained_valid": 298051,
+    "included_outside_original_review": 863,
+    "outside_near_original_review": 12,
+    "sparse_suppressed": 0,
+    "outside_final_weather_context": 0,
+    "all_supplied_rows_accounted_for": true,
+    "hull_clipped": 0
+  },
+  "load": {
+    "activity_hours": 842,
+    "spatial_bins": 9,
+    "request_count": 24,
+    "requested_hourly_location_records": 2088,
+    "requested_measurement_values": 6264,
+    "required_bin_hours": 1459,
+    "request_budget": 24,
+    "hourly_location_record_budget": 8192
+  },
+  "endpoint": "https://archive-api.open-meteo.com/v1/archive",
+  "variables": [
+    "temperature_2m",
+    "precipitation",
+    "snowfall"
+  ],
+  "earliest_request_date": "2026-01-05",
+  "latest_request_date": "2026-01-30",
+  "weather_transfer_status": "AUTO_REVIEW_REJECTED_EXPLICIT_DESTINATION_APPROVAL_REQUIRED",
+  "verified_weather_bundles": 0,
+  "verified_weather_rows": 0,
+  "request_delivery_before_rejection": "NOT_ESTABLISHED",
+  "matched_output_created": false,
+  "native_requests": 0,
+  "source_reconstruction_kind": "LOCAL_RECONSTRUCTION_FROM_EXACT_PUBLIC_SOURCE_BYTES_NOT_NATIVE_READ"
+}
