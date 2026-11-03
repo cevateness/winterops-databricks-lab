@@ -67,4 +67,28 @@ python scripts/weather_activity.py match --private-silver /private/silver.jsonl 
 
 Next: obtain an authorized private projection of the selected validated Silver scopes, verify clock/coordinate premises, inspect coarse demand privately and then run the bounded weather acquisition/matching. Until then, live location-matched results remain blocked. The original native Gold prerequisites and authorization limits remain separate.
 
+## Region discovery and convex hull
+
+The follow-up footprint extension is implemented in [weather_footprint.py](../src/winterops/weather_footprint.py). Use **validated Silver**, not unchecked Bronze latitude/longitude: repeated headers, malformed records and geographic outliers can stretch a raw hull into an unrelated region. Bronze remains the provenance/audit source. The existing screen preserves exclusions in the audit and never modifies Bronze/Silver.
+
+The same local pass now derives an **eligible footprint before sparse suppression**; the request plan separately reports its **retained footprint after suppression**. Each footprint includes occupied coarse bins, a bounding box, and a GeoJSON convex hull of the occupied **0.25° cell corners**. It is a conservative coarse-cell envelope, not the convex hull of raw GPS locations, a municipal boundary, road coverage, or a certified anonymized geometry. No raw positions or vehicle IDs are exported. Real footprints remain in the private CLI output.
+
+Hull construction runs after cell deduplication: **O(K log K)** for K coarse cells, with an explicit cap of 64 bounding-box candidates. Integer quarter-degree geometry avoids floating-point edge ambiguity; empty/one-cell/collinear cases are covered. No GIS dependency, area calculation in square kilometres, or per-ping network request is introduced.
+
+The planner reports three collection sizes using the current required UTC dates:
+
+| Collection choice | Purpose |
+| --- | --- |
+| Occupied bins and their own required hours/dates | Default: weather attached to observed activity, with existing antecedent/boundary handling |
+| All candidate centres within the coarse hull, on all required dates | Preview of broader regional coverage; may include locations/times without activity |
+| All bounding-box candidate centres, on all required dates | Simplest regional preview, usually at least as broad as the hull |
+
+The hull guides scope review; it does **not** automatically add regional API calls. Activity-driven collection remains the efficient default for this analytical join. A separate regional weather map could justify interior coverage, but those extra weather facts must not create invented activity observations. Candidate points still have to be resolved to **returned** provider grids. Multiple requested points can map to the same ERA5 cell, so footprint vertex/candidate counts are not counts of independent weather information or station observations.
+
+In the current synthetic proof, occupied demand requests **120 API hours**, while covering both hull/bounding-box candidates on every required date would request **144**. These are planned returned-hour counts, not measured API savings, billed compute or a real Windsor result. A separate triangular-cell regression demonstrates hull candidate reduction from 9 bounding-box candidates to 8; three cells are actually occupied.
+
+The aggregation loop now caches source dimensions once per selected scope instead of recomputing them for each field of each observation. A single local synthetic 20,000-row comparison measured **4.8844 s before / 0.4869 s after**, with identical coarse counts. This is a local Python measurement, not a native performance forecast. The full suite now contains **278 passing offline tests**, including 10 new footprint/collection regressions. No additional weather HTTP or Databricks requests were made for this extension.
+
+Existing `plan` and `demo` commands automatically include these footprint/cost diagnostics; no new execution mode is necessary. The live Windsor footprint and its actual unique weather-grid count remain blocked until the private selected coordinates are supplied.
+
 Interface/units/licensing references and attribution: [weather source documentation](WEATHER_INTEGRATION.md). The synthetic provider response is not actual Open-Meteo weather. Actual fixture weather remains attributed to [Open-Meteo.com](https://open-meteo.com/), ERA5/Copernicus C3S, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).

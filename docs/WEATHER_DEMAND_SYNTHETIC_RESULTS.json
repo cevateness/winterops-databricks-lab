@@ -17,6 +17,15 @@
       "UTC"
     ],
     "lookback_hours": 2,
+    "regional_collection_comparison": {
+      "activity_driven_api_hours": 120,
+      "bbox_region_all_dates_api_hours": 144,
+      "hull_region_all_dates_api_hours": 144,
+      "regional_requests_executed": false,
+      "selection": "OCCUPIED_BIN_AND_HOUR_DEMAND",
+      "union_required_utc_dates": 3,
+      "unique_provider_grid_count": "UNKNOWN_UNTIL_RESPONSES_ARE_BOUND"
+    },
     "request_count": 3,
     "requested_api_hours": 120,
     "requests": [
@@ -73,6 +82,55 @@
       }
     ],
     "required_bin_hours": 18,
+    "retained_coarse_footprint": {
+      "bbox": [
+        -83.25,
+        42.0,
+        -83.0,
+        42.5
+      ],
+      "bbox_candidate_count": 2,
+      "cell_size_degrees": 0.25,
+      "convex_hull": {
+        "coordinates": [
+          [
+            [
+              -83.25,
+              42.0
+            ],
+            [
+              -83.0,
+              42.0
+            ],
+            [
+              -83.0,
+              42.5
+            ],
+            [
+              -83.25,
+              42.5
+            ],
+            [
+              -83.25,
+              42.0
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "coordinate_order": "longitude_latitude",
+      "geometry_kind": "COARSE_CELL_ENVELOPE_NOT_RAW_POSITION_HULL",
+      "hull_candidate_bins": [
+        "q25:168:-333",
+        "q25:169:-333"
+      ],
+      "hull_candidate_count": 2,
+      "occupied_bin_count": 2,
+      "occupied_bins": [
+        "q25:168:-333",
+        "q25:169:-333"
+      ]
+    },
     "spatial_bins": 2
   },
   "returned_grid_count": 1,
@@ -139,5 +197,61 @@
   "attribution": "Weather data by Open-Meteo.com (https://open-meteo.com/), ERA5 / Copernicus C3S; CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).",
   "weather_kind": "historical_reanalysis",
   "requested_model": "era5",
-  "model_attestation": "REQUEST_PARAMETER_ONLY"
+  "model_attestation": "REQUEST_PARAMETER_ONLY",
+  "eligible_coarse_footprint": {
+    "bbox": [
+      -83.25,
+      42.0,
+      -83.0,
+      42.5
+    ],
+    "bbox_candidate_count": 2,
+    "cell_size_degrees": 0.25,
+    "convex_hull": {
+      "coordinates": [
+        [
+          [
+            -83.25,
+            42.0
+          ],
+          [
+            -83.0,
+            42.0
+          ],
+          [
+            -83.0,
+            42.5
+          ],
+          [
+            -83.25,
+            42.5
+          ],
+          [
+            -83.25,
+            42.0
+          ]
+        ]
+      ],
+      "type": "Polygon"
+    },
+    "coordinate_order": "longitude_latitude",
+    "geometry_kind": "COARSE_CELL_ENVELOPE_NOT_RAW_POSITION_HULL",
+    "hull_candidate_bins": [
+      "q25:168:-333",
+      "q25:169:-333"
+    ],
+    "hull_candidate_count": 2,
+    "occupied_bin_count": 2,
+    "occupied_bins": [
+      "q25:168:-333",
+      "q25:169:-333"
+    ]
+  },
+  "aggregation_microbenchmark": {
+    "kind": "SINGLE_LOCAL_SYNTHETIC_RUN_NOT_NATIVE",
+    "rows": 20000,
+    "before_seconds": 4.8844,
+    "after_seconds": 0.4869,
+    "coarse_counts_equal": true
+  }
 }

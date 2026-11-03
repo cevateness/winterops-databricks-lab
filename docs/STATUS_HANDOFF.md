@@ -2,7 +2,13 @@
 
 This file resolves **stale status text** in earlier lesson ZIPs. It records known evidence; the user can resume after long pauses without replaying every lesson.
 
-## Current review revision — activity-driven spatial/hour weather (2026-11-03)
+## Current footprint extension — region discovery and collection efficiency (2026-11-03)
+
+- Added eligible/retained coarse footprints, bounding boxes and GeoJSON convex hulls of occupied cell corners. The planner previews hull/bounding-box collection sizes while keeping requests tied to occupied bins and relevant time windows. No raw GPS geometry, regional API calls or new native authority.
+- Synthetic comparison: 120 activity-driven API hours versus 144 for region-wide candidates/all required dates. Actual Windsor footprint and unique returned-grid count remain **blocked by unavailable private coordinates**. Counts are planned synthetic coverage, not measured savings.
+- Cached source dimensions per selected scope; one local 20,000-row run measured 4.8844 → 0.4869 seconds, with identical coarse counts. **278 offline tests pass**, including 10 new hull/boundary/suppression/collection/privacy cases. Native Gold pins and original municipal runtime remain unchanged. See [region discovery and reproduction](WEATHER_ACTIVITY_REVISION.md#region-discovery-and-convex-hull).
+
+## Earlier review revision — activity-driven spatial/hour weather (2026-11-03)
 
 - Addresses [PR #17 review comment](https://github.com/cevateness/winterops-databricks-lab/pull/17#issuecomment-6598402435) on the same unmerged branch. The previous fixed-point sample/daily example is now explicitly **a temporal/provenance fixture, not location-matched integration**.
 - Implemented private selected Silver → VALID/review-envelope screening → coarse 0.25° candidate bins/source-local hours → Toronto/UTC demand → bounded point/date requests → returned-grid facts → one matched row per processing/bin/hour/hypothesis. Default sparse-bin suppression, explicit two-hour antecedent window, UTC date/gap handling, returned-grid/elevation identities, fact deduplication/conflict detection and variable-level missingness are included. No municipal ingestion/Gold logic changed.

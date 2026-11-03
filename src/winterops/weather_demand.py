@@ -14,6 +14,7 @@ from winterops.unified_gold import UnifiedGold
 from winterops.weather import (WeatherRequest, acquire_snapshot, canonical, digest,
                                finite, load_snapshot, require)
 from winterops.weather_analysis import conditional_instant
+from winterops.weather_footprint import coarse_footprint, collection_comparison
 
 UTC = timezone.utc
 HYPOTHESES = ('America/Toronto', 'UTC')
@@ -47,6 +48,7 @@ def aggregate_activity(rows, selected, *, minimum_observations=5):
     require(type(minimum_observations) is int and 1 <= minimum_observations <= 100,
             'DEMAND_MINIMUM_OBSERVATIONS')
     scopes = {s.processing_key: s for s in selected}
+    dimensions = {key: scope.dimensions() for key, scope in scopes.items()}
     counts, seen = Counter(), set()
     audit = Counter(input_rows=0, excluded_quality_rows=0, outside_review_rows=0,
                     eligible_observations=0, suppressed_observations=0, retained_observations=0)
@@ -54,7 +56,7 @@ def aggregate_activity(rows, selected, *, minimum_observations=5):
         audit['input_rows'] += 1
         require(audit['input_rows'] <= 500000, 'DEMAND_INPUT_ROW_BOUND')
         scope = scopes.get(row.get('processing_key'))
-        require(scope is not None and all(row.get(k) == scope.dimensions()[k] for k in FIELDS),
+        require(scope is not None and all(row.get(k) == dimensions[scope.processing_key][k] for k in FIELDS),
                 'DEMAND_SELECTED_SILVER_LINEAGE')
         number = row.get('source_record_number')
         require(type(number) is int and 1 <= number <= scope.expected_rows, 'DEMAND_RECORD_ID_REQUIRED')
@@ -90,7 +92,9 @@ def aggregate_activity(rows, selected, *, minimum_observations=5):
         result.append(ActivityHour(key, s.source_version_id, s.policy.policy_sha256,
                                    f'q25:{y}:{x}', (y + .5) / 4, (x + .5) / 4, hour, count))
         audit['retained_observations'] += count
+    eligible_bins = {f'q25:{y}:{x}' for _, y, x, _ in counts}
     return tuple(result), dict(audit, minimum_observations=minimum_observations,
+                               eligible_coarse_footprint=coarse_footprint(eligible_bins),
                                input_completeness='NOT_ASSERTED_BY_THIS_LOCAL_PROJECTION')
 
 
@@ -170,12 +174,18 @@ class DemandPlan:
 
     def public_contract(self):
         """Only coarse representatives and API date windows, never raw positions."""
+        requests = self.requests
+        footprint = coarse_footprint(self.needed)
+        dates = {datetime.fromtimestamp(t, UTC).date().isoformat() for r in requests for t in r.epochs}
+        api_hours = sum(len(r.epochs) for r in requests)
         return dict(contract='activity-weather-demand-v1', activity_hours=len(self.activity),
                     spatial_bins=len(self.needed), lookback_hours=self.lookback_hours,
                     hypotheses=list(HYPOTHESES), request_count=len(self.requests),
-                    requested_api_hours=sum(len(r.epochs) for r in self.requests),
+                    requested_api_hours=api_hours, retained_coarse_footprint=footprint,
+                    regional_collection_comparison=collection_comparison(footprint, utc_dates=dates,
+                                                                          activity_api_hours=api_hours),
                     required_bin_hours=sum(len(v) for v in self.needed.values()),
-                    requests=[dict(request_id=r.request_id, parameters=r.parameters) for r in self.requests])
+                    requests=[dict(request_id=r.request_id, parameters=r.parameters) for r in requests])
 
 
 def acquire_demand(plan, directory, *, acquire=acquire_snapshot):
