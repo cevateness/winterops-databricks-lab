@@ -73,6 +73,7 @@ class WeatherRequest:
     end_date: str = '2026-02-02'
     latitude: float = 42.3149
     longitude: float = -83.0364
+    grid_only: bool = False
 
     def __post_init__(self):
         try:
@@ -83,14 +84,20 @@ class WeatherRequest:
                 and 0 <= (end - start).days < 31, 'WEATHER_DATE_BOUND')
         require(finite(self.latitude) and finite(self.longitude)
                 and 42 <= self.latitude <= 43 and -84 <= self.longitude <= -82, 'WEATHER_WINDSOR_POINT_BOUND')
+        require(type(self.grid_only) is bool, 'WEATHER_GRID_MODE_REQUIRED')
 
     @property
     def parameters(self):
-        return dict(latitude=self.latitude, longitude=self.longitude,
+        parameters = dict(latitude=self.latitude, longitude=self.longitude,
                     start_date=self.start_date, end_date=self.end_date,
                     hourly=','.join(VARIABLES), models='era5', timezone='GMT',
                     timeformat='unixtime', temperature_unit='celsius',
                     precipitation_unit='mm', cell_selection='land')
+        if self.grid_only:
+            # Disable point-elevation downscaling so identical returned model
+            # cells are comparable across coarse requested representatives.
+            parameters.update(elevation='nan', cell_selection='nearest')
+        return parameters
 
     @property
     def url(self):

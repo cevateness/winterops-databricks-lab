@@ -402,6 +402,7 @@
     }
   ],
   "snapshot_id": "518e1cec33503ce86eae5112d6f4aa39206090015044d95e2e7df9da59f22184",
-  "status": "EXECUTED_LOCAL_CONDITIONAL_HISTORICAL_JOIN",
+  "spatial_matching_status": "NOT_LOCATION_MATCHED_TO_ACTIVITY",
+  "status": "EXECUTED_FIXED_POINT_TEMPORAL_FIXTURE_ONLY",
   "weather_hours": 720
 }

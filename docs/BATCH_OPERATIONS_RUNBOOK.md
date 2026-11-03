@@ -13,9 +13,12 @@ python -m compileall -q src scripts notebooks
 python scripts/audit_gold_candidate.py
 python scripts/weather_batch.py validate
 python scripts/weather_batch.py example --output /tmp/weather-review.json
+python scripts/weather_activity.py demo --output /tmp/spatial-weather-proof.json
 ```
 
 Use a new output path when rerunning create-only weather output. On Windows, substitute a local temporary path; install `tzdata` if the system lacks an IANA database. CI also validates the aggregate fixture, renders seven SQL plans and renders the synthetic six-task Job package. The complete executable check list is [.github/workflows/ci.yml](../.github/workflows/ci.yml); placeholder hashes and synthetic Job outputs are **not deployable artifacts**.
+
+The fixed-point `weather_batch.py example` is only a temporal fixture. The `weather_activity.py` path derives coarse location/hour demand from private Silver, plans bounded requests and matches returned-grid facts; see [contract, private commands and live spatial blocker](WEATHER_ACTIVITY_REVISION.md). The demo is entirely synthetic. No real Silver coordinates are available here and no live spatial result is claimed.
 
 API changes need endpoint-specific positive/negative fixtures. Reuse the existing 59 recorded native schema rows in `ON_DEMAND_BATCH_SCHEMA_DIAGNOSTIC_RESULTS.json`, including zero-based ordinals and `LONG` / `bigint`. Use the recorded Files API fixture in `tests/fixtures/` for Files absence, not a Workspace error response. Label substituted paths/content as synthetic. Do not create another native trial just to rediscover an already recorded response shape.
 

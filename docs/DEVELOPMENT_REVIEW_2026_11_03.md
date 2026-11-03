@@ -1,5 +1,7 @@
 # WinterOps development review — November 3, 2026
 
+**Review revision:** the first-pass weather example described below is a fixed-point temporal fixture, not location-matched integration. The [activity-driven spatial/hourly revision](WEATHER_ACTIVITY_REVISION.md) now implements the required private-Silver demand and returned-grid matching contract, with **268 passing offline tests**. Its live spatial execution remains blocked by unavailable private Silver coordinates. The 242-test run below is retained as first-pass history; no native execution has been added.
+
 **Result:** a working historical weather batch prototype, reproducible conditional activity joins, a current operating runbook and 242 passing offline tests. Four-week Gold was reviewed without changing its implementation. Native publication is blocked by unavailable private inputs/authentication; **zero Databricks requests, SQL submissions, objects created or native changes occurred in this assignment**. Current remote target existence was not queried.
 
 ## Starting point and evidence boundaries

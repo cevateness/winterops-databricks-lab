@@ -1,5 +1,7 @@
 # Historical weather batch prototype
 
+**Scope correction after PR review:** the 720-hour single-point snapshot and daily example below are reproducibility/temporal fixtures, **not location-matched activity/weather integration**. The new [activity-driven spatial/hourly path](WEATHER_ACTIVITY_REVISION.md) derives coarse demand from private Silver, keys weather by returned grids and emits matched projections. That path is implemented and synthetic-tested; live spatial matching remains **BLOCKED** because private Silver coordinates are unavailable. The existing fixture bytes are preserved.
+
 **Executed locally on 2026-11-03; no Databricks deployment.** The committed public weather snapshot contains 720 hourly rows for January 4–February 2 inclusive, covering the four selected activity weeks with boundary padding. All timestamps and values passed the source contract; there are zero missing values or duplicate hours. [Recorded results](WEATHER_EXAMPLE_RESULTS.json) contain an actually executed, conditional daily join to the five recorded fourth-week activity days. Activity is existing offline Gold evidence, not newly queried native data.
 
 ## Source choice and verified interface

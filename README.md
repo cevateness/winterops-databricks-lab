@@ -4,9 +4,9 @@
 
 **Current status — November 3, 2026:** Four historical source weeks have passed native Bronze/Silver ingestion. Three-week Gold is historically published and verified. The four-week Gold candidate is implemented and offline validated; native publication is conditionally authorized but blocked here by unavailable pinned private artifacts and secure Databricks access. No Databricks request or mutation occurred in the current assignment.
 
-A working **historical weather batch prototype** now includes a 720-hour attributed Open-Meteo sample, portable UTC staging and a conditional daily activity join. Activity timezone remains unverified; Toronto/UTC sensitivity scenarios are retrospective only. **242 offline tests pass**, together with all SQL/Job render checks. New implementation remains on a review branch until its PR is merged.
+The **activity-driven weather contract** now derives coarse spatial/hour demand from private Silver, plans bounded requests and matches returned-grid weather facts. It passes a fully synthetic demonstration; **live spatial matching is blocked** because private Silver coordinates are unavailable. The retained 720-hour fixed-point sample/daily example is only an API/provenance and temporal fixture. Toronto/UTC hypotheses remain conditional and retrospective. **268 offline tests pass**, together with all SQL/Job render checks. New implementation remains on a review branch until its PR is merged.
 
-Start with the [development review](docs/DEVELOPMENT_REVIEW_2026_11_03.md), [normal batch runbook](docs/BATCH_OPERATIONS_RUNBOOK.md), [weather contract and reproduction](docs/WEATHER_INTEGRATION.md), and [current handoff](docs/STATUS_HANDOFF.md). Historical native evidence is retained for [incremental ingestion](docs/INCREMENTAL_INGESTION_FILES_ABSENCE_RESULTS.json), [three-week publication](docs/THREE_WEEK_NATIVE_INTEGRATION.md), and [four-week offline preparation](docs/FOUR_WEEK_GOLD.md). Earlier lesson reports describe their own snapshots, not current blockers.
+Start with the [spatial weather review revision](docs/WEATHER_ACTIVITY_REVISION.md), [development review](docs/DEVELOPMENT_REVIEW_2026_11_03.md), [normal batch runbook](docs/BATCH_OPERATIONS_RUNBOOK.md), [weather contract and reproduction](docs/WEATHER_INTEGRATION.md), and [current handoff](docs/STATUS_HANDOFF.md). Historical native evidence is retained for [incremental ingestion](docs/INCREMENTAL_INGESTION_FILES_ABSENCE_RESULTS.json), [three-week publication](docs/THREE_WEEK_NATIVE_INTEGRATION.md), and [four-week offline preparation](docs/FOUR_WEEK_GOLD.md). Earlier lesson reports describe their own snapshots, not current blockers.
 
 **Purpose:** A personal Databricks learning MVP for reproducible data engineering and decision analytics. Research extensions and possible future commercialization remain separate scopes.
 
@@ -19,12 +19,14 @@ flowchart TD
     C --> D["Explicit COMPLETE source and policy selection"]
     D --> E["Three-week published Gold"]
     D --> F["Four-week offline Gold candidate"]
-    W["Open-Meteo raw weather snapshot"] --> T["Typed UTC hourly weather"]
-    T --> J["Conditional retrospective daily example"]
-    F --> J
+    C --> H["Private coarse spatial/hour demand"]
+    H --> Q["Bounded coarse weather requests"]
+    Q --> T["Returned-grid hourly weather facts"]
+    H --> M["Conditional matched projection"]
+    T --> M
 ```
 
-Municipal processing uses the existing on-demand SQL-file Job and scoped manifest checkpoints. The weather path is local Python batch processing, not native weather tables. The real example reads five existing public daily aggregates, not raw trajectories or a fresh native Gold export. Synthetic notebooks 01/02 and legacy single-week notebooks remain learning artifacts; notebook entrypoint execution is distinct from verified SQL/Jobs execution. No streaming, forecasting, SLA measurement or optimization is included.
+Municipal processing uses the existing on-demand SQL-file Job and scoped manifest checkpoints. The weather path is portable local Python batch processing; no native weather tables exist from this task. The demand/matching demonstration is synthetic and does not establish live spatial execution. The old fixed-point temporal fixture reads five existing public daily aggregates and cannot supply activity locations. Synthetic notebooks 01/02 and legacy single-week notebooks remain learning artifacts; notebook entrypoint execution is distinct from verified SQL/Jobs execution. No streaming, forecasting, SLA measurement or optimization is included.
 
 ## Historical single-week lesson observations (not current four-week scope)
 
@@ -91,7 +93,7 @@ python scripts/validate_quality_snapshot.py data/fixtures/windsor_week_2026_01_1
 
 The aggregate fixture verifies **reported** invariants; it does not query Databricks or replace integration tests.
 
-The expanded suite has 242 tests: existing analytics/contracts plus synthetic V2 revisions, policy changes, reruns, multiple weeks, interruptions, corruption/repair, source-quality edge cases, lossless gzip transport and SQL/Python reconciliation. SQLite tests adapt dialect/type details; they do **not** verify native V2 Spark/Delta writes or privileges. Notebook 06 defaults to `mode=render`; its apply path requires explicit approval and must not be used to replace the existing published views by default. The product and V2 plan renderers never execute SQL or create objects.
+The expanded suite has 268 tests: existing analytics/contracts plus synthetic V2 revisions, policy changes, reruns, multiple weeks, interruptions, corruption/repair, source-quality edge cases, lossless gzip transport and SQL/Python reconciliation. SQLite tests adapt dialect/type details; they do **not** verify native V2 Spark/Delta writes or privileges. Notebook 06 defaults to `mode=render`; its apply path requires explicit approval and must not be used to replace the existing published views by default. The product and V2 plan renderers never execute SQL or create objects.
 
 ## Data handling, attribution and source claims
 

@@ -29,7 +29,8 @@ def example(snapshot):
                                utc_precipitation_mm=utc['precipitation_sum_mm'],
                                toronto_snowfall_cm=toronto['snowfall_sum_cm'],
                                utc_snowfall_cm=utc['snowfall_sum_cm']))
-    return dict(status='EXECUTED_LOCAL_CONDITIONAL_HISTORICAL_JOIN', attribution=ATTRIBUTION,
+    return dict(status='EXECUTED_FIXED_POINT_TEMPORAL_FIXTURE_ONLY', attribution=ATTRIBUTION,
+                spatial_matching_status='NOT_LOCATION_MATCHED_TO_ACTIVITY',
                 activity_timezone_verified=False, predictive_features_allowed=False,
                 activity_evidence_path=str(evidence_path.relative_to(ROOT)),
                 activity_evidence_sha256=digest(evidence_path.read_bytes()),

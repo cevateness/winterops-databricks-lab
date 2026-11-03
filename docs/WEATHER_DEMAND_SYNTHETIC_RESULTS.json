@@ -1,0 +1,143 @@
+{
+  "evidence": "SYNTHETIC_OFFLINE_ONLY",
+  "live_spatial_matching": "BLOCKED_PRIVATE_SILVER_UNAVAILABLE",
+  "native_requests": 0,
+  "weather_http_requests": 0,
+  "synthetic_input_observations": 15,
+  "activity_bin_hours": 3,
+  "timezone_hypotheses": [
+    "America/Toronto",
+    "UTC"
+  ],
+  "demand": {
+    "activity_hours": 3,
+    "contract": "activity-weather-demand-v1",
+    "hypotheses": [
+      "America/Toronto",
+      "UTC"
+    ],
+    "lookback_hours": 2,
+    "request_count": 3,
+    "requested_api_hours": 120,
+    "requests": [
+      {
+        "parameters": {
+          "cell_selection": "nearest",
+          "elevation": "nan",
+          "end_date": "2026-01-05",
+          "hourly": "temperature_2m,precipitation,snowfall",
+          "latitude": 42.125,
+          "longitude": -83.125,
+          "models": "era5",
+          "precipitation_unit": "mm",
+          "start_date": "2026-01-04",
+          "temperature_unit": "celsius",
+          "timeformat": "unixtime",
+          "timezone": "GMT"
+        },
+        "request_id": "ca4f560ad14c551d36f5b747999638de4310f2b34ad723d8325ec1b20ca625ba"
+      },
+      {
+        "parameters": {
+          "cell_selection": "nearest",
+          "elevation": "nan",
+          "end_date": "2026-01-05",
+          "hourly": "temperature_2m,precipitation,snowfall",
+          "latitude": 42.375,
+          "longitude": -83.125,
+          "models": "era5",
+          "precipitation_unit": "mm",
+          "start_date": "2026-01-04",
+          "temperature_unit": "celsius",
+          "timeformat": "unixtime",
+          "timezone": "GMT"
+        },
+        "request_id": "4b30a2399e28904c928c907249759a157a1657a798f8e219ded3d2878a674f2f"
+      },
+      {
+        "parameters": {
+          "cell_selection": "nearest",
+          "elevation": "nan",
+          "end_date": "2026-01-08",
+          "hourly": "temperature_2m,precipitation,snowfall",
+          "latitude": 42.375,
+          "longitude": -83.125,
+          "models": "era5",
+          "precipitation_unit": "mm",
+          "start_date": "2026-01-08",
+          "temperature_unit": "celsius",
+          "timeformat": "unixtime",
+          "timezone": "GMT"
+        },
+        "request_id": "bd5d335393a14548ae011079b68784c7b02d7bbbe4e033eaddddd1be7440ffc8"
+      }
+    ],
+    "required_bin_hours": 18,
+    "spatial_bins": 2
+  },
+  "returned_grid_count": 1,
+  "unique_weather_facts": 12,
+  "matched_rows": 6,
+  "unique_matched_weather_keys": 12,
+  "observations_per_hypothesis": {
+    "America/Toronto": 15,
+    "UTC": 15
+  },
+  "cardinality": "ONE_MATCH_PER_PROCESSING_BIN_HOUR_HYPOTHESIS",
+  "sample_matches": [
+    {
+      "accumulation_valid_time_utc": "2026-01-05T06:00:00+00:00",
+      "alignment_status": "CONDITIONAL_UNVERIFIED_ACTIVITY_TIMEZONE",
+      "antecedent_coverage": "COMPLETE",
+      "antecedent_present_hours": 2,
+      "current_variables_present": 3,
+      "grid_id": "d04f65bc476311bdc416616d5cc371c4eb6378cbfdedcae288ae31486a957637",
+      "lookback_hours": 2,
+      "observation_count": 5,
+      "precipitation_activity_hour_mm": 0.0,
+      "precipitation_antecedent_mm": 3.0,
+      "processing_key": "1252b8dd61ffd20b98312d2237625592a1c7330f7fbcc50b66dbea7f344562fe",
+      "quality_policy_sha256": "03829a2ce3b308a45e0205ca12a5288e5cb08b97189cf20b69c0e37d4c546e08",
+      "retrospective_only": true,
+      "snowfall_activity_hour_cm": 0.0,
+      "snowfall_antecedent_cm": 0.0,
+      "source_local_hour": "2026-01-05 00:00:00",
+      "source_version_id": "69c80ddcee5c18ee914edda2e95104e9bf916e5f104aa5502fafcba6db6c8980",
+      "spatial_bin": "q25:168:-333",
+      "temperature_2m_c": 5.0,
+      "temperature_valid_time_utc": "2026-01-05T05:00:00+00:00",
+      "timezone_hypothesis": "America/Toronto",
+      "weather_coverage": "COMPLETE",
+      "weather_snapshot_id": "95ceac72b82ec435291bee4941a520833b7cb1f4fc533546dc7888e302b2a0ef"
+    },
+    {
+      "accumulation_valid_time_utc": "2026-01-05T01:00:00+00:00",
+      "alignment_status": "CONDITIONAL_UNVERIFIED_ACTIVITY_TIMEZONE",
+      "antecedent_coverage": "COMPLETE",
+      "antecedent_present_hours": 2,
+      "current_variables_present": 3,
+      "grid_id": "d04f65bc476311bdc416616d5cc371c4eb6378cbfdedcae288ae31486a957637",
+      "lookback_hours": 2,
+      "observation_count": 5,
+      "precipitation_activity_hour_mm": 1.0,
+      "precipitation_antecedent_mm": 2.0,
+      "processing_key": "1252b8dd61ffd20b98312d2237625592a1c7330f7fbcc50b66dbea7f344562fe",
+      "quality_policy_sha256": "03829a2ce3b308a45e0205ca12a5288e5cb08b97189cf20b69c0e37d4c546e08",
+      "retrospective_only": true,
+      "snowfall_activity_hour_cm": 0.0,
+      "snowfall_antecedent_cm": 0.0,
+      "source_local_hour": "2026-01-05 00:00:00",
+      "source_version_id": "69c80ddcee5c18ee914edda2e95104e9bf916e5f104aa5502fafcba6db6c8980",
+      "spatial_bin": "q25:168:-333",
+      "temperature_2m_c": 0.0,
+      "temperature_valid_time_utc": "2026-01-05T00:00:00+00:00",
+      "timezone_hypothesis": "UTC",
+      "weather_coverage": "COMPLETE",
+      "weather_snapshot_id": "95ceac72b82ec435291bee4941a520833b7cb1f4fc533546dc7888e302b2a0ef"
+    }
+  ],
+  "attribution": "Weather data by Open-Meteo.com (https://open-meteo.com/), ERA5 / Copernicus C3S; CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).",
+  "weather_kind": "historical_reanalysis",
+  "requested_model": "era5",
+  "model_attestation": "REQUEST_PARAMETER_ONLY"
+}
