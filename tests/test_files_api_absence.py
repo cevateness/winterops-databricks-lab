@@ -1,4 +1,5 @@
-"""Synthetic Files API absence contracts; no credentials, HTTP or telemetry."""
+"""Files API contracts using synthetic negatives and recorded sanitized evidence."""
+import hashlib
 import json
 from pathlib import Path
 import sys
@@ -14,6 +15,19 @@ class FilesApiAbsenceTests(unittest.TestCase):
     path = '/Volumes/SYNTHETIC/default/raw/immutable/example.csv'
     info = {'@type': 'type.googleapis.com/google.rpc.ErrorInfo',
             'reason': 'FILES_API_FILE_NOT_FOUND', 'domain': 'filesystem.databricks.com'}
+
+    def test_recorded_native_files_response_passes_only_its_service_contract(self):
+        root = Path(__file__).resolve().parents[1]
+        fixture = json.loads((root / 'tests/fixtures/databricks_files_absence_observed.json').read_text())
+        source = root / fixture['provenance']['evidence']
+        normalized = source.read_bytes().replace(b'\r\n', b'\n')
+        self.assertEqual(hashlib.sha256(normalized).hexdigest(), fixture['provenance']['evidence_sha256'])
+        actual = json.loads(normalized)['stopped_gate']['observed_sanitized_body']
+        self.assertEqual(fixture['body'], actual)
+        self.check(fixture['body'], fixture['http_status'])
+        with self.assertRaisesRegex(WorkspaceContractError, 'NOT_FOUND_ERROR_CONTRACT_MISMATCH'):
+            validate_absent_destination(fixture['http_status'], fixture['body'],
+                                       requested_path='/Shared/SYNTHETIC.sql', expected_path='/Shared/SYNTHETIC.sql')
 
     def check(self, body=None, http_status=404, **changes):
         args = dict(requested_method='GET', requested_endpoint='/api/2.0/fs/files' + self.path,

@@ -23,3 +23,7 @@ Prepare three views: `VALID` Silver, quarantine Silver and source-local/naive ho
 
 ## ADR-008 — Minimal read-only CLI acceptance gate (2026-10-25)
 Use the official standalone CLI through a dependency-free Python checker, with a PowerShell wrapper. Require a named local profile and matching expected HTTPS workspace host. Capture CLI output, report sanitized statuses, bound timeouts and keep the Jobs metadata probe optional. No SDK, bundle, job submission or schedule is added. Authentication and any later workspace writes remain separate explicit actions.
+
+## ADR-009 — Snapshot weather and expose temporal uncertainty (2026-11-03)
+
+Use a bounded single-point ERA5-requested Open-Meteo historical batch, preserving response bytes and request/retrieval provenance separately from typed UTC staging. Allow this attributed public weather sample in Git; the prohibition on raw municipal telemetry is unchanged. Request epoch/GMT timestamps and align preceding-hour accumulation intervals explicitly. Do not zone the existing activity NTZ fields without source evidence: daily joins compare labelled Toronto/UTC hypotheses, retain null missing-activity days and are retrospective only. Defer forecast-as-of features, streaming and native weather deployment. Keep successful municipal orchestration intact; distinguish release acceptance from routine integrity checks in one runbook. See [implementation/trade-offs](DEVELOPMENT_REVIEW_2026_11_03.md).

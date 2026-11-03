@@ -1,6 +1,14 @@
-# WinterOps — Status handoff (2026-10-29)
+# WinterOps — Status handoff
 
 This file resolves **stale status text** in earlier lesson ZIPs. It records known evidence; the user can resume after long pauses without replaying every lesson.
+
+## Current development handoff — weather batch and operational review (2026-11-03)
+
+- Based on latest `main` **35c07e08f7850815660923a9570abb28343ad0e0**. PRs #15–#16 already merged; successful ingestion and the four-week candidate were reviewed, not reimplemented. Main CI passed; the 217-test baseline passed locally. New work is on `feat/weather-batch-and-operations`, for an unmerged review PR.
+- **Native Gold: conditionally authorized, blocked before any request.** The exact proposal SHA and 13 public dependency pins pass offline. Pinned private SQL/metadata/expected-results inputs and secure Databricks profile are unavailable. No substitute execution plan, native SQL/API call, creation, partial publication or mutation occurred. Current remote target existence/permissions remain unqueried. The original frozen plan's preparation-time approval wording is historical; lack of approval is not the current blocker. Existing Gold code/selections/plans remain byte-preserved.
+- **Weather prototype: executed locally.** One committed 720-hour Open-Meteo ERA5-requested snapshot, January 4–February 2 inclusive, with exact original bytes and retrieval metadata; zero missing values/duplicate hours. Portable typed staging and explicit daily accumulation intervals. Actual example joins five recorded fourth-week daily aggregates under Toronto/UTC hypotheses; seven calendar rows per scenario, missing activity remains null. Timezone remains unverified, all output is conditional/retrospective and excluded from predictive features. No Databricks weather objects or deployment.
+- **242 tests passed / zero failures/errors / 3.162 seconds**, all existing fixture/syntax/seven SQL render/synthetic Job checks and three new offline checks passed. Added 24 weather tests and one recorded sanitized Files API fixture regression; existing observed native schema regressions reused. CI results and exact implementation commit are recorded in the PR/completion response. No native runtime or orchestration checks were changed.
+- Start with the [concise development review](DEVELOPMENT_REVIEW_2026_11_03.md), [normal batch runbook](BATCH_OPERATIONS_RUNBOOK.md), [weather contract/reproduction](WEATHER_INTEGRATION.md) and [executed example](WEATHER_EXAMPLE_RESULTS.json). All earlier sections below are historical evidence, not instructions to rerun old trials. Next: source timezone evidence; native publication only if the existing exact private inputs become available and all authorized gates pass.
 
 ## Four-week Gold candidate — offline PASS, native validation/publication pending (2026-11-02)
 
