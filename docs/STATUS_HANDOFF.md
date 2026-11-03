@@ -2,7 +2,15 @@
 
 This file resolves **stale status text** in earlier lesson ZIPs. It records known evidence; the user can resume after long pauses without replaying every lesson.
 
-## Current real-data plan — coverage ready; weather transfer approval pending (2026-11-03)
+## Current weather execution — approved collection and local match PASS (2026-11-03)
+
+- User explicitly approved the 24 coarse-location/date requests to Open-Meteo, resolving the prior transfer rejection. **24/24 HTTP 200 responses verified, 2,088 hourly location records, 6,264 variable values, 62,218 bytes, 112.34 client seconds, zero retries.** No native requests.
+- Actual responses resolve to nine model grids. Catalogue: **1,459 demanded unique facts**. Match: **1,684 rows / 842 per timezone hypothesis**, preserving all 298,051 VALID observations and 863 outside-original-review observations under each hypothesis. Every match has complete current-hour and two-hour antecedent coverage; no null current measurements.
+- Independent raw-response/January-offset oracle passes; source/response hashes unchanged. Full cache replay reproduces identical facts, matches, keys, demand and audit with zero additional HTTP. Detailed weather/projection replay archive is private; raw municipal CSVs/record positions are excluded. Public Git contains aggregate evidence only.
+- Timezone remains unverified: temperature differs in 822/842 paired cell/hours between hypotheses (mean absolute difference about 1.98°C). Reanalysis/coarse-grid and count interpretation limits remain. **289 offline tests pass**; exact evidence-commit CI is linked in PR #17. No native weather deployment or Gold publication.
+- Read [current implementation/execution](WEATHER_ACTIVITY_REVISION.md) and [actual results](WEATHER_ACTIVITY_EXECUTION_RESULTS.json). Next useful milestone is authoritative timestamp interpretation, then review the analytical projection; no schedule or model deployment.
+
+## Earlier real-data plan — transfer initially blocked (2026-11-03)
 
 - Recovered all four official public CSVs with exact pinned hashes (23,467,248 bytes). Local reconstruction reproduces all recorded counts: 298,156 parsed = 298,051 VALID + 105 HEADER; plow/spreader 239,344/127,232. No fresh native read or manifest-state claim. Raw coordinates remain outside Git.
 - Explicit private weather settings retain all valid records: minimum observations 1, weather-only context margin 1 degree. All 863 outside-source-review observations remain tagged; no sparse or hull exclusions. Actual demand: 842 cell/hours, nine coarse representatives, **24 requests / 2,088 hourly location records / 6,264 variable values**. Weather budget is 24 requests/8,192 rows; native Gold limits/pins are unchanged.

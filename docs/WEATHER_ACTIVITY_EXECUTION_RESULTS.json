@@ -1,0 +1,85 @@
+{
+  "status": "PASS_ACTUAL_PUBLIC_WEATHER_AND_LOCAL_RECONSTRUCTED_ACTIVITY_MATCH",
+  "execution_date": "2026-11-03",
+  "source_kind": "EXACT_PUBLIC_CSV_LOCAL_RECONSTRUCTION_NOT_NATIVE_READ",
+  "authorization": "EXPLICIT_USER_APPROVAL_FOR_24_COARSE_LOCATION_DATE_REQUESTS_TO_OPEN_METEO",
+  "source_coverage": {
+    "valid_observations": 298051,
+    "header_rows": 105,
+    "all_valid_in_plan": true,
+    "outside_original_review_included": 863,
+    "sparse_excluded": 0,
+    "hull_clipped": 0
+  },
+  "actual_weather": {
+    "http_requests": 24,
+    "verified_http_200_responses": 24,
+    "returned_hourly_location_records": 2088,
+    "returned_measurement_values": 6264,
+    "requested_coarse_locations": 9,
+    "returned_unique_grids": 9,
+    "demanded_unique_weather_facts": 1459,
+    "response_bytes": 62218,
+    "elapsed_client_seconds": 112.34,
+    "automatic_retries": 0
+  },
+  "matching": {
+    "rows": 1684,
+    "rows_per_hypothesis": 842,
+    "observations_per_hypothesis": 298051,
+    "boundary_context_per_hypothesis": 863,
+    "unique_grain": "processing_key/spatial_bin/source_local_hour/timezone_hypothesis",
+    "current_coverage": {
+      "COMPLETE": 1684
+    },
+    "antecedent_coverage": {
+      "COMPLETE": 1684
+    },
+    "null_current_measurements": 0,
+    "current_and_antecedent_intervals_verified": true,
+    "all_required_fact_keys_unique": true
+  },
+  "independent_verification": "PASS_INDEPENDENT_RAW_RESPONSE_AND_JANUARY_ALIGNMENT_ORACLE",
+  "source_and_response_hashes_unchanged": true,
+  "timezone_hypotheses": [
+    "America/Toronto",
+    "UTC"
+  ],
+  "activity_timezone_verified": false,
+  "weather_kind": "historical_reanalysis",
+  "requested_model": "era5",
+  "model_attestation": "REQUEST_PARAMETER_ONLY",
+  "predictive_features_allowed": false,
+  "timezone_sensitivity": {
+    "temperature_2m_c": {
+      "different_cell_hours": 822,
+      "paired_cell_hours": 842,
+      "max_absolute_difference": 7.699999999999999,
+      "mean_absolute_difference": 1.979334916864608
+    },
+    "precipitation_activity_hour_mm": {
+      "different_cell_hours": 426,
+      "paired_cell_hours": 842,
+      "max_absolute_difference": 1.2,
+      "mean_absolute_difference": 0.11270783847980999
+    },
+    "snowfall_activity_hour_cm": {
+      "different_cell_hours": 398,
+      "paired_cell_hours": 842,
+      "max_absolute_difference": 0.49,
+      "mean_absolute_difference": 0.06866983372921616
+    }
+  },
+  "private_download_artifact": {
+    "filename": "WinterOps_weather_integration_20261103.zip",
+    "bytes": 129673,
+    "sha256": "ed6753d1f48af5904a7fa61aa95579d0efe4cbdcc877bd7da9e0630e9b3a1f3d",
+    "raw_municipal_csv_or_record_positions_included": false
+  },
+  "native_requests": 0,
+  "native_gold_publication": "NOT_ATTEMPTED_PRIVATE_MATRIX_AND_AUTH_PREREQUISITES_REMAIN_UNAVAILABLE",
+  "privacy": "No record-level vehicle coordinates/IDs or real coarse matched projections in Git; detailed replay archive is private.",
+  "attribution": "Weather data by Open-Meteo.com, ERA5 / Copernicus C3S, CC BY 4.0; City of Windsor Open Government Licence.",
+  "offline_cache_replay": "PASS_IDENTICAL_MATCHES_FACTS_KEYS_AUDIT_AND_DEMAND_ZERO_ADDITIONAL_HTTP",
+  "request_accounting_scope": "THIS_EXPLICITLY_APPROVED_RUN_ONLY; earlier rejected attempt delivery remains unestablished"
+}

@@ -44,11 +44,13 @@
   ],
   "earliest_request_date": "2026-01-05",
   "latest_request_date": "2026-01-30",
-  "weather_transfer_status": "AUTO_REVIEW_REJECTED_EXPLICIT_DESTINATION_APPROVAL_REQUIRED",
-  "verified_weather_bundles": 0,
-  "verified_weather_rows": 0,
+  "weather_transfer_status": "COMPLETE_AFTER_EXPLICIT_USER_APPROVAL",
+  "verified_weather_bundles": 24,
+  "verified_weather_rows": 2088,
   "request_delivery_before_rejection": "NOT_ESTABLISHED",
-  "matched_output_created": false,
+  "matched_output_created": true,
   "native_requests": 0,
-  "source_reconstruction_kind": "LOCAL_RECONSTRUCTION_FROM_EXACT_PUBLIC_SOURCE_BYTES_NOT_NATIVE_READ"
+  "source_reconstruction_kind": "LOCAL_RECONSTRUCTION_FROM_EXACT_PUBLIC_SOURCE_BYTES_NOT_NATIVE_READ",
+  "previous_auto_review_rejection": "RESOLVED_BY_EXPLICIT_USER_AUTHORIZATION",
+  "approved_execution_ref": "docs/WEATHER_ACTIVITY_EXECUTION_RESULTS.json"
 }
