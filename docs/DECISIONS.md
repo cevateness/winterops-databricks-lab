@@ -1,6 +1,10 @@
 # Architecture decision log
 
-## ADR-010 — Corroborate the source clock without rewriting NTZ (2026-11-04)
+## ADR-013 — Local operational analytics product with reusable Gold semantics (2026-11-04)
+
+Execute the existing UnifiedGold product CTEs locally over exact pinned CSV reconstructions; add coarse cell/hour metrics using the same equipment expressions. Reuse cached weather and the existing conditional matcher, deduplicate grid/time facts before weather summaries, and publish an allowlisted aggregate-only standalone dashboard. Keep detailed real cell/hour products private; suppress under-20 cell/week map groups with explicit accounting. Separate public replay, actual detail rebuild, native publication and model readiness. No native manifest simulation, ingestion changes, new providers or hosted deployment. See [contracts, execution and trade-offs](OPERATIONAL_ANALYTICS_V1.md).
+
+## ADR-012 — Corroborate the source clock without rewriting NTZ (2026-11-04)
 
 Use the official replacement layer's explicit date-field timezone, exact selected local-hour count crosswalk and direct timestamp-only samples to corroborate Toronto for the pinned January weeks. Preserve source NTZ and conditional Toronto/UTC outputs because the historical CSV exporter clock remains undocumented. Exclude scraper timezone and observed inconsistent date MIN/MAX representations from clock proof. Analyze saved, hash-pinned weather matches at source-day/hypothesis grain, deduplicating weather grid/hours and retaining sampling/missing-day limits. No new collection or native/runtime validation gates. See [evidence and trade-offs](TEMPORAL_ALIGNMENT_REVIEW.md).
 

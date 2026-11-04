@@ -2,6 +2,15 @@
 
 This file resolves **stale status text** in earlier lesson ZIPs. It records known evidence; the user can resume after long pauses without replaying every lesson.
 
+## Current Phase 2 — Operational analytics V1 (2026-11-04)
+
+- **Working local dashboard:** open `dashboard/index.html`; actual weekly equipment/quality overview, daily bars, missing-recording calendar, hourly inspection, coarse concentration, five historical weather measures, Toronto/UTC sensitivity and filtered aggregate export. No server/framework or native deployment is required. [Contracts, architecture, learning and Windows reproduction](OPERATIONAL_ANALYTICS_V1.md); [roadmap](ROADMAP.md).
+- Based on PR #18 head `bb7175f49d0d95d5f85739644dd85ad13d354c87` because it remained open. New branch `feat/operational-analytics-v1` is stacked on `feat/source-time-evidence-and-analysis`; merge #18 first and retarget the new PR to main. No owner PR was auto-merged.
+- Actual local execution of existing Gold SQL on **23,467,248 verified CSV bytes**: 298,051 VALID, 239,344 plow-active, 127,232 spreader-active; 325 hours, 25 days, four weeks, 842 private cell/hours. All additive equipment metrics reconcile at every grain. Source CSVs were recovered in four official downloads; the builder itself is offline.
+- Existing cached weather reproduces all **1,684 matches / 298,051 observations per hypothesis**. Shared weather SQL also executed locally and matched 650 Python summaries. Independent 325-hour source counts and the full prior 50-row daily weather review match. All 863 outside-original-review observations remain in complete products; 12 observations are withheld only from public map groups under 20. [Exact receipt and artifact hashes](../dashboard/execution.json).
+- **327 offline tests pass**, including 20 new analytical/privacy/SQL/replay tests. Desktop browser interactions and JSON download were verified over the local preview; direct `file://` testing was blocked by the cloud browser URL policy. [UI evidence](OPERATIONAL_UI_EVIDENCE.json). CI results for the exact commit are recorded in the PR.
+- Toronto remains corroborated, not a verified global CSV clock; original NTZ and UTC sensitivity are intact. Counts are observations; sampled reanalysis is retrospective. **Zero new weather or Databricks calls**, native publication still blocked by inaccessible exact private matrices and secure bindings. No Gold aliases, tables, Jobs or permissions changed. Phase 2's bounded local descriptive product is complete; Phase 3 prerequisites are explicit, with no model training.
+
 ## Current source-time and analytical review (2026-11-04)
 
 - PR #17 is merged; this follow-up starts from main `1a351c9445c0a7de36e3d028755460046b144d45` on `feat/source-time-evidence-and-analysis`.

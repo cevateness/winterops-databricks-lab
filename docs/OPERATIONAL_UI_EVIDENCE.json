@@ -1,0 +1,42 @@
+{
+  "executed_on": "2026-11-04",
+  "evidence": "ACTUAL_DESKTOP_BROWSER_QA_LOCAL_HTTP_PREVIEW",
+  "checks": {
+    "all_weeks": [
+      298051,
+      239344,
+      127232,
+      325,
+      25
+    ],
+    "fourth_week": [
+      66824,
+      64336,
+      7793,
+      89,
+      5
+    ],
+    "empty_day_2026_01_31": "0 recorded hours; no imputed weather",
+    "daily_bar_2026_01_15": "24 recorded hours; 24 sampled weather hours",
+    "UTC_switch": "Alternative interpretation rendered; activity totals unchanged",
+    "antecedent_precipitation": "Selected two-hour measure rendered",
+    "filtered_json_download": {
+      "source_day": "2026-01-15",
+      "hypothesis": "America/Toronto",
+      "daily_rows": 1,
+      "hourly_rows": 24,
+      "weather_rows": 24
+    },
+    "map": "Nine coarse aggregate cells, 12 withheld observations explicitly disclosed",
+    "application_console_errors": 0
+  },
+  "limitations": [
+    "Direct file:// testing rejected by cloud browser URL policy; HTTP-served version verified.",
+    "Responsive CSS implemented; mobile viewport was not separately exercised.",
+    "Not a hosted/native dashboard deployment."
+  ],
+  "screenshots": {
+    "operational-overview.jpg": "ec819bd6f318ed0aedd88260405f6caf6b199bdf8c0bcc1c4cc96e52f2d49cd3",
+    "operational-spatial.jpg": "e33c54e51c291b6ec9721021c5518dd921b71d35eba5c831f5bf87855a7617c5"
+  }
+}

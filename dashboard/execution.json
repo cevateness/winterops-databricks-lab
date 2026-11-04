@@ -1,0 +1,56 @@
+{
+  "detailed_spatial_validation": "RERUN_FROM_EXACT_CSV_BYTES_AND_CACHED_MATCHES",
+  "evidence": "EXECUTED_LOCAL_PINNED_CSV_GOLD_AND_CACHED_WEATHER",
+  "files_sha256": {
+    "index.html": "398697f52face0083b060d209ae2eddd2fcf974d4386ed185f39fc543621b7b6",
+    "analytics.json": "078914e625e7bef9b3fe8769b937a58e6c6dd9ddc841ee095d92417a185b081d",
+    "databricks_candidates.sql": "92a0f97649c89e44c12aa07a9d8ddc4dae75df6fc7a0d2f251df20bf3f114183",
+    "weather_hourly.sql": "7776902a919c7a1a06e0faec4d637927794736c335dfbe0d5a35e23df567f71d"
+  },
+  "independent_source_hour_profile": "PASS_EXACT_325_HOURS",
+  "municipal_http_requests": 0,
+  "native_publication": "BLOCKED_PRIVATE_MATRICES_AND_SECURE_BINDINGS_UNAVAILABLE",
+  "native_requests": 0,
+  "private_output_sha256": {
+    "cell_hour.json": "1660dfd84f2d9323da563c1719df0abadd6314f19a66d8433d4bca419d8ee944",
+    "cell_weather.json": "e5bcdb88b907b653add23f54bcde691cc9ef945a838eaa7b7e4d48587151b309"
+  },
+  "public_content_sha256": "62d8652e9bd2d9a7fbe91ba29b718f5ff27c04750d399941e00fa46f69c0aab9",
+  "public_map_observations": 298039,
+  "public_map_suppressed_observations": 12,
+  "recorded_weather_daily": "PASS_EXACT_50_ROWS",
+  "source_bytes_verified": 23467248,
+  "validation": {
+    "rows": {
+      "cell_hour": 842,
+      "daily": 25,
+      "hourly": 325,
+      "weekly": 4
+    },
+    "status": "PASS_LOCAL_ANALYTICAL_RECONCILIATION",
+    "totals": {
+      "both_active_observations": 68525,
+      "engine_off_observations": 0,
+      "engine_off_with_equipment_flag_observations": 0,
+      "neither_active_observations": 0,
+      "observation_count": 298051,
+      "plow_active_observations": 239344,
+      "plow_only_observations": 170819,
+      "repeated_valid_payload_observations": 3981,
+      "spreader_active_observations": 127232,
+      "spreader_only_observations": 58707
+    }
+  },
+  "weather_http_requests": 0,
+  "weather_matches": 1684,
+  "weather_totals_by_hypothesis": {
+    "America/Toronto": 298051,
+    "UTC": 298051
+  },
+  "weather_sql": {
+    "status": "PASS_EXECUTED_SQLITE_WEATHER_SQL_VS_PYTHON",
+    "rows": 650
+  },
+  "executed_on": "2026-11-04",
+  "municipal_source_files_recovered_before_build": 4
+}

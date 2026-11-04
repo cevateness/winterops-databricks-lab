@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
   pull_request:
-    branches: [main]
+    branches: [main, 'feat/source-time-evidence-and-analysis']
 
 permissions:
   contents: read
@@ -84,3 +84,5 @@ jobs:
         run: python scripts/weather_activity.py demo --output /tmp/winterops-weather-demand.json
       - name: Recorded source clock evidence review (offline; no private archive)
         run: python scripts/review_temporal_alignment.py --output /tmp/winterops-clock-review.json
+      - name: Rebuild functional operational dashboard from actual public aggregates (no network)
+        run: python scripts/build_operational_dashboard.py --output-root /tmp/winterops-operational-dashboard
