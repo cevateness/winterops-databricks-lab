@@ -1,5 +1,9 @@
 # Architecture decision log
 
+## ADR-010 — Corroborate the source clock without rewriting NTZ (2026-11-04)
+
+Use the official replacement layer's explicit date-field timezone, exact selected local-hour count crosswalk and direct timestamp-only samples to corroborate Toronto for the pinned January weeks. Preserve source NTZ and conditional Toronto/UTC outputs because the historical CSV exporter clock remains undocumented. Exclude scraper timezone and observed inconsistent date MIN/MAX representations from clock proof. Analyze saved, hash-pinned weather matches at source-day/hypothesis grain, deduplicating weather grid/hours and retaining sampling/missing-day limits. No new collection or native/runtime validation gates. See [evidence and trade-offs](TEMPORAL_ALIGNMENT_REVIEW.md).
+
 ## ADR-001 — Separate public learning lab (2026-10-16)
 Keep WinterOps fully separate from proprietary ETA projects and Sports-Market-Edge. Use historical public municipality data; Databricks Free Edition for learning.
 

@@ -2,6 +2,14 @@
 
 This file resolves **stale status text** in earlier lesson ZIPs. It records known evidence; the user can resume after long pauses without replaying every lesson.
 
+## Current source-time and analytical review (2026-11-04)
+
+- PR #17 is merged; this follow-up starts from main `1a351c9445c0a7de36e3d028755460046b144d45` on `feat/source-time-evidence-and-analysis`.
+- Actual public MapServer metadata declares Eastern time with daylight saving. All **325 local-hour counts / 298,051 observations** reconcile to the saved selected source reconstruction. Eight first/last timestamp-only samples agree with Toronto, none with UTC. **Toronto is strongly corroborated for the pinned January scopes; the historical CSV export clock is not explicitly confirmed.** Original NTZ fields and both conditional hypotheses remain intact.
+- Recorded actual API-shape pitfall: date MIN/MAX statistics differ by five hours from direct feature date values. Metadata/scraper timezone and aggregate date statistics are not interchangeable source-clock evidence. New offline fixtures/tests prevent that inference without adding routine ingestion calls.
+- Hash-verified existing replay archive → **50 daily aggregate rows**, 25 observed days per hypothesis, preserving 298,051 observations and 863 outside-original-review observations each. Weather ranges/counts describe sampled activity grid/hours, not full-day weather or service effort. [Review, evidence, reproduction and limitations](TEMPORAL_ALIGNMENT_REVIEW.md); [actual aggregate output](TEMPORAL_REVIEW_RESULTS.json).
+- **307 offline tests pass**, with syntax checks, all existing fixture/SQL/Job/weather checks and the new clock-review CLI. No new weather requests, native calls, deployments, Gold/ingestion modifications or custodian messages. Existing native publication blocker remains. See the new PR for exact CI results; earlier sections are historical snapshots.
+
 ## Current weather execution — approved collection and local match PASS (2026-11-03)
 
 - User explicitly approved the 24 coarse-location/date requests to Open-Meteo, resolving the prior transfer rejection. **24/24 HTTP 200 responses verified, 2,088 hourly location records, 6,264 variable values, 62,218 bytes, 112.34 client seconds, zero retries.** No native requests.

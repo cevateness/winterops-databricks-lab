@@ -82,3 +82,5 @@ jobs:
         run: python scripts/weather_batch.py example --output /tmp/winterops-weather-example.json
       - name: Activity-driven spatial and temporal demand proof (synthetic only; no network)
         run: python scripts/weather_activity.py demo --output /tmp/winterops-weather-demand.json
+      - name: Recorded source clock evidence review (offline; no private archive)
+        run: python scripts/review_temporal_alignment.py --output /tmp/winterops-clock-review.json
