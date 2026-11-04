@@ -1,0 +1,19 @@
+{
+  "evidence": "ACTUAL_PUBLIC_DIAGNOSTICS_AND_SYNTHETIC_MAP_BROWSER_QA",
+  "public_checks": [
+    "All-week 5-minute: 2835 windows, peak 18 IDs, 298051 observations",
+    "One-minute: 12497 windows, peak 17 IDs",
+    "First-week: 183 five-minute windows, peak 2 IDs, 2791 observations",
+    "Episode gap selector 60 minutes renders weekly counts 31/295/379/284",
+    "UTC snowfall scatter and application error check passed"
+  ],
+  "synthetic_map_checks": [
+    "Day/equipment/UTC/antecedent/weather/window selectors",
+    "Missing day shows unknown activity, no imputed weather",
+    "Next advances source clock hour",
+    "Play/Pause toggle exercised; automatic advancement not asserted"
+  ],
+  "private_real_map": "GENERATED_FROM_REAL_INPUTS_NOT_BROWSER_TESTED",
+  "application_errors": 0,
+  "screenshot_sha256": "9824a4f21a00456685b7f85f187bab5a6e23a05a8fe72da0ce5aefb6b8c471ee"
+}

@@ -86,3 +86,5 @@ jobs:
         run: python scripts/review_temporal_alignment.py --output /tmp/winterops-clock-review.json
       - name: Rebuild functional operational dashboard from actual public aggregates (no network)
         run: python scripts/build_operational_dashboard.py --output-root /tmp/winterops-operational-dashboard
+      - name: Replay actual diagnostics summaries without private details (no network)
+        run: python scripts/build_operational_diagnostics.py --output-root /tmp/winterops-diagnostics

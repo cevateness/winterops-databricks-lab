@@ -23,3 +23,7 @@ The charter defines stages, not deadlines. Historical execution evidence remains
 For service or resource targets, add actual duration/crew/equipment availability labels, contractor capture and, where relevant, road geometry and service standards. Native Gold publication is a separate platform milestone, not a reason to invent labels or skip leakage controls.
 
 Next worthwhile task: owner review of the working dashboard and choice of one defensible analytical question/target. No model, extra provider, MLflow training, optimization or streaming infrastructure was added.
+
+## Phase 2 extension — diagnostics V2
+
+Implemented and executed reporting windows (1/5/15 minutes), heuristic episode sensitivity (15/30/60 minutes), known/unknown equipment transitions, sampled-weather associations and a separate private geographic playback view. Public diagnostics contain actual aggregate findings; private map browser QA is synthetic only. [Nine measured findings and their limits](OPERATIONAL_DIAGNOSTICS_V2_FINDINGS.md) include clock-sensitive and weak relationships. The original Phase 3 prerequisites remain unsatisfied. Next: owner review of exploratory findings and evidence needs, not automatic progression into modeling.

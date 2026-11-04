@@ -1,5 +1,9 @@
 # Architecture decision log
 
+## ADR-014 — Reporting overlap, censored episodes and private spatial playback (2026-11-04)
+
+Keep source observations and identifiers distinct from reporting-window counts. Group tied timestamps before transitions; conflicting states, long gaps and source starts are unknown. Separate episode-gap sensitivity from the stricter transition continuity threshold. Retain censored private episode audit records; publish pooled city/source summaries only. Match retrospective weather at the containing-hour context and count distinct supporting facts without treating pings or shared episode weather as independent exposure. Keep hour/day/equipment geographic playback and returned-grid overlays in a separate private offline page with no exports; public V1 spatial grain is unchanged. See [definitions, trade-offs and reproduction](OPERATIONAL_DIAGNOSTICS_V2.md).
+
 ## ADR-013 — Local operational analytics product with reusable Gold semantics (2026-11-04)
 
 Execute the existing UnifiedGold product CTEs locally over exact pinned CSV reconstructions; add coarse cell/hour metrics using the same equipment expressions. Reuse cached weather and the existing conditional matcher, deduplicate grid/time facts before weather summaries, and publish an allowlisted aggregate-only standalone dashboard. Keep detailed real cell/hour products private; suppress under-20 cell/week map groups with explicit accounting. Separate public replay, actual detail rebuild, native publication and model readiness. No native manifest simulation, ingestion changes, new providers or hosted deployment. See [contracts, execution and trade-offs](OPERATIONAL_ANALYTICS_V1.md).

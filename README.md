@@ -2,6 +2,10 @@
 
 [![CI](https://github.com/cevateness/winterops-databricks-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/cevateness/winterops-databricks-lab/actions/workflows/ci.yml)
 
+**Operational diagnostics V2:** open [dashboard/diagnostics.html](dashboard/diagnostics.html) for actual reporting-window distributions, episode-gap sensitivity, equipment transitions and weather relationships. [Nine computed findings](docs/OPERATIONAL_DIAGNOSTICS_V2_FINDINGS.md) · [definitions, private map and Windows reproduction](docs/OPERATIONAL_DIAGNOSTICS_V2.md). Peak reporting is 17 IDs/minute or 18 IDs per 5/15-minute window; 30-minute segmentation yields 1,202 observed episodes. These are reporting/observation diagnostics, not fleet availability or work duration. **345 tests pass.** Continues PR #19 and its dependency on PR #18.
+
+![Actual V2 diagnostic interface](docs/images/operational-diagnostics-v2.jpg)
+
 **Current status — November 4, 2026:** PR #17 is merged. Four historical source weeks have passed native Bronze/Silver ingestion. Three-week Gold is historically published and verified. The four-week Gold candidate is implemented and offline validated; native publication is conditionally authorized but blocked here by unavailable pinned private artifacts and secure Databricks access. No Databricks request or mutation occurred in the current assignment.
 
 **Phase 2 now has a working analytical product:** open [dashboard/index.html](dashboard/index.html) from your local checkout. Explore four actual source weeks, equipment composition, daily/hourly recording patterns and missingness, privacy-safe coarse concentration, cached weather and Toronto/UTC sensitivity. It runs entirely in the browser with no API calls. [Product guide, contracts and Windows reproduction](docs/OPERATIONAL_ANALYTICS_V1.md) · [actual execution](dashboard/execution.json) · [roadmap](docs/ROADMAP.md). **327 tests pass.** The implementation is on `feat/operational-analytics-v1`, stacked on still-open PR #18; neither PR is auto-merged.

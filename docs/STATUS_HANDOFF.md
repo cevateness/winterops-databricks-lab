@@ -2,6 +2,14 @@
 
 This file resolves **stale status text** in earlier lesson ZIPs. It records known evidence; the user can resume after long pauses without replaying every lesson.
 
+## Current Phase 2 extension — Operational diagnostics V2 (2026-11-04)
+
+- Continued the existing PR #19 branch `feat/operational-analytics-v1` from `f194bac`, preserving the stack on PR #18. No merge or force-push. [Measured findings](OPERATIONAL_DIAGNOSTICS_V2_FINDINGS.md), [definitions/privacy/reproduction](OPERATIONAL_DIAGNOSTICS_V2.md), [interactive diagnostics](../dashboard/diagnostics.html).
+- Actual pinned-cache execution preserves 298,051 VALID observations in each reporting width and episode-gap scenario, unchanged equipment totals and 1,684 weather matches. Peak reporting: 17 IDs/minute, 18 IDs/5 or 15 minutes. Episodes: 1,578 / 1,202 / 989 at 15/30/60-minute gaps. Contradictory states occur in 3,779 truck/timestamp groups and are not ordered into known transitions.
+- Nine findings report denominators and sensitivities, including a fourth-week snowfall/reporting correlation changing sign between clock hypotheses. New weather cohort/fact support, continuous plots, episode-onset timing, weekday/hour distributions and transition matrices are descriptive, not dispatch probabilities or causal effects.
+- Private geographic playback was generated from real coarse cell/hour and returned-grid data outside Git and retained separately for the owner. Public browser QA uses actual pooled diagnostics; map interaction QA uses only the explicitly synthetic demo. Real private payload was **not browser-tested**. No new detailed spatial intersections or exports are public. [Execution](OPERATIONAL_DIAGNOSTICS_V2_EXECUTION.json), [UI evidence](OPERATIONAL_DIAGNOSTICS_V2_UI.json).
+- **345 offline tests pass**, 18 new, including exact record partition, ties/conflicts, gap boundaries, DST rejection, cardinality, antecedent support, missingness, privacy and public replay. CI for the final commit is linked in PR #19. No additional source downloads, weather API calls, Databricks calls, native publication, forecasting or optimization. Bounded 311/priority-map feasibility research is documented; no provider was integrated.
+
 ## Current Phase 2 — Operational analytics V1 (2026-11-04)
 
 - **Working local dashboard:** open `dashboard/index.html`; actual weekly equipment/quality overview, daily bars, missing-recording calendar, hourly inspection, coarse concentration, five historical weather measures, Toronto/UTC sensitivity and filtered aggregate export. No server/framework or native deployment is required. [Contracts, architecture, learning and Windows reproduction](OPERATIONAL_ANALYTICS_V1.md); [roadmap](ROADMAP.md).
