@@ -74,3 +74,11 @@ jobs:
           --selection docs/FOUR_WEEK_SELECTION.json
           --publication
           --output /tmp/winterops-fourweek-publication.sql
+      - name: Authorized Gold proposal public pins and recorded aggregate audit (offline only)
+        run: python scripts/audit_gold_candidate.py
+      - name: Recorded weather snapshot and portable staging (no network)
+        run: python scripts/weather_batch.py validate --staging-output /tmp/winterops-weather-hourly.jsonl
+      - name: Conditional historical weather activity example (no network)
+        run: python scripts/weather_batch.py example --output /tmp/winterops-weather-example.json
+      - name: Activity-driven spatial and temporal demand proof (synthetic only; no network)
+        run: python scripts/weather_activity.py demo --output /tmp/winterops-weather-demand.json

@@ -2,41 +2,33 @@
 
 [![CI](https://github.com/cevateness/winterops-databricks-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/cevateness/winterops-databricks-lab/actions/workflows/ci.yml)
 
-**On-demand batch V1 (2026-10-30): SCHEMA ASSERTION UNRESOLVED; NO DEPLOYMENT.** The compound/named-marker API probe passed. Both separately approved guarded attempts stopped at the schema assertion, including after the documented zero-based ordinal correction. No files were uploaded, Jobs/runs created or data writes submitted. All **161 offline tests** pass; a metadata-only diagnostic is prepared to expose the actual differences and requires separate approval. See [actual evidence and next gate](docs/ON_DEMAND_BATCH_NATIVE_TRIAL.md), [architecture](docs/ON_DEMAND_BATCH_V1.md) and [synthetic Job](jobs/on_demand_batch_v1.job.json). No schedule or automatic Gold publication exists.
+**Current status — November 3, 2026:** Four historical source weeks have passed native Bronze/Silver ingestion. Three-week Gold is historically published and verified. The four-week Gold candidate is implemented and offline validated; native publication is conditionally authorized but blocked here by unavailable pinned private artifacts and secure Databricks access. No Databricks request or mutation occurred in the current assignment.
 
-**Status (2026-10-28):** Databricks Free Edition learning MVP. **One real Windsor historical week** has been processed through Bronze and quality-classified Silver. Its exact source hash, schema and established aggregates are SQL-verified. After Lesson 6 candidate validation and separate approval, **all three Silver/Gold views were created and reconciled through the Statement Execution API**; repeated read-only verification was stable. See [live evidence](docs/SOURCE_VERSION_EVIDENCE.md). The original Windsor CSV is **not included** in this public repository. The canonical public repository is [cevateness/winterops-databricks-lab](https://github.com/cevateness/winterops-databricks-lab). Notebook/Spark entrypoint execution remains untested.
+The **activity-driven weather contract** now derives coarse spatial/hour demand from private Silver, reports a coarse bounding box/convex hull, plans bounded requests and matches returned-grid weather facts. The four pinned public source files have now been recovered and reconstructed locally, and the real plan retains all 298,051 VALID observations. **Approved spatial weather collection and local matching now pass:** 24 successful requests, 2,088 hourly location records, nine returned grids and 1,684 conditional matched rows with complete current/antecedent coverage. This is local reconstruction/public-weather execution, not native Databricks integration. The retained 720-hour fixed-point sample/daily example is only an API/provenance and temporal fixture. Toronto/UTC hypotheses remain conditional and retrospective. **289 offline tests pass**, together with all SQL/Job render checks. New implementation remains on a review branch until its PR is merged.
 
-**Lesson 7:** PUBLISHED_VERIFIED_STABLE: 79 source-local/naive hourly buckets, 110,311 observations, 79,471 plow-active and 68,870 spreader-active observations. Per-hour distinct truck identifiers range from 1 to 20. See [publication evidence](docs/LESSON_7_PUBLICATION.md) and [all safe hourly counts](docs/LESSON_7_GOLD_RESULTS.json). These are observation counts, not working time or coverage.
+Start with the [spatial weather review revision](docs/WEATHER_ACTIVITY_REVISION.md), [development review](docs/DEVELOPMENT_REVIEW_2026_11_03.md), [normal batch runbook](docs/BATCH_OPERATIONS_RUNBOOK.md), [weather contract and reproduction](docs/WEATHER_INTEGRATION.md), and [current handoff](docs/STATUS_HANDOFF.md). Historical native evidence is retained for [incremental ingestion](docs/INCREMENTAL_INGESTION_FILES_ABSENCE_RESULTS.json), [three-week publication](docs/THREE_WEEK_NATIVE_INTEGRATION.md), and [four-week offline preparation](docs/FOUR_WEEK_GOLD.md). Earlier lesson reports describe their own snapshots, not current blockers.
 
-**Gold analytics expansion:** Daily activity, hourly/daily equipment composition and aggregate fleet-reporting diagnostics passed native Databricks validation on 2026-10-29: both guards and all eight products succeeded unchanged. See [actual metrics, compatibility and timings](docs/GOLD_ANALYTICS_NATIVE_VALIDATION.md), [sanitized aggregate evidence](docs/GOLD_ANALYTICS_NATIVE_RESULTS.json), and [metric definitions, queries, four-chart dashboard and architecture review](docs/GOLD_ANALYTICS_PRODUCTS.md). No Databricks objects were changed.
-
-**Three-week V2 Gold: PUBLISHED_AND_VERIFIED.** Three selected COMPLETE versions reconcile to 231,306 Bronze/Silver rows, 79 headers and 231,227 valid observations. Published hourly (236 rows), daily (20) and weekly (3) views passed full multiset comparisons and final source/legacy/metadata/grant/warehouse preservation checks. Native totals are 175,008 plow / 119,439 spreader observations; 863 geography warnings remain separate from invalid classifications. The combined postflight canceled once; explicitly approved per-product checks passed without automatic retry. See [actual evidence, limits and timings](docs/THREE_WEEK_NATIVE_INTEGRATION.md).
-
-**Original three-week local preparation: PASS.** The existing middle-week CSV matches its documented hash and has been processed through V2 locally. Three-week candidate SQL reconciles 231,306 rows to 79 headers and 231,227 valid observations, with 236 hourly buckets and 20 daily rows. See [contracts/evidence/dashboard SQL](docs/THREE_WEEK_GOLD.md) and [one bounded native plan](docs/THREE_WEEK_INTEGRATION.md). Existing published views retain their original one-week scope.
-
-**V2 native integration: PASS.** After a stopped large-file upload and separate approval of lossless gzip transport, all 38 integration statements succeeded. Two isolated development versions reconcile to 120,969 Bronze/Silver rows and two COMPLETE manifests; planned recovery, no-write reruns and original-object preservation passed. See [actual native evidence and limitations](docs/DATA_FOUNDATION_V2_NATIVE.md).
-
-**Data Foundation V2:** Reusable multi-week local staging, immutable source versions, a recoverable manifest, observation-preserving Bronze/Silver and configurable quality diagnostics are implemented. January 5–11 and January 19–25 were processed privately outside Git; the original workspace pipeline is unchanged. See [source contract, implementation and trade-offs](docs/DATA_FOUNDATION_V2.md), [aggregate source evidence](docs/DATA_FOUNDATION_V2_SOURCE_REPORT.json) and [bounded integration scope](docs/DATA_FOUNDATION_V2_INTEGRATION.md). Native SQL-warehouse integration is verified in three isolated development tables. The optional PySpark adapter/notebooks remain unexecuted.
-
-**Primary objective:** Learn reproducible data engineering, lakehouse architecture, PySpark/SQL, data quality, MLOps, and eventually decision analytics. **Secondary:** Public technical portfolio. **Longer term:** Explore commercial winter-service decision intelligence only if actual evidence warrants it; this version is non-commercial.
+**Purpose:** A personal Databricks learning MVP for reproducible data engineering and decision analytics. Research extensions and possible future commercialization remain separate scopes.
 
 ## Architecture today
 
-```text
-Original City of Windsor weekly CSV in the user's Databricks Unity Catalog Volume
-   -> 04_bronze_real_ingestion.py: raw JSON, record/file SHA-256,
-      one row per observed CSV record, including repeated headers and duplicate payloads
-   -> workspace.default.winterops_bronze_windsor_activity (Delta)
-   -> 05_silver_real_windsor.py: typed fields, quality_status, issue codes,
-      repeated-payload warnings; one row per Bronze observation
-   -> workspace.default.winterops_silver_windsor_week_sample (Delta)
-   -> 06_silver_consumers_hourly.py (prepared; not run in Databricks):
-      exact-version VALID + quarantine views -> source-local/naive hourly observation counts
+```mermaid
+flowchart TD
+    A["Immutable municipal CSV and transport"] --> B["Bronze: source observations"]
+    B --> C["Silver: typed observations and quality"]
+    C --> D["Explicit COMPLETE source and policy selection"]
+    D --> E["Three-week published Gold"]
+    D --> F["Four-week offline Gold candidate"]
+    C --> H["Private coarse spatial/hour demand"]
+    H --> Q["Bounded coarse weather requests"]
+    Q --> T["Returned-grid hourly weather facts"]
+    H --> M["Conditional matched projection"]
+    T --> M
 ```
 
-Synthetic learning exercises (not the real pipeline) live in notebooks 01 and 02. Notebook 03 is a **read-only profiler**. No weather integration, routing, SLA measurement, or optimization has been implemented.
+Municipal processing uses the existing on-demand SQL-file Job and scoped manifest checkpoints. The weather path is portable local Python batch processing; no native weather tables exist from this task. The demand/matching demonstration is synthetic and does not establish live spatial execution. The old fixed-point temporal fixture reads five existing public daily aggregates and cannot supply activity locations. Synthetic notebooks 01/02 and legacy single-week notebooks remain learning artifacts; notebook entrypoint execution is distinct from verified SQL/Jobs execution. No streaming, forecasting, SLA measurement or optimization is included.
 
-## User-reported real-week observations (not bundled data)
+## Historical single-week lesson observations (not current four-week scope)
 
 | Metric | Reported result |
 |---|---:|
@@ -50,7 +42,7 @@ Synthetic learning exercises (not the real pipeline) live in notebooks 01 and 02
 | Plow-active valid observations | 79,471 |
 | Spreader-active valid observations | 68,870 |
 
-`VALID` is limited to parsing, basic coordinate-world bounds, ID, time and Boolean checks; it does **not** imply correct road location, completion, or actual vehicle deployment. Source timestamps are stored as `TIMESTAMP_NTZ`: the timezone has **not** been established. Exact repeat-payload count and geographic outlier root causes have **not** yet been independently reviewed. The single-week Silver table is rewritten per notebook execution.
+`VALID` is limited to parsing, basic coordinate-world bounds, ID, time and Boolean checks; it does **not** imply correct road location, completion, or actual vehicle deployment. Source timestamps are stored as `TIMESTAMP_NTZ`: the timezone has **not** been established. This table describes the original single-week lesson. Later V2 source/quality/multiplicity evidence is recorded in the current handoff. The legacy single-week notebook rewrites its own table and is not the incremental V2 workflow.
 
 ## Layout
 
@@ -101,11 +93,11 @@ python scripts/validate_quality_snapshot.py data/fixtures/windsor_week_2026_01_1
 
 The aggregate fixture verifies **reported** invariants; it does not query Databricks or replace integration tests.
 
-The expanded suite has 130 tests: existing analytics/contracts plus synthetic V2 revisions, policy changes, reruns, multiple weeks, interruptions, corruption/repair, source-quality edge cases, lossless gzip transport and SQL/Python reconciliation. SQLite tests adapt dialect/type details; they do **not** verify native V2 Spark/Delta writes or privileges. Notebook 06 defaults to `mode=render`; its apply path requires explicit approval and must not be used to replace the existing published views by default. The product and V2 plan renderers never execute SQL or create objects.
+The expanded suite has 289 tests: existing analytics/contracts plus synthetic V2 revisions, policy changes, reruns, multiple weeks, interruptions, corruption/repair, source-quality edge cases, lossless gzip transport and SQL/Python reconciliation. SQLite tests adapt dialect/type details; they do **not** verify native V2 Spark/Delta writes or privileges. Notebook 06 defaults to `mode=render`; its apply path requires explicit approval and must not be used to replace the existing published views by default. The product and V2 plan renderers never execute SQL or create objects.
 
 ## Data handling, attribution and source claims
 
-Raw operational CSVs, downloaded telemetry, Delta/Parquet files, database credentials, workspace profiles, API tokens, and personal files must **not** be committed. Use the synthetic demo fixture and aggregate reporting samples for the public repository. The original real file remains in the user's Databricks workspace.
+Raw operational CSVs, downloaded telemetry, Delta/Parquet files, database credentials, workspace profiles, API tokens, and personal files must **not** be committed. Use the synthetic demo fixture and aggregate reporting samples for the public repository. The original municipal files remain outside Git. The separately attributed public weather sample in `data/weather/` is an explicit exception; see its README and source contract.
 
 When using public City of Windsor information, provide attribution:
 

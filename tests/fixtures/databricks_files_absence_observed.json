@@ -1,0 +1,22 @@
+{
+  "provenance": {
+    "kind": "EXACT_SANITIZED_NATIVE_RESPONSE_FROM_PUBLIC_EVIDENCE",
+    "evidence": "docs/INCREMENTAL_INGESTION_NATIVE_RESULTS.json",
+    "evidence_sha256": "2be2a6a0990583efc02a1e1608295511d41d672e86860e4f3e52e90c3c449da3",
+    "json_pointer": "/stopped_gate/observed_sanitized_body",
+    "native_date": "2026-11-01",
+    "changes": "None; destination path supplied synthetically in tests"
+  },
+  "http_status": 404,
+  "body": {
+    "error_code": "NOT_FOUND",
+    "message": "The file being accessed is not found.",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "FILES_API_FILE_NOT_FOUND",
+        "domain": "filesystem.databricks.com"
+      }
+    ]
+  }
+}
