@@ -9,7 +9,7 @@ description = "Reproducible Databricks learning lab for municipal winter-operati
 readme = "README.md"
 requires-python = ">=3.10"
 keywords = ["data-engineering", "databricks", "delta-lake", "winter-operations"]
-dependencies = []
+dependencies = ["tzdata; platform_system == 'Windows'"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

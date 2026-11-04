@@ -103,6 +103,8 @@ Start-Process "$env:TEMP\winterops-dashboard-review\index.html"
 
 Outputs are create-only; use a fresh directory for another run. Public replay verifies the content hash and labels detailed spatial validation **NOT_RERUN_WITHOUT_PRIVATE_INPUTS** in its own receipt. It does not overwrite the recorded actual execution evidence or claim to have reconstructed raw sources again.
 
+The package declares the first-party `tzdata` dependency on Windows so Python can resolve `America/Toronto` and run the analytical tests/full rebuild. Windows generally lacks the system IANA database used by `zoneinfo`; see [Python's documented data-source contract](https://docs.python.org/3/library/zoneinfo.html#data-sources). Linux can use its installed database. Viewing the HTML needs neither Python nor timezone packages.
+
 For a full local source/detail rebuild, retain the existing private `WinterOps_weather_integration_20261103.zip` outside every Git checkout. Use an existing `LocalStager` cache, or recover the four exact sources with the existing helper if absent:
 
 ```powershell
