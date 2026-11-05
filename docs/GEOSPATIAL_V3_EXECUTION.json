@@ -1,0 +1,123 @@
+{
+  "evidence": "ACTUAL_LOCAL_CSV_ARCGIS_ANALYTICS_REPLAY_AND_BROWSER_EXECUTION",
+  "native_requests": 0,
+  "weather_requests": 0,
+  "valid_observations": 338746,
+  "baseline_valid_observations": 298051,
+  "new_valid_observations": 40695,
+  "new_local_source_weeks": 3,
+  "tests": {
+    "passed": 366,
+    "baseline": 345,
+    "new": 21
+  },
+  "offline_ci_commands": [
+    {
+      "name": "Unit and notebook contract tests",
+      "exit_code": 0
+    },
+    {
+      "name": "Syntax check (no Spark execution)",
+      "exit_code": 0
+    },
+    {
+      "name": "Aggregate fixture validation",
+      "exit_code": 0
+    },
+    {
+      "name": "Offline SQL rendering (placeholder hash; never executed)",
+      "exit_code": 0
+    },
+    {
+      "name": "Read-only validation rendering (placeholder hash; never executed)",
+      "exit_code": 0
+    },
+    {
+      "name": "Analytical product rendering (placeholder hash; never executed)",
+      "exit_code": 0
+    },
+    {
+      "name": "Three-week candidate SQL rendering (never executed)",
+      "exit_code": 0
+    },
+    {
+      "name": "Three-week publication SQL rendering (never executed)",
+      "exit_code": 0
+    },
+    {
+      "name": "On-demand Jobs and SQL rendering (synthetic only; never deployed)",
+      "exit_code": 0
+    },
+    {
+      "name": "Four-week candidate SQL rendering (never executed)",
+      "exit_code": 0
+    },
+    {
+      "name": "Four-week versioned publication rendering (never executed)",
+      "exit_code": 0
+    },
+    {
+      "name": "Authorized Gold proposal public pins and recorded aggregate audit (offline only)",
+      "exit_code": 0
+    },
+    {
+      "name": "Recorded weather snapshot and portable staging (no network)",
+      "exit_code": 0
+    },
+    {
+      "name": "Conditional historical weather activity example (no network)",
+      "exit_code": 0
+    },
+    {
+      "name": "Activity-driven spatial and temporal demand proof (synthetic only; no network)",
+      "exit_code": 0
+    },
+    {
+      "name": "Recorded source clock evidence review (offline; no private archive)",
+      "exit_code": 0
+    },
+    {
+      "name": "Rebuild functional operational dashboard from actual public aggregates (no network)",
+      "exit_code": 0
+    },
+    {
+      "name": "Replay actual diagnostics summaries without private details (no network)",
+      "exit_code": 0
+    },
+    {
+      "name": "Replay shared geospatial application from public aggregates (no network)",
+      "exit_code": 0
+    }
+  ],
+  "github_ci": "CONSULT_EXACT_COMMIT_RUN_IN_PR",
+  "source_acquisition": {
+    "weekly_csv_downloads": 7,
+    "csv_bytes": 26676398,
+    "new_csv_bytes": 3209150,
+    "legacy_road_zip_bytes": 1710004,
+    "recorded_snapshot_api_gets": 83,
+    "recorded_snapshot_response_bytes": 6824892,
+    "retries": 0
+  },
+  "private_replay": {
+    "restore_and_rebuild": "PASS_BYTE_IDENTICAL_PRIVATE_PAYLOAD",
+    "payload_bytes": 8139429,
+    "payload_sha256": "4a3a1d76d7ba6e8d339b434dba359f24bf7831edf6a1e55596c8931926f91b45",
+    "archive_bytes": 16267330,
+    "archive_sha256": "75db5ccdcce216a5b4067ea1fd637e2c4b77524de292abdfddf1a391128acdde"
+  },
+  "public_artifacts": {
+    "dashboard/geospatial.html": "db2ca3c776b1dedaee8f3c61ea1a8c3f76e86842c091f67436f0a59d18eee477",
+    "dashboard/geospatial.json": "7d47273e9f0023b40f02e6174d20c7161f674d7e42eb4632661ec7f7708ef651",
+    "dashboard/context/roads.geojson": "b7d5a84d3f5ab2ca01266401170303a0057ee3775efdb65036fe3396978365f6",
+    "docs/GEOSPATIAL_V3_RESULTS.json": "f00489db8224b1490c149f45594c10c9205c38d9a33b561edb64d981e1895ed2",
+    "docs/images/geospatial-v3-public.png": "835ee31bbb7d24986988ce1d1cdcb243c81202ca32e91a8d89f3c07f08090059"
+  },
+  "browser_evidence": "GEOSPATIAL_V3_UI.json",
+  "limitations": [
+    "No Windows native execution; Windows instructions provided",
+    "No Databricks execution or native ingestion for new weeks",
+    "No February weather or independent service-completion labels",
+    "Public download convenience helper not rerun against mutable live services"
+  ]
+}

@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
   pull_request:
-    branches: [main, 'feat/source-time-evidence-and-analysis']
+    branches: [main, 'feat/source-time-evidence-and-analysis', 'feat/operational-analytics-v1']
 
 permissions:
   contents: read
@@ -19,7 +19,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install local package
-        run: python -m pip install -e .
+        run: python -m pip install -e '.[geo]'
       - name: Unit and notebook contract tests
         run: python -m unittest discover -s tests -v
       - name: Syntax check (no Spark execution)
@@ -88,3 +88,5 @@ jobs:
         run: python scripts/build_operational_dashboard.py --output-root /tmp/winterops-operational-dashboard
       - name: Replay actual diagnostics summaries without private details (no network)
         run: python scripts/build_operational_diagnostics.py --output-root /tmp/winterops-diagnostics
+      - name: Replay shared geospatial application from public aggregates (no network)
+        run: python scripts/render_geospatial.py --output /tmp/winterops-geospatial.html

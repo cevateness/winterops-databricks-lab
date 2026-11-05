@@ -1,4 +1,10 @@
-# Current roadmap — November 4, 2026
+# Current roadmap — November 5, 2026
+
+## Phase 2 extension — geographical intelligence V3
+
+Implemented and actually executed seven-week local analytics (338,746 VALID), shared public/local-file Leaflet playback, official road/ward/city context, conservative movement/proximity, sensor diagnostics, replacement-source comparison, bounded 311 context and a separate Edmonton status proof. [Current findings](GEOSPATIAL_V3_FINDINGS.md) · [review/reproduction](GEOSPATIAL_V3.md). Real full local-detail browser QA and byte-identical offline restoration pass. New February periods are local only; four-week native ingestion/Gold evidence is unchanged.
+
+Next: clarify contradictory state/identifier lifecycle and CSV clock with the custodian; establish independent operational event/outcome labels and non-activity weather exposure; verify dated road reference semantics. Additional history improved descriptive evidence but did not satisfy prediction prerequisites. No forecasting, optimization, new weather collection, native writes or hosting deployment.
 
 The charter defines stages, not deadlines. Historical execution evidence remains in its original reports; current product status is summarized here.
 

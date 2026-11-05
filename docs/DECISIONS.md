@@ -1,5 +1,9 @@
 # Architecture decision log
 
+## ADR-015 — Shared offline map, source-specific snapshots and conservative geography (2026-11-05)
+
+Use one Leaflet component with bundled official streets and a separate hash-verified local-file payload; never treat a front-end mode switch as access control. Fixed public cell/week totals prevent finer filter differences. Preserve the original four-week contracts, reuse UnifiedGold and weather summary expressions, and extend only local versioned history. Extract ArcGIS through bounded count/ID reconciliation; snapshot OIDs are not permanent business keys. Compare overlap as multisets rather than append it. Prefer the attributed legacy named centreline because actual replacement attributes are null, while preserving both source identities. Road proximity and gap-limited observed fragments expose uncertainty and do not become service outcomes. Requests and another city's published statuses retain separate grains/provider semantics. [Evidence and rejected alternatives](GEOSPATIAL_V3.md).
+
 ## ADR-014 — Reporting overlap, censored episodes and private spatial playback (2026-11-04)
 
 Keep source observations and identifiers distinct from reporting-window counts. Group tied timestamps before transitions; conflicting states, long gaps and source starts are unknown. Separate episode-gap sensitivity from the stricter transition continuity threshold. Retain censored private episode audit records; publish pooled city/source summaries only. Match retrospective weather at the containing-hour context and count distinct supporting facts without treating pings or shared episode weather as independent exposure. Keep hour/day/equipment geographic playback and returned-grid overlays in a separate private offline page with no exports; public V1 spatial grain is unchanged. See [definitions, trade-offs and reproduction](OPERATIONAL_DIAGNOSTICS_V2.md).

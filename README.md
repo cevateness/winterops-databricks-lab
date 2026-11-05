@@ -1,5 +1,7 @@
 # WinterOps | Weather-Driven Municipal Operations Intelligence
 
+**Current extension — November 5, 2026:** [Unified geographical application](dashboard/geospatial.html) with real official roads, public/local-file modes, actual movement/episode playback and cached weather. Seven local source weeks reconcile to **338,746 VALID observations** (+40,695). Start with the [V3 findings](docs/GEOSPATIAL_V3_FINDINGS.md), [source inspection](docs/GEOSPATIAL_V3_SOURCE_REVIEW.md) and [Windows/offline replay guide](docs/GEOSPATIAL_V3.md). **366 tests pass.** The original four-week native evidence is unchanged; zero Databricks or weather API calls. V1/V2 below are retained historical milestones.
+
 [![CI](https://github.com/cevateness/winterops-databricks-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/cevateness/winterops-databricks-lab/actions/workflows/ci.yml)
 
 **Operational diagnostics V2:** open [dashboard/diagnostics.html](dashboard/diagnostics.html) for actual reporting-window distributions, episode-gap sensitivity, equipment transitions and weather relationships. [Nine computed findings](docs/OPERATIONAL_DIAGNOSTICS_V2_FINDINGS.md) · [definitions, private map and Windows reproduction](docs/OPERATIONAL_DIAGNOSTICS_V2.md). Peak reporting is 17 IDs/minute or 18 IDs per 5/15-minute window; 30-minute segmentation yields 1,202 observed episodes. These are reporting/observation diagnostics, not fleet availability or work duration. **345 tests pass.** Continues PR #19 and its dependency on PR #18.

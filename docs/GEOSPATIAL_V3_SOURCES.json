@@ -1,0 +1,244 @@
+{
+  "schema": "winterops-v3-source-register",
+  "observed_date": "2026-11-05",
+  "weekly_csvs": [
+    {
+      "source": {
+        "source_url": "https://opendata.citywindsor.ca/Uploads/snowplow-2026-01-05_2026-01-11.csv",
+        "source_file_name": "snowplow-2026-01-05_2026-01-11.csv",
+        "covered_start": "2026-01-05",
+        "covered_end_exclusive": "2026-01-12",
+        "source_dataset": "windsor_snowplow_activity"
+      },
+      "source_file_sha256": "271c9339a42043f441b6c17e82dd309609db4b20e9953b9f368a95ec472d763d",
+      "byte_count": 221818
+    },
+    {
+      "source": {
+        "source_url": "https://opendata.citywindsor.ca/Uploads/snowplow-2026-01-12_2026-01-18.csv",
+        "source_file_name": "snowplow-2026-01-12_2026-01-18.csv",
+        "covered_start": "2026-01-12",
+        "covered_end_exclusive": "2026-01-19",
+        "source_dataset": "windsor_snowplow_activity"
+      },
+      "source_file_sha256": "f5d7633c910e1ad6be23b4111445bf0bc14fe2071c6ea0f0d4cd456295ea9e94",
+      "byte_count": 8671212
+    },
+    {
+      "source": {
+        "source_url": "https://opendata.citywindsor.ca/Uploads/snowplow-2026-01-19_2026-01-25.csv",
+        "source_file_name": "snowplow-2026-01-19_2026-01-25.csv",
+        "covered_start": "2026-01-19",
+        "covered_end_exclusive": "2026-01-26",
+        "source_dataset": "windsor_snowplow_activity"
+      },
+      "source_file_sha256": "b78d0fb82c8e3c5204ee79eea7a03417cd54bc935ead9b04577a30dc908c7c49",
+      "byte_count": 9302196
+    },
+    {
+      "source": {
+        "source_url": "https://opendata.citywindsor.ca/Uploads/snowplow-2026-01-26_2026-02-01.csv",
+        "source_file_name": "snowplow-2026-01-26_2026-02-01.csv",
+        "covered_start": "2026-01-26",
+        "covered_end_exclusive": "2026-02-02",
+        "source_dataset": "windsor_snowplow_activity"
+      },
+      "source_file_sha256": "cebcbd758e2a0cf5d0624ecf9cd6993244e7becdd1846a4057b4f63be22ed6c6",
+      "byte_count": 5272022
+    },
+    {
+      "source": {
+        "source_url": "https://opendata.citywindsor.ca/Uploads/snowplow-2026-02-02_2026-02-08.csv",
+        "source_file_name": "snowplow-2026-02-02_2026-02-08.csv",
+        "covered_start": "2026-02-02",
+        "covered_end_exclusive": "2026-02-09",
+        "source_dataset": "windsor_snowplow_activity"
+      },
+      "source_file_sha256": "e2f51d520787c09f6bf7b57094e2fe6c55b1df66ffbe8689a48bf22ee64a6a5d",
+      "byte_count": 1621246
+    },
+    {
+      "source": {
+        "source_url": "https://opendata.citywindsor.ca/Uploads/snowplow-2026-02-09_2026-02-15.csv",
+        "source_file_name": "snowplow-2026-02-09_2026-02-15.csv",
+        "covered_start": "2026-02-09",
+        "covered_end_exclusive": "2026-02-16",
+        "source_dataset": "windsor_snowplow_activity"
+      },
+      "source_file_sha256": "9ca3938c3d085a2628857214ac941bfbc435aa6156a7989c02ab5cc6ad6d7f90",
+      "byte_count": 223226
+    },
+    {
+      "source": {
+        "source_url": "https://opendata.citywindsor.ca/Uploads/snowplow-2026-02-16_2026-02-22.csv",
+        "source_file_name": "snowplow-2026-02-16_2026-02-22.csv",
+        "covered_start": "2026-02-16",
+        "covered_end_exclusive": "2026-02-23",
+        "source_dataset": "windsor_snowplow_activity"
+      },
+      "source_file_sha256": "38bf29a147c5f1845a7796f5fe8e94c811aa7ce14e7f82a47fecf0a8ae90e180",
+      "byte_count": 1364678
+    }
+  ],
+  "arcgis_scopes": [
+    {
+      "name": "roads",
+      "source": {
+        "city": "windsor_on",
+        "layer_url": "https://mappmycity.ca/arcgis/rest/services/open_data_services/transportation/MapServer/23",
+        "provider": "city_of_windsor",
+        "source": "street_centreline"
+      },
+      "where": "1=1",
+      "records": 6312,
+      "max_records": 7000,
+      "snapshot_id": "008bdf07d295d4c3206db5dd6c0581d67daf0fcc9900f10afe78f98904482331",
+      "schema_sha256": "493b0ab332a6bc26d19a0a8aec429a71592aa3e2f9794db373ac14ab556b5bec",
+      "fields": [
+        "OBJECTID",
+        "street_compkey",
+        "street_name",
+        "functional_classification",
+        "service_status",
+        "maintenance_classification",
+        "last_edited_date"
+      ],
+      "semantic_sha256": "4a2eaa6fb063824744cc08e203e869c9907ab876098dc514052a485695fb4bfd"
+    },
+    {
+      "name": "wards",
+      "source": {
+        "city": "windsor_on",
+        "layer_url": "https://mappmycity.ca/arcgis/rest/services/open_data_services/boundaries/MapServer/4",
+        "provider": "city_of_windsor",
+        "source": "wards"
+      },
+      "where": "1=1",
+      "records": 10,
+      "max_records": 20,
+      "snapshot_id": "ba110ed486a6390f1ac63ffbe20117c38e5a7a9d51b040895656ebb773620df3",
+      "schema_sha256": "fb0a98a92a7076063781ba8efaa6649f86a63a3860fd5b689a39bf081bef6d9a",
+      "fields": null,
+      "semantic_sha256": "1e4297027988eb1bba6ae4ad49eb1be7bb2c104d9806f9e4c7d184f5ce1ba41c"
+    },
+    {
+      "name": "boundary",
+      "source": {
+        "city": "windsor_on",
+        "layer_url": "https://mappmycity.ca/arcgis/rest/services/open_data_services/boundaries/MapServer/1",
+        "provider": "city_of_windsor",
+        "source": "boundary"
+      },
+      "where": "1=1",
+      "records": 1,
+      "max_records": 10,
+      "snapshot_id": "2edd0a1ee692093aa6c8965f7b40b7667d2dcbf9c7a9a8294714d93e4d75f423",
+      "schema_sha256": "c10f15ab9df017ad9de4d2ba5b72b436fcf4ace2d116637f333d3ac0ed3aa244",
+      "fields": null,
+      "semantic_sha256": "4405babcc7bb550ca9d6250117cc182291dfa58d094843f1bc7fca71d5a25eee"
+    },
+    {
+      "name": "overlap",
+      "source": {
+        "city": "windsor_on",
+        "layer_url": "https://mappmycity.ca/arcgis/rest/services/open_data_services/governmentservices/MapServer/62",
+        "provider": "city_of_windsor",
+        "source": "overlap"
+      },
+      "where": "record_date >= TIMESTAMP '2026-01-05 00:00:00' AND record_date < TIMESTAMP '2026-01-12 00:00:00'",
+      "records": 2791,
+      "max_records": 4000,
+      "snapshot_id": "68a22d92ef2059b000fe9ca2a09ef594fda35017adc4149441ac472593309177",
+      "schema_sha256": "d0498aa3e3478d97a9688d3cca03f9322fa43fbf95bb7d63c74e7608b569b56f",
+      "fields": null,
+      "semantic_sha256": "2966cca1cb50d02fb2d8f89e823b9412b7f8dc1c41d59a6ed568fa858a6066bc"
+    },
+    {
+      "name": "overlap_2026-01-12",
+      "source": {
+        "city": "windsor_on",
+        "layer_url": "https://mappmycity.ca/arcgis/rest/services/open_data_services/governmentservices/MapServer/62",
+        "provider": "city_of_windsor",
+        "source": "snowplow_62"
+      },
+      "where": "record_date >= TIMESTAMP '2026-01-12 09:00:00' AND record_date < TIMESTAMP '2026-01-12 10:00:00'",
+      "records": 1,
+      "max_records": 6000,
+      "snapshot_id": "c45b226d6d8893a6c45807cc1022fe2568f6d3497056be503049b69d517bc4ca",
+      "schema_sha256": "d0498aa3e3478d97a9688d3cca03f9322fa43fbf95bb7d63c74e7608b569b56f",
+      "fields": null,
+      "semantic_sha256": "f88766e5f74931a7111faf80c91ca6d5681f2f22fc22ad84af0e238ee969371a"
+    },
+    {
+      "name": "overlap_2026-01-19",
+      "source": {
+        "city": "windsor_on",
+        "layer_url": "https://mappmycity.ca/arcgis/rest/services/open_data_services/governmentservices/MapServer/62",
+        "provider": "city_of_windsor",
+        "source": "snowplow_62"
+      },
+      "where": "record_date >= TIMESTAMP '2026-01-19 00:00:00' AND record_date < TIMESTAMP '2026-01-19 01:00:00'",
+      "records": 349,
+      "max_records": 6000,
+      "snapshot_id": "c6939e16f00a96201adf070792da7e00a89500f39c18cd9175b109b0144627a6",
+      "schema_sha256": "d0498aa3e3478d97a9688d3cca03f9322fa43fbf95bb7d63c74e7608b569b56f",
+      "fields": null,
+      "semantic_sha256": "ad5ca980dc65cfd792eefd0a91bdd9e76b29a53cd4562bb9fae44d3442b1eb6c"
+    },
+    {
+      "name": "overlap_2026-01-26",
+      "source": {
+        "city": "windsor_on",
+        "layer_url": "https://mappmycity.ca/arcgis/rest/services/open_data_services/governmentservices/MapServer/62",
+        "provider": "city_of_windsor",
+        "source": "snowplow_62"
+      },
+      "where": "record_date >= TIMESTAMP '2026-01-26 00:00:00' AND record_date < TIMESTAMP '2026-01-26 01:00:00'",
+      "records": 2234,
+      "max_records": 6000,
+      "snapshot_id": "09022b1a7256e4c151839d5e6520b407a5c3ac4f7b6decc46a3defde0a08d470",
+      "schema_sha256": "d0498aa3e3478d97a9688d3cca03f9322fa43fbf95bb7d63c74e7608b569b56f",
+      "fields": null,
+      "semantic_sha256": "0436d5992b21bc2c2d1ccf8a01478bc1a71f74d0a1c619b1a171455e44c268fd"
+    },
+    {
+      "name": "requests",
+      "source": {
+        "city": "windsor_on",
+        "layer_url": "https://mappmycity.ca/arcgis/rest/services/open_data_services/governmentservices/MapServer/58",
+        "provider": "city_of_windsor",
+        "source": "requests"
+      },
+      "where": "created_date >= TIMESTAMP '2026-01-05 00:00:00' AND created_date < TIMESTAMP '2026-02-23 00:00:00'",
+      "records": 1156,
+      "max_records": 5000,
+      "snapshot_id": "b91f103251070e8dcdc2a37697bc2394a7316f7ba4565bc7256d37cd776322ec",
+      "schema_sha256": "982b87cf2c821f920454acabc95a7ab3ade4dfdd3ae489e50a9cd60bf4e577fe",
+      "fields": null,
+      "semantic_sha256": "f44c2e52f6c5d8eb0d15d66e97850d2c73a4175eb9fb51deae2d399d871d4c9f"
+    }
+  ],
+  "legacy_roads": {
+    "url": "https://opendata.citywindsor.ca/Uploads/Street%20Centreline_LL84.zip",
+    "bytes": 1710004,
+    "sha256": "afcc99a067c8157b1ef9cb60f1269f38565dd74010bbfaebfff715539e32c5fe",
+    "retrieved_at_utc": "2026-11-05T06:56:14.822141+00:00"
+  },
+  "live_telemetry": {
+    "count": 502312,
+    "geometry": "esriGeometryPoint",
+    "direct_feature_first_utc": "2025-12-15T05:00:10+00:00",
+    "direct_feature_last_utc": "2026-03-26T21:00:05+00:00",
+    "local_clock": "Eastern Standard Time; respectsDaylightSaving=true",
+    "max_record_count": 2000,
+    "object_id": "OBJECTID snapshot scoped only",
+    "transactional_snapshot": false
+  },
+  "extraction_http": {
+    "requests": 83,
+    "response_bytes": 6824892,
+    "retries": 0,
+    "includes_failed_road_schema_attempt": true,
+    "excludes": "Discovery reads, catalogue research, 7 CSV downloads, legacy road ZIP, vendor assets and dependency installation"
+  }
+}
