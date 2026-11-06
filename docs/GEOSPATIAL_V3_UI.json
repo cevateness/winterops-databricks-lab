@@ -1,0 +1,73 @@
+{
+  "evidence": "ACTUAL_BROWSER_PUBLIC_AND_FULL_REAL_LOCAL_DETAIL",
+  "date": "2026-11-05",
+  "public_mode": {
+    "week": "2026-01-12",
+    "observations": 110311,
+    "spatial_controls_disabled": true,
+    "weather_city_hour_means": {
+      "temperature_toronto": -5.94,
+      "temperature_utc": -5.61,
+      "source_hours": 79
+    }
+  },
+  "local_file": {
+    "bytes": 8139429,
+    "sha256": "4a3a1d76d7ba6e8d339b434dba359f24bf7831edf6a1e55596c8931926f91b45",
+    "encoding": "gzip",
+    "all_observations": 338746,
+    "loaded_via": "LOCAL_FILE_CHOOSER_MEMORY_ONLY",
+    "initial_uncompressed_transfer": "TIMED_OUT_BROWSER_TAB_LOST_RECOVERED_WITH_FULL_COMPRESSED_FILE"
+  },
+  "detailed_case": {
+    "source_local_start": "2026-01-16 16:00:00",
+    "source_local_end_exclusive": "2026-01-16 17:00:00",
+    "observations": 4333,
+    "both_active_observations": 1566,
+    "accepted_fragments": 2831,
+    "peak_all_state_ids_per_occupied_5m_bucket": 18,
+    "toronto_temperature_grid_values_c": [
+      -3.1,
+      -3.1,
+      -2.5,
+      -3.8
+    ],
+    "utc_temperature_grid_values_c": [
+      -5.2,
+      -5.3,
+      -4.8,
+      -5.8
+    ]
+  },
+  "checks": [
+    "Public source-week selection and fixed spatial grain",
+    "Official bundled road/city/ward geometry and fit control",
+    "Public Toronto/UTC weather comparison",
+    "Real full private gzip fingerprint, scopes and count reconciliation",
+    "1h and 5m playback controls; next/previous; play/pause; speed control present",
+    "Bounded accumulation",
+    "Equipment filter",
+    "Episode selection and censored first/last summary",
+    "January 24 missing telemetry activity unknown",
+    "February missing weather without imputation",
+    "Wrong-size local file rejected",
+    "Unload clears file input and resets all-state public mode"
+  ],
+  "privacy": {
+    "private_screenshots_committed": false,
+    "private_data_embedded": false,
+    "external_tiles": false,
+    "connect_src": "none",
+    "data_storage": "MEMORY_ONLY"
+  },
+  "limitations": [
+    "Desktop browser tested; Windows/browser-vendor reproduction not independently run",
+    "No tile server needed or called; offline reference geometry is the fallback",
+    "No unavailable-map-engine fault injection; fallback code exists",
+    "Browser extension metadata errors observed, no application error identified"
+  ],
+  "public_screenshot": {
+    "path": "docs/images/geospatial-v3-public.png",
+    "sha256": "835ee31bbb7d24986988ce1d1cdcb243c81202ca32e91a8d89f3c07f08090059"
+  }
+}

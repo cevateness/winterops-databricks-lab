@@ -1,0 +1,13 @@
+{
+  "evidence": "ACTUAL_BOUNDED_API_JSON_RETRIEVED_THROUGH_FIRECRAWL_NOT_RAW_BYTE_ARCHIVE",
+  "retrieval_date": "2026-11-05",
+  "source_url": "https://data.edmonton.ca/resource/8pdx-hfxi.json?$limit=3&$select=district,priority,route_stat,seg_stat",
+  "licence_url": "https://data.edmonton.ca/stories/s/City-of-Edmonton-Open-Data-Terms-of-Use/msh8-if28/",
+  "attribution": "Contains information licensed under the Open Government Licence – City of Edmonton.",
+  "scope": "Three current status rows without route IDs or geometry; not historical January telemetry or an independent completion audit",
+  "rows": [
+    {"district":"SOUTHWEST","priority":"2","route_stat":"NA","seg_stat":"NA"},
+    {"district":"SOUTHWEST","priority":"2","route_stat":"NA","seg_stat":"NA"},
+    {"district":"SOUTHEAST","priority":"1","route_stat":"NA","seg_stat":"NA"}
+  ]
+}

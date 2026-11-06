@@ -1,0 +1,47 @@
+{
+  "evidence": "EXECUTED_PINNED_REAL_CSV_AND_CACHED_WEATHER",
+  "private_files_sha256": {
+    "diagnostics.html": "b8479548c46f759837e3e4f45bc5685a2ac82a878ca388d9bd805a7d9bd097e7",
+    "public_summary.json": "3f333e9730e245af7af9fdb0fa1962cc56efec095592c62d7c89bf2842317c27",
+    "private_map.html": "132c37bb4418a85aa36a8cf793bed7ae75e34a1abd1edb61a31099bafeb7974b",
+    "cell_weather.json": "e5bcdb88b907b653add23f54bcde691cc9ef945a838eaa7b7e4d48587151b309",
+    "reporting_windows.json": "e6a23c46b5a908417bda054186691b3331d3a6117a64e04671d4a3021f194cb7",
+    "episodes.json": "73c64622e1fe7ef651ea4bf15a98e8d0b936da759e1cb6c87595b0a048071e84"
+  },
+  "requests": {
+    "databricks": 0,
+    "municipal": 0,
+    "weather": 0
+  },
+  "validation": {
+    "rows": {
+      "cell_hour": 842,
+      "daily": 25,
+      "hourly": 325,
+      "weekly": 4
+    },
+    "status": "PASS_LOCAL_ANALYTICAL_RECONCILIATION",
+    "totals": {
+      "both_active_observations": 68525,
+      "engine_off_observations": 0,
+      "engine_off_with_equipment_flag_observations": 0,
+      "neither_active_observations": 0,
+      "observation_count": 298051,
+      "plow_active_observations": 239344,
+      "plow_only_observations": 170819,
+      "repeated_valid_payload_observations": 3981,
+      "spreader_active_observations": 127232,
+      "spreader_only_observations": 58707
+    }
+  },
+  "weather_matches": 1684,
+  "executed_on": "2026-11-04",
+  "public_files_sha256": {
+    "diagnostics.html": "35e90c63f79dcf54ea8f50afbc8c4eefd52520ea52802cdb858befc846e46589",
+    "diagnostics.json": "3f333e9730e245af7af9fdb0fa1962cc56efec095592c62d7c89bf2842317c27",
+    "private_playback_demo.html": "d412e7b35478170a8a5ba5f1c117c44f1986899b71f2f98cbe6163084739dbd0",
+    "index.html": "4fe8fcba4ad9683a3f3a934697306ac3d584cd8f32f181749103a83afa137a44"
+  },
+  "v1_data_unchanged": true,
+  "v1_presentation_change": "Navigation link only; prior presentation hashes remain historical."
+}

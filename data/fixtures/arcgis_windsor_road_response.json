@@ -1,0 +1,125 @@
+{
+  "evidence": "ACTUAL_PUBLIC_ROAD_QUERY_RESPONSE_PROJECTION_2026_11_05",
+  "source_url": "https://mappmycity.ca/arcgis/rest/services/open_data_services/transportation/MapServer/23",
+  "source_schema_sha256": "493b0ab332a6bc26d19a0a8aec429a71592aa3e2f9794db373ac14ab556b5bec",
+  "note": "Geometry-only replacement layer: selected fields are returned null. Public road reference geometry contains no vehicle observations.",
+  "spatialReference": {
+    "wkid": 4326
+  },
+  "features": [
+    {
+      "attributes": {
+        "OBJECTID": 1,
+        "functional_classification": null,
+        "last_edited_date": null,
+        "maintenance_classification": null,
+        "service_status": null,
+        "street_compkey": null,
+        "street_name": null
+      },
+      "geometry": {
+        "paths": [
+          [
+            [
+              -83.05606003828173,
+              42.30725808642221
+            ],
+            [
+              -83.05452046153125,
+              42.304849253170424
+            ]
+          ]
+        ]
+      }
+    }
+  ],
+  "advertised_field_names": [
+    "OBJECTID",
+    "street_compkey",
+    "start_intersection_id",
+    "end_intersection_id",
+    "street_name",
+    "from_street",
+    "to_street",
+    "left_address_from",
+    "left_address_to",
+    "right_address_from",
+    "right_address_to",
+    "functional_classification",
+    "speed_limit",
+    "lane_count",
+    "traffic_direction",
+    "service_status",
+    "surface_type",
+    "curb_type",
+    "is_oneway",
+    "has_bus_route",
+    "has_truck_route",
+    "segment_length",
+    "surface_width",
+    "rightofway_width",
+    "created_date",
+    "last_edited_date",
+    "Shape_Length",
+    "street_id",
+    "segment_id",
+    "surface_depth",
+    "base_depth",
+    "lane_length",
+    "traffic_count",
+    "divider_type",
+    "left_sidewalk",
+    "right_sidewalk",
+    "base_type",
+    "maintenance_classification",
+    "condition_category",
+    "constructed_date",
+    "service_status_date",
+    "traffic_count_date",
+    "segment_width"
+  ],
+  "actual_unprojected_query_field_names": [
+    "OBJECTID",
+    "street_compkey",
+    "start_intersection_id",
+    "end_intersection_id",
+    "street_name",
+    "from_street",
+    "to_street",
+    "left_address_from",
+    "left_address_to",
+    "right_address_from",
+    "right_address_to",
+    "functional_classification",
+    "speed_limit",
+    "lane_count",
+    "traffic_direction",
+    "service_status",
+    "surface_type",
+    "curb_type",
+    "is_oneway",
+    "has_bus_route",
+    "has_truck_route",
+    "segment_length",
+    "surface_width",
+    "rightofway_width",
+    "last_edited_date",
+    "Shape_Length",
+    "street_id",
+    "segment_id",
+    "surface_depth",
+    "base_depth",
+    "lane_length",
+    "traffic_count",
+    "divider_type",
+    "left_sidewalk",
+    "right_sidewalk",
+    "base_type",
+    "maintenance_classification",
+    "condition_category",
+    "constructed_date",
+    "service_status_date",
+    "traffic_count_date",
+    "segment_width"
+  ]
+}

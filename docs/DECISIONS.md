@@ -1,5 +1,21 @@
 # Architecture decision log
 
+## ADR-015 — Shared offline map, source-specific snapshots and conservative geography (2026-11-05)
+
+Use one Leaflet component with bundled official streets and a separate hash-verified local-file payload; never treat a front-end mode switch as access control. Fixed public cell/week totals prevent finer filter differences. Preserve the original four-week contracts, reuse UnifiedGold and weather summary expressions, and extend only local versioned history. Extract ArcGIS through bounded count/ID reconciliation; snapshot OIDs are not permanent business keys. Compare overlap as multisets rather than append it. Prefer the attributed legacy named centreline because actual replacement attributes are null, while preserving both source identities. Road proximity and gap-limited observed fragments expose uncertainty and do not become service outcomes. Requests and another city's published statuses retain separate grains/provider semantics. [Evidence and rejected alternatives](GEOSPATIAL_V3.md).
+
+## ADR-014 — Reporting overlap, censored episodes and private spatial playback (2026-11-04)
+
+Keep source observations and identifiers distinct from reporting-window counts. Group tied timestamps before transitions; conflicting states, long gaps and source starts are unknown. Separate episode-gap sensitivity from the stricter transition continuity threshold. Retain censored private episode audit records; publish pooled city/source summaries only. Match retrospective weather at the containing-hour context and count distinct supporting facts without treating pings or shared episode weather as independent exposure. Keep hour/day/equipment geographic playback and returned-grid overlays in a separate private offline page with no exports; public V1 spatial grain is unchanged. See [definitions, trade-offs and reproduction](OPERATIONAL_DIAGNOSTICS_V2.md).
+
+## ADR-013 — Local operational analytics product with reusable Gold semantics (2026-11-04)
+
+Execute the existing UnifiedGold product CTEs locally over exact pinned CSV reconstructions; add coarse cell/hour metrics using the same equipment expressions. Reuse cached weather and the existing conditional matcher, deduplicate grid/time facts before weather summaries, and publish an allowlisted aggregate-only standalone dashboard. Keep detailed real cell/hour products private; suppress under-20 cell/week map groups with explicit accounting. Separate public replay, actual detail rebuild, native publication and model readiness. No native manifest simulation, ingestion changes, new providers or hosted deployment. See [contracts, execution and trade-offs](OPERATIONAL_ANALYTICS_V1.md).
+
+## ADR-012 — Corroborate the source clock without rewriting NTZ (2026-11-04)
+
+Use the official replacement layer's explicit date-field timezone, exact selected local-hour count crosswalk and direct timestamp-only samples to corroborate Toronto for the pinned January weeks. Preserve source NTZ and conditional Toronto/UTC outputs because the historical CSV exporter clock remains undocumented. Exclude scraper timezone and observed inconsistent date MIN/MAX representations from clock proof. Analyze saved, hash-pinned weather matches at source-day/hypothesis grain, deduplicating weather grid/hours and retaining sampling/missing-day limits. No new collection or native/runtime validation gates. See [evidence and trade-offs](TEMPORAL_ALIGNMENT_REVIEW.md).
+
 ## ADR-001 — Separate public learning lab (2026-10-16)
 Keep WinterOps fully separate from proprietary ETA projects and Sports-Market-Edge. Use historical public municipality data; Databricks Free Edition for learning.
 
