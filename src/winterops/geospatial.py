@@ -127,6 +127,32 @@ class RoadIndex:
         return result
 
 
+def observation_interval(a,b,timezone_hypothesis='America/Toronto'):
+    """Reported endpoints and conditional elapsed time, independent of thresholds."""
+    if timezone_hypothesis not in ('America/Toronto','UTC'):raise ValueError('GEO_CLOCK_HYPOTHESIS')
+    try:seconds=(conditional_instant(b['time'],timezone_hypothesis)-conditional_instant(a['time'],timezone_hypothesis)).total_seconds()
+    except ValueError:return dict(clock_status='clock_ambiguous_or_nonexistent',seconds=None,p=None,q=None,distance_m=None,speed_kph=None)
+    ca={(r['longitude'],r['latitude']) for r in a['rows']};cb={(r['longitude'],r['latitude']) for r in b['rows']}
+    p=next(iter(ca)) if len(ca)==1 else None;q=next(iter(cb)) if len(cb)==1 else None
+    distance=GEOD.inv(*p,*q)[2] if p is not None and q is not None else None
+    return dict(clock_status='known' if seconds>0 else 'nonpositive_elapsed_time',seconds=seconds,p=p,q=q,
+                before=a['state'],after=b['state'],distance_m=distance,
+                speed_kph=distance/seconds*3.6 if distance is not None and seconds>0 else None)
+
+
+def interval_reason(interval,gap_seconds=60,speed_limit_kph=100,stationary_metres=3):
+    """Shared conservative rule; order of unknown/rejection reasons is explicit."""
+    e=interval
+    if e['clock_status']!='known':return e['clock_status']
+    if e['seconds']>gap_seconds:return 'recording_gap'
+    if e['p'] is None or e['q'] is None:return 'coordinate_tie_unknown'
+    if 'unknown' in e['before']+e['after']:return 'conflicting_state_unknown'
+    if e['speed_kph']>speed_limit_kph:return 'questionable_speed'
+    if e['distance_m']<=stationary_metres:return 'stationary'
+    if e['before']!=e['after']:return 'equipment_state_change'
+    return 'accepted'
+
+
 def observed_fragments(rows, gap_seconds=60, speed_limit_kph=100, stationary_metres=3, timezone_hypothesis='America/Toronto'):
     """Private line segments between unambiguous consecutive timestamp groups.
 
@@ -138,30 +164,15 @@ def observed_fragments(rows, gap_seconds=60, speed_limit_kph=100, stationary_met
     events=timestamp_events(rows);segments=[];counts=Counter();speeds=[];spans=[]
     for (key,truck),seq in events.items():
         for a,b in zip(seq,seq[1:]):
-            try:
-                seconds=(conditional_instant(b['time'],timezone_hypothesis)-conditional_instant(a['time'],timezone_hypothesis)).total_seconds()
-            except ValueError:
-                counts['clock_ambiguous_or_nonexistent']+=1
-                continue
-            if seconds<=0:
-                counts['nonpositive_elapsed_time']+=1
-                continue
-            ca={(r['longitude'],r['latitude']) for r in a['rows']};cb={(r['longitude'],r['latitude']) for r in b['rows']}
-            reason='accepted';distance=speed=None
-            if seconds>gap_seconds:reason='recording_gap'
-            elif len(ca)!=1 or len(cb)!=1:reason='coordinate_tie_unknown'
-            elif 'unknown' in a['state']+b['state']:reason='conflicting_state_unknown'
-            else:
-                p,q=next(iter(ca)),next(iter(cb))
-                distance=GEOD.inv(*p,*q)[2];speed=distance/seconds*3.6
+            evidence=observation_interval(a,b,timezone_hypothesis)
+            seconds,distance,speed=evidence['seconds'],evidence['distance_m'],evidence['speed_kph']
+            reason=interval_reason(evidence,gap_seconds,speed_limit_kph,stationary_metres)
+            if reason in ('accepted','questionable_speed','stationary','equipment_state_change'):
                 speeds.append(speed);spans.append(seconds)
-                if speed>speed_limit_kph:reason='questionable_speed'
-                elif distance<=stationary_metres:reason='stationary'
-                elif a['state']!=b['state']:reason='equipment_state_change'
             counts[reason]+=1
             if reason=='accepted':
                 segments.append(dict(processing_key=key,truck_id=truck,start=a['time'].isoformat(' '),end=b['time'].isoformat(' '),
-                                     coordinates=[list(next(iter(ca))),list(next(iter(cb)))],state=a['state'],
+                                     coordinates=[list(evidence['p']),list(evidence['q'])],state=a['state'],
                                      distance_m=distance,apparent_speed_kph=speed,
                                      source_record_ordinals=[[r['source_record_number'] for r in e['rows']] for e in (a,b)]))
     return dict(segments=segments,intervals=dict(counts),timestamp_groups=sum(map(len,events.values())),
