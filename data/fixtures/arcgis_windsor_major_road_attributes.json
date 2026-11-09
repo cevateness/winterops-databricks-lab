@@ -1,0 +1,60 @@
+{
+  "count": {
+    "count": 553
+  },
+  "requests": 2,
+  "response_bytes": 698,
+  "sample": {
+    "displayFieldName": "major_road",
+    "exceededTransferLimit": true,
+    "features": [
+      {
+        "attributes": {
+          "OBJECTID": 1,
+          "last_edited_date": null,
+          "major_road": "South Cameron Boulevard"
+        }
+      },
+      {
+        "attributes": {
+          "OBJECTID": 2,
+          "last_edited_date": null,
+          "major_road": "HWY 3"
+        }
+      },
+      {
+        "attributes": {
+          "OBJECTID": 3,
+          "last_edited_date": null,
+          "major_road": "Broadway Street"
+        }
+      }
+    ],
+    "fieldAliases": {
+      "OBJECTID": "OBJECTID",
+      "last_edited_date": "last_edited_date",
+      "major_road": "Major Road"
+    },
+    "fields": [
+      {
+        "alias": "OBJECTID",
+        "name": "OBJECTID",
+        "type": "esriFieldTypeOID"
+      },
+      {
+        "alias": "Major Road",
+        "length": 255,
+        "name": "major_road",
+        "type": "esriFieldTypeString"
+      },
+      {
+        "alias": "last_edited_date",
+        "length": 8,
+        "name": "last_edited_date",
+        "type": "esriFieldTypeDate"
+      }
+    ]
+  },
+  "source_url": "https://mappmycity.ca/arcgis/rest/services/open_data_services/transportation/MapServer/13",
+  "retrieved_at_utc": "2026-11-06T06:27:44.468745+00:00"
+}

@@ -51,3 +51,14 @@ The first fixed-point snapshot is a reproducibility/temporal fixture, not a loca
 ## ADR-011 — Coarse hull for region review; occupied demand for collection (2026-11-03)
 
 Discover the region from screened Silver locally. Compute bounding box/convex hull over deduplicated coarse cell corners, not raw trajectories, and distinguish eligible versus sparse-suppressed retained footprints. Preview hull/bounding-box collection sizes but keep requests on occupied bins and required times. A hull can fill unobserved gaps, and multiple candidates can resolve to one returned weather grid. Do not interpret geometry as a city boundary or independent weather information. Cache source dimensions per scope to avoid per-observation metadata recomputation.
+
+
+## 2026-11-06 — V3.1 evidence, exposure and privacy
+
+- Use bounded heading plus actual provider-node/endpoint connectivity for candidate fragments; keep nearest-road as a control and unmatched/ambiguous outcomes explicit. No routing solver, inferred service distance or completion label.
+- Retain conflicting timestamp groups as unknown; source ordinals cannot establish within-second physical transitions. Reported ID strings are not verified physical assets across weeks.
+- Extend weather with two fixed public regional references and continuous hours independent of telemetry. Preserve existing activity-matched archive and alternative clocks. Missing recording is unknown deployment; reanalysis is retrospective.
+- Do not append the replacement portal overlap: one window doubles existing payload multiplicities. Snapshot OIDs and matching payloads do not establish new operational events or independent sensor corroboration.
+- Extend the existing shared Leaflet component. Public corridor metrics are fixed pooled totals; finer road/time/state intersections are local-file-only. Index by hour and bound drawing, while keeping analytical totals uncapped.
+- Keep the January-2025-posted named streets as an explicitly imperfect historical reference; do not attach attributes by proximity. A named major-road subset is supplementary feasibility, not a complete replacement.
+- No native Gold/ingestion writes. Obtain independently labeled historical service evidence and documented identifier/clock semantics before predictive work.

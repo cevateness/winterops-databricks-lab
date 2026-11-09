@@ -1,6 +1,13 @@
 # Current roadmap — November 5, 2026
 
-## Phase 2 extension — geographical intelligence V3
+
+## Phase 2 extension — road-passage evidence V3.1
+
+Actually executed seven-week road/sensor analytics, conservative heading/node passage fragments, threshold sensitivity, February anomaly and identifier investigation, additional bounded source overlap, continuous independent public-reference weather and shared map road/quality controls. Full final private replay is byte-identical; public weather associations replay without private records. [Findings](ROAD_EVIDENCE_V31_FINDINGS.md) · [architecture/reproduction](ROAD_EVIDENCE_V31.md) · [verification](ROAD_EVIDENCE_V31_VERIFICATION.md).
+
+Municipal history remains seven weeks / 338,746 VALID; no overlap appended. January activity-matched weather remains separate from new all-hour regional references. Outcome labels and physical-vehicle identity remain unavailable. Next: obtain custodian-confirmed clock/identifier/update semantics and one independently labeled historical service event, then define an availability-safe target and multi-season event holdout before any Phase 3 predictive baseline. No forecasting, optimization, streaming or native deployment in this milestone.
+
+## Previous Phase 2 extension — geographical intelligence V3
 
 Implemented and actually executed seven-week local analytics (338,746 VALID), shared public/local-file Leaflet playback, official road/ward/city context, conservative movement/proximity, sensor diagnostics, replacement-source comparison, bounded 311 context and a separate Edmonton status proof. [Current findings](GEOSPATIAL_V3_FINDINGS.md) · [review/reproduction](GEOSPATIAL_V3.md). Real full local-detail browser QA and byte-identical offline restoration pass. New February periods are local only; four-week native ingestion/Gold evidence is unchanged.
 

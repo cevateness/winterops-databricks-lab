@@ -1,0 +1,33 @@
+# V3.1 sources and independently observed outcomes
+
+Inspection date: November 6, 2026. [Actual bounded comparison](ROAD_EVIDENCE_V31_SOURCE_REVIEW.json), [named major-road sample](../data/fixtures/arcgis_windsor_major_road_attributes.json). Original V3 source packages, January contracts, historical Gold evidence and private records remain intact.
+
+| Source | What was actually inspected / obtained | Result and limit |
+| --- | --- | --- |
+| Windsor MapServer 62 telemetry | Seven stratified windows, bounded at 10,000 records, 200-ID batches; count/ID/schema reconciliation | 7,036 records against 6,270 selected CSV records; exact matches for all CSV records plus 766 extra payload copies in one February sample. Six source weeks, no full-history equality claim; no append |
+| Transportation MapServer 23 streets | Current metadata and `street_name IS NOT NULL` count | Count **0**. Re-selecting advertised fields cannot manufacture absent attributes. Existing 6,312 geometries and their raw null evidence remain separate from the 6,304 legacy named features |
+| Transportation MapServer 13 major roads | Metadata, non-null name count, ordered three-record attribute query | **553** named features; sample South Cameron Boulevard, HWY 3, Broadway Street. All three edit dates null. No full geometry acquisition, no proximity-based transfer to legacy keys, no claim of complete/classified/historical coverage |
+| Transportation MapServer 10 county roads | Metadata only | Street-name and geography fields advertised; no record-level completeness, licence-specific third-party lineage or historical validity established. Not substituted for Windsor streets |
+| Governmentservices MapServer 58 requests | Current field metadata; retained V3 1,156-record January–February sample | Creation time, type, ward and address fields; no completion/fulfillment/status event. Existing sample has no usable coordinates; road-level request association would be invented |
+| [Official snow-removal policy](https://www.citywindsor.ca/residents/roads-sewers-sidewalks/snow-removal) | Actual page read through Firecrawl | Tracker explicitly excludes other contracted trucks/machinery. Current page links 2026–27 routes and describes policy thresholds. Neither supplies January–February 2026 completed-service records or fleet capacity |
+| [311 source description](https://opendata.citywindsor.ca/Details/115) | Official catalogue description and current service fields | Requests represent customer-reported concerns and only a portion of services. A request is not a road-condition inspection; closure/fulfillment absent |
+| [Open-Meteo historical API](https://open-meteo.com/en/docs/historical-weather-api) | Four actual fixed-reference ERA5-requested GETs, two locations × two date ranges | 2,448 unique grid/hour facts / 64,961 bytes. Exact raw response bytes and retrieval metadata published because references were predeclared public locations, not telemetry-derived coordinates |
+| [Open-Meteo terms / data licence](https://open-meteo.com/en/terms) | Documented historical reanalysis, hourly units and attribution | CC BY 4.0 data attribution; non-commercial learning prototype. Reanalysis is retrospective; not historical forecast availability. Returned grid centres are not verified cell boundaries |
+
+The main source-recheck ledger is **47 GETs / 2,034,244 bytes / zero retries**, including four metadata reads, the street non-null query and 42 telemetry snapshot operations. The separate major-road proof adds **two GETs** (its exact byte count is in the fixture). Weather adds four GETs. These ledgers exclude search/scrape discovery and package installation. No individual coordinates, identifiers or paths were sent to weather/basemap services; telemetry queries use only municipal date windows. No native Databricks requests occurred.
+
+The ArcGIS layer still declares Eastern Standard Time with DST and `datesInUnknownTimezone=false`; feature dates are UTC epoch milliseconds. Generic descriptive template text mentions EPSG:26917 even for the telemetry layer, while the **actual source spatial reference is EPSG:4326**. Contract parsing uses declared structured CRS/geometry, not copied prose. Portal OBJECTIDs identify a snapshot's records, not stable operational business events. The bounded ID-set checks do not establish a transaction-isolated attribute snapshot or edit history.
+
+## What is needed to identify operational outcomes
+
+| Desired measurement | Minimum independently observed information | What the current product can support |
+| --- | --- | --- |
+| Road coverage / completed clearing | Historical road/version and direction/lane scope; service-event ID; equipment contact/application; a validated completion/condition assessment | Candidate nearby roads and movement-supported fragments; no serviced length or completion percentage |
+| Actual service duration | Known work start/stop, assignment/task identity and pause semantics; identity continuity | Apparent observed episode span, censored by recording and unknown gaps |
+| Response time | Issue/dispatch/arrival/fulfillment timestamps with linked event IDs and definitions | Request creation distributions and observed activity windows, without a fulfillment join |
+| Fleet or crew capacity | Stable asset/crew register, roster, availability/outage/shift intervals including contractors | Distinct reporting strings within a stated occupied time window |
+| Salt/material application | Calibrated flow/load sensors, units, application intervals and asset/task linkage | Reported spreader state only; no material quantity |
+| SLA attainment | Historical service standards, eligible events, priority/assignment geometry, weather-event definitions and verified completion | Policy context and incomplete descriptive evidence; no SLA denominator or attainment claim |
+| Prediction at decision time | A defensible target, independently defined exposure, stable event/asset identities, historical availability/version timestamps for every feature, and multiple seasons held out by event | Continuous retrospective reference weather and descriptive sensor diagnostics; no forecast training |
+
+The official page's current 23 main routes and quoted policy costs are not historical fleet size, dispatch labels or savings estimators. No exhaustive claim is made that municipal internal systems lack these fields; they were unavailable in the inspected public sources. The existing Edmonton status proof remains a non-equivalent current-status feasibility sample, not a new Windsor outcome or added telemetry history. No source custodian was contacted automatically.

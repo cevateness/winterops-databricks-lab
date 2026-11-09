@@ -90,3 +90,6 @@ jobs:
         run: python scripts/build_operational_diagnostics.py --output-root /tmp/winterops-diagnostics
       - name: Replay shared geospatial application from public aggregates (no network)
         run: python scripts/render_geospatial.py --output /tmp/winterops-geospatial.html
+
+      - name: Replay continuous fixed-reference weather exposure from actual public facts (no network)
+        run: python scripts/replay_weather_exposure.py --output /tmp/winterops-exposure.json
